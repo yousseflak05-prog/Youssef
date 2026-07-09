@@ -1,0 +1,951 @@
+<title>Atlas — Agence de Marketing Digital · Maroc</title>
+<style>
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(__NEWSREADER_ROMAN__) format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(__NEWSREADER_ITALIC__) format("woff2");
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(__ARCHIVO__) format("woff2");
+}
+
+:root {
+  --ivoire: #f4f2ea;
+  --ivoire-2: #ece9dd;
+  --pin: #0e2a1d;
+  --pin-2: #143726;
+  --pin-3: #1b4530;
+  --encre: #1a2b21;
+  --encre-2: #54665a;
+  --encre-3: #7e8e82;
+  --or: #c2a05c;
+  --or-fonce: #94722c;
+  --blanc-chaud: #faf9f4;
+  --sur-pin: #ede9dc;
+  --sur-pin-2: #a9baab;
+  --hairline: rgba(26, 43, 33, 0.14);
+  --hairline-inverse: rgba(237, 233, 220, 0.16);
+  --wa: #128c4b;
+  --vert-data: #1e8757;
+  --or-data: #a0741a;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--ivoire);
+  color: var(--encre);
+  font-family: "Archivo", "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p { margin: 0; }
+a { color: inherit; }
+
+.serif { font-family: "Newsreader", Georgia, serif; font-weight: 500; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--or-fonce);
+}
+.eyebrow svg { flex: none; }
+.dark-band .eyebrow { color: var(--or); }
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 3px;
+}
+
+/* ---------- Reveal ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Nav ---------- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: rgba(244, 242, 234, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hairline);
+}
+.nav-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand .brand-name {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 23px;
+  letter-spacing: 0.01em;
+}
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-links a {
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--encre-2);
+  transition: color 140ms ease;
+}
+.nav-links a:hover { color: var(--encre); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 26px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.btn-plein { background: var(--pin); color: var(--sur-pin); }
+.btn-plein:hover { background: var(--pin-3); }
+.btn-ligne { border-color: var(--encre); color: var(--encre); }
+.btn-ligne:hover { background: var(--encre); color: var(--ivoire); }
+.btn-or { background: var(--or); color: var(--pin); }
+.btn-or:hover { background: #d5b876; }
+.btn-wa { background: var(--wa); color: #fff; }
+.btn-wa:hover { background: #17a35a; }
+nav .btn { padding: 10px 20px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 150px 24px 200px;
+}
+.hero h1 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(44px, 8.4vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  max-width: 22ch;
+  margin: 26px 0 30px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--or-fonce);
+}
+.hero .sous {
+  max-width: 56ch;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.65;
+  color: var(--encre-2);
+  margin-bottom: 40px;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+.ridge {
+  position: absolute;
+  left: 0; right: 0; bottom: 64px;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.ridge path {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.ridge .r1 { stroke: var(--or); stroke-width: 1.6; opacity: 0.9; }
+.ridge .r2 { stroke: var(--encre); stroke-width: 1.2; opacity: 0.28; }
+.ridge .r3 { stroke: var(--encre); stroke-width: 1; opacity: 0.14; }
+@media (prefers-reduced-motion: no-preference) {
+  .ridge path {
+    stroke-dasharray: 1800;
+    stroke-dashoffset: 1800;
+    animation: dessiner 2.6s ease-out forwards;
+  }
+  .ridge .r2 { animation-delay: 0.25s; }
+  .ridge .r3 { animation-delay: 0.5s; }
+  @keyframes dessiner { to { stroke-dashoffset: 0; } }
+}
+
+.hero-stats {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  border-top: 1px solid var(--hairline);
+  background: var(--ivoire);
+}
+.hero-stats .wrap {
+  display: flex;
+  justify-content: center;
+  gap: clamp(24px, 6vw, 90px);
+  padding-top: 18px;
+  padding-bottom: 18px;
+  flex-wrap: wrap;
+}
+.hero-stats span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--encre-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.hero-stats b { color: var(--or-fonce); font-size: 15px; letter-spacing: 0.02em; }
+
+/* ---------- Sections communes ---------- */
+section { padding: 110px 0; }
+.sec-head { max-width: 640px; margin-bottom: 64px; }
+.sec-head h2 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(32px, 4.6vw, 50px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 18px 0 18px;
+}
+.sec-head h2 em { font-style: italic; color: var(--or-fonce); }
+.sec-head p { color: var(--encre-2); font-size: 17px; max-width: 54ch; }
+
+.dark-band { background: var(--pin); color: var(--sur-pin); }
+.dark-band .sec-head h2 em { color: var(--or); }
+.dark-band .sec-head p { color: var(--sur-pin-2); }
+
+/* ---------- Services ---------- */
+.services { border-top: 1px solid var(--hairline); background: var(--blanc-chaud); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+.service {
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 44px 40px 40px;
+  position: relative;
+  background: transparent;
+  transition: background 300ms ease;
+}
+.service:hover { background: var(--pin); }
+.service .ico { color: var(--or-fonce); margin-bottom: 26px; transition: color 300ms ease; }
+.service h3 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: 27px;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  transition: color 300ms ease;
+}
+.service p { color: var(--encre-2); font-size: 15px; max-width: 46ch; transition: color 300ms ease; }
+.service .num {
+  position: absolute;
+  top: 40px; right: 40px;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  color: var(--encre-3);
+  opacity: 0.55;
+  font-size: 16px;
+  transition: color 300ms ease, opacity 300ms ease;
+}
+.service:hover .ico { color: var(--or); }
+.service:hover h3 { color: var(--sur-pin); }
+.service:hover p { color: var(--sur-pin-2); }
+.service:hover .num { color: var(--or); opacity: 0.8; }
+
+/* ---------- Méthode ---------- */
+.methode-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  counter-reset: etape;
+}
+.etape { position: relative; padding-top: 26px; }
+.etape::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: -40px;
+  height: 1px;
+  background: var(--hairline-inverse);
+}
+.etape:last-child::before { right: 0; }
+.etape::after {
+  content: "";
+  position: absolute;
+  top: -3.5px; left: 0;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--or);
+}
+.etape .e-num {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 38px;
+  color: var(--or);
+  line-height: 1;
+  display: block;
+  margin-bottom: 14px;
+}
+.etape h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--sur-pin);
+}
+.etape p { font-size: 14.5px; color: var(--sur-pin-2); }
+
+.methode-note {
+  margin-top: 70px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline-inverse);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.methode-note p {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 21px;
+  color: var(--sur-pin);
+  max-width: 44ch;
+}
+
+/* ---------- Portail ---------- */
+.portail .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+}
+.portail .sec-head { margin-bottom: 34px; }
+.portail ul { list-style: none; margin: 0 0 38px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.portail li { display: flex; gap: 12px; align-items: baseline; color: var(--encre-2); font-size: 15.5px; }
+.portail li::before { content: "—"; color: var(--or-fonce); flex: none; font-weight: 600; }
+
+.mock {
+  background: var(--blanc-chaud);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 24px 60px -24px rgba(14, 42, 29, 0.35);
+}
+.mock-top {
+  background: var(--pin);
+  color: var(--sur-pin);
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.mock-top .m-brand {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+.mock-top .m-tag {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+}
+.mock-body { padding: 22px; }
+.mock-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.m-kpi { border: 1px solid var(--hairline); padding: 13px 14px 11px; background: #fff; }
+.m-kpi .k-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--encre-2);
+  display: block;
+  margin-bottom: 6px;
+}
+.m-kpi .k-val {
+  font-size: 24px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.m-kpi .k-val .k-unit { font-size: 12px; font-weight: 500; color: var(--encre-2); margin-left: 3px; }
+.m-kpi .k-delta {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: #16663f;
+  background: rgba(30, 135, 87, 0.11);
+  padding: 1px 7px;
+  border-radius: 99px;
+}
+.m-chart { border: 1px solid var(--hairline); background: #fff; padding: 14px 14px 8px; }
+.m-chart .c-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.m-chart .c-title { font-size: 12.5px; font-weight: 600; }
+.m-chart .c-legend { display: flex; gap: 12px; font-size: 10.5px; color: var(--encre-2); }
+.m-chart .c-legend i {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  margin-right: 5px;
+  font-style: normal;
+}
+.mock-foot {
+  padding: 12px 22px 20px;
+  font-size: 12px;
+  color: var(--encre-3);
+}
+
+/* ---------- Preuve / citation ---------- */
+.preuve { background: var(--ivoire-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.preuve .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: start; }
+.citation {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(26px, 3.4vw, 37px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.citation .marque { color: var(--or-fonce); }
+.props { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 32px; }
+.prop h4 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding-top: 14px;
+  border-top: 1px solid var(--encre);
+  margin-bottom: 8px;
+}
+.prop p { font-size: 14px; color: var(--encre-2); }
+
+/* ---------- CTA ---------- */
+.cta { position: relative; overflow: hidden; text-align: center; padding: 130px 0 120px; }
+.cta .fond {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 24vw;
+  color: rgba(237, 233, 220, 0.04);
+  user-select: none;
+}
+.cta h2 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(36px, 6vw, 68px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-wrap: balance;
+  margin: 20px auto 18px;
+  max-width: 18ch;
+}
+.cta h2 em { font-style: italic; color: var(--or); }
+.cta .sous {
+  color: var(--sur-pin-2);
+  max-width: 46ch;
+  margin: 0 auto 44px;
+  font-size: 17px;
+}
+.cta .garanties {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 60px);
+  flex-wrap: wrap;
+  margin-top: 54px;
+}
+.cta .garanties span {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+}
+.cta .btn-wa { padding: 20px 44px; font-size: 13px; }
+
+/* ---------- Footer ---------- */
+footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid var(--hairline-inverse); }
+.foot-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.foot-brand { max-width: 320px; display: flex; flex-direction: column; gap: 18px; }
+.foot-brand p { font-size: 13px; color: var(--sur-pin-2); }
+.foot-cols { display: flex; gap: clamp(40px, 7vw, 100px); }
+.foot-col { display: flex; flex-direction: column; gap: 12px; }
+.foot-col span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+.foot-col a {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sur-pin);
+  opacity: 0.85;
+  transition: color 140ms ease;
+}
+.foot-col a:hover { color: var(--or); }
+.foot-legal {
+  border-top: 1px solid var(--hairline-inverse);
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--sur-pin-2);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  section { padding: 80px 0; }
+  .services-grid { grid-template-columns: 1fr; }
+  .methode-grid { grid-template-columns: 1fr; gap: 34px; }
+  .etape::before { right: 0; }
+  .portail .wrap { grid-template-columns: 1fr; }
+  .preuve .wrap { grid-template-columns: 1fr; }
+  .hero { padding-bottom: 170px; }
+  .ridge { bottom: 90px; }
+}
+@media (max-width: 560px) {
+  .service { padding: 34px 26px 32px; }
+  .service .num { top: 30px; right: 26px; }
+  .props { grid-template-columns: 1fr; }
+  .mock-kpis { grid-template-columns: 1fr 1fr; }
+  .m-kpi:last-child { grid-column: 1 / -1; }
+  .hero-stats .wrap { gap: 14px 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#haut" aria-label="Atlas — accueil">
+      <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="50,12 88,84 12,84" stroke="currentColor" stroke-width="5" stroke-linejoin="round" fill="none"></polygon>
+        <polyline points="50,12 36,54 50,44 64,64" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" fill="none"></polyline>
+        <line x1="36" y1="54" x2="12" y2="84" stroke="currentColor" stroke-width="3.5"></line>
+        <polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#c2a05c"></polygon>
+        <line x1="50" y1="1" x2="50" y2="6" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+        <line x1="59" y1="4" x2="57" y2="8" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+        <line x1="41" y1="4" x2="43" y2="8" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+        <line x1="65" y1="10" x2="62" y2="13" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+      </svg>
+      <span class="brand-name">Atlas</span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#methode">Méthode</a>
+      <a href="#resultats">Résultats</a>
+      <a href="#pourquoi">Pourquoi Atlas</a>
+    </div>
+    <a class="btn btn-plein" href="#contact">Audit gratuit</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="haut">
+  <span class="eyebrow">
+    <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+    Agence de marketing digital · Maroc
+  </span>
+  <h1 class="serif">Des abonnés, c&rsquo;est bien.<br><em>Des clients, c&rsquo;est mieux.</em></h1>
+  <p class="sous">
+    Atlas transforme vos réseaux sociaux en machine à clients. Conçu pour les
+    entreprises marocaines — sans jargon, sans agence hors de prix, avec des
+    résultats que vous suivez en direct.
+  </p>
+  <div class="hero-cta">
+    <a class="btn btn-plein" href="https://wa.me/212666845288?text=Bonjour%20Atlas%2C%20je%20veux%20un%20audit%20gratuit%20de%20mes%20r%C3%A9seaux" target="_blank" rel="noopener">Demander un audit gratuit</a>
+    <a class="btn btn-ligne" href="#methode">Découvrir la méthode</a>
+  </div>
+
+  <svg class="ridge" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <path class="r3" d="M0 205 L150 165 L260 195 L400 130 L520 185 L660 115 L800 180 L950 140 L1090 190 L1230 155 L1440 200"></path>
+    <path class="r2" d="M0 190 L180 130 L320 175 L470 95 L610 165 L760 80 L900 160 L1060 110 L1200 175 L1440 135"></path>
+    <path class="r1" d="M0 175 L210 105 L360 150 L540 55 L700 140 L870 40 L1010 135 L1180 85 L1330 150 L1440 110"></path>
+  </svg>
+
+  <div class="hero-stats">
+    <div class="wrap">
+      <span><b>63+</b> entrepreneurs accompagnés</span>
+      <span><b>&lt; 2h</b> de délai de réponse</span>
+      <span><b>30 j</b> pour des résultats mesurés</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+        Nos services
+      </span>
+      <h2 class="serif">Tout ce qu&rsquo;il faut pour passer <em>de la visibilité aux ventes.</em></h2>
+      <p>Quatre métiers, une seule obsession : que chaque dirham investi dans vos réseaux revienne en clients.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service reveal">
+        <span class="num serif">I</span>
+        <span class="ico" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="15" rx="0"></rect><circle cx="12" cy="12.5" r="4"></circle><line x1="16.8" y1="8" x2="16.8" y2="8.01"></line><path d="M8 5l1.2-2h5.6L16 5"></path></svg>
+        </span>
+        <h3>Gestion Instagram</h3>
+        <p>Stratégie, création de contenu et gestion complète de votre compte. On s&rsquo;occupe de tout — vous recevez les clients.</p>
+      </article>
+      <article class="service reveal">
+        <span class="num serif">II</span>
+        <span class="ico" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19"></rect><path d="M10 9.5l5 3-5 3z"></path></svg>
+        </span>
+        <h3>TikTok &amp; Reels</h3>
+        <p>Des vidéos courtes conçues pour atteindre de nouvelles audiences au Maroc — le format qui porte le plus, sans budget pub massif.</p>
+      </article>
+      <article class="service reveal">
+        <span class="num serif">III</span>
+        <span class="ico" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle></svg>
+        </span>
+        <h3>Publicité Meta</h3>
+        <p>Des campagnes d&rsquo;acquisition ciblées sur Facebook et Instagram, pilotées au coût par client — pas au coût par clic.</p>
+      </article>
+      <article class="service reveal">
+        <span class="num serif">IV</span>
+        <span class="ico" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2.5 21.5 21.5 12 17 2.5 21.5"></polygon><line x1="12" y1="2.5" x2="12" y2="17"></line></svg>
+        </span>
+        <h3>Stratégie &amp; Contenu</h3>
+        <p>Calendrier éditorial, scripts de vente en DM, templates de captions — tout ce qu&rsquo;il faut pour convertir vos abonnés en acheteurs.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTHODE ============ -->
+<section class="dark-band" id="methode">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+        La méthode Atlas
+      </span>
+      <h2 class="serif">Un chemin balisé, <em>de l&rsquo;audit au client.</em></h2>
+      <p>Pas de tunnel de trois mois. Une progression claire, étape par étape, avec des livrables dès la première semaine.</p>
+    </div>
+    <div class="methode-grid">
+      <div class="etape reveal">
+        <span class="e-num">01</span>
+        <h3>Audit gratuit</h3>
+        <p>30 minutes sur WhatsApp ou en visio. On analyse vos comptes, vos concurrents et vos opportunités — sans engagement.</p>
+      </div>
+      <div class="etape reveal">
+        <span class="e-num">02</span>
+        <h3>Stratégie</h3>
+        <p>Positionnement, calendrier éditorial et plan d&rsquo;action adaptés à votre métier et au consommateur marocain de 2026.</p>
+      </div>
+      <div class="etape reveal">
+        <span class="e-num">03</span>
+        <h3>Production &amp; gestion</h3>
+        <p>Posts, Reels, stories, réponses aux DM : on produit et on gère, 7j/7. Vous restez concentré sur votre métier.</p>
+      </div>
+      <div class="etape reveal">
+        <span class="e-num">04</span>
+        <h3>Résultats en direct</h3>
+        <p>Un portail personnel avec vos chiffres mis à jour chaque jour, et un point mensuel sur ce qui compte : les clients.</p>
+      </div>
+    </div>
+    <div class="methode-note reveal">
+      <p>&laquo; Des stratégies claires, applicables cette semaine — pas dans trois mois. &raquo;</p>
+      <a class="btn btn-or" href="#contact">Commencer par l&rsquo;audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTAIL / RÉSULTATS ============ -->
+<section class="portail" id="resultats">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-head">
+        <span class="eyebrow">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+          Votre portail client
+        </span>
+        <h2 class="serif">Vos résultats en direct, <em>pas dans un PDF.</em></h2>
+        <p>Là où d&rsquo;autres agences envoient un rapport mensuel, chaque client Atlas reçoit un accès personnel à son tableau de bord.</p>
+      </div>
+      <ul>
+        <li>Leads, rendez-vous et coût par client, mis à jour chaque jour</li>
+        <li>Répartition par canal : Meta Ads, landing page, WhatsApp</li>
+        <li>Retour sur investissement calculé sur vos vrais chiffres</li>
+        <li>Consultable à tout moment, depuis votre téléphone</li>
+      </ul>
+      <a class="btn btn-ligne" href="#contact">Voir une démo du portail</a>
+    </div>
+    <div class="mock reveal" role="img" aria-label="Aperçu du portail client Atlas : indicateurs de leads, rendez-vous et coût par lead, avec graphique d'évolution">
+      <div class="mock-top">
+        <span class="m-brand">Atlas</span>
+        <span class="m-tag">Portail client · en direct</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-kpis">
+          <div class="m-kpi">
+            <span class="k-label">Leads générés</span>
+            <span class="k-val" data-count="58">0</span>
+            <span class="k-delta">▲ 14 %</span>
+          </div>
+          <div class="m-kpi">
+            <span class="k-label">RDV confirmés</span>
+            <span class="k-val" data-count="22">0</span>
+            <span class="k-delta">▲ 18 %</span>
+          </div>
+          <div class="m-kpi">
+            <span class="k-label">Coût par lead</span>
+            <span class="k-val"><span data-count="97">0</span><span class="k-unit">MAD</span></span>
+            <span class="k-delta">▼ 7 %</span>
+          </div>
+        </div>
+        <div class="m-chart">
+          <div class="c-head">
+            <span class="c-title">Évolution hebdomadaire</span>
+            <span class="c-legend">
+              <span><i style="background:#1e8757"></i>Leads</span>
+              <span><i style="background:#a0741a"></i>RDV</span>
+            </span>
+          </div>
+          <svg viewBox="0 0 320 110" width="100%" aria-hidden="true">
+            <line x1="0" y1="30" x2="320" y2="30" stroke="#e7e9dd" stroke-width="1"></line>
+            <line x1="0" y1="60" x2="320" y2="60" stroke="#e7e9dd" stroke-width="1"></line>
+            <line x1="0" y1="90" x2="320" y2="90" stroke="#e7e9dd" stroke-width="1"></line>
+            <g fill="#1e8757">
+              <rect x="10" y="58" width="14" height="42" rx="2"></rect>
+              <rect x="48" y="52" width="14" height="48" rx="2"></rect>
+              <rect x="86" y="60" width="14" height="40" rx="2"></rect>
+              <rect x="124" y="44" width="14" height="56" rx="2"></rect>
+              <rect x="162" y="50" width="14" height="50" rx="2"></rect>
+              <rect x="200" y="36" width="14" height="64" rx="2"></rect>
+              <rect x="238" y="42" width="14" height="58" rx="2"></rect>
+              <rect x="276" y="28" width="14" height="72" rx="2"></rect>
+            </g>
+            <polyline points="17,88 55,84 93,86 131,78 169,80 207,70 245,74 283,62"
+              fill="none" stroke="#a0741a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+            <circle cx="283" cy="62" r="4" fill="#a0741a" stroke="#fff" stroke-width="1.5"></circle>
+          </svg>
+        </div>
+      </div>
+      <div class="mock-foot">Données d&rsquo;exemple — chaque client voit ses propres chiffres.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POURQUOI ============ -->
+<section class="preuve" id="pourquoi">
+  <div class="wrap">
+    <blockquote class="citation reveal" style="margin:0">
+      &laquo; Vos concurrents ont moins d&rsquo;abonnés que vous — et pourtant ils vendent plus. <span class="marque">Atlas corrige ça.</span> &raquo;
+    </blockquote>
+    <div class="props reveal">
+      <div class="prop">
+        <h4>Expertise locale</h4>
+        <p>Une connaissance fine du consommateur marocain sur Instagram, TikTok et WhatsApp — pas des recettes importées.</p>
+      </div>
+      <div class="prop">
+        <h4>Résultats mesurables</h4>
+        <p>Nous ne vendons pas des likes. Nous construisons des leviers de croissance : DM, ventes, clients récurrents.</p>
+      </div>
+      <div class="prop">
+        <h4>Transparence totale</h4>
+        <p>Vos chiffres accessibles en permanence sur votre portail — engagement, portée, messages clients reçus.</p>
+      </div>
+      <div class="prop">
+        <h4>Concret, tout de suite</h4>
+        <p>Des actions applicables cette semaine, sans jargon ni complexité inutile. Vous comprenez tout ce qu&rsquo;on fait.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="dark-band cta" id="contact">
+  <div class="fond" aria-hidden="true">Atlas</div>
+  <div class="wrap" style="position:relative">
+    <span class="eyebrow reveal">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+      Audit gratuit · Sans engagement
+    </span>
+    <h2 class="serif reveal">Prêt à avoir <em>de vrais clients&nbsp;?</em></h2>
+    <p class="sous reveal">63 entrepreneurs marocains font déjà confiance à Atlas. Écrivez-nous — réponse en moins de 2&nbsp;heures, du lundi au samedi.</p>
+    <div class="reveal">
+      <a class="btn btn-wa" href="https://wa.me/212666845288?text=Bonjour%20Atlas%2C%20je%20veux%20en%20savoir%20plus%20sur%20vos%20services" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5c0-.1-.5-1.4-.7-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+        Discuter sur WhatsApp
+      </a>
+    </div>
+    <div class="garanties reveal">
+      <span>63+ clients accompagnés</span>
+      <span>Résultats en 30 jours</span>
+      <span>Remboursé si insatisfait</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="brand" href="#haut" style="color:var(--sur-pin)">
+        <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="50,12 88,84 12,84" stroke="currentColor" stroke-width="5" stroke-linejoin="round" fill="none"></polygon>
+          <polyline points="50,12 36,54 50,44 64,64" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" fill="none"></polyline>
+          <line x1="36" y1="54" x2="12" y2="84" stroke="currentColor" stroke-width="3.5"></line>
+          <polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#c2a05c"></polygon>
+          <line x1="50" y1="1" x2="50" y2="6" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+          <line x1="59" y1="4" x2="57" y2="8" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+          <line x1="41" y1="4" x2="43" y2="8" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+          <line x1="65" y1="10" x2="62" y2="13" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+        </svg>
+        <span class="brand-name">Atlas</span>
+      </a>
+      <p>Agence de marketing digital pour les entreprises marocaines. On transforme vos réseaux sociaux en source de clients — Instagram, TikTok, Meta Ads, WhatsApp.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <span>Menu</span>
+        <a href="#services">Services</a>
+        <a href="#methode">Méthode</a>
+        <a href="#resultats">Résultats</a>
+        <a href="#pourquoi">Pourquoi Atlas</a>
+      </div>
+      <div class="foot-col">
+        <span>Contact</span>
+        <a href="https://wa.me/212666845288" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#contact">Audit gratuit</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-legal">© 2026 Atlas · Agence de marketing digital · Maroc — Tous droits réservés.</div>
+</footer>
+
+<script>
+(function () {
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Révélation au défilement
+  var items = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+
+  // Compteurs du portail
+  var counters = document.querySelectorAll("[data-count]");
+  function animate(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10);
+    if (reduced) { el.textContent = target; return; }
+    var t0 = null;
+    var dur = 1100;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ("IntersectionObserver" in window && !reduced) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { animate(e.target); io2.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (el) { io2.observe(el); });
+  } else {
+    counters.forEach(function (el) { el.textContent = el.getAttribute("data-count"); });
+  }
+})();
+</script>
