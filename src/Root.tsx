@@ -2,12 +2,30 @@ import "./index.css";
 import { Composition } from "remotion";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
+import { AtlasPromo } from "./atlas/AtlasPromo";
+import { atlasPromoSchema, defaultAtlasProps } from "./atlas/schema";
+import { FPS, TOTAL_DURATION_IN_FRAMES } from "./atlas/theme";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/*
+        Atlas promo template — vertical 9:16.
+        Render with custom copy without touching code:
+        npx remotion render AtlasPromo out/atlas.mp4 --props=./atlas-props.example.json
+      */}
+      <Composition
+        id="AtlasPromo"
+        component={AtlasPromo}
+        durationInFrames={TOTAL_DURATION_IN_FRAMES}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        schema={atlasPromoSchema}
+        defaultProps={defaultAtlasProps}
+      />
       <Composition
         // You can take the "id" to render a video:
         // npx remotion render HelloWorld
