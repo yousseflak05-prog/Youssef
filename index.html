@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dr. Akfas Oumayma — Chirurgien Dentiste à Agadir</title>
 <meta name="description" content="Cabinet dentaire Dr. Akfas Oumayma à Agadir. Soins dentaires, urgence dentaire, blanchiment, implants. Av. Laayoune, Agadir — 05 28 28 28 75." />
+<meta name="theme-color" content="#5d684a" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -19,6 +20,7 @@
 </style>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  a, button { -webkit-tap-highlight-color: transparent; }
 
   :root {
     --sage: #A9B388;          /* vert sauge du cabinet */
@@ -29,7 +31,7 @@
     --white: #ffffff;
     --wood: #8a5a3b;
     --ink: #33382b;
-    --muted: #6d7263;
+    --muted: #5c6152;   /* assombri pour rester lisible en plein soleil */
     --gold: #c9a86a;
     --radius: 18px;
     --shadow: 0 20px 50px -18px rgba(51,56,43,.25);
@@ -97,7 +99,29 @@
   .btn-ghost { background: transparent; color: var(--sage-deep); border: 1px solid var(--sage-dark); }
   .btn-ghost:hover { background: var(--sage-pale); transform: translateY(-2px); }
   .nav-cta { padding: .65rem 1.5rem; }
-  .burger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--sage-deep); cursor: pointer; }
+  .burger {
+    display: none; background: none; border: none; font-size: 1.6rem; color: var(--sage-deep);
+    cursor: pointer; width: 48px; height: 48px; align-items: center; justify-content: center;
+    border-radius: 12px;
+  }
+  .burger:active { background: var(--sage-pale); }
+
+  /* Barre d'action mobile : appel + WhatsApp toujours sous le pouce */
+  .action-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+    display: none; gap: .6rem;
+    padding: .55rem .8rem calc(.55rem + env(safe-area-inset-bottom));
+    background: rgba(250,247,240,.96); backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(93,104,74,.18);
+    box-shadow: 0 -8px 24px -14px rgba(51,56,43,.35);
+  }
+  .action-bar a {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 48px; border-radius: 14px; text-decoration: none;
+    font-size: 1rem; font-weight: 500; letter-spacing: .02em;
+  }
+  .ab-call { background: var(--sage-deep); color: #fff; }
+  .ab-wa { background: #128C50; color: #fff; }
 
   /* ───────── Hero ───────── */
   .hero { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--sage-pale) 0%, var(--cream) 55%); }
@@ -300,16 +324,35 @@
   @media (max-width: 640px) {
     .nav-links {
       display: none; position: absolute; top: 76px; left: 0; right: 0;
-      background: var(--cream); flex-direction: column; padding: 1.5rem; gap: 1.2rem;
+      background: var(--cream); flex-direction: column; padding: 1rem 1.5rem; gap: 0;
       border-bottom: 1px solid rgba(93,104,74,.15);
+      box-shadow: 0 18px 30px -18px rgba(51,56,43,.3);
     }
     .nav-links.open { display: flex; }
-    .burger { display: block; }
+    /* zone de tap ≥ 44px pour chaque lien du menu */
+    .nav-links a { display: block; padding: .85rem 0; border-bottom: none; font-size: 1rem; }
+    .burger { display: flex; }
     .nav-cta { display: none; }
     .svc-grid, .rev-grid, .field-2 { grid-template-columns: 1fr; }
-    section { padding: 3.8rem 0; }
+    section { padding: 4rem 0; }
     .topbar .tb-hours { display: none; }
     .topbar .container { justify-content: center; gap: 1.2rem; }
+    .topbar a.tb-item { padding: .8rem 0; }
+    .btn:not(.nav-cta) { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+
+    /* barre d'action visible + espace pour ne rien masquer derrière */
+    .action-bar { display: flex; }
+    body { padding-bottom: 72px; }
+
+    /* lisibilité : texte courant ≥ 16px, graisse renforcée pour le soleil */
+    body { font-weight: 400; }
+    .svc p, .rev p, .info-row span, .info-row a, .hours, .urgence p { font-size: 1rem; }
+    .rev-who small, .foot-note { font-size: .85rem; }
+    .stat span { font-size: .85rem; }
+    footer ul { font-size: 1rem; }
+    footer ul a { display: inline-block; padding: .35rem 0; }
+    .hero-actions .btn { width: 100%; text-align: center; padding: 1rem 1.6rem; }
+    .google-pill { flex-direction: row; text-align: center; }
   }
 </style>
 </head>
@@ -354,7 +397,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="btn btn-primary nav-cta">Prendre RDV</a>
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
 </nav>
 
@@ -571,16 +614,16 @@
         <div class="field-2">
           <div class="field">
             <label for="nom">Nom complet</label>
-            <input id="nom" type="text" placeholder="Votre nom" required>
+            <input id="nom" name="name" type="text" placeholder="Votre nom" autocomplete="name" autocapitalize="words" required>
           </div>
           <div class="field">
             <label for="tel">Téléphone</label>
-            <input id="tel" type="tel" placeholder="06 XX XX XX XX" required>
+            <input id="tel" name="tel" type="tel" inputmode="tel" placeholder="06 XX XX XX XX" autocomplete="tel" required>
           </div>
         </div>
         <div class="field">
           <label for="motif">Motif de consultation</label>
-          <select id="motif">
+          <select id="motif" name="motif">
             <option>Consultation / contrôle</option>
             <option>Urgence dentaire</option>
             <option>Blanchiment dentaire</option>
@@ -592,7 +635,7 @@
         </div>
         <div class="field">
           <label for="msg">Message (optionnel)</label>
-          <textarea id="msg" rows="3" placeholder="Décrivez brièvement votre besoin…"></textarea>
+          <textarea id="msg" name="message" rows="3" placeholder="Décrivez brièvement votre besoin…"></textarea>
         </div>
         <button type="submit" class="btn">Envoyer ma demande</button>
         <div class="form-ok" id="formOk">
@@ -611,6 +654,12 @@
     </div>
   </div>
 </section>
+
+<!-- Barre d'action mobile -->
+<div class="action-bar">
+  <a class="ab-call" href="tel:0528282875" aria-label="Appeler le cabinet">📞 Appeler</a>
+  <a class="ab-wa" href="https://wa.me/212528282875" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">💬 WhatsApp</a>
+</div>
 
 <!-- Footer -->
 <footer>
@@ -650,8 +699,16 @@
   // Menu mobile
   const burger = document.getElementById('burger');
   const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  function setMenu(open) {
+    navLinks.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.textContent = open ? '✕' : '☰';
+  }
+  burger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('click', e => {
+    if (navLinks.classList.contains('open') && !e.target.closest('nav')) setMenu(false);
+  });
 
   // Apparition au défilement
   const io = new IntersectionObserver(entries => {
