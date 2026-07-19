@@ -1,466 +1,642 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code — What I Can Do</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Akfas Oumayma — Chirurgien Dentiste à Agadir</title>
+<meta name="description" content="Cabinet dentaire Dr. Akfas Oumayma à Agadir. Soins dentaires, urgence dentaire, blanchiment, implants. Av. Laayoune, Agadir — 05 28 28 28 75." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --border: #2a2a2a;
-      --accent: #d97706;
-      --accent2: #7c3aed;
-      --text: #e5e5e5;
-      --muted: #888;
-      --code-bg: #1a1a1a;
-      --radius: 12px;
+  :root {
+    --sage: #A9B388;          /* vert sauge du cabinet */
+    --sage-dark: #7d8a5f;
+    --sage-deep: #5d684a;
+    --sage-pale: #eef0e5;
+    --cream: #FAF7F0;
+    --white: #ffffff;
+    --wood: #8a5a3b;
+    --ink: #33382b;
+    --muted: #6d7263;
+    --gold: #c9a86a;
+    --radius: 18px;
+    --shadow: 0 20px 50px -18px rgba(51,56,43,.25);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  h1,h2,h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; line-height: 1.15; }
+  img { max-width: 100%; }
+  a { color: inherit; }
+
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ───────── Top bar ───────── */
+  .topbar {
+    background: var(--sage-deep); color: #f2f4ea;
+    font-size: .82rem; letter-spacing: .04em;
+  }
+  .topbar .container {
+    display: flex; justify-content: space-between; align-items: center;
+    min-height: 38px; gap: 1rem; flex-wrap: wrap; padding-top: .3rem; padding-bottom: .3rem;
+  }
+  .topbar a { text-decoration: none; }
+  .topbar .tb-item { display: inline-flex; align-items: center; gap: .45rem; opacity: .92; }
+
+  /* ───────── Nav ───────── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(250,247,240,.92); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(93,104,74,.12);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
+  .brand svg { width: 44px; height: 44px; }
+  .brand-name { display: flex; flex-direction: column; line-height: 1.1; }
+  .brand-script { font-family: 'Pinyon Script', cursive; font-size: 1.45rem; color: var(--sage-deep); }
+  .brand-sub { font-size: .6rem; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); margin-top: .15rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: .88rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink); font-weight: 400; padding-bottom: .3rem; border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-links a:hover { color: var(--sage-dark); border-color: var(--sage-dark); }
+  .btn {
+    display: inline-block; text-decoration: none; cursor: pointer; border: none;
+    font-family: 'Jost', sans-serif; font-size: .88rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: .85rem 1.9rem; border-radius: 999px; transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn-primary { background: var(--sage-dark); color: #fff; box-shadow: 0 10px 24px -10px rgba(93,104,74,.6); }
+  .btn-primary:hover { background: var(--sage-deep); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--sage-deep); border: 1px solid var(--sage-dark); }
+  .btn-ghost:hover { background: var(--sage-pale); transform: translateY(-2px); }
+  .nav-cta { padding: .65rem 1.5rem; }
+  .burger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--sage-deep); cursor: pointer; }
+
+  /* ───────── Hero ───────── */
+  .hero { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--sage-pale) 0%, var(--cream) 55%); }
+  .hero::before {
+    content: ""; position: absolute; right: -180px; top: -180px; width: 560px; height: 560px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(169,179,136,.35), transparent 65%);
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: center;
+    padding: 5.5rem 0 5rem; position: relative;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: var(--sage-dark);
+    margin-bottom: 1.4rem;
+  }
+  .eyebrow::before { content: ""; width: 38px; height: 1px; background: var(--sage-dark); }
+  .hero h1 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); color: var(--ink); }
+  .hero h1 em { font-style: italic; color: var(--sage-dark); }
+  .hero p.lead { margin-top: 1.3rem; font-size: 1.08rem; color: var(--muted); max-width: 34rem; }
+  .hero-actions { margin-top: 2.4rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .hero-trust { margin-top: 2.6rem; display: flex; align-items: center; gap: .9rem; }
+  .stars { color: var(--gold); letter-spacing: .15em; font-size: 1.05rem; }
+  .hero-trust small { color: var(--muted); font-size: .85rem; }
+
+  .hero-visual { position: relative; }
+  .hero-card {
+    background: var(--sage); border-radius: 28px; padding: 3rem 2.4rem;
+    box-shadow: var(--shadow); position: relative; overflow: hidden; text-align: center;
+  }
+  .hero-card::before {
+    content: ""; position: absolute; inset: 18px; border: 1.5px solid rgba(255,255,255,.55);
+    border-radius: 20px; pointer-events: none;
+  }
+  .hero-card svg.tooth { width: 150px; height: 150px; }
+  .hero-card .script { font-family: 'Pinyon Script', cursive; font-size: 2.3rem; color: #fff; margin-top: .6rem; text-shadow: 0 2px 10px rgba(0,0,0,.12); }
+  .hero-card .sub { color: #fdfdf8; letter-spacing: .4em; text-transform: uppercase; font-size: .72rem; margin-top: .7rem; }
+  .hero-badge {
+    position: absolute; bottom: -18px; left: -14px;
+    background: #fff; border-radius: 14px; padding: .8rem 1.2rem;
+    box-shadow: 0 14px 30px -12px rgba(51,56,43,.3);
+    display: flex; align-items: center; gap: .7rem; font-size: .85rem;
+  }
+  .hero-badge .dot { width: 10px; height: 10px; border-radius: 50%; background: #4caf50; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+  /* ───────── Stats strip ───────── */
+  .stats { background: var(--sage-deep); color: #f4f6ec; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; padding: 2.2rem 0; gap: 1rem; }
+  .stat b { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: #fff; }
+  .stat span { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+
+  /* ───────── Sections ───────── */
+  section { padding: 5.5rem 0; }
+  .section-head { max-width: 640px; margin-bottom: 3.2rem; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head.center .eyebrow { justify-content: center; }
+  .section-head.center .eyebrow::before { display: none; }
+  h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
+  .section-head p { margin-top: 1rem; color: var(--muted); }
+
+  /* À propos */
+  .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 3.5rem; align-items: center; }
+  .about-visual { position: relative; }
+  .about-frame {
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+    background:
+      linear-gradient(rgba(93,104,74,.18), rgba(93,104,74,.18)),
+      repeating-linear-gradient(90deg, #b28057 0 14px, #9c6c47 14px 16px),
+      #b28057;
+    aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; padding: 2rem;
+  }
+  .about-frame .placard {
+    background: var(--sage); border-radius: 14px; width: 100%; padding: 2.5rem 1.5rem; text-align: center;
+    border: 1.5px solid rgba(255,255,255,.5); box-shadow: inset 0 0 0 8px rgba(255,255,255,.12);
+  }
+  .about-frame svg { width: 110px; height: 110px; }
+  .about-frame .script { font-family: 'Pinyon Script', cursive; color: #fff; font-size: 1.8rem; }
+  .about-frame .sub { color: #fdfdf8; letter-spacing: .35em; font-size: .62rem; text-transform: uppercase; margin-top: .5rem; }
+  .about-chip {
+    position: absolute; top: 22px; right: -18px; background: #fff; padding: .7rem 1.1rem;
+    border-radius: 12px; box-shadow: 0 12px 28px -12px rgba(51,56,43,.35); font-size: .82rem;
+  }
+  .about-chip b { color: var(--sage-deep); }
+  .about-list { margin-top: 1.8rem; display: grid; gap: 1rem; list-style: none; }
+  .about-list li { display: flex; gap: .9rem; align-items: flex-start; }
+  .about-list .check {
+    flex: 0 0 26px; height: 26px; border-radius: 50%; background: var(--sage-pale);
+    display: flex; align-items: center; justify-content: center; color: var(--sage-deep); font-size: .8rem; margin-top: .15rem;
+  }
+
+  /* Services */
+  .services { background: var(--white); }
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .svc {
+    border: 1px solid rgba(93,104,74,.14); border-radius: var(--radius); padding: 2rem 1.7rem;
+    background: var(--cream); transition: transform .25s, box-shadow .25s, border-color .25s;
+  }
+  .svc:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--sage); }
+  .svc-icon {
+    width: 54px; height: 54px; border-radius: 14px; background: var(--sage-pale);
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.1rem;
+  }
+  .svc h3 { font-size: 1.35rem; margin-bottom: .5rem; }
+  .svc p { font-size: .92rem; color: var(--muted); }
+
+  /* Témoignages */
+  .reviews { background: linear-gradient(180deg, var(--cream), var(--sage-pale)); }
+  .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .rev {
+    background: #fff; border-radius: var(--radius); padding: 1.9rem 1.7rem;
+    box-shadow: 0 14px 34px -18px rgba(51,56,43,.22); display: flex; flex-direction: column; gap: .9rem;
+  }
+  .rev p { font-size: .93rem; color: var(--ink); font-style: italic; }
+  .rev-who { display: flex; align-items: center; gap: .8rem; margin-top: auto; }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--sage);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: 500; letter-spacing: .02em;
+  }
+  .rev-who b { display: block; font-weight: 500; font-size: .9rem; }
+  .rev-who small { color: var(--muted); font-size: .78rem; }
+  .google-pill {
+    margin: 3rem auto 0; width: max-content; background: #fff; border-radius: 999px;
+    padding: .8rem 1.6rem; display: flex; align-items: center; gap: .8rem;
+    box-shadow: 0 12px 30px -14px rgba(51,56,43,.25); font-size: .9rem;
+  }
+  .google-pill b { font-size: 1.15rem; }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .info-card {
+    background: var(--white); border-radius: var(--radius); padding: 2.2rem;
+    border: 1px solid rgba(93,104,74,.12); box-shadow: 0 14px 34px -20px rgba(51,56,43,.2);
+  }
+  .info-row { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px dashed rgba(93,104,74,.2); }
+  .info-row:last-child { border-bottom: none; }
+  .info-ico {
+    flex: 0 0 44px; height: 44px; border-radius: 12px; background: var(--sage-pale);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .info-row b { display: block; font-weight: 500; margin-bottom: .1rem; }
+  .info-row span, .info-row a { color: var(--muted); font-size: .92rem; text-decoration: none; }
+  .hours { width: 100%; font-size: .92rem; color: var(--muted); border-collapse: collapse; }
+  .hours td { padding: .28rem 0; }
+  .hours td:last-child { text-align: right; color: var(--ink); }
+  .hours .closed td:last-child { color: #b0543f; }
+
+  form.rdv { background: var(--sage-deep); border-radius: var(--radius); padding: 2.4rem; color: #f2f4ea; box-shadow: var(--shadow); }
+  form.rdv h3 { font-size: 1.7rem; color: #fff; margin-bottom: .4rem; }
+  form.rdv .note { font-size: .85rem; opacity: .8; margin-bottom: 1.6rem; }
+  .field { margin-bottom: 1.1rem; }
+  .field label { display: block; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .4rem; opacity: .85; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: .8rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.1); color: #fff; font-family: 'Jost', sans-serif; font-size: .95rem;
+  }
+  .field ::placeholder { color: rgba(255,255,255,.55); }
+  .field select { appearance: none; }
+  .field select option { color: var(--ink); }
+  .field-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  form.rdv .btn { width: 100%; background: #fff; color: var(--sage-deep); font-weight: 500; margin-top: .4rem; }
+  form.rdv .btn:hover { background: var(--sage-pale); }
+  .form-ok { display: none; text-align: center; padding: 2rem 0; }
+  .form-ok.show { display: block; }
+  .form-ok .big { font-size: 2.4rem; }
+
+  /* Urgence banner */
+  .urgence {
+    background: linear-gradient(120deg, var(--wood), #6e4227); color: #fdf6ee;
+    border-radius: var(--radius); padding: 2.2rem; margin-top: 4rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .urgence h3 { color: #fff; font-size: 1.6rem; }
+  .urgence p { opacity: .85; font-size: .95rem; }
+  .urgence .btn { background: #fff; color: var(--wood); }
+
+  /* Footer */
+  footer { background: var(--ink); color: #c9cdbd; padding: 3.5rem 0 2rem; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+  footer .brand-script { color: var(--sage); }
+  footer h4 { color: #fff; font-family: 'Jost', sans-serif; font-weight: 500; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; }
+  footer ul { list-style: none; display: grid; gap: .5rem; font-size: .9rem; }
+  footer a { text-decoration: none; opacity: .85; }
+  footer a:hover { opacity: 1; color: var(--sage); }
+  .foot-note { text-align: center; font-size: .78rem; opacity: .55; padding-top: 1.6rem; }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ───────── Responsive ───────── */
+  @media (max-width: 900px) {
+    .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .svc-grid, .rev-grid { grid-template-columns: 1fr 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .foot-grid { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 420px; margin: 0 auto; }
+  }
+  @media (max-width: 640px) {
+    .nav-links {
+      display: none; position: absolute; top: 76px; left: 0; right: 0;
+      background: var(--cream); flex-direction: column; padding: 1.5rem; gap: 1.2rem;
+      border-bottom: 1px solid rgba(93,104,74,.15);
     }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
-      background: rgba(13,13,13,.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -.5px; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,.25) 0%, transparent 60%);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .35rem .9rem; border-radius: 999px;
-      border: 1px solid var(--border); color: var(--muted); font-size: .8rem;
-      margin-bottom: 1.5rem;
-    }
-    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; max-width: 800px; }
-    h1 .highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { margin-top: 1.2rem; color: var(--muted); font-size: 1.1rem; max-width: 520px; }
-    .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .btn { padding: .7rem 1.6rem; border-radius: 8px; font-size: .95rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .2s, transform .15s; display: inline-block; }
-    .btn:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-label { text-transform: uppercase; letter-spacing: 2px; font-size: .75rem; color: var(--accent); font-weight: 600; margin-bottom: .75rem; }
-    h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -.5px; margin-bottom: 1rem; }
-    .subtitle { color: var(--muted); font-size: 1rem; max-width: 540px; margin-bottom: 3rem; }
-
-    /* ── CAPABILITY CARDS ── */
-    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; transition: border-color .2s, transform .2s;
-      cursor: default;
-    }
-    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .card-icon { font-size: 1.8rem; margin-bottom: .8rem; }
-    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
-    .card p { color: var(--muted); font-size: .88rem; line-height: 1.55; }
-
-    /* ── DEMO TERMINAL ── */
-    .terminal-wrap { background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .terminal-bar { background: #222; padding: .6rem 1rem; display: flex; align-items: center; gap: .5rem; }
-    .t-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .t-red { background: #ef4444; } .t-yellow { background: #eab308; } .t-green { background: #22c55e; }
-    .terminal-bar span { margin-left: auto; font-size: .75rem; color: var(--muted); }
-    .terminal-body { padding: 1.5rem; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: .88rem; min-height: 200px; }
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: #e5e5e5; }
-    .t-out { color: #86efac; margin-top: .3rem; }
-    .t-comment { color: #6b7280; }
-    .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); margin-left: 2px; animation: blink 1s step-end infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-    /* ── INTERACTIVE DEMO ── */
-    .demo-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
-    .demo-tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .tab { padding: .45rem 1rem; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .85rem; cursor: pointer; transition: all .2s; }
-    .tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
-    .demo-content { display: none; }
-    .demo-content.active { display: block; }
-    .demo-content pre {
-      background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.25rem; overflow-x: auto; font-family: monospace; font-size: .85rem;
-      line-height: 1.6; color: #d1d5db;
-    }
-    .kw { color: #c084fc; } .fn { color: #60a5fa; } .str { color: #86efac; }
-    .num { color: #fb923c; } .cmt { color: #6b7280; }
-
-    /* ── STATS ── */
-    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem; }
-    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
-    .stat-num { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-label { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
-
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: .85rem; }
-    footer a { color: var(--muted); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-    }
-  </style>
+    .nav-links.open { display: flex; }
+    .burger { display: block; }
+    .nav-cta { display: none; }
+    .svc-grid, .rev-grid, .field-2 { grid-template-columns: 1fr; }
+    section { padding: 3.8rem 0; }
+  }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Claude <span>Code</span></div>
-  <ul class="nav-links">
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#stats">At a Glance</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    Powered by Claude Sonnet 4.6
-  </div>
-  <h1>Your AI engineer.<br>Right in the <span class="highlight">terminal.</span></h1>
-  <p class="hero-sub">Claude Code reads your codebase, writes production-ready code, runs tests, fixes bugs, and ships — all from a single conversation.</p>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="#capabilities">Explore capabilities</a>
-    <a class="btn btn-secondary" href="#demo">See code examples</a>
+<!-- Top bar -->
+<div class="topbar">
+  <div class="container">
+    <span class="tb-item">📍 Av. Laayoune, Agadir 80000</span>
+    <span class="tb-item">🕘 Lun – Ven : 09h00 – 18h00 · Sam : 09h00 – 13h00</span>
+    <a class="tb-item" href="tel:0528282875">📞 05 28 28 28 75</a>
   </div>
 </div>
 
-<!-- CAPABILITIES -->
-<section id="capabilities">
-  <div class="section-label">What I can do</div>
-  <h2>Built for real engineering work</h2>
-  <p class="subtitle">From a single file edit to a full-stack feature — Claude Code handles the whole software lifecycle.</p>
+<!-- Nav -->
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#accueil">
+      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <path d="M32 8C24 2 10 4 8 18c-1.6 11 4 22 8 34 1.5 4.5 7 4.5 8-.5 1-5 2-13 8-13s7 8 8 13c1 5 6.5 5 8 .5 4-12 9.6-23 8-34C54 4 40 2 32 8Z" stroke="#5d684a" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">
+        <span class="brand-script">Dr. Akfas Oumayma</span>
+        <span class="brand-sub">Chirurgien Dentiste</span>
+      </span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#apropos">Le Cabinet</a></li>
+      <li><a href="#soins">Soins</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary nav-cta">Prendre RDV</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+</nav>
 
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🔭</div>
-      <h3>Codebase Exploration</h3>
-      <p>Search across thousands of files, trace call graphs, and answer "where is X defined?" in seconds without any indexing setup.</p>
+<!-- Hero -->
+<header class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Cabinet dentaire · Agadir</span>
+      <h1>Votre sourire mérite une attention <em>d'exception</em></h1>
+      <p class="lead">
+        Au cœur d'Agadir, le cabinet du Dr. Akfas Oumayma vous accueille dans un cadre
+        moderne et apaisant. Soins conservateurs, esthétique du sourire et urgences
+        dentaires — avec douceur, écoute et précision.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Prendre rendez-vous</a>
+        <a href="#soins" class="btn btn-ghost">Découvrir nos soins</a>
+      </div>
+      <div class="hero-trust">
+        <span class="stars">★★★★★</span>
+        <small><strong>4,9 / 5</strong> — basé sur 54 avis Google</small>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-icon">✏️</div>
-      <h3>Precise Code Editing</h3>
-      <p>Makes surgical, diff-level edits to existing files — no wholesale rewrites, no accidental deletions, no style drift.</p>
+    <div class="hero-visual reveal">
+      <div class="hero-card">
+        <svg class="tooth" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 8C24 2 10 4 8 18c-1.6 11 4 22 8 34 1.5 4.5 7 4.5 8-.5 1-5 2-13 8-13s7 8 8 13c1 5 6.5 5 8 .5 4-12 9.6-23 8-34C54 4 40 2 32 8Z" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+        <div class="script">Dr. Akfas Oumayma</div>
+        <div class="sub">Chirurgien Dentiste</div>
+      </div>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span>Ouvert lundi · <strong>09h00</strong></span>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-icon">🐛</div>
-      <h3>Bug Fixing</h3>
-      <p>Reads stack traces, finds root causes, and produces minimal targeted fixes — with an explanation of why the bug existed.</p>
+  </div>
+</header>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><b>4,9<span style="font-size:1.1rem">/5</span></b><span>Note Google</span></div>
+    <div class="stat"><b>54+</b><span>Avis patients</span></div>
+    <div class="stat"><b>100%</b><span>Écoute &amp; douceur</span></div>
+    <div class="stat"><b>6j/7</b><span>À votre service</span></div>
+  </div>
+</div>
+
+<!-- À propos -->
+<section id="apropos">
+  <div class="container about-grid">
+    <div class="about-visual reveal">
+      <div class="about-frame">
+        <div class="placard">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M32 8C24 2 10 4 8 18c-1.6 11 4 22 8 34 1.5 4.5 7 4.5 8-.5 1-5 2-13 8-13s7 8 8 13c1 5 6.5 5 8 .5 4-12 9.6-23 8-34C54 4 40 2 32 8Z" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+          </svg>
+          <div class="script">Dr. Akfas Oumayma</div>
+          <div class="sub">Chirurgien Dentiste</div>
+        </div>
+      </div>
+      <div class="about-chip">Cabinet <b>géré par une femme</b> 🌿</div>
     </div>
-    <div class="card">
-      <div class="card-icon">🧪</div>
-      <h3>Test Writing</h3>
-      <p>Generates unit, integration, and edge-case tests that actually reflect how the code is used — not just happy-path coverage.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚙️</div>
-      <h3>Bash & Tooling</h3>
-      <p>Runs shell commands, installs packages, builds projects, and monitors output — like a dev with a terminal always open.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌐</div>
-      <h3>Web & UI Work</h3>
-      <p>Writes HTML, CSS, React, and more. Spins up dev servers, checks rendered output, and iterates on designs end-to-end.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔀</div>
-      <h3>Git & PRs</h3>
-      <p>Commits with meaningful messages, creates branches, pushes code, opens pull requests, and responds to review comments.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>Multi-Agent Tasks</h3>
-      <p>Spawns parallel sub-agents for independent research, code review, and exploration — tackling large tasks concurrently.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔒</div>
-      <h3>Security Awareness</h3>
-      <p>Identifies OWASP top-10 issues, avoids writing vulnerable code, and flags injection risks, exposed secrets, and unsafe patterns.</p>
+    <div class="reveal">
+      <span class="eyebrow">Le cabinet</span>
+      <h2>Un espace pensé pour votre confort</h2>
+      <p style="margin-top:1rem; color:var(--muted)">
+        Dès votre arrivée, vous êtes accueilli(e) dans une atmosphère chaleureuse aux tons
+        naturels. Le Dr. Akfas Oumayma prend le temps d'expliquer chaque étape de votre
+        traitement, pour des soins en toute sérénité — même pour les plus anxieux.
+      </p>
+      <ul class="about-list">
+        <li><span class="check">✔</span><span><strong>Équipement moderne</strong> — fauteuil dernière génération, radiographie numérique.</span></li>
+        <li><span class="check">✔</span><span><strong>Hygiène rigoureuse</strong> — stérilisation et protocoles stricts pour chaque patient.</span></li>
+        <li><span class="check">✔</span><span><strong>Approche humaine</strong> — écoute, pédagogie et douceur à chaque rendez-vous.</span></li>
+        <li><span class="check">✔</span><span><strong>Suivi personnalisé</strong> — un plan de traitement clair et adapté à votre budget.</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- TERMINAL DEMO -->
-<section style="padding-top:0">
-  <div class="terminal-wrap">
-    <div class="terminal-bar">
-      <span class="t-dot t-red"></span>
-      <span class="t-dot t-yellow"></span>
-      <span class="t-dot t-green"></span>
-      <span>claude — bash</span>
+<!-- Soins -->
+<section class="services" id="soins">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Nos soins</span>
+      <h2>Des soins complets, pour toute la famille</h2>
+      <p>De la simple consultation aux traitements esthétiques, nous prenons soin de votre sourire à chaque étape de la vie.</p>
     </div>
-    <div class="terminal-body" id="terminal-output">
-      <div><span class="t-comment"># Ask Claude anything about your repo</span></div>
-      <div style="margin-top:.5rem"><span class="t-prompt">$ </span><span class="t-cmd" id="typed-cmd"></span><span class="cursor" id="cursor"></span></div>
-      <div class="t-out" id="typed-reply" style="margin-top:.6rem;white-space:pre-wrap"></div>
-    </div>
-  </div>
-</section>
-
-<!-- CODE DEMO -->
-<section id="demo">
-  <div class="section-label">Code examples</div>
-  <h2>Languages &amp; frameworks</h2>
-  <p class="subtitle">Claude Code writes idiomatic code across the full stack — not just boilerplate.</p>
-
-  <div class="demo-box">
-    <div class="demo-tabs">
-      <button class="tab active" onclick="switchTab(this, 'python')">Python</button>
-      <button class="tab" onclick="switchTab(this, 'typescript')">TypeScript</button>
-      <button class="tab" onclick="switchTab(this, 'react')">React</button>
-      <button class="tab" onclick="switchTab(this, 'sql')">SQL</button>
-      <button class="tab" onclick="switchTab(this, 'bash')">Bash</button>
-    </div>
-
-    <div class="demo-content active" id="python">
-<pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
-<span class="kw">from</span> typing <span class="kw">import</span> Iterator
-
-<span class="cmt"># Sliding-window rate limiter — O(1) amortized using a deque</span>
-<span class="kw">from</span> collections <span class="kw">import</span> deque
-<span class="kw">import</span> time
-
-@dataclass
-<span class="kw">class</span> <span class="fn">RateLimiter</span>:
-    max_calls: <span class="fn">int</span>
-    period: <span class="fn">float</span>          <span class="cmt"># seconds</span>
-    _times: deque = field(default_factory=deque, repr=<span class="kw">False</span>)
-
-    <span class="kw">def</span> <span class="fn">allow</span>(self) -> <span class="fn">bool</span>:
-        now = time.<span class="fn">monotonic</span>()
-        cutoff = now - self.period
-        <span class="kw">while</span> self._times <span class="kw">and</span> self._times[<span class="num">0</span>] &lt; cutoff:
-            self._times.<span class="fn">popleft</span>()
-        <span class="kw">if</span> <span class="fn">len</span>(self._times) &lt; self.max_calls:
-            self._times.<span class="fn">append</span>(now)
-            <span class="kw">return True</span>
-        <span class="kw">return False</span>
-</pre>
-    </div>
-
-    <div class="demo-content" id="typescript">
-<pre><span class="cmt">// Generic retry with exponential back-off and jitter</span>
-<span class="kw">async function</span> <span class="fn">withRetry</span>&lt;T&gt;(
-  fn: () =&gt; <span class="fn">Promise</span>&lt;T&gt;,
-  { maxAttempts = <span class="num">4</span>, baseDelayMs = <span class="num">200</span> } = {}
-): <span class="fn">Promise</span>&lt;T&gt; {
-  <span class="kw">let</span> lastErr: unknown;
-  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; maxAttempts; i++) {
-    <span class="kw">try</span> {
-      <span class="kw">return await</span> <span class="fn">fn</span>();
-    } <span class="kw">catch</span> (err) {
-      lastErr = err;
-      <span class="kw">if</span> (i &lt; maxAttempts - <span class="num">1</span>) {
-        <span class="kw">const</span> delay = baseDelayMs * <span class="num">2</span> ** i + <span class="fn">Math.random</span>() * <span class="num">50</span>;
-        <span class="kw">await new</span> <span class="fn">Promise</span>(r =&gt; <span class="fn">setTimeout</span>(r, delay));
-      }
-    }
-  }
-  <span class="kw">throw</span> lastErr;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="react">
-<pre><span class="kw">import</span> { useState, useCallback } <span class="kw">from</span> <span class="str">'react'</span>;
-
-<span class="kw">function</span> <span class="fn">useLocalStorage</span>&lt;T&gt;(key: <span class="fn">string</span>, initial: T) {
-  <span class="kw">const</span> [value, setValue] = <span class="fn">useState</span>&lt;T&gt;(() =&gt; {
-    <span class="kw">try</span> {
-      <span class="kw">const</span> stored = <span class="fn">localStorage.getItem</span>(key);
-      <span class="kw">return</span> stored ? <span class="fn">JSON.parse</span>(stored) : initial;
-    } <span class="kw">catch</span> { <span class="kw">return</span> initial; }
-  });
-
-  <span class="kw">const</span> set = <span class="fn">useCallback</span>((next: T) =&gt; {
-    setValue(next);
-    <span class="kw">try</span> { <span class="fn">localStorage.setItem</span>(key, <span class="fn">JSON.stringify</span>(next)); }
-    <span class="kw">catch</span> { <span class="cmt">/* storage quota exceeded */</span> }
-  }, [key]);
-
-  <span class="kw">return</span> [value, set] <span class="kw">as const</span>;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="sql">
-<pre><span class="cmt">-- Top-N active users with their 30-day order totals</span>
-<span class="kw">WITH</span> recent_orders <span class="kw">AS</span> (
-  <span class="kw">SELECT</span>
-    user_id,
-    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> order_count,
-    <span class="fn">SUM</span>(total_cents) / <span class="num">100.0</span> <span class="kw">AS</span> total_usd
-  <span class="kw">FROM</span> orders
-  <span class="kw">WHERE</span> created_at &gt;= <span class="fn">NOW</span>() - <span class="kw">INTERVAL</span> <span class="str">'30 days'</span>
-  <span class="kw">GROUP BY</span> user_id
-)
-<span class="kw">SELECT</span>
-  u.id, u.email,
-  ro.order_count,
-  ro.total_usd,
-  <span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> ro.total_usd <span class="kw">DESC</span>) <span class="kw">AS</span> rank
-<span class="kw">FROM</span> users u
-<span class="kw">JOIN</span> recent_orders ro <span class="kw">ON</span> ro.user_id = u.id
-<span class="kw">ORDER BY</span> rank
-<span class="kw">LIMIT</span> <span class="num">10</span>;
-</pre>
-    </div>
-
-    <div class="demo-content" id="bash">
-<pre><span class="cmt">#!/usr/bin/env bash</span>
-<span class="cmt"># Deploy: build → test → push image → restart service</span>
-<span class="kw">set</span> -euo pipefail
-
-<span class="fn">log</span>() { printf <span class="str">'\e[34m[%s]\e[0m %s\n'</span> <span class="str">"$(date +%T)"</span> <span class="str">"$*"</span>; }
-
-IMAGE=<span class="str">"myapp:$(git rev-parse --short HEAD)"</span>
-
-<span class="fn">log</span> <span class="str">"Building $IMAGE"</span>
-docker build -t <span class="str">"$IMAGE"</span> .
-
-<span class="fn">log</span> <span class="str">"Running tests"</span>
-docker run --rm <span class="str">"$IMAGE"</span> pytest -q
-
-<span class="fn">log</span> <span class="str">"Pushing image"</span>
-docker push <span class="str">"$IMAGE"</span>
-
-<span class="fn">log</span> <span class="str">"Restarting service"</span>
-kubectl rollout restart deployment/myapp
-kubectl rollout status deployment/myapp
-</pre>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-icon">🦷</div>
+        <h3>Soins conservateurs</h3>
+        <p>Traitement des caries, dévitalisations et restaurations esthétiques pour préserver vos dents naturelles.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">✨</div>
+        <h3>Blanchiment dentaire</h3>
+        <p>Retrouvez un sourire éclatant grâce à des techniques de blanchiment sûres, efficaces et adaptées à votre émail.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">🚨</div>
+        <h3>Urgences dentaires</h3>
+        <p>Douleur aiguë, dent cassée, abcès ? Nous faisons le maximum pour vous recevoir rapidement, le jour même.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">👑</div>
+        <h3>Prothèses &amp; couronnes</h3>
+        <p>Couronnes, bridges et prothèses esthétiques pour restaurer durablement fonction et harmonie du sourire.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">🪥</div>
+        <h3>Détartrage &amp; prévention</h3>
+        <p>Nettoyage professionnel, soins des gencives et conseils personnalisés pour une bouche saine au quotidien.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">🧒</div>
+        <h3>Dentisterie pédiatrique</h3>
+        <p>Une approche douce et rassurante pour que les enfants vivent leurs premiers rendez-vous en toute confiance.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="section-label">At a glance</div>
-  <h2>Built to handle scale</h2>
-  <p class="subtitle">Claude Code is designed for real-world repositories, not toy examples.</p>
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">200K</div>
-      <div class="stat-label">Token context window</div>
+<!-- Avis -->
+<section class="reviews" id="avis">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Témoignages</span>
+      <h2>Ils nous font confiance</h2>
+      <p>Des avis authentiques laissés par nos patients sur Google.</p>
     </div>
-    <div class="stat">
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Languages supported</div>
+    <div class="rev-grid">
+      <div class="rev reveal">
+        <span class="stars">★★★★★</span>
+        <p>« Très bonne expérience. Dentiste très professionnelle, avec un service soigné et un accueil chaleureux. Le docteur est rassurante dès le premier contact et prend le temps d'expliquer. »</p>
+        <div class="rev-who">
+          <span class="avatar">Y</span>
+          <span><b>Yahya A.</b><small>Avis Google</small></span>
+        </div>
+      </div>
+      <div class="rev reveal">
+        <span class="stars">★★★★★</span>
+        <p>« Très bonne expérience. Dentiste professionnelle, service soigné et accueil agréable. »</p>
+        <div class="rev-who">
+          <span class="avatar">Z</span>
+          <span><b>Zineb K.</b><small>Avis Google</small></span>
+        </div>
+      </div>
+      <div class="rev reveal">
+        <span class="stars">★★★★★</span>
+        <p>« Merci beaucoup au cabinet pour leur professionnalisme et leur excellent accueil. Un travail précis et un suivi rassurant. Je recommande vivement ce cabinet. »</p>
+        <div class="rev-who">
+          <span class="avatar">S</span>
+          <span><b>Salma H.</b><small>Avis Google</small></span>
+        </div>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Files it can read per session</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Command to get started</div>
+    <div class="google-pill reveal">
+      <span class="stars">★★★★★</span>
+      <span><b>4,9</b> / 5 · 54 avis sur Google</span>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- Contact -->
+<section id="contact">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Contact &amp; rendez-vous</span>
+      <h2>Prenons soin de votre sourire</h2>
+      <p>Appelez-nous ou laissez vos coordonnées — nous vous rappelons pour confirmer votre rendez-vous.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="info-card reveal">
+        <div class="info-row">
+          <div class="info-ico">📍</div>
+          <div>
+            <b>Adresse</b>
+            <span>Av. Laayoune, Agadir 80000, Maroc</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">📞</div>
+          <div>
+            <b>Téléphone</b>
+            <a href="tel:0528282875">05 28 28 28 75</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">🕘</div>
+          <div style="flex:1">
+            <b>Horaires d'ouverture</b>
+            <table class="hours">
+              <tr><td>Lundi – Vendredi</td><td>09h00 – 18h00</td></tr>
+              <tr><td>Samedi</td><td>09h00 – 13h00</td></tr>
+              <tr class="closed"><td>Dimanche</td><td>Fermé</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">🗺️</div>
+          <div>
+            <b>Localisation</b>
+            <a href="https://maps.google.com/?q=Dr.+Akfas+Oumayma+dentiste+Agadir" target="_blank" rel="noopener">Ouvrir dans Google Maps →</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="rdv reveal" id="rdvForm">
+        <h3>Demande de rendez-vous</h3>
+        <p class="note">Réponse rapide pendant les horaires d'ouverture.</p>
+        <div class="field-2">
+          <div class="field">
+            <label for="nom">Nom complet</label>
+            <input id="nom" type="text" placeholder="Votre nom" required>
+          </div>
+          <div class="field">
+            <label for="tel">Téléphone</label>
+            <input id="tel" type="tel" placeholder="06 XX XX XX XX" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="motif">Motif de consultation</label>
+          <select id="motif">
+            <option>Consultation / contrôle</option>
+            <option>Urgence dentaire</option>
+            <option>Blanchiment dentaire</option>
+            <option>Détartrage</option>
+            <option>Prothèse / couronne</option>
+            <option>Soins enfant</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="msg">Message (optionnel)</label>
+          <textarea id="msg" rows="3" placeholder="Décrivez brièvement votre besoin…"></textarea>
+        </div>
+        <button type="submit" class="btn">Envoyer ma demande</button>
+        <div class="form-ok" id="formOk">
+          <div class="big">🌿</div>
+          <p><strong>Merci !</strong> Votre demande a bien été enregistrée.<br>Nous vous rappellerons très vite.</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="urgence reveal">
+      <div>
+        <h3>Urgence dentaire ?</h3>
+        <p>Ne restez pas avec la douleur — appelez-nous, nous faisons notre possible pour vous recevoir le jour même.</p>
+      </div>
+      <a href="tel:0528282875" class="btn">📞 05 28 28 28 75</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer>
-  Built with Claude Code &nbsp;·&nbsp; Anthropic &nbsp;·&nbsp;
-  <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Documentation</a>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <span class="brand-script" style="font-size:1.6rem">Dr. Akfas Oumayma</span>
+        <p style="font-size:.9rem; margin-top:.8rem; opacity:.75; max-width:26rem">
+          Cabinet de chirurgie dentaire à Agadir. Des soins modernes, humains et accessibles,
+          dans un cadre élégant et apaisant.
+        </p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">Le Cabinet</a></li>
+          <li><a href="#soins">Soins</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>📍 Av. Laayoune, Agadir 80000</li>
+          <li>📞 <a href="tel:0528282875">05 28 28 28 75</a></li>
+          <li>🕘 Lun – Ven : 09h – 18h</li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-note">© 2026 Cabinet Dr. Akfas Oumayma — Site de démonstration. Tous droits réservés.</p>
+  </div>
 </footer>
 
 <script>
-  // ── Tab switcher ──
-  function switchTab(btn, id) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(id).classList.add('active');
-  }
+  // Menu mobile
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  // ── Terminal typewriter ──
-  const demos = [
-    {
-      cmd: 'claude "Add input validation to the signup form"',
-      reply: `Reading src/components/SignupForm.tsx …
-Found 3 fields missing validation: email, password, username.
-✓ Added zod schema with error messages
-✓ Wired inline error display to each field
-✓ Disabled submit button while invalid
-2 files changed, 31 insertions(+), 4 deletions(-)`
-    },
-    {
-      cmd: 'claude "Why is the /dashboard route slow?"',
-      reply: `Tracing request path …
-  routes/dashboard.ts → services/metrics.ts:fetchAll()
-  fetchAll() runs 6 sequential DB queries (N+1 pattern).
-  Fix: batch with Promise.all — estimated 4× speedup.
-Apply fix? (y/n)`
-    },
-    {
-      cmd: 'claude "Write tests for the CartService"',
-      reply: `Found 8 public methods in CartService.
-Generated 23 tests across:
-  • addItem (happy path + duplicate + out-of-stock)
-  • removeItem (present + missing)
-  • applyDiscount (valid + expired + invalid code)
-  • checkout (success + payment failure)
-All 23 tests pass ✓`
-    }
-  ];
+  // Apparition au défilement
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  let demoIdx = 0, cmdIdx = 0, replyIdx = 0, phase = 'cmd';
-  const cmdEl = document.getElementById('typed-cmd');
-  const replyEl = document.getElementById('typed-reply');
-  const cursor = document.getElementById('cursor');
-
-  function nextChar() {
-    const d = demos[demoIdx];
-    if (phase === 'cmd') {
-      if (cmdIdx < d.cmd.length) {
-        cmdEl.textContent += d.cmd[cmdIdx++];
-        setTimeout(nextChar, 35 + Math.random() * 25);
-      } else {
-        cursor.style.display = 'none';
-        phase = 'reply';
-        setTimeout(nextChar, 500);
-      }
-    } else {
-      if (replyIdx < d.reply.length) {
-        replyEl.textContent += d.reply[replyIdx++];
-        setTimeout(nextChar, 12);
-      } else {
-        setTimeout(() => {
-          cmdEl.textContent = '';
-          replyEl.textContent = '';
-          cmdIdx = replyIdx = 0;
-          phase = 'cmd';
-          cursor.style.display = 'inline-block';
-          demoIdx = (demoIdx + 1) % demos.length;
-          setTimeout(nextChar, 400);
-        }, 3200);
-      }
-    }
-  }
-
-  setTimeout(nextChar, 800);
+  // Formulaire (démo — aucun envoi réel)
+  document.getElementById('rdvForm').addEventListener('submit', e => {
+    e.preventDefault();
+    e.target.querySelectorAll('.field, button[type=submit], h3, .note').forEach(el => el.style.display = 'none');
+    document.getElementById('formOk').classList.add('show');
+  });
 </script>
 
 </body>
