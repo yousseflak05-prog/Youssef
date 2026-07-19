@@ -39,13 +39,13 @@
 
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Jost', -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif;
     color: var(--ink);
     background: var(--cream);
     line-height: 1.65;
     font-weight: 300;
   }
-  h1,h2,h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; line-height: 1.15; }
+  h1,h2,h3 { font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-weight: 500; line-height: 1.15; }
   img { max-width: 100%; }
   a { color: inherit; }
 
@@ -66,7 +66,7 @@
   /* ───────── Nav ───────── */
   nav {
     position: sticky; top: 0; z-index: 200;
-    background: rgba(250,247,240,.92); backdrop-filter: blur(14px);
+    background: #FAF7F0; /* fond opaque : pas de blur en WebView */
     border-bottom: 1px solid rgba(93,104,74,.12);
   }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
@@ -80,7 +80,7 @@
     white-space: nowrap;
   }
   .brand-name { display: flex; flex-direction: column; line-height: 1.1; }
-  .brand-script { font-family: 'Pinyon Script', cursive; font-size: 1.45rem; color: var(--sage-deep); }
+  .brand-script { font-family: 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive; font-size: 1.45rem; color: var(--sage-deep); }
   .brand-sub { font-size: .6rem; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); margin-top: .15rem; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
@@ -91,7 +91,7 @@
   .nav-links a:hover { color: var(--sage-dark); border-color: var(--sage-dark); }
   .btn {
     display: inline-block; text-decoration: none; cursor: pointer; border: none;
-    font-family: 'Jost', sans-serif; font-size: .88rem; letter-spacing: .1em; text-transform: uppercase;
+    font-family: 'Jost', -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif; font-size: .88rem; letter-spacing: .1em; text-transform: uppercase;
     padding: .85rem 1.9rem; border-radius: 999px; transition: transform .2s, box-shadow .2s, background .2s;
   }
   .btn-primary { background: var(--sage-dark); color: #fff; box-shadow: 0 10px 24px -10px rgba(93,104,74,.6); }
@@ -108,10 +108,13 @@
 
   /* Barre d'action mobile : appel + WhatsApp toujours sous le pouce */
   .action-bar {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+    /* fallback si "fixed" n'est pas honoré par le WebView, sinon fixed gagne */
+    position: -webkit-sticky; position: sticky; position: fixed;
+    bottom: 0; left: 0; right: 0; z-index: 300;
     display: none; gap: .6rem;
-    padding: .55rem .8rem calc(.55rem + env(safe-area-inset-bottom));
-    background: rgba(250,247,240,.96); backdrop-filter: blur(12px);
+    padding: .55rem .8rem;
+    padding-bottom: calc(.55rem + env(safe-area-inset-bottom, 0px));
+    background: #FAF7F0; /* fond opaque : pas de blur ni transparence en WebView */
     border-top: 1px solid rgba(93,104,74,.18);
     box-shadow: 0 -8px 24px -14px rgba(51,56,43,.35);
   }
@@ -157,7 +160,7 @@
     border-radius: 20px; pointer-events: none;
   }
   .hero-card svg.tooth { width: 170px; height: 187px; color: #fff; display: block; }
-  .hero-card .script { font-family: 'Pinyon Script', cursive; font-size: 2.2rem; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,.18); }
+  .hero-card .script { font-family: 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive; font-size: 2.2rem; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,.18); }
   .hero-card .sub { color: #fdfdf8; letter-spacing: .4em; text-transform: uppercase; font-size: .72rem; margin-top: .9rem; }
   .hero-badge {
     position: absolute; bottom: -18px; left: -14px;
@@ -171,7 +174,7 @@
   /* ───────── Stats strip ───────── */
   .stats { background: var(--sage-deep); color: #f4f6ec; }
   .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; padding: 2.2rem 0; gap: 1rem; }
-  .stat b { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: #fff; }
+  .stat b { display: block; font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-size: 2.2rem; font-weight: 600; color: #fff; }
   .stat span { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
 
   /* ───────── Sections ───────── */
@@ -199,7 +202,7 @@
     border: 1.5px solid rgba(255,255,255,.5); box-shadow: inset 0 0 0 8px rgba(255,255,255,.12);
   }
   .about-frame svg { width: 120px; height: 132px; color: #fff; display: block; }
-  .about-frame .script { font-family: 'Pinyon Script', cursive; color: #fff; font-size: 1.55rem; }
+  .about-frame .script { font-family: 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive; color: #fff; font-size: 1.55rem; }
   .about-frame .sub { color: #fdfdf8; letter-spacing: .35em; font-size: .62rem; text-transform: uppercase; margin-top: .7rem; }
   .about-chip {
     position: absolute; top: 22px; right: -18px; background: #fff; padding: .7rem 1.1rem;
@@ -277,7 +280,7 @@
   .field label { display: block; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .4rem; opacity: .85; }
   .field input, .field select, .field textarea {
     width: 100%; padding: .8rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.25);
-    background: rgba(255,255,255,.1); color: #fff; font-family: 'Jost', sans-serif; font-size: .95rem;
+    background: rgba(255,255,255,.1); color: #fff; font-family: 'Jost', -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif; font-size: .95rem;
   }
   .field ::placeholder { color: rgba(255,255,255,.55); }
   .field select { appearance: none; }
@@ -303,15 +306,11 @@
   footer { background: var(--ink); color: #c9cdbd; padding: 3.5rem 0 2rem; }
   .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
   footer .brand-script { color: var(--sage); }
-  footer h4 { color: #fff; font-family: 'Jost', sans-serif; font-weight: 500; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; }
+  footer h4 { color: #fff; font-family: 'Jost', -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif; font-weight: 500; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; }
   footer ul { list-style: none; display: grid; gap: .5rem; font-size: .9rem; }
   footer a { text-decoration: none; opacity: .85; }
   footer a:hover { opacity: 1; color: var(--sage); }
   .foot-note { text-align: center; font-size: .78rem; opacity: .55; padding-top: 1.6rem; }
-
-  /* Reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
 
   /* ───────── Responsive ───────── */
   @media (max-width: 900px) {
@@ -421,7 +420,7 @@
         <small><strong>4,9 / 5</strong> — basé sur 54 avis Google</small>
       </div>
     </div>
-    <div class="hero-visual reveal">
+    <div class="hero-visual">
       <div class="hero-card">
         <span class="logo-lockup">
           <svg class="tooth" viewBox="0 0 100 110" aria-hidden="true"><use href="#toothLogo"/></svg>
@@ -450,7 +449,7 @@
 <!-- À propos -->
 <section id="apropos">
   <div class="container about-grid">
-    <div class="about-visual reveal">
+    <div class="about-visual">
       <div class="about-frame">
         <div class="placard">
           <span class="logo-lockup">
@@ -462,7 +461,7 @@
       </div>
       <div class="about-chip">Cabinet <b>géré par une femme</b> 🌿</div>
     </div>
-    <div class="reveal">
+    <div>
       <span class="eyebrow">Le cabinet</span>
       <h2>Un espace pensé pour votre confort</h2>
       <p style="margin-top:1rem; color:var(--muted)">
@@ -489,32 +488,32 @@
       <p>De la simple consultation aux traitements esthétiques, nous prenons soin de votre sourire à chaque étape de la vie.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc reveal">
+      <div class="svc">
         <div class="svc-icon">🦷</div>
         <h3>Soins conservateurs</h3>
         <p>Traitement des caries, dévitalisations et restaurations esthétiques pour préserver vos dents naturelles.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc">
         <div class="svc-icon">✨</div>
         <h3>Blanchiment dentaire</h3>
         <p>Retrouvez un sourire éclatant grâce à des techniques de blanchiment sûres, efficaces et adaptées à votre émail.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc">
         <div class="svc-icon">🚨</div>
         <h3>Urgences dentaires</h3>
         <p>Douleur aiguë, dent cassée, abcès ? Nous faisons le maximum pour vous recevoir rapidement, le jour même.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc">
         <div class="svc-icon">👑</div>
         <h3>Prothèses &amp; couronnes</h3>
         <p>Couronnes, bridges et prothèses esthétiques pour restaurer durablement fonction et harmonie du sourire.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc">
         <div class="svc-icon">🪥</div>
         <h3>Détartrage &amp; prévention</h3>
         <p>Nettoyage professionnel, soins des gencives et conseils personnalisés pour une bouche saine au quotidien.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc">
         <div class="svc-icon">🧒</div>
         <h3>Dentisterie pédiatrique</h3>
         <p>Une approche douce et rassurante pour que les enfants vivent leurs premiers rendez-vous en toute confiance.</p>
@@ -532,7 +531,7 @@
       <p>Des avis authentiques laissés par nos patients sur Google.</p>
     </div>
     <div class="rev-grid">
-      <div class="rev reveal">
+      <div class="rev">
         <span class="stars">★★★★★</span>
         <p>« Très bonne expérience. Dentiste très professionnelle, avec un service soigné et un accueil chaleureux. Le docteur est rassurante dès le premier contact et prend le temps d'expliquer. »</p>
         <div class="rev-who">
@@ -540,7 +539,7 @@
           <span><b>Amine R.</b><small>Avis Google</small></span>
         </div>
       </div>
-      <div class="rev reveal">
+      <div class="rev">
         <span class="stars">★★★★★</span>
         <p>« Très bonne expérience. Dentiste professionnelle, service soigné et accueil agréable. »</p>
         <div class="rev-who">
@@ -548,7 +547,7 @@
           <span><b>Kenza M.</b><small>Avis Google</small></span>
         </div>
       </div>
-      <div class="rev reveal">
+      <div class="rev">
         <span class="stars">★★★★★</span>
         <p>« Merci beaucoup au cabinet pour leur professionnalisme et leur excellent accueil. Un travail précis et un suivi rassurant. Je recommande vivement ce cabinet. »</p>
         <div class="rev-who">
@@ -557,7 +556,7 @@
         </div>
       </div>
     </div>
-    <div class="google-pill reveal">
+    <div class="google-pill">
       <span class="stars">★★★★★</span>
       <span><b>4,9</b> / 5 · 54 avis sur Google</span>
     </div>
@@ -573,7 +572,7 @@
       <p>Appelez-nous ou laissez vos coordonnées — nous vous rappelons pour confirmer votre rendez-vous.</p>
     </div>
     <div class="contact-grid">
-      <div class="info-card reveal">
+      <div class="info-card">
         <div class="info-row">
           <div class="info-ico">📍</div>
           <div>
@@ -608,7 +607,7 @@
         </div>
       </div>
 
-      <form class="rdv reveal" id="rdvForm">
+      <form class="rdv" id="rdvForm">
         <h3>Demande de rendez-vous</h3>
         <p class="note">Réponse rapide pendant les horaires d'ouverture.</p>
         <div class="field-2">
@@ -645,7 +644,7 @@
       </form>
     </div>
 
-    <div class="urgence reveal">
+    <div class="urgence">
       <div>
         <h3>Urgence dentaire ?</h3>
         <p>Ne restez pas avec la douleur — appelez-nous, nous faisons notre possible pour vous recevoir le jour même.</p>
@@ -709,12 +708,6 @@
   document.addEventListener('click', e => {
     if (navLinks.classList.contains('open') && !e.target.closest('nav')) setMenu(false);
   });
-
-  // Apparition au défilement
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: .15 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   // Formulaire (démo — aucun envoi réel)
   document.getElementById('rdvForm').addEventListener('submit', e => {
