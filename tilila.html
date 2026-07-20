@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Centre Dentaire Dr. Oulaya Taki — Tilila, Agadir</title>
 <meta name="description" content="Centre dentaire Dr. Oulaya Taki à Tilila, Agadir. Soins dentaires tout en douceur, enfants et patients anxieux bienvenus. Av. El Oulfa — 06 67 23 27 38." />
-<meta name="theme-color" content="#7E4552" />
+<meta name="theme-color" content="#123F86" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,18 +23,18 @@
   a, button { -webkit-tap-highlight-color: transparent; }
 
   :root {
-    --sage: #C99AA4;          /* vert sauge du cabinet */
-    --sage-dark: #A5606F;
-    --sage-deep: #7E4552;
-    --sage-pale: #F6E9EC;
-    --cream: #FBF7F5;
+    --sage: #3D9BE9;          /* vert sauge du cabinet */
+    --sage-dark: #1E6FC4;
+    --sage-deep: #123F86;
+    --sage-pale: #E3F0FB;
+    --cream: #F7FAFD;
     --white: #ffffff;
     --wood: #8a5a3b;
-    --ink: #3A2B2F;
-    --muted: #5E474D;   /* assombri pour rester lisible en plein soleil */
+    --ink: #1C2B45;
+    --muted: #45566E;   /* assombri pour rester lisible en plein soleil */
     --gold: #c9a86a;
     --radius: 18px;
-    --shadow: 0 20px 50px -18px rgba(58,43,47,.25);
+    --shadow: 0 20px 50px -18px rgba(28,43,69,.25);
   }
 
   html { scroll-behavior: smooth; }
@@ -66,12 +66,12 @@
   /* ───────── Nav ───────── */
   nav {
     position: sticky; top: 0; z-index: 200;
-    background: #FBF7F5; /* fond opaque : pas de blur en WebView */
-    border-bottom: 1px solid rgba(126,69,82,.12);
+    background: #F7FAFD; /* fond opaque : pas de blur en WebView */
+    border-bottom: 1px solid rgba(18,63,134,.12);
   }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
   .brand { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
-  .brand svg { width: 42px; height: 46px; color: var(--sage-deep); }
+  .brand svg { width: 46px; height: 46px; }
 
   /* Logo « enseigne » : dent en traits ouverts + signature qui la traverse */
   .logo-lockup { position: relative; display: inline-block; }
@@ -94,7 +94,7 @@
     font-family: 'Jost', -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif; font-size: .88rem; letter-spacing: .1em; text-transform: uppercase;
     padding: .85rem 1.9rem; border-radius: 999px; transition: transform .2s, box-shadow .2s, background .2s;
   }
-  .btn-primary { background: var(--sage-dark); color: #fff; box-shadow: 0 10px 24px -10px rgba(126,69,82,.6); }
+  .btn-primary { background: var(--sage-dark); color: #fff; box-shadow: 0 10px 24px -10px rgba(18,63,134,.6); }
   .btn-primary:hover { background: var(--sage-deep); transform: translateY(-2px); }
   .btn-ghost { background: transparent; color: var(--sage-deep); border: 1px solid var(--sage-dark); }
   .btn-ghost:hover { background: var(--sage-pale); transform: translateY(-2px); }
@@ -114,9 +114,9 @@
     display: none; gap: .6rem;
     padding: .55rem .8rem;
     padding-bottom: calc(.55rem + env(safe-area-inset-bottom, 0px));
-    background: #FBF7F5; /* fond opaque : pas de blur ni transparence en WebView */
-    border-top: 1px solid rgba(126,69,82,.18);
-    box-shadow: 0 -8px 24px -14px rgba(58,43,47,.35);
+    background: #F7FAFD; /* fond opaque : pas de blur ni transparence en WebView */
+    border-top: 1px solid rgba(18,63,134,.18);
+    box-shadow: 0 -8px 24px -14px rgba(28,43,69,.35);
   }
   .action-bar a {
     flex: 1; display: flex; align-items: center; justify-content: center; gap: .5rem;
@@ -130,7 +130,7 @@
   .hero { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--sage-pale) 0%, var(--cream) 55%); }
   .hero::before {
     content: ""; position: absolute; right: -180px; top: -180px; width: 560px; height: 560px;
-    border-radius: 50%; background: radial-gradient(circle, rgba(201,154,164,.35), transparent 65%);
+    border-radius: 50%; background: radial-gradient(circle, rgba(61,155,233,.35), transparent 65%);
   }
   .hero-grid {
     display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: center;
@@ -152,20 +152,20 @@
 
   .hero-visual { position: relative; }
   .hero-card {
-    background: var(--sage); border-radius: 28px; padding: 3rem 2.4rem;
+    background: #fff; border-radius: 28px; padding: 3rem 2.4rem;
     box-shadow: var(--shadow); position: relative; overflow: hidden; text-align: center;
   }
   .hero-card::before {
-    content: ""; position: absolute; inset: 18px; border: 1.5px solid rgba(255,255,255,.55);
+    content: ""; position: absolute; inset: 18px; border: 1.5px solid rgba(19,96,190,.35);
     border-radius: 20px; pointer-events: none;
   }
-  .hero-card svg.tooth { width: 170px; height: 187px; color: #fff; display: block; }
-  .hero-card .script { font-family: 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive; font-size: 2.2rem; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,.18); }
-  .hero-card .sub { color: #fdfdf8; letter-spacing: .4em; text-transform: uppercase; font-size: .72rem; margin-top: .9rem; }
+  .hero-card svg.tooth { width: 180px; height: 180px; display: block; }
+  .hero-card .script { font-family: 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive; font-size: 2rem; color: var(--sage-deep); }
+  .hero-card .sub { color: var(--sage-deep); letter-spacing: .4em; text-transform: uppercase; font-size: .72rem; margin-top: .9rem; }
   .hero-badge {
     position: absolute; bottom: -18px; left: -14px;
     background: #fff; border-radius: 14px; padding: .8rem 1.2rem;
-    box-shadow: 0 14px 30px -12px rgba(58,43,47,.3);
+    box-shadow: 0 14px 30px -12px rgba(28,43,69,.3);
     display: flex; align-items: center; gap: .7rem; font-size: .85rem;
   }
   .hero-badge .dot { width: 10px; height: 10px; border-radius: 50%; background: #4caf50; animation: pulse 2s infinite; }
@@ -192,21 +192,21 @@
   .about-frame {
     border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
     background:
-      linear-gradient(rgba(126,69,82,.18), rgba(126,69,82,.18)),
+      linear-gradient(rgba(18,63,134,.18), rgba(18,63,134,.18)),
       repeating-linear-gradient(90deg, #b28057 0 14px, #9c6c47 14px 16px),
       #b28057;
     aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; padding: 2rem;
   }
   .about-frame .placard {
-    background: var(--sage); border-radius: 14px; width: 100%; padding: 2.5rem 1.5rem; text-align: center;
-    border: 1.5px solid rgba(255,255,255,.5); box-shadow: inset 0 0 0 8px rgba(255,255,255,.12);
+    background: #fff; border-radius: 14px; width: 100%; padding: 2.5rem 1.5rem; text-align: center;
+    border: 1.5px solid rgba(19,96,190,.3); box-shadow: inset 0 0 0 8px rgba(61,155,233,.08);
   }
-  .about-frame svg { width: 120px; height: 132px; color: #fff; display: block; }
-  .about-frame .script { font-family: 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive; color: #fff; font-size: 1.55rem; }
-  .about-frame .sub { color: #fdfdf8; letter-spacing: .35em; font-size: .62rem; text-transform: uppercase; margin-top: .7rem; }
+  .about-frame svg { width: 130px; height: 130px; display: block; }
+  .about-frame .script { font-family: 'Pinyon Script', 'Brush Script MT', 'Segoe Script', cursive; color: var(--sage-deep); font-size: 1.45rem; }
+  .about-frame .sub { color: var(--sage-deep); letter-spacing: .35em; font-size: .62rem; text-transform: uppercase; margin-top: .7rem; }
   .about-chip {
     position: absolute; top: 22px; right: -18px; background: #fff; padding: .7rem 1.1rem;
-    border-radius: 12px; box-shadow: 0 12px 28px -12px rgba(58,43,47,.35); font-size: .82rem;
+    border-radius: 12px; box-shadow: 0 12px 28px -12px rgba(28,43,69,.35); font-size: .82rem;
   }
   .about-chip b { color: var(--sage-deep); }
   .about-list { margin-top: 1.8rem; display: grid; gap: 1rem; list-style: none; }
@@ -220,7 +220,7 @@
   .services { background: var(--white); }
   .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
   .svc {
-    border: 1px solid rgba(126,69,82,.14); border-radius: var(--radius); padding: 2rem 1.7rem;
+    border: 1px solid rgba(18,63,134,.14); border-radius: var(--radius); padding: 2rem 1.7rem;
     background: var(--cream); transition: transform .25s, box-shadow .25s, border-color .25s;
   }
   .svc:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--sage); }
@@ -236,7 +236,7 @@
   .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
   .rev {
     background: #fff; border-radius: var(--radius); padding: 1.9rem 1.7rem;
-    box-shadow: 0 14px 34px -18px rgba(58,43,47,.22); display: flex; flex-direction: column; gap: .9rem;
+    box-shadow: 0 14px 34px -18px rgba(28,43,69,.22); display: flex; flex-direction: column; gap: .9rem;
   }
   .rev p { font-size: .93rem; color: var(--ink); font-style: italic; }
   .rev-who { display: flex; align-items: center; gap: .8rem; margin-top: auto; }
@@ -250,7 +250,7 @@
   .google-pill {
     margin: 3rem auto 0; width: max-content; background: #fff; border-radius: 999px;
     padding: .8rem 1.6rem; display: flex; align-items: center; gap: .8rem;
-    box-shadow: 0 12px 30px -14px rgba(58,43,47,.25); font-size: .9rem;
+    box-shadow: 0 12px 30px -14px rgba(28,43,69,.25); font-size: .9rem;
   }
   .google-pill b { font-size: 1.15rem; }
 
@@ -258,9 +258,9 @@
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
   .info-card {
     background: var(--white); border-radius: var(--radius); padding: 2.2rem;
-    border: 1px solid rgba(126,69,82,.12); box-shadow: 0 14px 34px -20px rgba(58,43,47,.2);
+    border: 1px solid rgba(18,63,134,.12); box-shadow: 0 14px 34px -20px rgba(28,43,69,.2);
   }
-  .info-row { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px dashed rgba(126,69,82,.2); }
+  .info-row { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px dashed rgba(18,63,134,.2); }
   .info-row:last-child { border-bottom: none; }
   .info-ico {
     flex: 0 0 44px; height: 44px; border-radius: 12px; background: var(--sage-pale);
@@ -303,7 +303,7 @@
   .urgence .btn { background: #fff; color: var(--wood); }
 
   /* Footer */
-  footer { background: var(--ink); color: #d8c6ca; padding: 3.5rem 0 2rem; }
+  footer { background: var(--ink); color: #c3d0e4; padding: 3.5rem 0 2rem; }
   .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
   footer .brand-script { color: var(--sage); }
   footer h4 { color: #fff; font-family: 'Jost', -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif; font-weight: 500; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; }
@@ -324,8 +324,8 @@
     .nav-links {
       display: none; position: absolute; top: 76px; left: 0; right: 0;
       background: var(--cream); flex-direction: column; padding: 1rem 1.5rem; gap: 0;
-      border-bottom: 1px solid rgba(126,69,82,.15);
-      box-shadow: 0 18px 30px -18px rgba(58,43,47,.3);
+      border-bottom: 1px solid rgba(18,63,134,.15);
+      box-shadow: 0 18px 30px -18px rgba(28,43,69,.3);
     }
     .nav-links.open { display: flex; }
     /* zone de tap ≥ 44px pour chaque lien du menu */
@@ -359,13 +359,13 @@
 
 <!-- Logo dent (reproduction de l'enseigne : traits ouverts, 2 lobes, 2 racines) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="toothLogo" viewBox="0 0 100 110">
-    <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round">
-      <path d="M50 24 C 44 9, 26 3, 16 15 C 9 23, 9 38, 12 50"/>
-      <path d="M50 24 C 56 9, 74 3, 84 15 C 91 23, 91 38, 88 50"/>
-      <path d="M14 60 C 17 78, 23 94, 31 100 C 37 104, 41 94, 43 83 C 45 74, 47 70, 50 69"/>
-      <path d="M86 60 C 83 78, 77 94, 69 100 C 63 104, 59 94, 57 83 C 55 74, 53 70, 50 69"/>
-    </g>
+  <symbol id="toothLogo" viewBox="0 0 200 200">
+    <circle cx="68" cy="68" r="58" fill="#57ADE8"/>
+    <circle cx="132" cy="68" r="58" fill="#2E90E0"/>
+    <circle cx="68" cy="132" r="58" fill="#1E78D2"/>
+    <circle cx="132" cy="132" r="58" fill="#1360BE"/>
+    <rect x="45" y="45" width="110" height="110" transform="rotate(45 100 100)" fill="#0D4FA6" opacity=".45"/>
+    <path fill="#ffffff" d="M100 54 C 92 34, 60 26, 48 52 C 38 73, 40 100, 48 125 C 54 143, 60 162, 62 175 C 64 187, 75 191, 78 181 C 81 170, 83 158, 87 150 C 91 142, 95 132, 100 132 C 105 132, 109 142, 113 150 C 117 158, 119 170, 122 181 C 125 191, 136 187, 138 175 C 140 162, 146 143, 152 125 C 160 100, 162 73, 152 52 C 140 26, 108 34, 100 54 Z"/>
   </symbol>
 </svg>
 
@@ -382,9 +382,9 @@
 <nav>
   <div class="container nav-inner">
     <a class="brand" href="#accueil">
-      <svg viewBox="0 0 100 110" aria-hidden="true"><use href="#toothLogo"/></svg>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#toothLogo"/></svg>
       <span class="brand-name">
-        <span class="brand-script">Dr. Oulaya Taki</span>
+        <span class="brand-script">Dr. Taki Oulaya</span>
         <span class="brand-sub">Centre Dentaire · Tilila</span>
       </span>
     </a>
@@ -423,8 +423,8 @@
     <div class="hero-visual">
       <div class="hero-card">
         <span class="logo-lockup">
-          <svg class="tooth" viewBox="0 0 100 110" aria-hidden="true"><use href="#toothLogo"/></svg>
-          <span class="script">Dr. Oulaya Taki</span>
+          <svg class="tooth" viewBox="0 0 200 200" aria-hidden="true"><use href="#toothLogo"/></svg>
+          <span class="script">Dr. Taki Oulaya</span>
         </span>
         <div class="sub">Chirurgien Dentiste</div>
       </div>
@@ -453,8 +453,8 @@
       <div class="about-frame">
         <div class="placard">
           <span class="logo-lockup">
-            <svg viewBox="0 0 100 110" aria-hidden="true"><use href="#toothLogo"/></svg>
-            <span class="script">Dr. Oulaya Taki</span>
+            <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#toothLogo"/></svg>
+            <span class="script">Dr. Taki Oulaya</span>
           </span>
           <div class="sub">Chirurgien Dentiste</div>
         </div>
@@ -666,7 +666,7 @@
   <div class="container">
     <div class="foot-grid">
       <div>
-        <span class="brand-script" style="font-size:1.6rem">Dr. Oulaya Taki</span>
+        <span class="brand-script" style="font-size:1.6rem">Dr. Taki Oulaya</span>
         <p style="font-size:.9rem; margin-top:.8rem; opacity:.75; max-width:26rem">
           Centre dentaire au quartier Tilila, Agadir. Des soins modernes, humains et accessibles,
           dans un cadre élégant et apaisant.
