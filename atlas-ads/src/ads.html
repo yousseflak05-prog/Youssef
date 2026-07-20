@@ -1,0 +1,458 @@
+<meta charset="utf-8">
+<title>Atlas — Visuels publicitaires</title>
+<style>
+@font-face {
+  font-family: "Archivo Black";
+  font-style: normal;
+  font-weight: 900;
+  src: url(__ARCHIVO_BLACK__) format("woff2");
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 700;
+  src: url(__ARCHIVO__) format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400 700;
+  src: url(__NEWSREADER_ITALIC__) format("woff2");
+}
+
+:root {
+  --navy: #061424;
+  --navy-2: #0a1c31;
+  --navy-3: #10263f;
+  --blanc: #f5f8fb;
+  --gris: #93a4b5;
+  --accent: #5ba4cf;
+  --accent-fort: #7dbde4;
+  --vert-wa: #25d366;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #1c1c1c; font-family: "Archivo", sans-serif; }
+
+.frame {
+  position: relative;
+  width: 1080px;
+  overflow: hidden;
+  color: var(--blanc);
+  background:
+    radial-gradient(900px 700px at 85% -10%, rgba(91, 164, 207, 0.16), transparent 60%),
+    radial-gradient(700px 600px at -10% 105%, rgba(91, 164, 207, 0.07), transparent 55%),
+    linear-gradient(160deg, var(--navy-2), var(--navy) 65%);
+  display: flex;
+  flex-direction: column;
+  margin: 40px auto;
+}
+.frame.carre { height: 1080px; padding: 84px 88px 72px; }
+.frame.story { height: 1920px; padding: 260px 96px 300px; }
+
+/* crête discrète en bas de cadre */
+.crete {
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---------- Typo ---------- */
+.titre {
+  font-family: "Archivo Black", "Archivo", sans-serif;
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.carre .titre { font-size: 104px; }
+.story .titre { font-size: 128px; }
+.titre .bleu { color: var(--accent-fort); }
+.titre .fantome {
+  color: transparent;
+  -webkit-text-stroke: 3px rgba(245, 248, 251, 0.55);
+}
+.titre .serif {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.sous {
+  font-size: 42px;
+  font-weight: 500;
+  color: var(--gris);
+  line-height: 1.35;
+}
+.story .sous { font-size: 50px; }
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--accent);
+  color: #04101d;
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: 0.01em;
+  padding: 26px 46px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+.story .cta { font-size: 46px; padding: 32px 56px; }
+.cta .fleche { font-family: "Archivo", sans-serif; font-weight: 700; }
+
+.pied {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.logo-atlas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0.9;
+}
+.logo-atlas .nom {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 44px;
+  letter-spacing: 0.01em;
+}
+.story .logo-atlas .nom { font-size: 50px; }
+
+/* ---------- Notifications (angle 1) ---------- */
+.notifs { display: flex; flex-direction: column; gap: 22px; }
+.notif {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(6px);
+  border-radius: 28px;
+  padding: 26px 30px;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.5);
+}
+.notif.decale-1 { transform: rotate(-1.1deg) translateX(-8px); }
+.notif.decale-2 { transform: rotate(0.8deg) translateX(14px); }
+.notif .n-ico {
+  width: 84px; height: 84px;
+  flex: none;
+  border-radius: 22px;
+  background: var(--vert-wa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notif .n-corps { min-width: 0; flex: 1; }
+.notif .n-app {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26px;
+  color: var(--gris);
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+.notif .n-texte {
+  font-size: 33px;
+  font-weight: 600;
+  color: var(--blanc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.notif .n-badge {
+  flex: none;
+  min-width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #e5473a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Recherche (angle 2) ---------- */
+.recherche { display: flex; flex-direction: column; gap: 20px; }
+.barre {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 28px 38px;
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--blanc);
+}
+.barre .curseur {
+  display: inline-block;
+  width: 4px; height: 44px;
+  background: var(--accent-fort);
+  margin-left: -12px;
+}
+.resultat {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 24px 30px;
+}
+.resultat .r-av {
+  width: 72px; height: 72px;
+  flex: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+.resultat .r-lignes { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.resultat .r-l1 { height: 20px; width: 46%; border-radius: 8px; background: rgba(255, 255, 255, 0.3); }
+.resultat .r-l2 { height: 14px; width: 68%; border-radius: 7px; background: rgba(255, 255, 255, 0.13); }
+.resultat .r-tag {
+  flex: none;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-fort);
+}
+.resultat.absent {
+  background: transparent;
+  border: 2px dashed rgba(255, 255, 255, 0.22);
+  color: var(--gris);
+  font-size: 31px;
+  font-weight: 600;
+  justify-content: center;
+  padding: 30px;
+}
+
+/* ---------- Dents (angle 3) ---------- */
+.dents {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 34px;
+}
+.dent { opacity: 0.28; }
+.dent svg { display: block; }
+.dent.star {
+  opacity: 1;
+  filter: drop-shadow(0 0 34px rgba(91, 164, 207, 0.55));
+  transform: translateY(-26px) scale(1.12);
+}
+
+/* compactage pub 2 carrée */
+#pub2-feed { padding-top: 68px; }
+#pub2-feed .haut { margin-bottom: 50px; }
+#pub2-feed .recherche { gap: 16px; }
+#pub2-feed .barre { padding: 20px 32px; font-size: 33px; }
+#pub2-feed .barre .curseur { height: 38px; }
+#pub2-feed .resultat { padding: 17px 26px; }
+#pub2-feed .resultat .r-av { width: 58px; height: 58px; }
+#pub2-feed .resultat.absent { padding: 22px; font-size: 28px; }
+#pub2-feed .titre { font-size: 88px; }
+#pub2-feed .sous { font-size: 38px; }
+#pub2-feed .bloc-texte { gap: 26px; }
+
+/* espacements internes */
+.haut { margin-bottom: 64px; }
+.story .haut { margin-bottom: 110px; }
+.bloc-texte { display: flex; flex-direction: column; gap: 34px; }
+.story .bloc-texte { gap: 44px; }
+.bloc-texte .cta { margin-top: 22px; }
+</style>
+
+<!-- ============================================================
+     ANGLE 1 · PREUVE — feed carré
+============================================================ -->
+<div class="frame carre" id="pub1-feed">
+  <div class="haut notifs">
+    <div class="notif decale-1">
+      <span class="n-ico">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm4.6 12.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5c0-.1-.5-1.4-.7-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 3 4.7 4.2 2.2.9 2.7.8 3.4.7.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+      </span>
+      <span class="n-corps">
+        <span class="n-app"><span>WhatsApp</span><span>maintenant</span></span>
+        <span class="n-texte">Bonjour, je peux prendre RDV cette semaine&nbsp;?</span>
+      </span>
+    </div>
+    <div class="notif decale-2">
+      <span class="n-ico">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm4.6 12.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5c0-.1-.5-1.4-.7-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 3 4.7 4.2 2.2.9 2.7.8 3.4.7.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+      </span>
+      <span class="n-corps">
+        <span class="n-app"><span>WhatsApp</span><span>il y a 2 min</span></span>
+        <span class="n-texte">C&rsquo;est possible d&rsquo;avoir un RDV samedi&nbsp;?</span>
+      </span>
+      <span class="n-badge">+3</span>
+    </div>
+  </div>
+  <div class="bloc-texte">
+    <h1 class="titre">+22 RDV<br><span class="bleu">ce mois-ci.</span></h1>
+    <p class="sous">Un cabinet dentaire, à Casablanca.</p>
+    <a class="cta">Découvrez comment <span class="fleche">→</span></a>
+  </div>
+  <div class="pied">
+    <span class="logo-atlas">
+      <svg width="58" height="58" viewBox="0 0 100 100" fill="none"><polygon points="50,12 88,84 12,84" stroke="#f5f8fb" stroke-width="5" stroke-linejoin="round"></polygon><polyline points="50,12 36,54 50,44 64,64" stroke="#f5f8fb" stroke-width="3.5" stroke-linejoin="round"></polyline><line x1="36" y1="54" x2="12" y2="84" stroke="#f5f8fb" stroke-width="3.5"></line><polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#5ba4cf"></polygon></svg>
+      <span class="nom">Atlas</span>
+    </span>
+  </div>
+</div>
+
+<!-- ANGLE 1 · PREUVE — story -->
+<div class="frame story" id="pub1-story">
+  <div class="haut notifs">
+    <div class="notif decale-1">
+      <span class="n-ico">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm4.6 12.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5c0-.1-.5-1.4-.7-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 3 4.7 4.2 2.2.9 2.7.8 3.4.7.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+      </span>
+      <span class="n-corps">
+        <span class="n-app"><span>WhatsApp</span><span>maintenant</span></span>
+        <span class="n-texte">Bonjour, je peux prendre RDV cette semaine&nbsp;?</span>
+      </span>
+    </div>
+    <div class="notif decale-2">
+      <span class="n-ico">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm4.6 12.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5c0-.1-.5-1.4-.7-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 3 4.7 4.2 2.2.9 2.7.8 3.4.7.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+      </span>
+      <span class="n-corps">
+        <span class="n-app"><span>WhatsApp</span><span>il y a 2 min</span></span>
+        <span class="n-texte">C&rsquo;est possible d&rsquo;avoir un RDV samedi&nbsp;?</span>
+      </span>
+      <span class="n-badge">+3</span>
+    </div>
+  </div>
+  <div class="bloc-texte">
+    <h1 class="titre">+22 RDV<br><span class="bleu">ce mois-ci.</span></h1>
+    <p class="sous">Un cabinet dentaire, à Casablanca.</p>
+    <a class="cta">Découvrez comment <span class="fleche">→</span></a>
+  </div>
+  <div class="pied">
+    <span class="logo-atlas">
+      <svg width="64" height="64" viewBox="0 0 100 100" fill="none"><polygon points="50,12 88,84 12,84" stroke="#f5f8fb" stroke-width="5" stroke-linejoin="round"></polygon><polyline points="50,12 36,54 50,44 64,64" stroke="#f5f8fb" stroke-width="3.5" stroke-linejoin="round"></polyline><line x1="36" y1="54" x2="12" y2="84" stroke="#f5f8fb" stroke-width="3.5"></line><polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#5ba4cf"></polygon></svg>
+      <span class="nom">Atlas</span>
+    </span>
+  </div>
+</div>
+
+<!-- ============================================================
+     ANGLE 2 · PROBLÈME / SOLUTION — feed carré
+============================================================ -->
+<div class="frame carre" id="pub2-feed">
+  <div class="haut recherche">
+    <div class="barre">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#93a4b5" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+      dentiste près de moi<span class="curseur"></span>
+    </div>
+    <div class="resultat">
+      <span class="r-av"></span>
+      <span class="r-lignes"><span class="r-l1"></span><span class="r-l2"></span></span>
+      <span class="r-tag">Concurrent</span>
+    </div>
+    <div class="resultat">
+      <span class="r-av"></span>
+      <span class="r-lignes"><span class="r-l1"></span><span class="r-l2"></span></span>
+      <span class="r-tag">Concurrent</span>
+    </div>
+    <div class="resultat absent">Votre cabinet&nbsp;? Introuvable.</div>
+  </div>
+  <div class="bloc-texte">
+    <h1 class="titre">Vos patients vous <span class="serif bleu">cherchent.</span></h1>
+    <p class="sous">Ils trouvent vos concurrents.</p>
+    <a class="cta">Devenez trouvable <span class="fleche">→</span></a>
+  </div>
+  <div class="pied">
+    <span class="logo-atlas">
+      <svg width="58" height="58" viewBox="0 0 100 100" fill="none"><polygon points="50,12 88,84 12,84" stroke="#f5f8fb" stroke-width="5" stroke-linejoin="round"></polygon><polyline points="50,12 36,54 50,44 64,64" stroke="#f5f8fb" stroke-width="3.5" stroke-linejoin="round"></polyline><line x1="36" y1="54" x2="12" y2="84" stroke="#f5f8fb" stroke-width="3.5"></line><polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#5ba4cf"></polygon></svg>
+      <span class="nom">Atlas</span>
+    </span>
+  </div>
+</div>
+
+<!-- ANGLE 2 — story -->
+<div class="frame story" id="pub2-story">
+  <div class="haut recherche">
+    <div class="barre">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#93a4b5" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+      dentiste près de moi<span class="curseur"></span>
+    </div>
+    <div class="resultat">
+      <span class="r-av"></span>
+      <span class="r-lignes"><span class="r-l1"></span><span class="r-l2"></span></span>
+      <span class="r-tag">Concurrent</span>
+    </div>
+    <div class="resultat">
+      <span class="r-av"></span>
+      <span class="r-lignes"><span class="r-l1"></span><span class="r-l2"></span></span>
+      <span class="r-tag">Concurrent</span>
+    </div>
+    <div class="resultat absent">Votre cabinet&nbsp;? Introuvable.</div>
+  </div>
+  <div class="bloc-texte">
+    <h1 class="titre">Vos patients vous <span class="serif bleu">cherchent.</span></h1>
+    <p class="sous">Ils trouvent vos concurrents.</p>
+    <a class="cta">Devenez trouvable <span class="fleche">→</span></a>
+  </div>
+  <div class="pied">
+    <span class="logo-atlas">
+      <svg width="64" height="64" viewBox="0 0 100 100" fill="none"><polygon points="50,12 88,84 12,84" stroke="#f5f8fb" stroke-width="5" stroke-linejoin="round"></polygon><polyline points="50,12 36,54 50,44 64,64" stroke="#f5f8fb" stroke-width="3.5" stroke-linejoin="round"></polyline><line x1="36" y1="54" x2="12" y2="84" stroke="#f5f8fb" stroke-width="3.5"></line><polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#5ba4cf"></polygon></svg>
+      <span class="nom">Atlas</span>
+    </span>
+  </div>
+</div>
+
+<!-- ============================================================
+     ANGLE 3 · OPPORTUNITÉ — feed carré
+============================================================ -->
+<div class="frame carre" id="pub3-feed">
+  <div class="haut dents" style="padding: 40px 0 30px">
+    <span class="dent"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#f5f8fb" stroke-width="1.4"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+    <span class="dent"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#f5f8fb" stroke-width="1.4"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+    <span class="dent star"><svg width="132" height="132" viewBox="0 0 24 24" fill="#5ba4cf" stroke="#7dbde4" stroke-width="0.8"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+    <span class="dent"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#f5f8fb" stroke-width="1.4"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+    <span class="dent"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#f5f8fb" stroke-width="1.4"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+  </div>
+  <div class="bloc-texte">
+    <h1 class="titre">Presque aucun cabinet <span class="fantome">ne le fait.</span></h1>
+    <p class="sous">C&rsquo;est votre avantage.</p>
+    <a class="cta">Prenez l&rsquo;avance <span class="fleche">→</span></a>
+  </div>
+  <div class="pied">
+    <span class="logo-atlas">
+      <svg width="58" height="58" viewBox="0 0 100 100" fill="none"><polygon points="50,12 88,84 12,84" stroke="#f5f8fb" stroke-width="5" stroke-linejoin="round"></polygon><polyline points="50,12 36,54 50,44 64,64" stroke="#f5f8fb" stroke-width="3.5" stroke-linejoin="round"></polyline><line x1="36" y1="54" x2="12" y2="84" stroke="#f5f8fb" stroke-width="3.5"></line><polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#5ba4cf"></polygon></svg>
+      <span class="nom">Atlas</span>
+    </span>
+  </div>
+</div>
+
+<!-- ANGLE 3 — story -->
+<div class="frame story" id="pub3-story">
+  <div class="haut dents" style="padding: 60px 0 50px">
+    <span class="dent"><svg width="130" height="130" viewBox="0 0 24 24" fill="none" stroke="#f5f8fb" stroke-width="1.4"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+    <span class="dent"><svg width="130" height="130" viewBox="0 0 24 24" fill="none" stroke="#f5f8fb" stroke-width="1.4"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+    <span class="dent star"><svg width="146" height="146" viewBox="0 0 24 24" fill="#5ba4cf" stroke="#7dbde4" stroke-width="0.8"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+    <span class="dent"><svg width="130" height="130" viewBox="0 0 24 24" fill="none" stroke="#f5f8fb" stroke-width="1.4"><path d="M12 2.8c-4.6 0-6.8 3.2-6.8 5.9 0 1.9.7 3.2 1.2 4.8.5 1.6.7 3.4 1.4 5.3.4 1 1.7 1 2-.1.3-1.1.5-2.2.8-3.2.3-.8 1.5-.8 1.8 0 .3 1 .5 2.1.8 3.2.3 1.1 1.6 1.1 2 .1.7-1.9.9-3.7 1.4-5.3.5-1.6 1.2-2.9 1.2-4.8 0-2.7-2.2-5.9-6.8-5.9z"></path></svg></span>
+  </div>
+  <div class="bloc-texte">
+    <h1 class="titre">Presque aucun cabinet <span class="fantome">ne le fait.</span></h1>
+    <p class="sous">C&rsquo;est votre avantage.</p>
+    <a class="cta">Prenez l&rsquo;avance <span class="fleche">→</span></a>
+  </div>
+  <div class="pied">
+    <span class="logo-atlas">
+      <svg width="64" height="64" viewBox="0 0 100 100" fill="none"><polygon points="50,12 88,84 12,84" stroke="#f5f8fb" stroke-width="5" stroke-linejoin="round"></polygon><polyline points="50,12 36,54 50,44 64,64" stroke="#f5f8fb" stroke-width="3.5" stroke-linejoin="round"></polyline><line x1="36" y1="54" x2="12" y2="84" stroke="#f5f8fb" stroke-width="3.5"></line><polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#5ba4cf"></polygon></svg>
+      <span class="nom">Atlas</span>
+    </span>
+  </div>
+</div>
