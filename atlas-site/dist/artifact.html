@@ -32,6 +32,7 @@
   --encre-2: #54665a;
   --encre-3: #7e8e82;
   --or: #c2a05c;
+  --or-clair: #d5b876;
   --or-fonce: #94722c;
   --blanc-chaud: #faf9f4;
   --sur-pin: #ede9dc;
@@ -76,9 +77,19 @@ a { color: inherit; }
 .eyebrow svg { flex: none; }
 .dark-band .eyebrow { color: var(--or); }
 
-a:focus-visible, button:focus-visible {
+a:focus-visible, button:focus-visible, summary:focus-visible {
   outline: 2px solid var(--or);
   outline-offset: 3px;
+}
+
+/* ---------- Fil de progression ---------- */
+#progres {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--or);
+  z-index: 60;
 }
 
 /* ---------- Reveal ---------- */
@@ -93,6 +104,7 @@ nav {
   background: rgba(244, 242, 234, 0.86);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline);
+  transition: background 300ms ease, border-color 300ms ease, color 300ms ease;
 }
 .nav-inner {
   max-width: 1160px;
@@ -123,7 +135,17 @@ nav {
 }
 .nav-links a:hover { color: var(--encre); }
 
+nav.sombre {
+  background: rgba(14, 42, 29, 0.82);
+  border-bottom-color: var(--hairline-inverse);
+  color: var(--sur-pin);
+}
+nav.sombre .nav-links a { color: var(--sur-pin-2); }
+nav.sombre .nav-links a:hover { color: var(--sur-pin); }
+nav.sombre .btn-plein { background: var(--or); color: var(--pin); }
+
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -135,6 +157,7 @@ nav {
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid transparent;
+  overflow: hidden;
   transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 .btn-plein { background: var(--pin); color: var(--sur-pin); }
@@ -142,9 +165,20 @@ nav {
 .btn-ligne { border-color: var(--encre); color: var(--encre); }
 .btn-ligne:hover { background: var(--encre); color: var(--ivoire); }
 .btn-or { background: var(--or); color: var(--pin); }
-.btn-or:hover { background: #d5b876; }
+.btn-or:hover { background: var(--or-clair); }
 .btn-wa { background: var(--wa); color: #fff; }
 .btn-wa:hover { background: #17a35a; }
+.btn-wa::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -80%;
+  width: 50%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transform: skewX(-18deg);
+}
+.btn-wa:hover::after { animation: sheen 700ms ease; }
+@keyframes sheen { to { left: 130%; } }
 nav .btn { padding: 10px 20px; }
 
 /* ---------- Hero ---------- */
@@ -156,22 +190,35 @@ nav .btn { padding: 10px 20px; }
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 150px 24px 200px;
+  padding: 150px 24px 210px;
+  overflow: hidden;
 }
 .hero h1 {
   font-family: "Newsreader", Georgia, serif;
   font-weight: 500;
   font-size: clamp(44px, 8.4vw, 96px);
-  line-height: 1.02;
+  line-height: 1.04;
   letter-spacing: -0.025em;
-  text-wrap: balance;
   max-width: 22ch;
   margin: 26px 0 30px;
 }
-.hero h1 em {
-  font-style: italic;
-  color: var(--or-fonce);
+.hero h1 em { font-style: italic; color: var(--or-fonce); }
+.hero h1 .mot {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.45em);
+  animation: lever 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 90ms + 150ms);
 }
+@keyframes lever { to { opacity: 1; transform: none; } }
+.hero .sous, .hero .hero-cta, .hero .eyebrow {
+  opacity: 0;
+  animation: fondu 0.9s ease forwards;
+}
+.hero .eyebrow { animation-delay: 0.05s; }
+.hero .sous { animation-delay: 0.9s; }
+.hero .hero-cta { animation-delay: 1.1s; }
+@keyframes fondu { to { opacity: 1; } }
 .hero .sous {
   max-width: 56ch;
   font-size: clamp(16px, 2vw, 19px);
@@ -181,29 +228,29 @@ nav .btn { padding: 10px 20px; }
 }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
-.ridge {
+.massif {
   position: absolute;
-  left: 0; right: 0; bottom: 64px;
-  width: 100%;
+  left: 50%;
+  bottom: 56px;
+  transform: translateX(-50%);
+  width: max(100vw, 1200px);
   height: auto;
   pointer-events: none;
 }
-.ridge path {
+.massif .couche { will-change: transform; }
+.massif .ligne {
   fill: none;
+  stroke: var(--or);
+  stroke-width: 1.6;
   stroke-linejoin: round;
   stroke-linecap: round;
 }
-.ridge .r1 { stroke: var(--or); stroke-width: 1.6; opacity: 0.9; }
-.ridge .r2 { stroke: var(--encre); stroke-width: 1.2; opacity: 0.28; }
-.ridge .r3 { stroke: var(--encre); stroke-width: 1; opacity: 0.14; }
 @media (prefers-reduced-motion: no-preference) {
-  .ridge path {
-    stroke-dasharray: 1800;
-    stroke-dashoffset: 1800;
-    animation: dessiner 2.6s ease-out forwards;
+  .massif .ligne {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: dessiner 2.8s ease-out 0.5s forwards;
   }
-  .ridge .r2 { animation-delay: 0.25s; }
-  .ridge .r3 { animation-delay: 0.5s; }
   @keyframes dessiner { to { stroke-dashoffset: 0; } }
 }
 
@@ -269,7 +316,8 @@ section { padding: 110px 0; }
   transition: background 300ms ease;
 }
 .service:hover { background: var(--pin); }
-.service .ico { color: var(--or-fonce); margin-bottom: 26px; transition: color 300ms ease; }
+.service .ico { color: var(--or-fonce); margin-bottom: 26px; display: inline-block; transition: color 300ms ease, transform 300ms ease; }
+.service:hover .ico { transform: translateY(-3px); }
 .service h3 {
   font-family: "Newsreader", Georgia, serif;
   font-weight: 500;
@@ -279,6 +327,15 @@ section { padding: 110px 0; }
   transition: color 300ms ease;
 }
 .service p { color: var(--encre-2); font-size: 15px; max-width: 46ch; transition: color 300ms ease; }
+.service .livrable {
+  display: block;
+  margin-top: 18px;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 15.5px;
+  color: var(--or-fonce);
+  transition: color 300ms ease;
+}
 .service .num {
   position: absolute;
   top: 40px; right: 40px;
@@ -292,6 +349,7 @@ section { padding: 110px 0; }
 .service:hover .ico { color: var(--or); }
 .service:hover h3 { color: var(--sur-pin); }
 .service:hover p { color: var(--sur-pin-2); }
+.service:hover .livrable { color: var(--or-clair); }
 .service:hover .num { color: var(--or); opacity: 0.8; }
 
 /* ---------- Méthode ---------- */
@@ -299,7 +357,6 @@ section { padding: 110px 0; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
-  counter-reset: etape;
 }
 .etape { position: relative; padding-top: 26px; }
 .etape::before {
@@ -375,11 +432,12 @@ section { padding: 110px 0; }
 .mock-top {
   background: var(--pin);
   color: var(--sur-pin);
-  padding: 13px 20px;
+  padding: 11px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  flex-wrap: wrap;
 }
 .mock-top .m-brand {
   font-family: "Newsreader", Georgia, serif;
@@ -387,13 +445,26 @@ section { padding: 110px 0; }
   font-size: 16px;
   letter-spacing: 0.02em;
 }
-.mock-top .m-tag {
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--sur-pin-2);
+.m-seg {
+  display: inline-flex;
+  border: 1px solid rgba(237, 233, 220, 0.28);
+  padding: 2px;
+  gap: 2px;
 }
+.m-seg button {
+  font-family: inherit;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--sur-pin-2);
+  border: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+.m-seg button[aria-pressed="true"] { background: var(--or); color: var(--pin); }
 .mock-body { padding: 22px; }
 .mock-kpis {
   display: grid;
@@ -429,6 +500,7 @@ section { padding: 110px 0; }
   background: rgba(30, 135, 87, 0.11);
   padding: 1px 7px;
   border-radius: 99px;
+  white-space: nowrap;
 }
 .m-chart { border: 1px solid var(--hairline); background: #fff; padding: 14px 14px 8px; }
 .m-chart .c-head {
@@ -452,20 +524,54 @@ section { padding: 110px 0; }
   color: var(--encre-3);
 }
 
-/* ---------- Preuve / citation ---------- */
+/* ---------- Preuve / résultats ---------- */
 .preuve { background: var(--ivoire-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
-.preuve .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: start; }
 .citation {
   font-family: "Newsreader", Georgia, serif;
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(26px, 3.4vw, 37px);
+  font-size: clamp(26px, 3.6vw, 40px);
   line-height: 1.25;
   letter-spacing: -0.01em;
   text-wrap: balance;
+  max-width: 26ch;
+  margin: 0 0 64px;
 }
 .citation .marque { color: var(--or-fonce); }
-.props { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 32px; }
+
+.cas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.cas {
+  background: var(--blanc-chaud);
+  border: 1px solid var(--hairline);
+  padding: 30px 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cas .secteur {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--encre-2);
+}
+.cas .resultat {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.cas .resultat em { font-style: italic; color: var(--or-fonce); }
+.cas .detail { font-size: 13.5px; color: var(--encre-2); }
+.cas-note { font-size: 12px; color: var(--encre-3); margin-bottom: 72px; }
+
+.props { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
 .prop h4 {
   font-size: 12px;
   font-weight: 700;
@@ -476,6 +582,41 @@ section { padding: 110px 0; }
   margin-bottom: 8px;
 }
 .prop p { font-size: 14px; color: var(--encre-2); }
+
+/* ---------- FAQ ---------- */
+.faq .wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(40px, 6vw, 90px); align-items: start; }
+.faq details {
+  border-bottom: 1px solid var(--hairline);
+}
+.faq details:first-of-type { border-top: 1px solid var(--hairline); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 22px 4px;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .puce {
+  flex: none;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  color: var(--or-fonce);
+  transition: transform 200ms ease;
+}
+.faq details[open] summary .puce { transform: rotate(45deg); }
+.faq details p {
+  padding: 0 4px 24px;
+  color: var(--encre-2);
+  font-size: 15px;
+  max-width: 60ch;
+}
 
 /* ---------- CTA ---------- */
 .cta { position: relative; overflow: hidden; text-align: center; padding: 130px 0 120px; }
@@ -550,7 +691,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
   opacity: 0.7;
   margin-bottom: 6px;
 }
-.foot-col a {
+.foot-col a, .foot-col .foot-texte {
   text-decoration: none;
   font-size: 12px;
   font-weight: 600;
@@ -577,9 +718,11 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
   .methode-grid { grid-template-columns: 1fr; gap: 34px; }
   .etape::before { right: 0; }
   .portail .wrap { grid-template-columns: 1fr; }
-  .preuve .wrap { grid-template-columns: 1fr; }
-  .hero { padding-bottom: 170px; }
-  .ridge { bottom: 90px; }
+  .faq .wrap { grid-template-columns: 1fr; }
+  .cas-grid { grid-template-columns: 1fr; }
+  .props { grid-template-columns: 1fr 1fr; }
+  .hero { padding-bottom: 180px; }
+  .massif { bottom: 90px; }
 }
 @media (max-width: 560px) {
   .service { padding: 34px 26px 32px; }
@@ -592,11 +735,13 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; animation: none !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .hero .sous, .hero .hero-cta, .hero .eyebrow, .hero h1 .mot { opacity: 1; transform: none; }
 }
 </style>
 
-<nav>
+<div id="progres" aria-hidden="true"></div>
+
+<nav id="navbar">
   <div class="nav-inner">
     <a class="brand" href="#haut" aria-label="Atlas — accueil">
       <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -615,7 +760,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
       <a href="#services">Services</a>
       <a href="#methode">Méthode</a>
       <a href="#resultats">Résultats</a>
-      <a href="#pourquoi">Pourquoi Atlas</a>
+      <a href="#faq">Questions</a>
     </div>
     <a class="btn btn-plein" href="#contact">Audit gratuit</a>
   </div>
@@ -627,7 +772,20 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
     <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
     Agence de marketing digital · Maroc
   </span>
-  <h1 class="serif">Des abonnés, c&rsquo;est bien.<br><em>Des clients, c&rsquo;est mieux.</em></h1>
+  <h1 class="serif" aria-label="Des abonnés, c'est bien. Des clients, c'est mieux.">
+    <span aria-hidden="true">
+      <span class="mot" style="--i:0">Des</span>
+      <span class="mot" style="--i:1">abonnés,</span>
+      <span class="mot" style="--i:2">c&rsquo;est</span>
+      <span class="mot" style="--i:3">bien.</span><br>
+      <em>
+        <span class="mot" style="--i:4">Des</span>
+        <span class="mot" style="--i:5">clients,</span>
+        <span class="mot" style="--i:6">c&rsquo;est</span>
+        <span class="mot" style="--i:7">mieux.</span>
+      </em>
+    </span>
+  </h1>
   <p class="sous">
     Atlas transforme vos réseaux sociaux en machine à clients. Conçu pour les
     entreprises marocaines — sans jargon, sans agence hors de prix, avec des
@@ -638,10 +796,17 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
     <a class="btn btn-ligne" href="#methode">Découvrir la méthode</a>
   </div>
 
-  <svg class="ridge" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
-    <path class="r3" d="M0 205 L150 165 L260 195 L400 130 L520 185 L660 115 L800 180 L950 140 L1090 190 L1230 155 L1440 200"></path>
-    <path class="r2" d="M0 190 L180 130 L320 175 L470 95 L610 165 L760 80 L900 160 L1060 110 L1200 175 L1440 135"></path>
-    <path class="r1" d="M0 175 L210 105 L360 150 L540 55 L700 140 L870 40 L1010 135 L1180 85 L1330 150 L1440 110"></path>
+  <svg class="massif" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g class="couche" data-vitesse="0.05">
+      <path d="M0 260 L0 210 L160 165 L300 200 L460 140 L620 195 L790 125 L950 190 L1120 150 L1280 200 L1440 165 L1440 260 Z" fill="#1a2b21" opacity="0.07"></path>
+    </g>
+    <g class="couche" data-vitesse="0.12">
+      <path d="M0 260 L0 225 L190 155 L340 205 L520 115 L690 185 L860 95 L1020 180 L1200 130 L1360 195 L1440 160 L1440 260 Z" fill="#1a2b21" opacity="0.13"></path>
+    </g>
+    <g class="couche" data-vitesse="0.22">
+      <path d="M0 260 L0 238 L210 150 L370 200 L560 75 L730 175 L900 55 L1050 170 L1230 105 L1390 190 L1440 155 L1440 260 Z" fill="#0e2a1d" opacity="0.9"></path>
+      <path class="ligne" d="M0 238 L210 150 L370 200 L560 75 L730 175 L900 55 L1050 170 L1230 105 L1390 190 L1440 155"></path>
+    </g>
   </svg>
 
   <div class="hero-stats">
@@ -668,10 +833,11 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
       <article class="service reveal">
         <span class="num serif">I</span>
         <span class="ico" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="15" rx="0"></rect><circle cx="12" cy="12.5" r="4"></circle><line x1="16.8" y1="8" x2="16.8" y2="8.01"></line><path d="M8 5l1.2-2h5.6L16 5"></path></svg>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="15"></rect><circle cx="12" cy="12.5" r="4"></circle><line x1="16.8" y1="8" x2="16.8" y2="8.01"></line><path d="M8 5l1.2-2h5.6L16 5"></path></svg>
         </span>
         <h3>Gestion Instagram</h3>
         <p>Stratégie, création de contenu et gestion complète de votre compte. On s&rsquo;occupe de tout — vous recevez les clients.</p>
+        <span class="livrable">Posts, stories &amp; réponses aux DM, chaque semaine.</span>
       </article>
       <article class="service reveal">
         <span class="num serif">II</span>
@@ -680,6 +846,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
         </span>
         <h3>TikTok &amp; Reels</h3>
         <p>Des vidéos courtes conçues pour atteindre de nouvelles audiences au Maroc — le format qui porte le plus, sans budget pub massif.</p>
+        <span class="livrable">Scripts, tournage cadré, montage &amp; publication.</span>
       </article>
       <article class="service reveal">
         <span class="num serif">III</span>
@@ -688,6 +855,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
         </span>
         <h3>Publicité Meta</h3>
         <p>Des campagnes d&rsquo;acquisition ciblées sur Facebook et Instagram, pilotées au coût par client — pas au coût par clic.</p>
+        <span class="livrable">Audiences, créas, budget optimisé chaque semaine.</span>
       </article>
       <article class="service reveal">
         <span class="num serif">IV</span>
@@ -696,6 +864,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
         </span>
         <h3>Stratégie &amp; Contenu</h3>
         <p>Calendrier éditorial, scripts de vente en DM, templates de captions — tout ce qu&rsquo;il faut pour convertir vos abonnés en acheteurs.</p>
+        <span class="livrable">Un plan clair, appliqué dès la première semaine.</span>
       </article>
     </div>
   </div>
@@ -741,8 +910,8 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
   </div>
 </section>
 
-<!-- ============ PORTAIL / RÉSULTATS ============ -->
-<section class="portail" id="resultats">
+<!-- ============ PORTAIL ============ -->
+<section class="portail" id="portail">
   <div class="wrap">
     <div class="reveal">
       <div class="sec-head">
@@ -751,7 +920,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
           Votre portail client
         </span>
         <h2 class="serif">Vos résultats en direct, <em>pas dans un PDF.</em></h2>
-        <p>Là où d&rsquo;autres agences envoient un rapport mensuel, chaque client Atlas reçoit un accès personnel à son tableau de bord.</p>
+        <p>Là où d&rsquo;autres agences envoient un rapport mensuel, chaque client Atlas reçoit un accès personnel à son tableau de bord. Essayez le sélecteur de période ci-contre.</p>
       </div>
       <ul>
         <li>Leads, rendez-vous et coût par client, mis à jour chaque jour</li>
@@ -761,27 +930,30 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
       </ul>
       <a class="btn btn-ligne" href="#contact">Voir une démo du portail</a>
     </div>
-    <div class="mock reveal" role="img" aria-label="Aperçu du portail client Atlas : indicateurs de leads, rendez-vous et coût par lead, avec graphique d'évolution">
+    <div class="mock reveal">
       <div class="mock-top">
         <span class="m-brand">Atlas</span>
-        <span class="m-tag">Portail client · en direct</span>
+        <div class="m-seg" role="group" aria-label="Période">
+          <button type="button" data-periode="mois" aria-pressed="true">Ce mois-ci</button>
+          <button type="button" data-periode="debut" aria-pressed="false">Depuis le début</button>
+        </div>
       </div>
       <div class="mock-body">
         <div class="mock-kpis">
           <div class="m-kpi">
             <span class="k-label">Leads générés</span>
-            <span class="k-val" data-count="58">0</span>
-            <span class="k-delta">▲ 14 %</span>
+            <span class="k-val" data-kpi="leads">0</span>
+            <span class="k-delta" data-delta="leads">▲ 14 %</span>
           </div>
           <div class="m-kpi">
             <span class="k-label">RDV confirmés</span>
-            <span class="k-val" data-count="22">0</span>
-            <span class="k-delta">▲ 18 %</span>
+            <span class="k-val" data-kpi="rdv">0</span>
+            <span class="k-delta" data-delta="rdv">▲ 18 %</span>
           </div>
           <div class="m-kpi">
             <span class="k-label">Coût par lead</span>
-            <span class="k-val"><span data-count="97">0</span><span class="k-unit">MAD</span></span>
-            <span class="k-delta">▼ 7 %</span>
+            <span class="k-val"><span data-kpi="cpl">0</span><span class="k-unit">MAD</span></span>
+            <span class="k-delta" data-delta="cpl">▼ 7 %</span>
           </div>
         </div>
         <div class="m-chart">
@@ -817,13 +989,31 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
   </div>
 </section>
 
-<!-- ============ POURQUOI ============ -->
-<section class="preuve" id="pourquoi">
+<!-- ============ RÉSULTATS ============ -->
+<section class="preuve" id="resultats">
   <div class="wrap">
-    <blockquote class="citation reveal" style="margin:0">
+    <blockquote class="citation reveal" style="margin-left:0;margin-right:0">
       &laquo; Vos concurrents ont moins d&rsquo;abonnés que vous — et pourtant ils vendent plus. <span class="marque">Atlas corrige ça.</span> &raquo;
     </blockquote>
-    <div class="props reveal">
+    <div class="cas-grid">
+      <article class="cas reveal">
+        <span class="secteur">Cabinet dentaire · Casablanca</span>
+        <p class="resultat serif"><em>3× plus</em> de rendez-vous en 90 jours</p>
+        <p class="detail">Meta Ads + funnel WhatsApp : 58 leads ce mois-ci, à 97 MAD le lead.</p>
+      </article>
+      <article class="cas reveal">
+        <span class="secteur">Restaurant · Rabat</span>
+        <p class="resultat serif">Des Reels qui remplissent <em>la salle</em></p>
+        <p class="detail">Réservations directes en DM — la portée locale a été multipliée par quatre en 60 jours.</p>
+      </article>
+      <article class="cas reveal">
+        <span class="secteur">Salon de beauté · Marrakech</span>
+        <p class="resultat serif">Agenda rempli <em>2 semaines</em> à l&rsquo;avance</p>
+        <p class="detail">Contenu Instagram + offres locales : un flux régulier de nouvelles clientes chaque semaine.</p>
+      </article>
+    </div>
+    <p class="cas-note reveal">Résultats de clients Atlas, anonymisés. Vos chiffres à vous seront visibles sur votre portail.</p>
+    <div class="props reveal" id="pourquoi">
       <div class="prop">
         <h4>Expertise locale</h4>
         <p>Une connaissance fine du consommateur marocain sur Instagram, TikTok et WhatsApp — pas des recettes importées.</p>
@@ -840,6 +1030,42 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
         <h4>Concret, tout de suite</h4>
         <p>Des actions applicables cette semaine, sans jargon ni complexité inutile. Vous comprenez tout ce qu&rsquo;on fait.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <span class="eyebrow">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+        Vos questions
+      </span>
+      <h2 class="serif">Ce qu&rsquo;on nous demande <em>avant de commencer.</em></h2>
+      <p>Une autre question ? Posez-la directement sur WhatsApp — réponse en moins de 2 heures.</p>
+    </div>
+    <div class="reveal">
+      <details>
+        <summary>Combien ça coûte ? <span class="puce">+</span></summary>
+        <p>Chaque entreprise part d&rsquo;un point différent — c&rsquo;est pour ça qu&rsquo;on commence toujours par un audit gratuit. Vous recevez ensuite une proposition sur mesure, claire, sans frais cachés et sans engagement annuel obligatoire.</p>
+      </details>
+      <details>
+        <summary>En combien de temps voit-on des résultats ? <span class="puce">+</span></summary>
+        <p>Les premiers signaux (portée, DM, demandes) arrivent dans les 30 premiers jours. La machine tourne à plein régime autour de 90 jours, quand le contenu, la publicité et le funnel WhatsApp travaillent ensemble.</p>
+      </details>
+      <details>
+        <summary>Qui crée le contenu ? <span class="puce">+</span></summary>
+        <p>Atlas produit tout : scripts, visuels, montage, captions. Vous validez sur WhatsApp avant publication — rien ne part sans votre accord, et votre voix de marque est respectée.</p>
+      </details>
+      <details>
+        <summary>Comment je suis les résultats ? <span class="puce">+</span></summary>
+        <p>Vous recevez un accès personnel à votre portail client : leads, rendez-vous, coût par client et retour sur investissement, mis à jour chaque jour. Plus un point mensuel de 30 minutes pour décider de la suite.</p>
+      </details>
+      <details>
+        <summary>Et si je ne suis pas satisfait ? <span class="puce">+</span></summary>
+        <p>Vous êtes remboursé si vous n&rsquo;êtes pas satisfait, et vous pouvez arrêter à tout moment. On préfère garder un client par ses résultats que par un contrat.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -893,12 +1119,14 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
         <a href="#services">Services</a>
         <a href="#methode">Méthode</a>
         <a href="#resultats">Résultats</a>
-        <a href="#pourquoi">Pourquoi Atlas</a>
+        <a href="#faq">Questions</a>
       </div>
       <div class="foot-col">
         <span>Contact</span>
         <a href="https://wa.me/212666845288" target="_blank" rel="noopener">WhatsApp</a>
         <a href="#contact">Audit gratuit</a>
+        <span class="foot-texte" style="opacity:0.6">Lun – Sam · 9h – 19h</span>
+        <span class="foot-texte" style="opacity:0.6">Casablanca · Maroc</span>
       </div>
     </div>
   </div>
@@ -909,7 +1137,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
 (function () {
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Révélation au défilement
+  /* Révélation au défilement */
   var items = document.querySelectorAll(".reveal");
   if (reduced || !("IntersectionObserver" in window)) {
     items.forEach(function (el) { el.classList.add("in"); });
@@ -922,30 +1150,95 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
     items.forEach(function (el) { io.observe(el); });
   }
 
-  // Compteurs du portail
-  var counters = document.querySelectorAll("[data-count]");
-  function animate(el) {
-    var target = parseInt(el.getAttribute("data-count"), 10);
-    if (reduced) { el.textContent = target; return; }
-    var t0 = null;
-    var dur = 1100;
-    function step(t) {
+  /* Fil de progression + parallaxe + nav sombre */
+  var progres = document.getElementById("progres");
+  var navbar = document.getElementById("navbar");
+  var couches = document.querySelectorAll(".massif .couche");
+  var bandesSombres = Array.prototype.slice.call(document.querySelectorAll(".dark-band"));
+  var enAttente = false;
+
+  function surDefilement() {
+    var y = window.scrollY || 0;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    progres.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
+
+    if (!reduced) {
+      couches.forEach(function (c) {
+        var v = parseFloat(c.getAttribute("data-vitesse")) || 0;
+        c.style.transform = "translateY(" + Math.min(y * v, 140) + "px)";
+      });
+    }
+
+    var repere = 40; /* centre vertical de la nav */
+    var sombre = bandesSombres.some(function (s) {
+      var r = s.getBoundingClientRect();
+      return r.top <= repere && r.bottom >= repere;
+    });
+    navbar.classList.toggle("sombre", sombre);
+    enAttente = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!enAttente) { enAttente = true; requestAnimationFrame(surDefilement); }
+  }, { passive: true });
+  surDefilement();
+
+  /* Portail : compteurs + périodes */
+  var donnees = {
+    mois: {
+      leads: 58, rdv: 22, cpl: 97,
+      deltas: { leads: "▲ 14 %", rdv: "▲ 18 %", cpl: "▼ 7 %" }
+    },
+    debut: {
+      leads: 1284, rdv: 486, cpl: 92,
+      deltas: { leads: "depuis janv.", rdv: "38 % de conv.", cpl: "moyenne" }
+    }
+  };
+  var fmt = new Intl.NumberFormat("fr-FR");
+  var champs = document.querySelectorAll("[data-kpi]");
+  var chips = document.querySelectorAll("[data-delta]");
+  var anims = {};
+
+  function versValeur(el, cible) {
+    var cle = el.getAttribute("data-kpi");
+    if (anims[cle]) cancelAnimationFrame(anims[cle]);
+    if (reduced) { el.textContent = fmt.format(cible); return; }
+    var depart = parseFloat((el.textContent || "0").replace(/[^\d]/g, "")) || 0;
+    var t0 = null, dur = 900;
+    function pas(t) {
       if (!t0) t0 = t;
       var p = Math.min((t - t0) / dur, 1);
-      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-      if (p < 1) requestAnimationFrame(step);
+      var v = depart + (cible - depart) * (1 - Math.pow(1 - p, 3));
+      el.textContent = fmt.format(Math.round(v));
+      if (p < 1) anims[cle] = requestAnimationFrame(pas);
     }
-    requestAnimationFrame(step);
+    anims[cle] = requestAnimationFrame(pas);
   }
+
+  function appliquer(periode) {
+    var d = donnees[periode];
+    champs.forEach(function (el) { versValeur(el, d[el.getAttribute("data-kpi")]); });
+    chips.forEach(function (el) { el.textContent = d.deltas[el.getAttribute("data-delta")]; });
+  }
+
+  var segBtns = document.querySelectorAll(".m-seg button");
+  segBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      segBtns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      appliquer(b.getAttribute("data-periode"));
+    });
+  });
+
+  var mock = document.querySelector(".mock");
   if ("IntersectionObserver" in window && !reduced) {
     var io2 = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { animate(e.target); io2.unobserve(e.target); }
+        if (e.isIntersecting) { appliquer("mois"); io2.unobserve(e.target); }
       });
-    }, { threshold: 0.5 });
-    counters.forEach(function (el) { io2.observe(el); });
+    }, { threshold: 0.4 });
+    io2.observe(mock);
   } else {
-    counters.forEach(function (el) { el.textContent = el.getAttribute("data-count"); });
+    appliquer("mois");
   }
 })();
 </script>
