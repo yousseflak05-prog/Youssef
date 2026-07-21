@@ -1,467 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code — What I Can Do</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta name="theme-color" content="#1E3A34" />
 
-    :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --border: #2a2a2a;
-      --accent: #d97706;
-      --accent2: #7c3aed;
-      --text: #e5e5e5;
-      --muted: #888;
-      --code-bg: #1a1a1a;
-      --radius: 12px;
-    }
+  <title>Le Pavillon du Sourire — Cabinet dentaire à Safi</title>
+  <meta name="description" content="Cabinet dentaire Le Pavillon du Sourire à Safi. Soins doux et précis, dans un cadre apaisant. Prenez rendez-vous en un tap sur WhatsApp." />
 
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  <!-- Open Graph -->
+  <meta property="og:title" content="Le Pavillon du Sourire — Cabinet dentaire à Safi" />
+  <meta property="og:description" content="Soins dentaires doux et précis, dans un cadre apaisant. Prise de rendez-vous en un tap sur WhatsApp." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
-      background: rgba(13,13,13,.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -.5px; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,.25) 0%, transparent 60%);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .35rem .9rem; border-radius: 999px;
-      border: 1px solid var(--border); color: var(--muted); font-size: .8rem;
-      margin-bottom: 1.5rem;
-    }
-    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; max-width: 800px; }
-    h1 .highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { margin-top: 1.2rem; color: var(--muted); font-size: 1.1rem; max-width: 520px; }
-    .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .btn { padding: .7rem 1.6rem; border-radius: 8px; font-size: .95rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .2s, transform .15s; display: inline-block; }
-    .btn:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-label { text-transform: uppercase; letter-spacing: 2px; font-size: .75rem; color: var(--accent); font-weight: 600; margin-bottom: .75rem; }
-    h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -.5px; margin-bottom: 1rem; }
-    .subtitle { color: var(--muted); font-size: 1rem; max-width: 540px; margin-bottom: 3rem; }
-
-    /* ── CAPABILITY CARDS ── */
-    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; transition: border-color .2s, transform .2s;
-      cursor: default;
-    }
-    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .card-icon { font-size: 1.8rem; margin-bottom: .8rem; }
-    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
-    .card p { color: var(--muted); font-size: .88rem; line-height: 1.55; }
-
-    /* ── DEMO TERMINAL ── */
-    .terminal-wrap { background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .terminal-bar { background: #222; padding: .6rem 1rem; display: flex; align-items: center; gap: .5rem; }
-    .t-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .t-red { background: #ef4444; } .t-yellow { background: #eab308; } .t-green { background: #22c55e; }
-    .terminal-bar span { margin-left: auto; font-size: .75rem; color: var(--muted); }
-    .terminal-body { padding: 1.5rem; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: .88rem; min-height: 200px; }
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: #e5e5e5; }
-    .t-out { color: #86efac; margin-top: .3rem; }
-    .t-comment { color: #6b7280; }
-    .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); margin-left: 2px; animation: blink 1s step-end infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-    /* ── INTERACTIVE DEMO ── */
-    .demo-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
-    .demo-tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .tab { padding: .45rem 1rem; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .85rem; cursor: pointer; transition: all .2s; }
-    .tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
-    .demo-content { display: none; }
-    .demo-content.active { display: block; }
-    .demo-content pre {
-      background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.25rem; overflow-x: auto; font-family: monospace; font-size: .85rem;
-      line-height: 1.6; color: #d1d5db;
-    }
-    .kw { color: #c084fc; } .fn { color: #60a5fa; } .str { color: #86efac; }
-    .num { color: #fb923c; } .cmt { color: #6b7280; }
-
-    /* ── STATS ── */
-    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem; }
-    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
-    .stat-num { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-label { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
-
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: .85rem; }
-    footer a { color: var(--muted); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Le Pavillon du Sourire — accueil">
+        <span class="brand-mark" aria-hidden="true">
+          <!-- PLACEHOLDER logo -->
+          <svg viewBox="0 0 120 130" fill="none">
+            <g stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M60 12C40 12 22 22 22 44c0 16 6 24 9 40 3 15 4 30 11 30 6 0 6-16 9-26 2-7 5-11 9-11s7 4 9 11c3 10 3 26 9 26 7 0 8-15 11-30 3-16 9-24 9-40C98 22 80 12 60 12Z"/>
+              <path d="M60 12v46M39 30l21 12 21-12M42 62l18-10M78 62 60 52M34 78h20M66 78h20"/>
+            </g>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Le Pavillon du Sourire</span>
+          <span class="brand-sub">Cabinet dentaire · Safi</span>
+        </span>
+      </a>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Claude <span>Code</span></div>
-  <ul class="nav-links">
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#stats">At a Glance</a></li>
-  </ul>
-</nav>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#soins">Soins</a>
+        <a href="#apropos">À propos</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    Powered by Claude Sonnet 4.6
+      <div class="header-actions">
+        <a class="phone-link" href="tel:+212770987838">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1l-2.23 2.2Z"/></svg>
+          <span>07 70 98 78 38</span>
+        </a>
+        <a class="btn btn-primary btn-sm header-cta" href="#" data-wa aria-label="Prendre rendez-vous sur WhatsApp">Rendez-vous</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="eyebrow-dot"></span>Cabinet dentaire à Safi</p>
+          <h1 class="hero-title">Le soin dentaire,<br /><em>en douceur.</em></h1>
+          <p class="hero-lede">
+            Un cabinet pensé pour vous apaiser : gestes précis, écoute attentive et
+            un cadre chaleureux. Ici, prendre soin de votre sourire n'a rien de stressant.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="#" data-wa>
+              <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.2-3.7c-.3-.4-.9-1.3-.9-2.4s.6-1.7.8-2c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.3 0 .5l-.3.5c-.1.2-.3.3-.1.5.2.4.8 1.2 1.6 1.9.9.6 1.3.8 1.6.9.2.1.3 0 .4-.1l.5-.6c.2-.3.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6-.1 1Z"/></svg>
+              Prendre rendez-vous
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#soins">Découvrir nos soins</a>
+          </div>
+          <ul class="hero-trust">
+            <li><strong>Sur rendez-vous</strong><span>WhatsApp · Téléphone</span></li>
+            <li class="divider" aria-hidden="true"></li>
+            <li><strong>Rue Driss Ben Naceur</strong><span>Safi 46000</span></li>
+            <li class="divider" aria-hidden="true"></li>
+            <li><strong>Note 3,9 / 5</strong><span>Avis Google</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="hero-card">
+            <!-- PLACEHOLDER visuel — remplacer par une vraie photo du cabinet -->
+            <div class="hero-photo">
+              <span class="hero-photo-label">Photo du cabinet</span>
+              <span class="hero-mark">
+                <svg viewBox="0 0 120 130" fill="none">
+                  <g stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+                    <path d="M60 12C40 12 22 22 22 44c0 16 6 24 9 40 3 15 4 30 11 30 6 0 6-16 9-26 2-7 5-11 9-11s7 4 9 11c3 10 3 26 9 26 7 0 8-15 11-30 3-16 9-24 9-40C98 22 80 12 60 12Z"/>
+                    <path d="M60 12v46M39 30l21 12 21-12"/>
+                  </g>
+                </svg>
+              </span>
+            </div>
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              Ouvert du lundi au samedi
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Détartrage</span><span>•</span><span>Blanchiment</span><span>•</span><span>Implants</span><span>•</span><span>Orthodontie</span><span>•</span><span>Soins des enfants</span><span>•</span><span>Prothèses</span><span>•</span>
+          <span>Détartrage</span><span>•</span><span>Blanchiment</span><span>•</span><span>Implants</span><span>•</span><span>Orthodontie</span><span>•</span><span>Soins des enfants</span><span>•</span><span>Prothèses</span><span>•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOINS ============ -->
+    <section class="section" id="soins">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow eyebrow-center"><span class="eyebrow-dot"></span>Nos spécialités</p>
+          <h2 class="section-title">Des soins complets, sans compromis sur la douceur</h2>
+          <p class="section-lede">De la prévention aux traitements esthétiques, chaque geste est pensé pour votre confort.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card reveal">
+            <span class="card-ico" aria-hidden="true">🪥</span>
+            <h3>Soins & prévention</h3>
+            <p>Détartrage, contrôle des caries et conseils personnalisés pour garder une bouche saine durablement.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card-ico" aria-hidden="true">✨</span>
+            <h3>Esthétique du sourire</h3>
+            <p>Blanchiment, facettes et harmonisation : un sourire lumineux et naturel qui vous ressemble.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card-ico" aria-hidden="true">🦷</span>
+            <h3>Implants & prothèses</h3>
+            <p>Solutions durables pour remplacer une ou plusieurs dents, avec un rendu esthétique et confortable.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card-ico" aria-hidden="true">📐</span>
+            <h3>Orthodontie</h3>
+            <p>Alignement des dents pour enfants et adultes, avec des dispositifs discrets et modernes.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card-ico" aria-hidden="true">🧸</span>
+            <h3>Dentisterie de l'enfant</h3>
+            <p>Un accueil rassurant et ludique pour que les plus jeunes gardent un bon souvenir du dentiste.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card-ico" aria-hidden="true">🚨</span>
+            <h3>Urgences dentaires</h3>
+            <p>Douleur, dent cassée, abcès&nbsp;? Contactez-nous sur WhatsApp, nous vous répondons au plus vite.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ À PROPOS ============ -->
+    <section class="section section-alt" id="apropos">
+      <div class="container about-inner">
+        <div class="about-visual reveal" aria-hidden="true">
+          <!-- PLACEHOLDER — photo du praticien / du cabinet -->
+          <div class="about-photo">
+            <span class="hero-photo-label">Photo du praticien</span>
+          </div>
+          <div class="about-stat">
+            <strong>7</strong>
+            <span>avis patients<br />sur Google</span>
+          </div>
+        </div>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow"><span class="eyebrow-dot"></span>Le cabinet</p>
+          <h2 class="section-title">Une approche humaine, une exigence de précision</h2>
+          <p>
+            Au <strong>Pavillon du Sourire</strong>, nous croyons qu'un bon soin commence par la confiance.
+            Notre cabinet, situé au cœur de Safi, a été conçu comme un espace calme et chaleureux
+            où chaque patient est écouté et accompagné, sans jugement ni précipitation.
+          </p>
+          <p>
+            Dr [NOM DU PRATICIEN] et son équipe mettent leur savoir-faire au service de votre santé
+            bucco-dentaire, avec des équipements modernes et des protocoles d'hygiène rigoureux.
+          </p>
+          <ul class="check-list">
+            <li>Écoute et devis clair avant chaque traitement</li>
+            <li>Matériel moderne et stérilisation rigoureuse</li>
+            <li>Prise en charge des enfants comme des adultes</li>
+            <li>Un cadre apaisant, pensé pour réduire l'appréhension</li>
+          </ul>
+          <a class="btn btn-primary" href="#" data-wa>Discuter de votre besoin</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AVIS ============ -->
+    <section class="section" id="avis">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow eyebrow-center"><span class="eyebrow-dot"></span>Ils nous ont fait confiance</p>
+          <h2 class="section-title">Ce que disent nos patients</h2>
+          <div class="rating-summary">
+            <span class="stars" aria-hidden="true">★★★★<span class="star-half">★</span></span>
+            <span class="rating-num">3,9</span>
+            <span class="rating-count">· 7 avis Google</span>
+          </div>
+        </header>
+
+        <div class="reviews">
+          <!-- Contenu placeholder basé sur les avis Google réels -->
+          <figure class="review reveal">
+            <div class="review-stars" aria-hidden="true">★★★★★</div>
+            <blockquote>« Tellement bon, je recommande. » ❤️</blockquote>
+            <figcaption>
+              <span class="review-avatar" aria-hidden="true">J</span>
+              <span><strong>Jamila Rakib</strong><em>Patiente · Google</em></span>
+            </figcaption>
+          </figure>
+
+          <figure class="review reveal">
+            <div class="review-stars" aria-hidden="true">★★★★★</div>
+            <blockquote>« Le meilleur. »</blockquote>
+            <figcaption>
+              <span class="review-avatar" aria-hidden="true">N</span>
+              <span><strong>N. Benzirar</strong><em>Patient · Google</em></span>
+            </figcaption>
+          </figure>
+
+          <figure class="review reveal">
+            <div class="review-stars" aria-hidden="true">★★★★★</div>
+            <blockquote>« Un cadre calme et rassurant, je me suis senti en confiance. »</blockquote>
+            <figcaption>
+              <span class="review-avatar" aria-hidden="true">D</span>
+              <span><strong>Debruin L.</strong><em>Patient · Google</em></span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <p class="reviews-note">
+          Votre avis compte&nbsp;: après votre visite, partagez votre expérience sur notre fiche Google.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section-dark" id="contact">
+      <div class="container contact-inner">
+        <div class="contact-copy reveal">
+          <p class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span>Nous trouver</p>
+          <h2 class="section-title">Prenons rendez-vous</h2>
+          <p class="contact-lede">
+            La façon la plus simple&nbsp;: un message WhatsApp. Vous pouvez aussi nous appeler
+            ou passer directement au cabinet.
+          </p>
+
+          <ul class="contact-list">
+            <li>
+              <span class="contact-ico" aria-hidden="true">📍</span>
+              <span>
+                <strong>Adresse</strong>
+                7QW5+26W, Rue Driss Ben Naceur<br />Safi 46000, Maroc
+              </span>
+            </li>
+            <li>
+              <span class="contact-ico" aria-hidden="true">📞</span>
+              <span>
+                <strong>Téléphone</strong>
+                <a href="tel:+212770987838">07 70 98 78 38</a>
+              </span>
+            </li>
+            <li>
+              <span class="contact-ico" aria-hidden="true">🕒</span>
+              <span>
+                <strong>Horaires <em class="ph-note">[à confirmer]</em></strong>
+                Lun – Ven&nbsp;: 09:00 – 18:00<br />
+                Samedi&nbsp;: 09:00 – 13:00<br />
+                Dimanche&nbsp;: fermé
+              </span>
+            </li>
+          </ul>
+
+          <div class="contact-buttons">
+            <a class="btn btn-primary btn-lg" href="#" data-wa>
+              <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.2-3.7c-.3-.4-.9-1.3-.9-2.4s.6-1.7.8-2c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.3 0 .5l-.3.5c-.1.2-.3.3-.1.5.2.4.8 1.2 1.6 1.9.9.6 1.3.8 1.6.9.2.1.3 0 .4-.1l.5-.6c.2-.3.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6-.1 1Z"/></svg>
+              Écrire sur WhatsApp
+            </a>
+            <a class="btn btn-ghost btn-ghost-light btn-lg" href="tel:+212770987838">Appeler le cabinet</a>
+          </div>
+        </div>
+
+        <div class="contact-map reveal">
+          <!-- PLACEHOLDER carte — remplacer par un <iframe> Google Maps du cabinet -->
+          <a class="map-card" href="https://maps.google.com/?q=7QW5%2B26W+Rue+Driss+Ben+Naceur+Safi" target="_blank" rel="noopener">
+            <span class="map-grid" aria-hidden="true"></span>
+            <span class="map-pin" aria-hidden="true">📍</span>
+            <span class="map-label">
+              <strong>Le Pavillon du Sourire</strong>
+              Rue Driss Ben Naceur, Safi
+              <em>Ouvrir dans Google Maps →</em>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark footer-mark" aria-hidden="true">
+          <svg viewBox="0 0 120 130" fill="none">
+            <g stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M60 12C40 12 22 22 22 44c0 16 6 24 9 40 3 15 4 30 11 30 6 0 6-16 9-26 2-7 5-11 9-11s7 4 9 11c3 10 3 26 9 26 7 0 8-15 11-30 3-16 9-24 9-40C98 22 80 12 60 12Z"/>
+              <path d="M60 12v46M39 30l21 12 21-12"/>
+            </g>
+          </svg>
+        </span>
+        <span class="brand-name">Le Pavillon du Sourire</span>
+        <p>Cabinet dentaire à Safi — des soins doux et précis, dans un cadre apaisant.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Liens de pied de page">
+        <h4>Navigation</h4>
+        <a href="#soins">Nos soins</a>
+        <a href="#apropos">À propos</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>7QW5+26W, Rue Driss Ben Naceur<br />Safi 46000, Maroc</p>
+        <p><a href="tel:+212770987838">07 70 98 78 38</a></p>
+        <a class="btn btn-primary btn-sm" href="#" data-wa>WhatsApp</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> Le Pavillon du Sourire. Tous droits réservés.</p>
+      <p class="footer-credit">Site vitrine — placeholders à personnaliser.</p>
+    </div>
+  </footer>
+
+  <!-- ============ BARRE MOBILE STICKY ============ -->
+  <div class="mobile-bar" aria-label="Actions rapides">
+    <a class="mobile-bar-btn call" href="tel:+212770987838">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1l-2.23 2.2Z"/></svg>
+      Appeler
+    </a>
+    <a class="mobile-bar-btn wa" href="#" data-wa>
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.2-3.7c-.3-.4-.9-1.3-.9-2.4s.6-1.7.8-2c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.3 0 .5l-.3.5c-.1.2-.3.3-.1.5.2.4.8 1.2 1.6 1.9.9.6 1.3.8 1.6.9.2.1.3 0 .4-.1l.5-.6c.2-.3.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6-.1 1Z"/></svg>
+      Prendre RDV
+    </a>
   </div>
-  <h1>Your AI engineer.<br>Right in the <span class="highlight">terminal.</span></h1>
-  <p class="hero-sub">Claude Code reads your codebase, writes production-ready code, runs tests, fixes bugs, and ships — all from a single conversation.</p>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="#capabilities">Explore capabilities</a>
-    <a class="btn btn-secondary" href="#demo">See code examples</a>
-  </div>
-</div>
 
-<!-- CAPABILITIES -->
-<section id="capabilities">
-  <div class="section-label">What I can do</div>
-  <h2>Built for real engineering work</h2>
-  <p class="subtitle">From a single file edit to a full-stack feature — Claude Code handles the whole software lifecycle.</p>
-
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🔭</div>
-      <h3>Codebase Exploration</h3>
-      <p>Search across thousands of files, trace call graphs, and answer "where is X defined?" in seconds without any indexing setup.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">✏️</div>
-      <h3>Precise Code Editing</h3>
-      <p>Makes surgical, diff-level edits to existing files — no wholesale rewrites, no accidental deletions, no style drift.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🐛</div>
-      <h3>Bug Fixing</h3>
-      <p>Reads stack traces, finds root causes, and produces minimal targeted fixes — with an explanation of why the bug existed.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧪</div>
-      <h3>Test Writing</h3>
-      <p>Generates unit, integration, and edge-case tests that actually reflect how the code is used — not just happy-path coverage.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚙️</div>
-      <h3>Bash & Tooling</h3>
-      <p>Runs shell commands, installs packages, builds projects, and monitors output — like a dev with a terminal always open.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌐</div>
-      <h3>Web & UI Work</h3>
-      <p>Writes HTML, CSS, React, and more. Spins up dev servers, checks rendered output, and iterates on designs end-to-end.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔀</div>
-      <h3>Git & PRs</h3>
-      <p>Commits with meaningful messages, creates branches, pushes code, opens pull requests, and responds to review comments.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>Multi-Agent Tasks</h3>
-      <p>Spawns parallel sub-agents for independent research, code review, and exploration — tackling large tasks concurrently.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔒</div>
-      <h3>Security Awareness</h3>
-      <p>Identifies OWASP top-10 issues, avoids writing vulnerable code, and flags injection risks, exposed secrets, and unsafe patterns.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TERMINAL DEMO -->
-<section style="padding-top:0">
-  <div class="terminal-wrap">
-    <div class="terminal-bar">
-      <span class="t-dot t-red"></span>
-      <span class="t-dot t-yellow"></span>
-      <span class="t-dot t-green"></span>
-      <span>claude — bash</span>
-    </div>
-    <div class="terminal-body" id="terminal-output">
-      <div><span class="t-comment"># Ask Claude anything about your repo</span></div>
-      <div style="margin-top:.5rem"><span class="t-prompt">$ </span><span class="t-cmd" id="typed-cmd"></span><span class="cursor" id="cursor"></span></div>
-      <div class="t-out" id="typed-reply" style="margin-top:.6rem;white-space:pre-wrap"></div>
-    </div>
-  </div>
-</section>
-
-<!-- CODE DEMO -->
-<section id="demo">
-  <div class="section-label">Code examples</div>
-  <h2>Languages &amp; frameworks</h2>
-  <p class="subtitle">Claude Code writes idiomatic code across the full stack — not just boilerplate.</p>
-
-  <div class="demo-box">
-    <div class="demo-tabs">
-      <button class="tab active" onclick="switchTab(this, 'python')">Python</button>
-      <button class="tab" onclick="switchTab(this, 'typescript')">TypeScript</button>
-      <button class="tab" onclick="switchTab(this, 'react')">React</button>
-      <button class="tab" onclick="switchTab(this, 'sql')">SQL</button>
-      <button class="tab" onclick="switchTab(this, 'bash')">Bash</button>
-    </div>
-
-    <div class="demo-content active" id="python">
-<pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
-<span class="kw">from</span> typing <span class="kw">import</span> Iterator
-
-<span class="cmt"># Sliding-window rate limiter — O(1) amortized using a deque</span>
-<span class="kw">from</span> collections <span class="kw">import</span> deque
-<span class="kw">import</span> time
-
-@dataclass
-<span class="kw">class</span> <span class="fn">RateLimiter</span>:
-    max_calls: <span class="fn">int</span>
-    period: <span class="fn">float</span>          <span class="cmt"># seconds</span>
-    _times: deque = field(default_factory=deque, repr=<span class="kw">False</span>)
-
-    <span class="kw">def</span> <span class="fn">allow</span>(self) -> <span class="fn">bool</span>:
-        now = time.<span class="fn">monotonic</span>()
-        cutoff = now - self.period
-        <span class="kw">while</span> self._times <span class="kw">and</span> self._times[<span class="num">0</span>] &lt; cutoff:
-            self._times.<span class="fn">popleft</span>()
-        <span class="kw">if</span> <span class="fn">len</span>(self._times) &lt; self.max_calls:
-            self._times.<span class="fn">append</span>(now)
-            <span class="kw">return True</span>
-        <span class="kw">return False</span>
-</pre>
-    </div>
-
-    <div class="demo-content" id="typescript">
-<pre><span class="cmt">// Generic retry with exponential back-off and jitter</span>
-<span class="kw">async function</span> <span class="fn">withRetry</span>&lt;T&gt;(
-  fn: () =&gt; <span class="fn">Promise</span>&lt;T&gt;,
-  { maxAttempts = <span class="num">4</span>, baseDelayMs = <span class="num">200</span> } = {}
-): <span class="fn">Promise</span>&lt;T&gt; {
-  <span class="kw">let</span> lastErr: unknown;
-  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; maxAttempts; i++) {
-    <span class="kw">try</span> {
-      <span class="kw">return await</span> <span class="fn">fn</span>();
-    } <span class="kw">catch</span> (err) {
-      lastErr = err;
-      <span class="kw">if</span> (i &lt; maxAttempts - <span class="num">1</span>) {
-        <span class="kw">const</span> delay = baseDelayMs * <span class="num">2</span> ** i + <span class="fn">Math.random</span>() * <span class="num">50</span>;
-        <span class="kw">await new</span> <span class="fn">Promise</span>(r =&gt; <span class="fn">setTimeout</span>(r, delay));
-      }
-    }
-  }
-  <span class="kw">throw</span> lastErr;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="react">
-<pre><span class="kw">import</span> { useState, useCallback } <span class="kw">from</span> <span class="str">'react'</span>;
-
-<span class="kw">function</span> <span class="fn">useLocalStorage</span>&lt;T&gt;(key: <span class="fn">string</span>, initial: T) {
-  <span class="kw">const</span> [value, setValue] = <span class="fn">useState</span>&lt;T&gt;(() =&gt; {
-    <span class="kw">try</span> {
-      <span class="kw">const</span> stored = <span class="fn">localStorage.getItem</span>(key);
-      <span class="kw">return</span> stored ? <span class="fn">JSON.parse</span>(stored) : initial;
-    } <span class="kw">catch</span> { <span class="kw">return</span> initial; }
-  });
-
-  <span class="kw">const</span> set = <span class="fn">useCallback</span>((next: T) =&gt; {
-    setValue(next);
-    <span class="kw">try</span> { <span class="fn">localStorage.setItem</span>(key, <span class="fn">JSON.stringify</span>(next)); }
-    <span class="kw">catch</span> { <span class="cmt">/* storage quota exceeded */</span> }
-  }, [key]);
-
-  <span class="kw">return</span> [value, set] <span class="kw">as const</span>;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="sql">
-<pre><span class="cmt">-- Top-N active users with their 30-day order totals</span>
-<span class="kw">WITH</span> recent_orders <span class="kw">AS</span> (
-  <span class="kw">SELECT</span>
-    user_id,
-    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> order_count,
-    <span class="fn">SUM</span>(total_cents) / <span class="num">100.0</span> <span class="kw">AS</span> total_usd
-  <span class="kw">FROM</span> orders
-  <span class="kw">WHERE</span> created_at &gt;= <span class="fn">NOW</span>() - <span class="kw">INTERVAL</span> <span class="str">'30 days'</span>
-  <span class="kw">GROUP BY</span> user_id
-)
-<span class="kw">SELECT</span>
-  u.id, u.email,
-  ro.order_count,
-  ro.total_usd,
-  <span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> ro.total_usd <span class="kw">DESC</span>) <span class="kw">AS</span> rank
-<span class="kw">FROM</span> users u
-<span class="kw">JOIN</span> recent_orders ro <span class="kw">ON</span> ro.user_id = u.id
-<span class="kw">ORDER BY</span> rank
-<span class="kw">LIMIT</span> <span class="num">10</span>;
-</pre>
-    </div>
-
-    <div class="demo-content" id="bash">
-<pre><span class="cmt">#!/usr/bin/env bash</span>
-<span class="cmt"># Deploy: build → test → push image → restart service</span>
-<span class="kw">set</span> -euo pipefail
-
-<span class="fn">log</span>() { printf <span class="str">'\e[34m[%s]\e[0m %s\n'</span> <span class="str">"$(date +%T)"</span> <span class="str">"$*"</span>; }
-
-IMAGE=<span class="str">"myapp:$(git rev-parse --short HEAD)"</span>
-
-<span class="fn">log</span> <span class="str">"Building $IMAGE"</span>
-docker build -t <span class="str">"$IMAGE"</span> .
-
-<span class="fn">log</span> <span class="str">"Running tests"</span>
-docker run --rm <span class="str">"$IMAGE"</span> pytest -q
-
-<span class="fn">log</span> <span class="str">"Pushing image"</span>
-docker push <span class="str">"$IMAGE"</span>
-
-<span class="fn">log</span> <span class="str">"Restarting service"</span>
-kubectl rollout restart deployment/myapp
-kubectl rollout status deployment/myapp
-</pre>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section id="stats">
-  <div class="section-label">At a glance</div>
-  <h2>Built to handle scale</h2>
-  <p class="subtitle">Claude Code is designed for real-world repositories, not toy examples.</p>
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">200K</div>
-      <div class="stat-label">Token context window</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Languages supported</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Files it can read per session</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Command to get started</div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  Built with Claude Code &nbsp;·&nbsp; Anthropic &nbsp;·&nbsp;
-  <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Documentation</a>
-</footer>
-
-<script>
-  // ── Tab switcher ──
-  function switchTab(btn, id) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(id).classList.add('active');
-  }
-
-  // ── Terminal typewriter ──
-  const demos = [
-    {
-      cmd: 'claude "Add input validation to the signup form"',
-      reply: `Reading src/components/SignupForm.tsx …
-Found 3 fields missing validation: email, password, username.
-✓ Added zod schema with error messages
-✓ Wired inline error display to each field
-✓ Disabled submit button while invalid
-2 files changed, 31 insertions(+), 4 deletions(-)`
-    },
-    {
-      cmd: 'claude "Why is the /dashboard route slow?"',
-      reply: `Tracing request path …
-  routes/dashboard.ts → services/metrics.ts:fetchAll()
-  fetchAll() runs 6 sequential DB queries (N+1 pattern).
-  Fix: batch with Promise.all — estimated 4× speedup.
-Apply fix? (y/n)`
-    },
-    {
-      cmd: 'claude "Write tests for the CartService"',
-      reply: `Found 8 public methods in CartService.
-Generated 23 tests across:
-  • addItem (happy path + duplicate + out-of-stock)
-  • removeItem (present + missing)
-  • applyDiscount (valid + expired + invalid code)
-  • checkout (success + payment failure)
-All 23 tests pass ✓`
-    }
-  ];
-
-  let demoIdx = 0, cmdIdx = 0, replyIdx = 0, phase = 'cmd';
-  const cmdEl = document.getElementById('typed-cmd');
-  const replyEl = document.getElementById('typed-reply');
-  const cursor = document.getElementById('cursor');
-
-  function nextChar() {
-    const d = demos[demoIdx];
-    if (phase === 'cmd') {
-      if (cmdIdx < d.cmd.length) {
-        cmdEl.textContent += d.cmd[cmdIdx++];
-        setTimeout(nextChar, 35 + Math.random() * 25);
-      } else {
-        cursor.style.display = 'none';
-        phase = 'reply';
-        setTimeout(nextChar, 500);
-      }
-    } else {
-      if (replyIdx < d.reply.length) {
-        replyEl.textContent += d.reply[replyIdx++];
-        setTimeout(nextChar, 12);
-      } else {
-        setTimeout(() => {
-          cmdEl.textContent = '';
-          replyEl.textContent = '';
-          cmdIdx = replyIdx = 0;
-          phase = 'cmd';
-          cursor.style.display = 'inline-block';
-          demoIdx = (demoIdx + 1) % demos.length;
-          setTimeout(nextChar, 400);
-        }, 3200);
-      }
-    }
-  }
-
-  setTimeout(nextChar, 800);
-</script>
-
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

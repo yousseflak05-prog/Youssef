@@ -1,0 +1,7 @@
+<!-- PLACEHOLDER — remplacer par le vrai logo fourni par le cabinet -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 130" fill="none" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" fill="none">
+    <path d="M60 12C40 12 22 22 22 44c0 16 6 24 9 40 3 15 4 30 11 30 6 0 6-16 9-26 2-7 5-11 9-11s7 4 9 11c3 10 3 26 9 26 7 0 8-15 11-30 3-16 9-24 9-40C98 22 80 12 60 12Z"/>
+    <path d="M60 12v46M39 30l21 12 21-12M42 62l18-10M78 62 60 52M34 78h20M66 78h20"/>
+  </g>
+</svg>
