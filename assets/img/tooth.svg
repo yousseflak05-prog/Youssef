@@ -1,0 +1,9 @@
+<!-- Marque "Le Pavillon du Sourire" — dent low-poly (recréation vectorielle du logo) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 330" fill="none"
+     stroke="#C9B489" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M108 50 L150 78 L190 46 L228 70 L248 150 L228 210 L196 302 L150 214 L104 300 L70 205 L58 138 L78 84 Z"/>
+  <path d="M150 78 L228 70 M228 70 L150 150 M150 150 L248 150"/>
+  <path d="M150 78 L150 214"/>
+  <path d="M66 168 L150 176 L232 168 M232 168 L150 150"/>
+  <path d="M108 50 L124 170"/>
+</svg>

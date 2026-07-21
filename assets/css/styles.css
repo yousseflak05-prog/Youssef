@@ -36,7 +36,12 @@
 
   --font-display: "Fraunces", Georgia, serif;
   --font-body:    "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --font-logo:    "Cinzel", Georgia, serif;
 }
+
+/* Marque du cabinet — trait constant quelle que soit la taille */
+.tooth path { vector-effect: non-scaling-stroke; stroke-width: 1.5px; }
+.hero-mark .tooth path { stroke-width: 1.8px; }
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
@@ -122,7 +127,7 @@ em { font-style: italic; }
 .brand-mark { width: 40px; height: 44px; color: var(--or); flex: 0 0 auto; }
 .brand-mark svg { height: 100%; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-name { font-family: var(--font-display); font-weight: 600; font-size: 1.16rem; color: var(--sauge); letter-spacing: -.01em; }
+.brand-name { font-family: var(--font-logo); font-variant: small-caps; font-weight: 600; font-size: 1.08rem; color: var(--sauge); letter-spacing: .04em; }
 .brand-sub { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ardoise-60); }
 
 .nav { display: flex; gap: 4px; }
@@ -388,7 +393,7 @@ em { font-style: italic; }
 .site-footer { background: var(--porcelaine-2); border-top: 1px solid var(--brume); padding-top: clamp(48px, 7vw, 72px); }
 .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
 .footer-brand { max-width: 34ch; }
-.footer-brand .brand-name { display: inline-block; font-family: var(--font-display); font-size: 1.2rem; color: var(--sauge); margin-left: 4px; }
+.footer-brand .brand-name { display: inline-block; font-family: var(--font-logo); font-variant: small-caps; font-weight: 600; letter-spacing: .04em; font-size: 1.12rem; color: var(--sauge); margin-left: 6px; }
 .footer-mark { display: inline-block; vertical-align: middle; width: 34px; height: 38px; color: var(--or); }
 .footer-brand p { color: var(--ardoise-60); font-size: .95rem; margin-top: 12px; }
 .footer-nav h4, .footer-contact h4 { font-family: var(--font-body); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ardoise-60); margin-bottom: 16px; font-weight: 700; }
