@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="fonts-embedded.css">
+<style>
+  :root{
+    --ink:#0F1B14; --forest:#1E5638; --forest-2:#173F2A; --green:#2E7D4F;
+    --leaf:#7CB342; --leaf-soft:#E8F2DC; --steel:#5F7480; --irrigation:#2E7DA6;
+    --earth:#C0862B; --paper:#F2F4EC; --paper-2:#FBFCF8;
+    --display:'Bricolage Grotesque',sans-serif; --body:'Hanken Grotesk',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#222;font-family:var(--body);color:var(--ink)}
+  .post{width:1080px;height:1080px;position:relative;overflow:hidden;background:var(--paper);margin:20px auto}
+
+  .mesh{background-image:
+    repeating-linear-gradient(45deg, currentColor 0 1.5px, transparent 1.5px 22px),
+    repeating-linear-gradient(-45deg, currentColor 0 1.5px, transparent 1.5px 22px)}
+  .abs{position:absolute;inset:0}
+  .brand{font-family:var(--display);font-weight:800;letter-spacing:-.02em}
+  .brand i{font-style:normal;color:var(--earth)}
+  .brand.onDark i{color:var(--leaf)}
+  .topbar{position:absolute;top:56px;left:64px;right:64px;display:flex;align-items:center;justify-content:space-between;z-index:6}
+  .topbar .brand{font-size:40px}
+  .handle{font-size:24px;font-weight:700;letter-spacing:.04em;opacity:.75}
+  .botbar{position:absolute;bottom:52px;left:64px;right:64px;display:flex;align-items:center;justify-content:space-between;z-index:6;font-weight:700;font-size:25px}
+  .chip{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.3);color:#fff;border-radius:100px;padding:14px 28px;font-size:26px;font-weight:800;backdrop-filter:blur(4px)}
+  .chipDark{display:inline-flex;align-items:center;gap:12px;background:var(--leaf-soft);border:2px solid rgba(30,86,56,.18);color:var(--forest);border-radius:100px;padding:14px 28px;font-size:26px;font-weight:800}
+  .dot{width:14px;height:14px;border-radius:50%;background:var(--leaf)}
+  .cta-pill{display:inline-flex;align-items:center;gap:14px;background:var(--leaf);color:var(--ink);font-weight:800;font-size:30px;border-radius:100px;padding:22px 44px;font-family:var(--display)}
+  .cta-pill.dark{background:var(--forest);color:#fff}
+  h1,h2{font-family:var(--display);font-weight:800;letter-spacing:-.028em;line-height:1.02}
+  .em{color:var(--leaf)}
+  .scene{position:absolute;left:0;right:0;bottom:0;width:100%;pointer-events:none}
+  .check{width:38px;height:38px;color:var(--leaf);flex-shrink:0}
+
+  /* ===== POST 1 — statement hook (dark) ===== */
+  .p1{background:linear-gradient(165deg,#14371F 0%,#173F2A 40%,#1E5638 78%,#2A6B44 100%);color:#fff}
+  .p1 .meshL{color:rgba(255,255,255,.07)}
+  .p1 .glow{position:absolute;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle,rgba(124,179,66,.36),transparent 62%);bottom:-360px;left:-220px}
+  .p1 .content{position:absolute;left:64px;right:64px;top:250px;z-index:5}
+  .p1 h1{font-size:96px;margin:30px 0 26px}
+  .p1 .lead{font-size:32px;line-height:1.45;color:rgba(255,255,255,.88);max-width:840px;font-weight:500}
+
+  /* ===== product spotlight (photo full-bleed top) ===== */
+  .prod .photo{position:absolute;top:0;left:0;right:0;height:620px;background-size:cover;background-position:center}
+  .prod .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,27,20,.42) 0%,rgba(15,27,20,0) 32%,rgba(15,27,20,0) 52%,rgba(242,244,236,1) 99%)}
+  .prod .topbar{color:#fff}
+  .prod .tag{position:absolute;top:150px;left:64px;z-index:5;color:#fff;padding:14px 30px;border-radius:100px;font-size:26px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 12px 30px -10px rgba(0,0,0,.45)}
+  .prod .body{position:absolute;left:64px;right:64px;top:588px;z-index:5}
+  .prod h2{font-size:74px;margin-bottom:20px}
+  .prod .desc{font-size:31px;line-height:1.5;color:rgba(15,27,20,.75);font-weight:500;max-width:920px}
+  .prod ul{list-style:none;margin-top:30px;display:flex;flex-direction:column;gap:16px}
+  .prod li{display:flex;align-items:flex-start;gap:16px;font-size:29px;font-weight:700}
+  .prod .botbar{color:rgba(15,27,20,.62)}
+
+  /* ===== POST 4 — comparison (two columns) ===== */
+  .cmp{background:var(--paper)}
+  .cmp .head{position:absolute;top:150px;left:64px;right:64px;z-index:5}
+  .cmp .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:26px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--irrigation)}
+  .cmp .eyebrow::before{content:"";width:44px;height:4px;background:var(--irrigation)}
+  .cmp h2{font-size:70px;margin-top:20px}
+  .cmp .cols{position:absolute;top:398px;left:64px;right:64px;bottom:150px;display:grid;grid-template-columns:1fr 1fr;gap:26px;z-index:5}
+  .cmp .col{background:#fff;border:2px solid rgba(15,27,20,.08);border-radius:30px;overflow:hidden;box-shadow:0 20px 46px -26px rgba(15,27,20,.3);display:flex;flex-direction:column}
+  .cmp .col .im{height:230px;background-size:cover;background-position:center}
+  .cmp .col .k{padding:30px 32px 34px}
+  .cmp .col .nm{font-family:var(--display);font-weight:800;font-size:36px;color:var(--irrigation);margin-bottom:6px}
+  .cmp .col .sub{font-size:22px;font-weight:700;color:rgba(15,27,20,.5);margin-bottom:18px}
+  .cmp .col li{list-style:none;display:flex;gap:12px;font-size:24px;font-weight:600;color:rgba(15,27,20,.8);padding:7px 0;align-items:flex-start}
+  .cmp .col li svg{width:28px;height:28px;color:var(--leaf);flex-shrink:0;margin-top:3px}
+
+  /* ===== conseil (light, table rows) ===== */
+  .tip{background:var(--paper)}
+  .tip .head{position:absolute;top:160px;left:64px;right:64px;z-index:5}
+  .tip .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:26px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+  .tip .eyebrow::before{content:"";width:44px;height:4px;background:var(--leaf)}
+  .tip h2{font-size:72px;margin-top:20px}
+  .tip .rows{position:absolute;top:430px;left:64px;right:64px;display:flex;flex-direction:column;gap:18px;z-index:5}
+  .tip .row{background:#fff;border:2px solid rgba(15,27,20,.08);border-radius:26px;padding:26px 36px;display:flex;align-items:center;gap:28px;box-shadow:0 14px 34px -20px rgba(15,27,20,.25)}
+  .tip .k{font-family:var(--display);font-weight:800;font-size:38px;color:var(--forest);min-width:230px}
+  .tip .k small{display:block;font-size:19px;color:var(--steel);font-weight:700;letter-spacing:.04em}
+  .tip .u{font-size:28px;font-weight:700;flex:1}
+  .tip .u span{display:block;font-size:22px;color:rgba(15,27,20,.55);font-weight:600;margin-top:2px}
+
+  /* ===== POST 8 — big stat (dark) ===== */
+  .stat{background:linear-gradient(160deg,#173F2A,#1E5638 70%,#2A6B44);color:#fff}
+  .stat .meshL{color:rgba(255,255,255,.06)}
+  .stat .content{position:absolute;left:64px;right:64px;top:210px;z-index:5}
+  .stat .eyebrow{font-size:26px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);margin-bottom:24px}
+  .stat .big{font-family:var(--display);font-weight:800;font-size:300px;line-height:.9;letter-spacing:-.04em}
+  .stat .big small{font-size:110px;color:var(--leaf)}
+  .stat h2{font-size:56px;margin-top:10px;max-width:900px}
+  .stat p{font-size:29px;color:rgba(255,255,255,.82);margin-top:20px;max-width:840px;font-weight:500}
+  .stat .drop{position:absolute;right:70px;top:150px;width:300px;height:300px;opacity:.5;z-index:2}
+
+  /* ===== POST 9 — certifications (light, badges) ===== */
+  .cert{background:var(--paper)}
+  .cert .head{position:absolute;top:160px;left:64px;right:64px;z-index:5}
+  .cert .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:26px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+  .cert .eyebrow::before{content:"";width:44px;height:4px;background:var(--leaf)}
+  .cert h2{font-size:70px;margin-top:20px}
+  .cert .grid{position:absolute;top:420px;left:64px;right:64px;display:grid;grid-template-columns:1fr 1fr;gap:22px;z-index:5}
+  .cert .badge{background:#fff;border:2px solid rgba(15,27,20,.08);border-radius:26px;padding:34px 34px;box-shadow:0 16px 40px -26px rgba(15,27,20,.3);display:flex;gap:22px;align-items:flex-start}
+  .cert .badge .ic{width:70px;height:70px;border-radius:18px;background:var(--leaf-soft);color:var(--forest);display:grid;place-items:center;flex-shrink:0}
+  .cert .badge .ic svg{width:38px;height:38px}
+  .cert .badge b{font-family:var(--display);font-weight:800;font-size:30px;display:block;margin-bottom:6px}
+  .cert .badge span{font-size:22px;color:rgba(15,27,20,.6);font-weight:600;line-height:1.4}
+
+  /* ===== POST 10 — testimonial ===== */
+  .quote{background:linear-gradient(160deg,#1E5638,#173F2A);color:#fff}
+  .quote .meshL{color:rgba(255,255,255,.06)}
+  .quote .mark{position:absolute;top:180px;left:60px;font-family:var(--display);font-weight:800;font-size:340px;color:var(--leaf);opacity:.18;line-height:.7;z-index:2}
+  .quote .content{position:absolute;left:64px;right:64px;top:330px;z-index:5}
+  .quote .stars{display:flex;gap:6px;color:var(--leaf);margin-bottom:26px}
+  .quote .stars svg{width:40px;height:40px}
+  .quote blockquote{font-family:var(--display);font-weight:700;font-size:52px;line-height:1.28;letter-spacing:-.01em}
+  .quote .who{display:flex;align-items:center;gap:20px;margin-top:44px}
+  .quote .av{width:78px;height:78px;border-radius:50%;background:var(--leaf);color:var(--ink);font-family:var(--display);font-weight:800;font-size:26px;display:grid;place-items:center}
+  .quote .who b{display:block;font-size:30px;font-weight:800}
+  .quote .who span{font-size:24px;color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+
+<!-- ===== POST 1 : STATEMENT ===== -->
+<div class="post p1" id="post1">
+  <div class="abs mesh meshL"></div>
+  <div class="glow"></div>
+  <svg class="scene" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" style="opacity:.9">
+    <defs><linearGradient id="s1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient></defs>
+    <g fill="url(#s1)" stroke="rgba(255,255,255,.28)" stroke-width="1.4">
+      <path d="M-40 260 v-60 q90 -74 180 0 v60 z"/><path d="M140 260 v-60 q90 -74 180 0 v60 z"/><path d="M320 260 v-60 q90 -74 180 0 v60 z"/><path d="M500 260 v-60 q90 -74 180 0 v60 z"/><path d="M680 260 v-60 q90 -74 180 0 v60 z"/><path d="M860 260 v-60 q90 -74 180 0 v60 z"/><path d="M1040 260 v-60 q90 -74 180 0 v60 z"/><path d="M1220 260 v-60 q90 -74 180 0 v60 z"/>
+    </g>
+    <g stroke="rgba(124,179,66,.5)" stroke-width="3" stroke-linecap="round"><line x1="0" y1="252" x2="1440" y2="252"/><line x1="0" y1="243" x2="1440" y2="243" opacity=".55"/></g>
+  </svg>
+  <div class="topbar"><span class="brand onDark">Agri&nbsp;<i>Fourniture</i></span><span class="handle">Ait Melloul · Agadir</span></div>
+  <div class="content">
+    <span class="chip"><span class="dot"></span>Le bon matériel change tout</span>
+    <h1>Vos récoltes méritent<br>le <span class="em">meilleur</span> matériel.</h1>
+    <p class="lead">Fil, filets et irrigation de fabricants européens certifiés — et le conseil technique qui va avec. Depuis 2018 au service des producteurs du Souss-Massa.</p>
+  </div>
+  <div class="botbar" style="color:rgba(255,255,255,.78)"><span>Devis gratuit sous 24 h</span><span style="color:var(--leaf)">+212 5 28 30 88 98</span></div>
+</div>
+
+<!-- ===== POST 2 : FIL RECUIT ===== -->
+<div class="post prod" id="post2">
+  <div class="photo" style="background-image:url('assets/wire.jpg')"></div>
+  <div class="topbar"><span class="brand onDark" style="color:#fff">Agri&nbsp;<i>Fourniture</i></span><span class="handle" style="color:#fff">Ait Melloul · Agadir</span></div>
+  <span class="tag" style="background:var(--steel)">Métal galvanisé</span>
+  <div class="body">
+    <h2>Fil de fer recuit galvanisé</h2>
+    <p class="desc">Souple et résistant à la corrosion — l'allié du palissage et du montage de serres. Diamètres 1,30 à 4,90 mm, par Trefimed (Espagne).</p>
+    <ul>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Facile à travailler : ligatures &amp; tuteurage</li>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Norme EN 10244-2 — longue tenue à l'humidité</li>
+    </ul>
+  </div>
+  <div class="botbar"><span>agrifourniture.net</span><span class="cta-pill dark" style="font-size:26px;padding:18px 36px">Demander un devis</span></div>
+</div>
+
+<!-- ===== POST 3 : CÂBLE TRESSÉ ===== -->
+<div class="post prod" id="post3">
+  <div class="photo" style="background-image:url('assets/cable.jpg');background-size:130%"></div>
+  <div class="topbar"><span class="brand onDark" style="color:#fff">Agri&nbsp;<i>Fourniture</i></span><span class="handle" style="color:#fff">Ait Melloul · Agadir</span></div>
+  <span class="tag" style="background:var(--steel)">Métal galvanisé</span>
+  <div class="body">
+    <h2>Câble tressé 3 fils galvanisé</h2>
+    <p class="desc">Pour haubaner et suspendre vos cultures en toute sécurité. Diamètres 5,40 · 6,40 · 8,20 mm, tresse galvanisée Trefimed.</p>
+    <ul>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Haute tenue sous forte tension</li>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Pose rapide, écartement régulier</li>
+    </ul>
+  </div>
+  <div class="botbar"><span>agrifourniture.net</span><span class="cta-pill dark" style="font-size:26px;padding:18px 36px">Demander un devis</span></div>
+</div>
+
+<!-- ===== POST 4 : COMPARATIF AQUATAPE / AQUADROP ===== -->
+<div class="post cmp" id="post4">
+  <div class="topbar"><span class="brand">Agri&nbsp;<i>Fourniture</i></span><span class="handle" style="color:var(--steel)">Irrigation</span></div>
+  <div class="head">
+    <span class="eyebrow">Bien choisir sa gaine</span>
+    <h2>Aquatape ou Aquadrop&nbsp;?</h2>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <div class="im" style="background-image:url('assets/tape.jpg')"></div>
+      <div class="k">
+        <div class="nm">Aquatape</div>
+        <div class="sub">Gaine à labyrinthe</div>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Débit ≈ 1,5 l/h</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Idéale sols sableux</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Économique au mètre</li>
+      </div>
+    </div>
+    <div class="col">
+      <div class="im" style="background-image:url('assets/drop.jpg')"></div>
+      <div class="k">
+        <div class="nm">Aquadrop</div>
+        <div class="sub">Goutteurs plats soudés</div>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Débit ≈ 2,1 l/h</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Anti-colmatage renforcé</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Longues lignes, cultures pérennes</li>
+      </div>
+    </div>
+  </div>
+  <div class="botbar" style="color:rgba(15,27,20,.6)"><span>Les deux certifiées ISO 9261 · IIP</span><span class="chipDark"><span class="dot"></span>On vous conseille</span></div>
+</div>
+
+<!-- ===== POST 5 : FILET ANTIGRÊLE ===== -->
+<div class="post prod" id="post5">
+  <div class="photo" style="background-image:url('assets/hail.jpg')"></div>
+  <div class="topbar"><span class="brand onDark" style="color:#fff">Agri&nbsp;<i>Fourniture</i></span><span class="handle" style="color:#fff">Ait Melloul · Agadir</span></div>
+  <span class="tag" style="background:var(--green)">Filets &amp; voiles</span>
+  <div class="body">
+    <h2>Filet antigrêle</h2>
+    <p class="desc">Une seule tempête peut ruiner une saison. Le filet COTEXA protège vos arbres et cultures de la grêle, sans priver de lumière.</p>
+    <ul>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Laisse passer lumière, air &amp; eau</li>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Traité anti-UV, longue durabilité</li>
+    </ul>
+  </div>
+  <div class="botbar"><span>agrifourniture.net</span><span class="cta-pill dark" style="font-size:26px;padding:18px 36px">Demander un devis</span></div>
+</div>
+
+<!-- ===== POST 6 : VOILE DE FORÇAGE ===== -->
+<div class="post prod" id="post6">
+  <div class="photo" style="background-image:url('assets/fleece.jpg')"></div>
+  <div class="topbar"><span class="brand onDark" style="color:#fff">Agri&nbsp;<i>Fourniture</i></span><span class="handle" style="color:#fff">Ait Melloul · Agadir</span></div>
+  <span class="tag" style="background:var(--green)">Filets &amp; voiles</span>
+  <div class="body">
+    <h2>Voile de forçage non tissé</h2>
+    <p class="desc">Protège du froid et du vent, avance vos cultures et améliore le rendement — un microclimat posé directement sur les rangs. COTEXA.</p>
+    <ul>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Perméable à l'eau : irrigation sans retrait</li>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Léger, stabilisé UV, réutilisable</li>
+    </ul>
+  </div>
+  <div class="botbar"><span>agrifourniture.net</span><span class="cta-pill dark" style="font-size:26px;padding:18px 36px">Demander un devis</span></div>
+</div>
+
+<!-- ===== POST 7 : CONSEIL DIAMÈTRE FIL ===== -->
+<div class="post tip" id="post7">
+  <div class="topbar"><span class="brand">Agri&nbsp;<i>Fourniture</i></span><span class="handle" style="color:var(--steel)">Le conseil du pro</span></div>
+  <div class="head">
+    <span class="eyebrow">Conseil technique · fil galvanisé</span>
+    <h2>Quel diamètre de fil pour quel usage&nbsp;?</h2>
+  </div>
+  <div class="rows">
+    <div class="row"><div class="k">1,30 – 2,00 <small>mm</small></div><div class="u">Ligatures &amp; attaches<span>travail fin, palissage léger</span></div></div>
+    <div class="row"><div class="k">2,70 – 3,40 <small>mm</small></div><div class="u">Structure &amp; tuteurage<span>fils porteurs de serres</span></div></div>
+    <div class="row"><div class="k">3,80 – 4,90 <small>mm</small></div><div class="u">Forte tension<span>fil d'acier haute résistance</span></div></div>
+    <div class="row"><div class="k">5,40 – 8,20 <small>mm</small></div><div class="u">Haubanage &amp; suspension<span>câble tressé 3 fils</span></div></div>
+  </div>
+  <div class="botbar" style="color:rgba(15,27,20,.6)"><span>Pas sûr du bon diamètre ? Demandez-nous</span><span class="chipDark"><span class="dot"></span>Conseil gratuit</span></div>
+</div>
+
+<!-- ===== POST 8 : STAT ÉCONOMIE D'EAU ===== -->
+<div class="post stat" id="post8">
+  <div class="abs mesh meshL"></div>
+  <svg class="drop" viewBox="0 0 24 24" fill="none" stroke="var(--leaf)" stroke-width="1.4"><path d="M12 3s7 8 7 12a7 7 0 0 1-14 0c0-4 7-12 7-12z"/></svg>
+  <div class="topbar"><span class="brand onDark">Agri&nbsp;<i>Fourniture</i></span><span class="handle">Irrigation</span></div>
+  <div class="content">
+    <div class="eyebrow">Goutte-à-goutte certifié</div>
+    <div class="big">-30<small>%</small></div>
+    <h2>d'eau consommée, en moyenne.</h2>
+    <p>Le goutte-à-goutte apporte l'eau à la racine, au bon débit, sans gaspillage. Moins d'eau, moins de mauvaises herbes, un rendement plus régulier.</p>
+  </div>
+  <div class="botbar" style="color:rgba(255,255,255,.75)"><span>Gaines Plastic-Puglia · ISO 9261</span><span style="color:var(--leaf)">Devis sous 24 h</span></div>
+</div>
+
+<!-- ===== POST 9 : CERTIFICATIONS ===== -->
+<div class="post cert" id="post9">
+  <div class="topbar"><span class="brand">Agri&nbsp;<i>Fourniture</i></span><span class="handle" style="color:var(--steel)">Qualité garantie</span></div>
+  <div class="head">
+    <span class="eyebrow">Pourquoi nous faire confiance</span>
+    <h2>Du matériel certifié, pas de compromis.</h2>
+  </div>
+  <div class="grid">
+    <div class="badge"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><div><b>ISO 9261</b><span>Gaines d'irrigation Plastic-Puglia, certifiées IIP (Italie)</span></div></div>
+    <div class="badge"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg></div><div><b>EN 10244-2</b><span>Galvanisation des fils &amp; câbles Trefimed (Espagne)</span></div></div>
+    <div class="badge"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 8l7-5 7 5"/><circle cx="12" cy="14" r="4"/></svg></div><div><b>Stabilisé UV</b><span>Filets COTEXA en HDPE, longue durée sous le soleil</span></div></div>
+    <div class="badge"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div><div><b>Fabricants européens</b><span>Trefimed · COTEXA · Plastic-Puglia</span></div></div>
+  </div>
+  <div class="botbar" style="color:rgba(15,27,20,.6)"><span>Conformité vérifiée à la réception</span><span class="chipDark"><span class="dot"></span>Depuis 2018</span></div>
+</div>
+
+<!-- ===== POST 10 : TÉMOIGNAGE ===== -->
+<div class="post quote" id="post10">
+  <div class="abs mesh meshL"></div>
+  <div class="mark">“</div>
+  <div class="topbar"><span class="brand onDark">Agri&nbsp;<i>Fourniture</i></span><span class="handle">Ils nous font confiance</span></div>
+  <div class="content">
+    <div class="stars">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.6.7-5 4.5 1.4 6.5L12 16.7 6.1 20l1.4-6.5-5-4.5 6.6-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.6.7-5 4.5 1.4 6.5L12 16.7 6.1 20l1.4-6.5-5-4.5 6.6-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.6.7-5 4.5 1.4 6.5L12 16.7 6.1 20l1.4-6.5-5-4.5 6.6-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.6.7-5 4.5 1.4 6.5L12 16.7 6.1 20l1.4-6.5-5-4.5 6.6-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.6.7-5 4.5 1.4 6.5L12 16.7 6.1 20l1.4-6.5-5-4.5 6.6-.7z"/></svg>
+    </div>
+    <blockquote>« Le fil galvanisé tient parfaitement la tension de mes serres, même après deux saisons humides. Devis reçu le lendemain. »</blockquote>
+    <div class="who"><div class="av">B.O.</div><div><b>Brahim&nbsp;O.</b><span>Producteur maraîcher — Ait Melloul</span></div></div>
+  </div>
+  <div class="botbar" style="color:rgba(255,255,255,.75)"><span>Votre satisfaction, notre priorité</span><span style="color:var(--leaf)">+212 5 28 30 88 98</span></div>
+</div>
+
+</body>
+</html>
