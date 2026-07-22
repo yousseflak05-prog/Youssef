@@ -1,0 +1,5 @@
+# Agri Fourniture — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://agrifourniture.net/sitemap.xml

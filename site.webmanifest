@@ -1,0 +1,16 @@
+{
+  "name": "Agri Fourniture — Matériel de serres & protection des cultures",
+  "short_name": "Agri Fourniture",
+  "description": "Fil et câbles galvanisés, filets agricoles, gaines d'irrigation certifiées. Ait Melloul, Agadir. Devis sous 24 h.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F2F4EC",
+  "theme_color": "#1E5638",
+  "icons": [
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any maskable" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" }
+  ]
+}
