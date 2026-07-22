@@ -405,6 +405,105 @@
   .spec-table td{font-weight:700;color:var(--ink)}
   .modal-note{font-size:12.5px;color:rgba(15,27,20,.55);margin-bottom:22px;line-height:1.5}
 
+  /* ============ PDF catalogue button ============ */
+  .btn-pdf{
+    display:inline-flex;align-items:center;gap:11px;background:var(--white);color:var(--forest);
+    font-family:var(--body);font-weight:700;font-size:14.5px;border:1.5px solid var(--line);
+    padding:12px 22px;border-radius:100px;box-shadow:var(--shadow-sm);
+    transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s ease,border-color .25s ease;
+  }
+  .btn-pdf:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--green)}
+  .btn-pdf .pdf-ic{width:34px;height:34px;border-radius:9px;background:var(--leaf-soft);color:var(--forest);display:grid;place-items:center;flex-shrink:0;transition:background .25s ease,transform .3s cubic-bezier(.2,.8,.3,1)}
+  .btn-pdf:hover .pdf-ic{background:var(--leaf);transform:translateY(2px)}
+  .btn-pdf .pdf-ic svg{width:18px;height:18px}
+  .btn-pdf b{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+  .btn-pdf small{display:block;font-size:11.5px;font-weight:600;color:rgba(15,27,20,.5);letter-spacing:.01em}
+  .products .sec-head{position:relative}
+  .head-pdf{margin-top:22px}
+
+  /* ============ contact map ============ */
+  .contact-map{
+    grid-column:1/-1;margin-top:8px;border-radius:22px;overflow:hidden;position:relative;
+    border:1px solid var(--line-soft);box-shadow:var(--shadow);background:#e7ebe2;min-height:340px;
+  }
+  .contact-map iframe{display:block;width:100%;height:400px;border:0;filter:saturate(1.05)}
+  .map-pin{
+    position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:9px;
+    background:rgba(251,252,248,.94);backdrop-filter:blur(6px);border:1px solid var(--line-soft);
+    border-radius:100px;padding:9px 16px;font-size:13.5px;font-weight:700;color:var(--ink);box-shadow:var(--shadow-sm);
+  }
+  .map-pin svg{width:16px;height:16px;color:var(--forest);flex-shrink:0}
+  .map-open{
+    position:absolute;bottom:16px;right:16px;z-index:2;background:var(--forest);color:#fff;
+    border-radius:100px;padding:11px 20px;font-size:13.5px;font-weight:700;box-shadow:var(--shadow);
+    display:inline-flex;align-items:center;gap:8px;transition:transform .22s ease,background .22s ease;
+  }
+  .map-open:hover{background:var(--ink);transform:translateY(-2px)}
+  .map-open svg{width:15px;height:15px}
+
+  /* ============ multi-step devis form ============ */
+  .devis-form{position:relative;z-index:2}
+  .df-head h3{font-family:var(--display);font-size:27px;font-weight:800;margin-bottom:6px;line-height:1.1;letter-spacing:-.015em}
+  .df-head>p{color:rgba(255,255,255,.85);font-size:14.5px;margin-bottom:20px}
+  .df-progress{display:flex;align-items:center;gap:0;margin-bottom:26px}
+  .df-progress .pnode{display:flex;align-items:center;flex:1}
+  .df-progress .pnode:last-child{flex:0}
+  .df-progress .pdot{
+    width:34px;height:34px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;
+    font-family:var(--display);font-weight:800;font-size:14px;
+    background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.28);
+    transition:.3s;
+  }
+  .df-progress .pline{flex:1;height:2px;background:rgba(255,255,255,.2);margin:0 8px;transition:.3s}
+  .df-progress .pnode.done .pdot,.df-progress .pnode.active .pdot{background:var(--leaf);color:var(--ink);border-color:var(--leaf)}
+  .df-progress .pnode.done .pline{background:var(--leaf)}
+  .df-step{display:none}
+  .df-step.active{display:block;animation:dfIn .35s cubic-bezier(.2,.8,.3,1)}
+  @keyframes dfIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+  .df-step legend{font-family:var(--display);font-weight:800;font-size:16.5px;margin-bottom:16px;color:#fff;border:0;padding:0}
+  .df-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:0;padding:0;margin:0}
+  .df-opt{position:relative;cursor:pointer}
+  .df-opt input{position:absolute;opacity:0;pointer-events:none}
+  .df-opt .box{
+    display:flex;align-items:center;gap:10px;padding:14px 15px;border-radius:14px;
+    background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2);
+    font-size:14px;font-weight:700;color:#fff;transition:.22s;height:100%;
+  }
+  .df-opt .box svg{width:22px;height:22px;flex-shrink:0;color:var(--leaf);transition:transform .3s cubic-bezier(.2,.8,.3,1)}
+  .df-opt:hover .box{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4)}
+  .df-opt:hover .box svg{transform:scale(1.12)}
+  .df-opt input:checked+.box{background:rgba(124,179,66,.22);border-color:var(--leaf);box-shadow:0 0 0 1px var(--leaf) inset}
+  .df-opt input:focus-visible+.box{outline:2px solid var(--leaf);outline-offset:2px}
+  .df-field{margin-bottom:14px}
+  .df-field label{display:block;font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--leaf);margin-bottom:7px}
+  .df-field input,.df-field textarea,.df-field select{
+    width:100%;font-family:var(--body);font-size:15px;font-weight:500;color:#fff;
+    background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.22);border-radius:12px;
+    padding:13px 15px;transition:.2s;
+  }
+  .df-field textarea{resize:vertical;min-height:74px}
+  .df-field input::placeholder,.df-field textarea::placeholder{color:rgba(255,255,255,.5)}
+  .df-field input:focus,.df-field textarea:focus,.df-field select:focus{outline:0;border-color:var(--leaf);background:rgba(255,255,255,.12)}
+  .df-field.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .df-field.two label{grid-column:1/-1;margin-bottom:0}
+  .df-err{color:#ffd9c2;font-size:12.5px;font-weight:700;margin-top:8px;min-height:1px}
+  .df-nav{display:flex;gap:10px;margin-top:22px;align-items:center}
+  .df-nav .spacer{flex:1}
+  .df-back{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff;font-family:var(--body);font-weight:700;font-size:14px;border-radius:100px;padding:12px 22px;cursor:pointer;transition:.2s}
+  .df-back:hover{background:rgba(255,255,255,.12)}
+  .df-summary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 16px;margin-bottom:16px;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.9)}
+  .df-summary b{color:var(--leaf)}
+  .df-submit-row{display:flex;flex-direction:column;gap:10px}
+  .df-note{font-size:12px;color:rgba(255,255,255,.6);margin-top:12px;line-height:1.5}
+  .df-thanks{display:none;text-align:center;padding:20px 0}
+  .df-thanks.show{display:block;animation:dfIn .4s ease}
+  .df-thanks .tk-ic{width:64px;height:64px;border-radius:50%;background:var(--leaf);color:var(--ink);display:grid;place-items:center;margin:0 auto 16px}
+  .df-thanks .tk-ic svg{width:32px;height:32px}
+  .df-thanks h3{font-family:var(--display);font-size:23px;font-weight:800;margin-bottom:8px;color:#fff}
+  .df-thanks p{color:rgba(255,255,255,.85);font-size:14.5px;margin-bottom:18px}
+  html.js .devis-fallback{display:none}
+  html:not(.js) .devis-form{display:none}
+
   /* reveal + counters — hidden state only when JS is confirmed running (html.js),
      so the page is fully readable even if scripts never execute */
   html.js .reveal{opacity:0;transform:translateY(28px) scale(.98);transition:opacity .7s cubic-bezier(.16,.8,.24,1),transform .7s cubic-bezier(.16,.8,.24,1)}
@@ -454,6 +553,10 @@
     .guarantees{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr}
     .devis-box,.value-card{padding:30px}
+    .df-options{grid-template-columns:1fr}
+    .df-field.two{grid-template-columns:1fr}
+    .contact-map iframe{height:320px}
+    .btn-pdf{width:100%}
     .hero-actions .cta{width:100%;justify-content:center}
     .wa-float{width:54px;height:54px;right:16px;bottom:16px}
     .wa-tip{display:none}
@@ -648,6 +751,10 @@
         <div class="sec-eyebrow">Notre catalogue</div>
         <h2 class="sec-title">Des produits de grands fabricants, sélectionnés pour durer</h2>
         <p>Trois familles de solutions, chacune avec sa fiche technique consultable. Références, dimensions et prix confirmés sur devis sous 24 h.</p>
+        <a class="btn-pdf head-pdf" href="catalogue-agri-fourniture.pdf" download="Catalogue-Agri-Fourniture.pdf">
+          <span class="pdf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v11m0 0 4-4m-4 4-4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" stroke-linecap="round"/></svg></span>
+          <span><b>Télécharger le catalogue</b><small>PDF · toutes les gammes &amp; fiches techniques</small></span>
+        </a>
       </div>
       <div class="filters reveal" id="filters">
         <button class="active" data-f="all">Tous les produits</button>
@@ -954,17 +1061,120 @@
 
       <div class="devis-box reveal d1">
         <div class="mesh-layer mesh"></div>
-        <h3>Demande de devis gratuite</h3>
-        <p>Décrivez votre besoin, nous faisons le reste :</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Le produit et la culture concernée</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Dimensions, quantités ou surface</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Enlèvement à Ait Melloul ou livraison</li>
-        </ul>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="cta leaf" href="mailto:contact@agrifourniture.net?subject=Demande%20de%20devis%20-%20Agri%20Fourniture">Envoyer un e-mail</a>
-          <a class="cta ghost" href="https://wa.me/212528308898?text=Bonjour%2C%20je%20souhaite%20un%20devis%20Agri%20Fourniture" target="_blank" rel="noopener">WhatsApp</a>
+
+        <!-- Formulaire multi-étapes (amélioré par JS) -->
+        <form class="devis-form" id="devisForm" novalidate>
+          <div class="df-head">
+            <h3>Demande de devis en 3 étapes</h3>
+            <p>Réponse sous 24 h — gratuit et sans engagement.</p>
+            <div class="df-progress" aria-hidden="true">
+              <div class="pnode active" data-n="1"><span class="pdot">1</span><span class="pline"></span></div>
+              <div class="pnode" data-n="2"><span class="pdot">2</span><span class="pline"></span></div>
+              <div class="pnode" data-n="3"><span class="pdot">3</span></div>
+            </div>
+          </div>
+
+          <!-- Étape 1 : type de produit -->
+          <fieldset class="df-step active" data-step="1">
+            <legend>Quel type de produit vous intéresse&nbsp;?</legend>
+            <div class="df-options">
+              <label class="df-opt"><input type="radio" name="produit" value="Métal galvanisé (fil, câbles)" required>
+                <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>Métal galvanisé</span></label>
+              <label class="df-opt"><input type="radio" name="produit" value="Irrigation goutte-à-goutte">
+                <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>Irrigation</span></label>
+              <label class="df-opt"><input type="radio" name="produit" value="Filets & voiles agricoles">
+                <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M4 9h16M4 14h16M9 4v16M14 4v16"/></svg>Filets &amp; voiles</span></label>
+              <label class="df-opt"><input type="radio" name="produit" value="Plusieurs gammes / autre">
+                <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 6h14M5 12h14M5 18h14" stroke-linecap="round"/></svg>Plusieurs / autre</span></label>
+            </div>
+            <p class="df-err" data-err="1"></p>
+          </fieldset>
+
+          <!-- Étape 2 : quantité & culture -->
+          <fieldset class="df-step" data-step="2">
+            <legend>Quantité et culture concernée</legend>
+            <div class="df-field">
+              <label for="dfQty">Quantité estimée / surface</label>
+              <input id="dfQty" name="quantite" type="text" inputmode="text" placeholder="Ex. 500 m de gaine, 3 rouleaux, 2 ha…" required>
+            </div>
+            <div class="df-field">
+              <label for="dfCult">Culture concernée <span style="text-transform:none;color:rgba(255,255,255,.5);font-weight:600">(optionnel)</span></label>
+              <input id="dfCult" name="culture" type="text" placeholder="Ex. tomate sous serre, agrumes, maraîchage…">
+            </div>
+            <div class="df-field">
+              <label for="dfMode">Enlèvement ou livraison</label>
+              <select id="dfMode" name="mode">
+                <option value="Enlèvement au dépôt d'Ait Melloul">Enlèvement au dépôt (Ait Melloul)</option>
+                <option value="Livraison Souss-Massa">Livraison — Souss-Massa</option>
+                <option value="Livraison ailleurs au Maroc">Livraison — ailleurs au Maroc</option>
+                <option value="À définir">À définir ensemble</option>
+              </select>
+            </div>
+            <p class="df-err" data-err="2"></p>
+          </fieldset>
+
+          <!-- Étape 3 : coordonnées -->
+          <fieldset class="df-step" data-step="3">
+            <legend>Vos coordonnées</legend>
+            <div class="df-summary" id="dfSummary"></div>
+            <div class="df-field two">
+              <label>Nom &amp; ville</label>
+              <input name="nom" type="text" placeholder="Votre nom" required aria-label="Votre nom">
+              <input name="ville" type="text" placeholder="Ville" aria-label="Votre ville">
+            </div>
+            <div class="df-field">
+              <label for="dfTel">Téléphone (WhatsApp de préférence)</label>
+              <input id="dfTel" name="tel" type="tel" inputmode="tel" placeholder="+212 …" required>
+            </div>
+            <div class="df-field">
+              <label for="dfMsg">Précisions <span style="text-transform:none;color:rgba(255,255,255,.5);font-weight:600">(optionnel)</span></label>
+              <textarea id="dfMsg" name="message" placeholder="Diamètre, densité de maille, débit, délai souhaité…"></textarea>
+            </div>
+            <p class="df-err" data-err="3"></p>
+            <div class="df-submit-row">
+              <button type="submit" class="cta leaf" data-send="wa" style="width:100%;justify-content:center">Envoyer sur WhatsApp<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              <button type="submit" class="cta ghost" data-send="mail" style="width:100%;justify-content:center">Envoyer par e-mail</button>
+            </div>
+            <p class="df-note">En envoyant, votre récapitulatif est pré-rempli dans WhatsApp ou votre messagerie — vous gardez la main avant l'envoi final.</p>
+          </fieldset>
+
+          <div class="df-nav">
+            <button type="button" class="df-back" data-nav="back" hidden>← Retour</button>
+            <div class="spacer"></div>
+            <button type="button" class="cta leaf" data-nav="next" style="padding:12px 26px">Continuer<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </form>
+
+        <!-- Confirmation après envoi -->
+        <div class="df-thanks" id="dfThanks">
+          <div class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h3>Votre demande est prête&nbsp;!</h3>
+          <p>Elle s'est ouverte dans WhatsApp ou votre messagerie. Il ne reste qu'à appuyer sur « envoyer ». On vous répond sous 24 h ouvrées.</p>
+          <button type="button" class="cta ghost" id="dfRestart" style="width:100%;justify-content:center">Nouvelle demande</button>
         </div>
+
+        <!-- Repli sans JavaScript -->
+        <div class="devis-fallback">
+          <h3>Demande de devis gratuite</h3>
+          <p>Décrivez votre besoin, nous faisons le reste :</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Le produit et la culture concernée</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Dimensions, quantités ou surface</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Enlèvement à Ait Melloul ou livraison</li>
+          </ul>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="cta leaf" href="mailto:contact@agrifourniture.net?subject=Demande%20de%20devis%20-%20Agri%20Fourniture">Envoyer un e-mail</a>
+            <a class="cta ghost" href="https://wa.me/212528308898?text=Bonjour%2C%20je%20souhaite%20un%20devis%20Agri%20Fourniture" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte : dépôt Ait Melloul -->
+      <div class="contact-map reveal" aria-label="Localisation du dépôt Agri Fourniture à Ait Melloul">
+        <span class="map-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.686-7-11a7 7 0 1 1 14 0c0 5.314-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Dépôt Ait Melloul — Route de Tiznit</span>
+        <iframe title="Carte Google Maps — Agri Fourniture, Ait Melloul" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Ait%20Melloul%2C%20Route%20de%20Tiznit%2C%20Agadir%2C%20Maroc&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+        <a class="map-open" href="https://www.google.com/maps/search/?api=1&query=Ait%20Melloul%20Route%20de%20Tiznit%20Agadir%20Maroc" target="_blank" rel="noopener">Ouvrir dans Maps<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
     </div>
   </section>
@@ -1220,6 +1430,86 @@ const cio=hasIO&&!reduceMotion?new IntersectionObserver(es=>es.forEach(e=>{
 if(cio)document.querySelectorAll(".count").forEach(el=>{el.textContent="0";cio.observe(el);});
 
 document.getElementById("yr").textContent=new Date().getFullYear();
+
+/* ================= multi-step devis form ================= */
+(function(){
+  const form=document.getElementById("devisForm");
+  if(!form)return;
+  const WA="212528308898";
+  const steps=Array.from(form.querySelectorAll(".df-step"));
+  const nodes=Array.from(form.querySelectorAll(".df-progress .pnode"));
+  const backBtn=form.querySelector('[data-nav="back"]');
+  const nextBtn=form.querySelector('[data-nav="next"]');
+  const thanks=document.getElementById("dfThanks");
+  const total=steps.length;
+  let cur=1;
+  const esc=t=>String(t).replace(/[<>&]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[c]));
+
+  function show(n){
+    cur=n;
+    steps.forEach(s=>s.classList.toggle("active",+s.dataset.step===n));
+    nodes.forEach(nd=>{const k=+nd.dataset.n;nd.classList.toggle("active",k===n);nd.classList.toggle("done",k<n);});
+    backBtn.hidden=n===1;
+    nextBtn.style.display=n===total?"none":"";
+    if(n===total)buildSummary();
+    clearErr();
+    const f=steps[n-1].querySelector("input,select,textarea");
+    if(f&&n>1)try{f.focus({preventScroll:true});}catch(_){}
+  }
+  const clearErr=()=>form.querySelectorAll(".df-err").forEach(e=>e.textContent="");
+  const setErr=(n,m)=>{const e=form.querySelector('[data-err="'+n+'"]');if(e)e.textContent=m;};
+
+  function validate(n){
+    if(n===1&&!form.produit.value){setErr(1,"Merci de choisir un type de produit.");return false;}
+    if(n===2&&!form.quantite.value.trim()){setErr(2,"Indiquez une quantité ou une surface estimée.");return false;}
+    if(n===3){
+      if(!form.nom.value.trim()){setErr(3,"Votre nom est requis.");return false;}
+      if(!form.tel.value.trim()){setErr(3,"Un téléphone est requis pour vous répondre.");return false;}
+    }
+    return true;
+  }
+  function buildSummary(){
+    document.getElementById("dfSummary").innerHTML=
+      "<b>Produit :</b> "+esc(form.produit.value||"—")+"<br>"+
+      "<b>Quantité :</b> "+esc(form.quantite.value||"—")+
+      (form.culture.value.trim()?"<br><b>Culture :</b> "+esc(form.culture.value):"")+
+      "<br><b>Mode :</b> "+esc(form.mode.value);
+  }
+  function buildMessage(){
+    const L=["Bonjour Agri Fourniture, je souhaite un devis :"];
+    L.push("• Produit : "+form.produit.value);
+    L.push("• Quantité / surface : "+form.quantite.value);
+    if(form.culture.value.trim())L.push("• Culture : "+form.culture.value);
+    L.push("• "+form.mode.value);
+    L.push("• Nom : "+form.nom.value+(form.ville.value.trim()?" — "+form.ville.value:""));
+    L.push("• Téléphone : "+form.tel.value);
+    if(form.message.value.trim())L.push("• Précisions : "+form.message.value);
+    return L.join("\n");
+  }
+
+  nextBtn.addEventListener("click",()=>{if(validate(cur))show(Math.min(cur+1,total));});
+  backBtn.addEventListener("click",()=>show(Math.max(cur-1,1)));
+  form.querySelectorAll('input[name="produit"]').forEach(r=>r.addEventListener("change",()=>{clearErr();setTimeout(()=>show(2),160);}));
+
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    if(!validate(3))return;
+    const channel=e.submitter&&e.submitter.dataset.send;
+    const msg=buildMessage();
+    if(channel==="mail"){
+      location.href="mailto:contact@agrifourniture.net?subject="+encodeURIComponent("Demande de devis — "+form.produit.value)+"&body="+encodeURIComponent(msg);
+    }else{
+      window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank","noopener");
+    }
+    form.style.display="none";
+    thanks.classList.add("show");
+  });
+  document.getElementById("dfRestart").addEventListener("click",()=>{
+    form.reset();thanks.classList.remove("show");form.style.display="";show(1);
+  });
+
+  show(1);
+})();
 </script>
 </body>
 </html>
