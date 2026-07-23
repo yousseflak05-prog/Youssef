@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><link rel="stylesheet" href="fonts-embedded.css"><style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+:root{--ink:#0F1B14;--forest:#1E5638;--forest2:#173F2A;--green:#2E7D4F;--leaf:#7CB342;--leaf-soft:#E8F2DC;--paper:#F2F4EC;--steel:#5F7480;--line:rgba(15,27,20,.12);--line-soft:rgba(15,27,20,.08)}
+body{font-family:'Hanken Grotesk',sans-serif;color:var(--ink);font-size:12px;line-height:1.5}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+.mesh{background-image:repeating-linear-gradient(45deg,currentColor 0 1px,transparent 1px 16px),repeating-linear-gradient(-45deg,currentColor 0 1px,transparent 1px 16px)}
+.page{width:210mm;min-height:297mm;margin:0 auto;position:relative;padding:0 0 14mm}
+
+/* header band */
+.hd{position:relative;background:linear-gradient(155deg,#14371F,#173F2A 42%,#1E5638 80%,#2A6B44);color:#fff;padding:11mm 15mm 9mm;overflow:hidden}
+.hd .meshL{position:absolute;inset:0;color:rgba(255,255,255,.07)}
+.hd .glow{position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(124,179,66,.4),transparent 62%);top:-150px;right:-110px}
+.hd .top{position:relative;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.hd .brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque';font-weight:800;font-size:20px}
+.hd .brand img{width:36px;height:36px;border-radius:10px}
+.hd .brand i{font-style:normal;color:var(--leaf)}
+.hd .tagd{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf)}
+.hd h1{position:relative;z-index:2;font-size:30px;font-weight:800;margin-top:7mm;line-height:1.05}
+.hd p{position:relative;z-index:2;font-size:13px;color:rgba(255,255,255,.88);margin-top:6px;max-width:150mm;font-weight:500}
+
+.body{padding:8mm 15mm 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin:0 0 10px}
+.eyebrow::before{content:"";width:20px;height:2px;background:var(--leaf)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;gap:9px;margin-bottom:8mm}
+.step{display:flex;gap:14px;align-items:flex-start}
+.step .n{width:30px;height:30px;border-radius:50%;background:var(--forest);color:#fff;font-family:'Bricolage Grotesque';font-weight:800;font-size:14px;display:grid;place-items:center;flex-shrink:0}
+.step .t b{font-family:'Bricolage Grotesque';font-weight:700;font-size:13.5px}
+.step .t span{color:rgba(15,27,20,.72);font-size:11.5px;display:block;line-height:1.45}
+.step .t code{background:var(--leaf-soft);color:var(--forest);font-family:monospace;font-size:11px;padding:1px 6px;border-radius:5px;font-weight:700}
+
+/* fill-in card */
+.fill{background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;padding:5mm 7mm;margin-bottom:5mm}
+.fill h3{font-size:15px;font-weight:800;margin-bottom:2px}
+.fill .hint{font-size:10.5px;color:var(--steel);margin-bottom:12px}
+.row{display:flex;gap:12px;padding:5.5px 0;border-top:1px solid var(--line-soft);align-items:flex-start}
+.row:first-of-type{border-top:0}
+.row .k{width:44mm;flex-shrink:0;font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.04em;padding-top:1px}
+.row .v{font-size:12px;font-weight:600;flex:1}
+.row .v small{display:block;font-weight:500;color:rgba(15,27,20,.55);font-size:10.5px;margin-top:1px}
+.desc-box{background:#fff;border:1px dashed var(--line);border-radius:10px;padding:11px 14px;font-size:11.5px;line-height:1.55;color:rgba(15,27,20,.82);margin-top:4px}
+
+/* two col */
+.cols{display:flex;gap:14px;margin-bottom:0}
+.col{flex:1;background:var(--paper);border:1px solid var(--line-soft);border-radius:14px;padding:5mm 6mm}
+.col h4{font-size:13px;font-weight:800;margin-bottom:9px}
+.col ul{list-style:none}
+.col li{display:flex;gap:9px;font-size:11.5px;font-weight:600;padding:3px 0;align-items:flex-start}
+.col li svg{width:15px;height:15px;color:var(--leaf);flex-shrink:0;margin-top:2px}
+
+.tipbar{background:var(--forest);color:#fff;border-radius:14px;padding:5mm 7mm;margin-top:6mm;position:relative;overflow:hidden}
+.tipbar .meshL{position:absolute;inset:0;color:rgba(255,255,255,.08)}
+.tipbar b{font-family:'Bricolage Grotesque';font-weight:800;font-size:13.5px;position:relative}
+.tipbar p{font-size:11.5px;color:rgba(255,255,255,.88);margin-top:4px;position:relative;line-height:1.5}
+.tipbar code{background:rgba(255,255,255,.15);color:#fff;padding:1px 6px;border-radius:5px;font-family:monospace}
+
+.foot{padding:6mm 15mm 0;font-size:10px;color:rgba(15,27,20,.5);text-align:center}
+.pagelabel{position:absolute;bottom:7mm;right:15mm;font-size:10px;color:rgba(15,27,20,.4);font-weight:700}
+</style></head><body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="hd">
+    <div class="meshL mesh"></div><div class="glow"></div>
+    <div class="top">
+      <div class="brand"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJBZ3JpIEZvdXJuaXR1cmUiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyNTZBNDQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMTczRjJBIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsZWFmIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzhGQzQ1NyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1RkEwMzMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE1IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDwhLS0gc2lnbmF0dXJlIG1lc2ggd2VhdmUgLS0+CiAgPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjEwIiBzdHJva2Utd2lkdGg9IjEuNiI+CiAgICA8cGF0aCBkPSJNOCAyMCBMNDQgNTYgTTIwIDggTDU2IDQ0IE04IDMyIEwzMiA1NiBNMzIgOCBMNTYgMzIiLz4KICAgIDxwYXRoIGQ9Ik01NiAyMCBMMjAgNTYgTTQ0IDggTDggNDQgTTU2IDMyIEwzMiA1NiBNMzIgOCBMOCAzMiIvPgogIDwvZz4KICA8IS0tIGxlYWYgbWFyayAtLT4KICA8cGF0aCBkPSJNMjAgNDIgQzIwIDI4IDMwIDE4IDQ2IDE3IEM0NiAzMyAzNyA0MyAyMiA0NCBDMjIgNDQgMjAgNDMgMjAgNDIgWiIgZmlsbD0idXJsKCNsZWFmKSIvPgogIDxwYXRoIGQ9Ik0yMyA0MSBDMjkgMzUgMzYgMjcgNDQgMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE3M0YyQSIgc3Ryb2tlLW9wYWNpdHk9Ii41NSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K">Agri&nbsp;<i>Fourniture</i></div>
+      <div class="tagd">Guide · Réf. GBP-2026</div>
+    </div>
+    <h1>Créer votre fiche Google&nbsp;Business</h1>
+    <p>Pour apparaître sur Google Maps et dans les recherches locales d'Agadir. Gratuit, ~15 min de mise en place. Tout le contenu à saisir est pré-rempli page 2.</p>
+  </div>
+
+  <div class="body">
+    <div class="eyebrow">En 8 étapes</div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="t"><b>Ouvrez le service</b><span>Allez sur <code>google.com/business</code> et connectez-vous avec un compte Google de l'entreprise (idéalement <b>contact@agrifourniture.net</b>, pas un compte personnel).</span></div></div>
+      <div class="step"><div class="n">2</div><div class="t"><b>Cherchez « Agri Fourniture »</b><span>Si la fiche existe déjà → cliquez « <b>Revendiquer / Gérer cet établissement</b> ». Sinon → « <b>Ajouter votre établissement à Google</b> ».</span></div></div>
+      <div class="step"><div class="n">3</div><div class="t"><b>Nom &amp; catégorie</b><span>Saisissez le nom exact et la catégorie principale (voir page 2). Ajoutez les catégories secondaires.</span></div></div>
+      <div class="step"><div class="n">4</div><div class="t"><b>Adresse physique</b><span>Répondez « Oui » (vous avez un dépôt). Saisissez l'adresse d'Ait Melloul et placez précisément le repère sur la carte.</span></div></div>
+      <div class="step"><div class="n">5</div><div class="t"><b>Zone desservie</b><span>Ajoutez « Souss-Massa » et « Maroc » pour couvrir les livraisons hors Ait Melloul.</span></div></div>
+      <div class="step"><div class="n">6</div><div class="t"><b>Téléphone &amp; site web</b><span>Numéro et <code>agrifourniture.net</code> — <b>exactement</b> comme sur le site (cohérence = meilleur référencement local).</span></div></div>
+      <div class="step"><div class="n">7</div><div class="t"><b>Validez l'établissement</b><span>Google envoie un <b>code par courrier</b> (carte postale, ~1–2 semaines) ou par téléphone/e-mail si proposé. Saisissez le code pour activer la fiche.</span></div></div>
+      <div class="step"><div class="n">8</div><div class="t"><b>Complétez à 100 %</b><span>Une fois validée : description, horaires, <b>10+ photos</b>, produits, attributs (page 2). Une fiche complète est mieux classée.</span></div></div>
+    </div>
+
+    <div class="tipbar">
+      <div class="meshL mesh"></div>
+      <b>⭐ L'astuce qui change tout : les avis</b>
+      <p>Après validation, Google vous donne un <b>lien d'avis</b> à partager. Envoyez-le à vos bons clients sur WhatsApp. Message tout prêt : « Bonjour, si notre service vous a satisfait, un avis Google nous aiderait beaucoup 🙏 : <code>[votre lien]</code> ». 5 à 10 avis suffisent à faire décoller la visibilité.</p>
+    </div>
+  </div>
+  <div class="pagelabel">Agri Fourniture · Guide Google Business — 1/2</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="body" style="padding-top:8mm">
+    <div class="eyebrow">À copier-coller dans la fiche</div>
+
+    <div class="fill">
+      <h3>Informations de l'établissement</h3>
+      <div class="hint">Saisissez ces valeurs exactement — elles doivent être identiques au site.</div>
+      <div class="row"><div class="k">Nom</div><div class="v">Agri Fourniture</div></div>
+      <div class="row"><div class="k">Catégorie principale</div><div class="v">Fournisseur de matériel agricole<small>Google : tapez « matériel agricole » et choisissez la catégorie la plus proche</small></div></div>
+      <div class="row"><div class="k">Catégories secondaires</div><div class="v">Magasin de matériel d'irrigation · Grossiste · Magasin d'articles de jardinage</div></div>
+      <div class="row"><div class="k">Adresse</div><div class="v">Lot Yassmina N°61, Route de Tiznit, Ait Melloul, Agadir<small>Placez le repère précisément sur le bâtiment</small></div></div>
+      <div class="row"><div class="k">Zone desservie</div><div class="v">Souss-Massa · tout le Maroc</div></div>
+      <div class="row"><div class="k">Téléphone</div><div class="v">+212 5 28 30 88 98</div></div>
+      <div class="row"><div class="k">Site web</div><div class="v">agrifourniture.net</div></div>
+      <div class="row"><div class="k">Horaires</div><div class="v">Lun–Ven 08:00–18:00 · Sam 08:00–13:00 · Dim fermé</div></div>
+    </div>
+
+    <div class="fill">
+      <h3>Description de l'établissement</h3>
+      <div class="hint">≤ 750 caractères — à coller dans « Description ».</div>
+      <div class="desc-box">Agri Fourniture équipe les serres et protège les cultures du Souss-Massa depuis 2018. Basés à Ait Melloul (Agadir), nous fournissons du fil et des câbles galvanisés, des filets agricoles (anti-insectes, antigrêle, d'ombrage), des voiles de forçage et des gaines d'irrigation goutte-à-goutte certifiées ISO 9261 — sélectionnés auprès de fabricants européens (Espagne, Italie). Producteurs, coopératives et installateurs bénéficient d'un vrai conseil technique : choix des diamètres, densités de maille et débits selon la culture. Devis gratuit sous 24 h. Enlèvement au dépôt d'Ait Melloul ou livraison dans tout le Maroc.</div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <h4>Produits / services à lister</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Fil &amp; câbles galvanisés</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Filets anti-insectes / anti-thrips</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Filets antigrêle &amp; d'ombrage</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Voiles de forçage</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Gaines goutte-à-goutte</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Conseil technique &amp; devis</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>Photos à ajouter (10+)</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Logo (carré) &amp; photo de couverture</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Devanture / entrée du dépôt</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Rayons &amp; stock (rouleaux, gaines…)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Produits en situation (serres)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Équipe / véhicule de livraison</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Astuce : réutilisez vos visuels Instagram !</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tipbar" style="margin-top:4mm">
+      <div class="meshL mesh"></div>
+      <b>Attributs à activer &amp; entretien</b>
+      <p>Cochez : <b>Devis gratuit</b>, <b>Sur place</b>, <b>Enlèvement</b>, <b>Livraison</b>, <b>Wi-Fi non requis</b>. Publiez ensuite un « <b>Post Google</b> » par semaine (nouveauté, conseil, promo) — vous pouvez recycler vos posts Instagram. Répondez à chaque avis et question : Google favorise les fiches actives.</p>
+    </div>
+  </div>
+  <div class="pagelabel">Agri Fourniture · Guide Google Business — 2/2</div>
+</div>
+
+</body></html>

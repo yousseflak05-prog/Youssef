@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Agri Fourniture">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#256A44"/>
+      <stop offset="1" stop-color="#173F2A"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8FC457"/>
+      <stop offset="1" stop-color="#5FA033"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+  <!-- signature mesh weave -->
+  <g stroke="#ffffff" stroke-opacity=".10" stroke-width="1.6">
+    <path d="M8 20 L44 56 M20 8 L56 44 M8 32 L32 56 M32 8 L56 32"/>
+    <path d="M56 20 L20 56 M44 8 L8 44 M56 32 L32 56 M32 8 L8 32"/>
+  </g>
+  <!-- leaf mark -->
+  <path d="M20 42 C20 28 30 18 46 17 C46 33 37 43 22 44 C22 44 20 43 20 42 Z" fill="url(#leaf)"/>
+  <path d="M23 41 C29 35 36 27 44 20" fill="none" stroke="#173F2A" stroke-opacity=".55" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
