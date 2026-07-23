@@ -122,7 +122,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Polices chargées SANS bloquer le rendu : la page s'affiche immédiatement
+     en police système, les webfonts s'appliquent dès qu'elles sont prêtes.
+     Évite l'écran blanc sur connexion mobile lente ou si Google est bloqué. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"></noscript>
 <style>
   :root{
     --ink:#0F1B14;
@@ -242,7 +246,7 @@
     font-family:var(--display);font-weight:800;letter-spacing:-.028em;line-height:1.0;
     font-size:clamp(38px,6.6vw,76px);max-width:17ch;margin-bottom:22px;
   }
-  .hero h1 em{font-style:normal;color:var(--leaf);position:relative;white-space:nowrap}
+  .hero h1 em{font-style:normal;color:var(--leaf);position:relative}
   .hero p.lead{font-size:clamp(17px,2vw,20.5px);max-width:58ch;color:rgba(255,255,255,.88);margin-bottom:36px}
   .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
   .micro-trust{font-size:13.5px;color:rgba(255,255,255,.72);display:flex;align-items:center;gap:8px}
@@ -1528,6 +1532,7 @@ addEventListener("scroll",()=>hdr.classList.toggle("scrolled",scrollY>10),{passi
 /* ================= reveal: static elements + stagger groups ================= */
 document.querySelectorAll(".reveal").forEach(el=>watch(el));
 initStagger();
+window.__revealOK=1; /* signale au filet de sécurité que l'animation est bien en place */
 
 /* ================= animated counters (HTML holds final values; animate only when possible) ================= */
 const cio=hasIO&&!reduceMotion?new IntersectionObserver(es=>es.forEach(e=>{
@@ -1622,6 +1627,19 @@ document.getElementById("yr").textContent=new Date().getFullYear();
   });
 
   show(1);
+})();
+</script>
+<!-- Filet de sécurité (bloc indépendant, syntaxe ES5) : si le script principal
+     échoue sur un vieux navigateur, on affiche quand même tout le contenu. -->
+<script>
+(function(){
+  function showAll(){
+    if(window.__revealOK)return;
+    var e=document.getElementsByClassName('reveal');
+    for(var i=0;i<e.length;i++){if(e[i].className.indexOf(' in')<0)e[i].className+=' in';}
+  }
+  if(document.readyState==='complete'){setTimeout(showAll,1500);}
+  else{window.addEventListener('load',function(){setTimeout(showAll,1500);});}
 })();
 </script>
 </body>
