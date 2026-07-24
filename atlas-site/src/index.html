@@ -146,6 +146,8 @@ nav.sombre .btn-plein { background: var(--or); color: var(--pin); }
 
 .btn {
   position: relative;
+  cursor: pointer;
+  font-family: inherit;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -162,7 +164,7 @@ nav.sombre .btn-plein { background: var(--or); color: var(--pin); }
 }
 .btn-plein { background: var(--pin); color: var(--sur-pin); }
 .btn-plein:hover { background: var(--pin-3); }
-.btn-ligne { border-color: var(--encre); color: var(--encre); }
+.btn-ligne { background: transparent; border-color: var(--encre); color: var(--encre); }
 .btn-ligne:hover { background: var(--encre); color: var(--ivoire); }
 .btn-or { background: var(--or); color: var(--pin); }
 .btn-or:hover { background: var(--or-clair); }
@@ -522,6 +524,75 @@ section { padding: 110px 0; }
   padding: 12px 22px 20px;
   font-size: 12px;
   color: var(--encre-3);
+}
+
+/* ---------- Modal démo portail ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 26, 18, 0.72);
+  backdrop-filter: blur(6px);
+}
+.modal.ouvert { display: flex; }
+.modal-cadre {
+  position: relative;
+  width: min(1180px, 96vw);
+  height: min(860px, 92vh);
+  background: var(--blanc-chaud);
+  border: 1px solid var(--or);
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modal-tete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 18px;
+  background: var(--pin);
+  color: var(--sur-pin);
+}
+.modal-tete .m-titre {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+}
+.modal-tete .m-note {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+}
+.modal-fermer {
+  border: 1px solid rgba(237, 233, 220, 0.35);
+  background: transparent;
+  color: var(--sur-pin);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.modal-fermer:hover { border-color: var(--or); color: var(--or); }
+.modal-cadre iframe {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #fff;
+}
+@media (max-width: 620px) {
+  .modal { padding: 0; }
+  .modal-cadre { width: 100vw; height: 100vh; height: 100svh; border: 0; }
 }
 
 /* ---------- Preuve / résultats ---------- */
@@ -928,7 +999,7 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
         <li>Retour sur investissement calculé sur vos vrais chiffres</li>
         <li>Consultable à tout moment, depuis votre téléphone</li>
       </ul>
-      <a class="btn btn-ligne" href="#contact">Voir une démo du portail</a>
+      <button type="button" class="btn btn-ligne" id="ouvrir-demo">Essayer la démo du portail</button>
     </div>
     <div class="mock reveal">
       <div class="mock-top">
@@ -1133,6 +1204,19 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
   <div class="foot-legal">© 2026 Atlas · Agence de marketing digital · Maroc — Tous droits réservés.</div>
 </footer>
 
+<!-- ============ MODAL DÉMO PORTAIL ============ -->
+<div class="modal" id="modal-demo" role="dialog" aria-modal="true" aria-label="Démo du portail client Atlas">
+  <div class="modal-cadre">
+    <div class="modal-tete">
+      <span class="m-titre">Atlas — Portail client</span>
+      <span class="m-note">Démo · données d&rsquo;exemple</span>
+      <button type="button" class="modal-fermer" id="fermer-demo">Fermer ✕</button>
+    </div>
+    <iframe id="cadre-demo" title="Démo du portail client Atlas"></iframe>
+  </div>
+</div>
+<template id="source-demo">__PORTAIL__</template>
+
 <script>
 (function () {
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1227,6 +1311,37 @@ footer { background: var(--pin); color: var(--sur-pin); border-top: 1px solid va
       segBtns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
       appliquer(b.getAttribute("data-periode"));
     });
+  });
+
+  /* Démo du portail : chargée dans une iframe à la première ouverture */
+  var modalDemo = document.getElementById("modal-demo");
+  var btnOuvrir = document.getElementById("ouvrir-demo");
+  var btnFermer = document.getElementById("fermer-demo");
+  var demoChargee = false;
+
+  function ouvrirDemo() {
+    modalDemo.classList.add("ouvert");
+    document.body.style.overflow = "hidden";
+    if (!demoChargee) {
+      demoChargee = true;
+      var source = document.getElementById("source-demo").innerHTML;
+      var doc = document.getElementById("cadre-demo").contentDocument;
+      doc.open();
+      doc.write('<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head><body>' + source + "</body></html>");
+      doc.close();
+    }
+    btnFermer.focus();
+  }
+  function fermerDemo() {
+    modalDemo.classList.remove("ouvert");
+    document.body.style.overflow = "";
+    btnOuvrir.focus();
+  }
+  btnOuvrir.addEventListener("click", ouvrirDemo);
+  btnFermer.addEventListener("click", fermerDemo);
+  modalDemo.addEventListener("click", function (e) { if (e.target === modalDemo) fermerDemo(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modalDemo.classList.contains("ouvert")) fermerDemo();
   });
 
   var mock = document.querySelector(".mock");

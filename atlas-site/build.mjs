@@ -3,10 +3,13 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 const fontURI = (path) =>
   `data:font/woff2;base64,${readFileSync(path).toString("base64")}`;
 
+const portail = readFileSync("../atlas-dashboard/dist/index.html", "utf8");
+
 const body = readFileSync("src/index.html", "utf8")
   .replace("__NEWSREADER_ROMAN__", fontURI("assets/newsreader-roman-latin.woff2"))
   .replace("__NEWSREADER_ITALIC__", fontURI("assets/newsreader-italic-latin.woff2"))
-  .replace("__ARCHIVO__", fontURI("assets/archivo-latin.woff2"));
+  .replace("__ARCHIVO__", fontURI("assets/archivo-latin.woff2"))
+  .replace("__PORTAIL__", () => portail);
 
 mkdirSync("dist", { recursive: true });
 
