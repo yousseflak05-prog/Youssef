@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JH SUD TRAVAUX — Vente de Matériels de Serre au Maroc | Films, Filets & Structures</title>
 <meta name="description" content="JH SUD TRAVAUX SARL, spécialiste de la vente de matériels de serre à Aït Amira, Biougra (Souss-Massa). Films de serre anti-UV, filets d'ombrage, structures métalliques, tubes & accessoires. Qualité supérieure, résistance garantie, solutions durables." />
-<meta name="keywords" content="matériel de serre Maroc, film de serre, filet ombrière, filet anti insectes, structure métallique serre, tube galvanisé, agriculture Souss-Massa, Biougra, Aït Amira, serre agricole" />
+<meta name="keywords" content="matériel de serre Maroc, film de serre, filet ombrière, filet anti insectes, filet anti-thrips, filet antigrêle, fil galvanisé, câble galvanisé, gaine goutte-à-goutte, irrigation, structure métallique serre, tube galvanisé, agriculture Souss-Massa, Biougra, Aït Amira, serre agricole" />
 <meta name="author" content="JH SUD TRAVAUX SARL" />
 <meta name="theme-color" content="#0f3d2e" />
 <link rel="canonical" href="https://jhsudtravaux.ma/" />
@@ -23,7 +23,7 @@
 <meta name="twitter:title" content="JH SUD TRAVAUX — Vente de Matériels de Serre" />
 <meta name="twitter:description" content="Films de serre, filets d'ombrage, structures métalliques et accessoires pour l'agriculture au Maroc." />
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f3d2e'/%3E%3Cpath d='M30 72V38c0-8 6-14 14-14s14 6 14 14M50 24c8 0 14 6 14 14v34' stroke='%234ade80' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%230f3d2e'/%3E%3Cpath d='M9 25 24 12l15 13' fill='none' stroke='%23c9cec9' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cg fill='%237cc142'%3E%3Cellipse cx='21' cy='26' rx='3.4' ry='5.2'/%3E%3Cellipse cx='21' cy='34' rx='3.4' ry='5.2'/%3E%3Cellipse cx='16.5' cy='30' rx='5.2' ry='3.4'/%3E%3Cellipse cx='25.5' cy='30' rx='5.2' ry='3.4'/%3E%3C/g%3E%3Ccircle cx='21' cy='30' r='2' fill='%230f3d2e'/%3E%3Ccircle cx='32' cy='32' r='4' fill='none' stroke='%237cc142' stroke-width='2'/%3E%3C/svg%3E" />
 
 <!-- Schema.org: LocalBusiness -->
 <script type="application/ld+json">
@@ -160,18 +160,22 @@
     box-shadow:0 1px 0 var(--line),0 8px 30px rgba(15,61,46,.06);
     padding:12px 0;
   }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:28px}
   .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.02em}
   .brand .mark{
-    width:44px;height:44px;border-radius:12px;flex:none;
-    background:linear-gradient(140deg,var(--forest) 0%,var(--forest-3) 100%);
+    width:48px;height:48px;border-radius:13px;flex:none;
+    background:#fff;border:1px solid var(--line);padding:5px;
     display:grid;place-items:center;box-shadow:var(--shadow-sm);
   }
-  .brand .mark svg{width:26px;height:26px}
+  .brand .mark svg{width:100%;height:100%}
+  footer .brand .mark{background:rgba(255,255,255,.96);border-color:transparent}
   .brand-txt{display:flex;flex-direction:column;line-height:1.05}
-  .brand-txt .b1{font-size:1.12rem;color:var(--forest)}
+  .brand-txt .b1{font-size:1.12rem;color:var(--forest);white-space:nowrap}
   .brand-txt .b2{font-size:.62rem;font-weight:700;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
-  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links{display:flex;align-items:center;gap:24px;flex:0 0 auto}
+  .nav-links a{white-space:nowrap}
+  .nav-phone{white-space:nowrap}
+  .brand{flex:0 0 auto}
   .nav-links a{font-size:.94rem;font-weight:550;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s}
   .nav-links a:hover{opacity:1;color:var(--forest-2)}
   .nav-cta{display:flex;align-items:center;gap:14px}
@@ -286,6 +290,51 @@
   .card p{color:var(--muted);font-size:.98rem;margin-bottom:18px}
   .card ul li{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;padding:5px 0;color:var(--ink)}
   .card ul li svg{width:18px;height:18px;color:var(--green);flex:none;margin-top:3px}
+
+  /* ── Products / Catalogue ── */
+  .produits{background:linear-gradient(180deg,var(--cream),#eef5ef)}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:48px}
+  .filter{
+    font-family:var(--font);font-size:.9rem;font-weight:600;cursor:pointer;
+    padding:10px 20px;border-radius:100px;border:1.5px solid var(--line);
+    background:#fff;color:var(--forest);transition:all .25s;
+  }
+  .filter:hover{border-color:var(--green);color:var(--forest-2)}
+  .filter.active{background:linear-gradient(135deg,var(--green),var(--forest-2));color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(34,197,94,.28)}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .prod{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+  }
+  .prod:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent}
+  .prod.hide{display:none}
+  .prod-thumb{aspect-ratio:16/10;position:relative;overflow:hidden;display:grid;place-items:center;background:linear-gradient(150deg,var(--forest),var(--forest-3))}
+  .prod-thumb svg.art{width:60%;height:60%;opacity:.92}
+  .prod-thumb .ptag{
+    position:absolute;top:14px;left:14px;z-index:2;
+    font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:#fff;padding:6px 12px;border-radius:100px;box-shadow:var(--shadow-sm);
+  }
+  .ptag.metal{background:#64748b}
+  .ptag.irrigation{background:#0ea5e9}
+  .ptag.filet{background:var(--green)}
+  .prod-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+  .prod-body h3{font-size:1.18rem;color:var(--forest);margin-bottom:9px;line-height:1.2}
+  .prod-body .desc{font-size:.92rem;color:var(--muted);margin-bottom:14px}
+  .prod-body .benefits{margin-top:auto;margin-bottom:18px}
+  .prod-body .benefits li{display:flex;gap:9px;font-size:.86rem;font-weight:550;color:var(--ink);padding:5px 0;align-items:flex-start}
+  .prod-body .benefits li svg{width:16px;height:16px;color:var(--green);flex:none;margin-top:3px}
+  .prod-origin{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:650;color:var(--muted);margin-bottom:16px}
+  .prod-origin svg{width:14px;height:14px;color:var(--gold)}
+  .prod .cta-sm{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 18px;border-radius:100px;font-size:.9rem;font-weight:650;
+    background:rgba(34,197,94,.1);color:var(--forest-2);border:1px solid rgba(34,197,94,.22);
+    transition:background .25s,transform .25s;
+  }
+  .prod .cta-sm:hover{background:var(--green);color:#fff;transform:translateY(-2px)}
+  .prod .cta-sm svg{width:16px;height:16px}
 
   /* ── Why choose us ── */
   .why{background:linear-gradient(180deg,var(--cream),#eef5ef)}
@@ -413,6 +462,10 @@
   }
 
   /* ── Responsive ── */
+  @media(max-width:1080px){
+    .nav-links,.nav-phone{display:none}
+    .burger{display:flex}
+  }
   @media(max-width:980px){
     .hero-grid,.why-grid{grid-template-columns:1fr;gap:44px}
     .hero-visual{max-width:520px;margin:0 auto}
@@ -422,8 +475,6 @@
     .foot-grid{grid-template-columns:1fr 1fr}
   }
   @media(max-width:760px){
-    .nav-links,.nav-phone{display:none}
-    .burger{display:flex}
     .section{padding:80px 0}
     .hero{padding:140px 0 80px}
     .cards,.testi-grid,.stats{grid-template-columns:1fr}
@@ -441,12 +492,27 @@
   <div class="wrap nav-inner">
     <a href="#accueil" class="brand" aria-label="JH SUD TRAVAUX accueil">
       <span class="mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" fill="none"><path d="M9 24V13c0-2.8 2.2-5 5-5s5 2.2 5 5M16 8c2.8 0 5 2.2 5 5v11" stroke="#4ade80" stroke-width="2.6" stroke-linecap="round"/><path d="M6 26h20" stroke="#a3e635" stroke-width="2.6" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="jhSilver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9cec9"/><stop offset="1" stop-color="#7c8a80"/></linearGradient>
+            <linearGradient id="jhLeaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cc142"/><stop offset="1" stop-color="#2f6d2a"/></linearGradient>
+          </defs>
+          <path d="M6 24 24 8l18 16" fill="none" stroke="url(#jhSilver)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 23 24 13l13 10" fill="none" stroke="url(#jhSilver)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+          <path d="M40 22v20" stroke="#2f6d2a" stroke-width="3.2" stroke-linecap="round"/>
+          <g fill="url(#jhLeaf)">
+            <ellipse cx="21" cy="25" rx="3.8" ry="6"/><ellipse cx="21" cy="35" rx="3.8" ry="6"/>
+            <ellipse cx="16" cy="30" rx="6" ry="3.8"/><ellipse cx="26" cy="30" rx="6" ry="3.8"/>
+          </g>
+          <circle cx="21" cy="30" r="2.3" fill="#f2f9ec"/>
+          <circle cx="33" cy="32" r="4.4" fill="none" stroke="#2f6d2a" stroke-width="2"/>
+        </svg>
       </span>
       <span class="brand-txt"><span class="b1">JH SUD TRAVAUX</span><span class="b2">Matériels de Serre</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
+      <li><a href="#produits">Produits</a></li>
       <li><a href="#pourquoi">Pourquoi nous</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#avis">Avis</a></li>
@@ -467,6 +533,7 @@
 <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <button class="m-close" id="mClose" aria-label="Fermer le menu">&times;</button>
   <a href="#services">Services</a>
+  <a href="#produits">Produits</a>
   <a href="#pourquoi">Pourquoi nous choisir</a>
   <a href="#process">Notre process</a>
   <a href="#avis">Témoignages</a>
@@ -638,6 +705,181 @@
   </div>
 </section>
 
+<!-- ═══ PRODUITS / CATALOGUE ═══ -->
+<section class="section produits" id="produits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Catalogue produits</span>
+      <h2>Des références sélectionnées chez les meilleurs fabricants</h2>
+      <p>Fils et câbles galvanisés, gaines d'irrigation certifiées et filets de protection — du matériel européen fiable, pensé pour la serre marocaine.</p>
+    </div>
+
+    <div class="filters reveal d1" role="tablist" aria-label="Filtrer les produits">
+      <button class="filter active" data-filter="all">Tous les produits</button>
+      <button class="filter" data-filter="metal">Métal galvanisé</button>
+      <button class="filter" data-filter="irrigation">Irrigation</button>
+      <button class="filter" data-filter="filet">Filets &amp; voiles</button>
+    </div>
+
+    <div class="prod-grid">
+
+      <!-- 1 -->
+      <article class="prod reveal" data-cat="metal">
+        <div class="prod-thumb"><span class="ptag metal">Métal galvanisé</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="20" opacity=".9"/><circle cx="32" cy="32" r="13" opacity=".7"/><circle cx="32" cy="32" r="6" opacity=".5"/><path d="M52 32c0-11-9-20-20-20" stroke="#4ade80"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Fil de fer galvanisé</h3>
+          <p class="desc">Fil recuit galvanisé pour structure de serres, diamètres 1,30 à 4,90 mm.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Norme EN 10244-2, longue tenue à la corrosion</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Souple à travailler : ligatures, palissage, montage</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Espagne</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Fil%20de%20fer%20galvanis%C3%A9">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="prod reveal d1" data-cat="metal">
+        <div class="prod-thumb"><span class="ptag metal">Métal galvanisé</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M10 44c8-6 8-18 16-18s8 12 16 12 8-12 12-14" stroke="#4ade80"/><path d="M10 34c8-6 8-18 16-18s8 12 16 12 8-12 12-14"/><path d="M14 52h36"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Fil d'acier galvanisé</h3>
+          <p class="desc">Fil d'acier haute résistance pour serres, diamètres 2,00 à 3,80 mm.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Le plus résistant : fils porteurs sous forte tension</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Triple protection zinc pour ambiances humides</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Espagne</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Fil%20d%27acier%20galvanis%C3%A9">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="prod reveal d2" data-cat="metal">
+        <div class="prod-thumb"><span class="ptag metal">Métal galvanisé</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 20c8 4 8 20 0 24M22 20c8 4 8 20 0 24M32 20c8 4 8 20 0 24" stroke="#4ade80"/><path d="M12 32h40" opacity=".5"/><path d="M42 24c6 3 6 13 0 16"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Câble tressé 3 fils galvanisé</h3>
+          <p class="desc">Tresse galvanisée 3 fils — 5,40 / 6,40 / 8,20 mm.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Haubanage et suspension des cultures en sécurité</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Écartement régulier, pose rapide et fiable</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Espagne</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20C%C3%A2ble%20tress%C3%A9%203%20fils">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="prod reveal" data-cat="irrigation">
+        <div class="prod-thumb"><span class="ptag irrigation">Irrigation</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 28h48M8 34h48" stroke="#4ade80"/><path d="M20 40c0 3-2 5-4 5s-4-2-4-5 4-6 4-6 4 3 4 6ZM36 40c0 3-2 5-4 5s-4-2-4-5 4-6 4-6 4 3 4 6ZM52 40c0 3-2 5-4 5s-4-2-4-5 4-6 4-6 4 3 4 6Z"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Gaine goutte-à-goutte — Aquatape</h3>
+          <p class="desc">Labyrinthe continu, double filtration, points d'émission rapprochés.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Certifiée ISO 9261 / IIP — qualité contrôlée</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Idéale sols sableux : arrosage homogène du rang</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Italie</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Gaine%20Aquatape">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="prod reveal d1" data-cat="irrigation">
+        <div class="prod-thumb"><span class="ptag irrigation">Irrigation</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="8" y="26" width="48" height="10" rx="5" stroke="#4ade80"/><path d="M18 42c0 2.5-1.6 4-3.5 4S11 44.5 11 42s3.5-5 3.5-5 3.5 2.5 3.5 5ZM35.5 42c0 2.5-1.6 4-3.5 4s-3.5-1.5-3.5-4 3.5-5 3.5-5 3.5 2.5 3.5 5ZM53 42c0 2.5-1.6 4-3.5 4S46 44.5 46 42s3.5-5 3.5-5 3.5 2.5 3.5 5Z"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Gaine goutte-à-goutte — Aquadrop</h3>
+          <p class="desc">Goutteurs plats soudés, double système anti-colmatage. Versions Micro, Mega, Plus.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Anti-colmatage actif : moins d'entretien, plus de saisons</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Économie d'eau : débit précis ≈ 2,1 l/h par goutteur</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Italie</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Gaine%20Aquadrop">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="prod reveal d2" data-cat="filet">
+        <div class="prod-thumb"><span class="ptag filet">Filets &amp; voiles</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 18c8 5 32 5 40 0v30c-8 5-32 5-40 0V18Z" stroke="#4ade80"/><path d="M12 30c8 5 32 5 40 0M12 40c8 5 32 5 40 0" opacity=".6"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Couverture thermique non tissée</h3>
+          <p class="desc">Voile non tissé stabilisé UV : protège du froid, du vent et des UV.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Avance les cultures et protège des gelées</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Perméable à l'eau : irrigation sans retrait du voile</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Espagne</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Couverture%20thermique%20non%20tiss%C3%A9e">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="prod reveal" data-cat="filet">
+        <div class="prod-thumb"><span class="ptag filet">Filets &amp; voiles</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="1.8" aria-hidden="true"><path d="M14 14h36v36H14z" stroke="#4ade80"/><path d="M14 26h36M14 38h36M26 14v36M38 14v36" opacity=".7"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Filet antigrêle</h3>
+          <p class="desc">Tissage « English twist » monofilament avec fils de renfort.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Protège la récolte de la grêle et des tempêtes</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Laisse passer lumière, air et eau : croissance normale</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Espagne</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Filet%20antigr%C3%AAle">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="prod reveal d1" data-cat="filet">
+        <div class="prod-thumb"><span class="ptag filet">Filets &amp; voiles</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="1.5" aria-hidden="true"><path d="M14 14h36v36H14z" stroke="#4ade80"/><path d="M20 14v36M26 14v36M32 14v36M38 14v36M44 14v36M14 20h36M14 26h36M14 32h36M14 38h36M14 44h36" opacity=".55"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Filet anti-thrips</h3>
+          <p class="desc">Mailles très fines (6×6 à 20×10 fils/cm²), HDPE stabilisé UV.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Barrière physique : moins de pesticides</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Densité au choix selon l'insecte à bloquer</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Espagne</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Filet%20anti-thrips">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="prod reveal d2" data-cat="filet">
+        <div class="prod-thumb"><span class="ptag filet">Filets &amp; voiles</span>
+          <svg class="art" viewBox="0 0 64 64" fill="none" stroke="#a3e635" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="44" cy="20" r="8" stroke="#4ade80"/><path d="M14 44h36M14 50h36M18 44l6-12M28 44l6-12M38 44l6-12M24 32h24" opacity=".8"/></svg>
+        </div>
+        <div class="prod-body">
+          <h3>Filet d'ombrage</h3>
+          <p class="desc">Monofilament + raphia, taux d'ombrage 40 à 100 %.</p>
+          <ul class="benefits">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Température maîtrisée : moins de stress hydrique</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Effet brise-vent en plus de l'ombrage</li>
+          </ul>
+          <span class="prod-origin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>Fabriqué en Espagne</span>
+          <a class="cta-sm" href="mailto:jhsudtravaux23@gmail.com?subject=Devis%20-%20Filet%20d%27ombrage">Demander un devis<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══ WHY CHOOSE US ═══ -->
 <section class="section why" id="pourquoi">
   <div class="wrap why-grid">
@@ -794,7 +1036,17 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="#accueil" class="brand">
-          <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M9 24V13c0-2.8 2.2-5 5-5s5 2.2 5 5M16 8c2.8 0 5 2.2 5 5v11" stroke="#4ade80" stroke-width="2.6" stroke-linecap="round"/><path d="M6 26h20" stroke="#a3e635" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+          <span class="mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="jhSilverF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9cec9"/><stop offset="1" stop-color="#7c8a80"/></linearGradient>
+              <linearGradient id="jhLeafF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cc142"/><stop offset="1" stop-color="#2f6d2a"/></linearGradient>
+            </defs>
+            <path d="M6 24 24 8l18 16" fill="none" stroke="url(#jhSilverF)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 23 24 13l13 10" fill="none" stroke="url(#jhSilverF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+            <path d="M40 22v20" stroke="#2f6d2a" stroke-width="3.2" stroke-linecap="round"/>
+            <g fill="url(#jhLeafF)"><ellipse cx="21" cy="25" rx="3.8" ry="6"/><ellipse cx="21" cy="35" rx="3.8" ry="6"/><ellipse cx="16" cy="30" rx="6" ry="3.8"/><ellipse cx="26" cy="30" rx="6" ry="3.8"/></g>
+            <circle cx="21" cy="30" r="2.3" fill="#f2f9ec"/><circle cx="33" cy="32" r="4.4" fill="none" stroke="#2f6d2a" stroke-width="2"/>
+          </svg></span>
           <span class="brand-txt"><span class="b1">JH SUD TRAVAUX</span><span class="b2">Matériels de Serre</span></span>
         </a>
         <p>Vente de matériels de serre au Maroc : films, filets, structures métalliques, tubes et accessoires. Qualité supérieure, résistance garantie, solutions durables.</p>
@@ -808,11 +1060,11 @@
       <div>
         <h5>Catalogue</h5>
         <div class="foot-links">
-          <a href="#services">Structures métalliques</a>
+          <a href="#produits">Fils & câbles galvanisés</a>
+          <a href="#produits">Gaines d'irrigation</a>
+          <a href="#produits">Filets & voiles</a>
           <a href="#services">Films & couvertures</a>
-          <a href="#services">Filets & ombrages</a>
-          <a href="#services">Fixation au sol</a>
-          <a href="#services">Accessoires</a>
+          <a href="#services">Structures métalliques</a>
         </div>
       </div>
 
@@ -898,6 +1150,21 @@
   } else {
     reveals.forEach(function(el){ el.classList.add('in'); });
   }
+
+  // Product filters
+  var filters = document.querySelectorAll('.filter');
+  var prods = document.querySelectorAll('.prod');
+  filters.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filters.forEach(function(f){ f.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.getAttribute('data-filter');
+      prods.forEach(function(p){
+        var show = (cat === 'all' || p.getAttribute('data-cat') === cat);
+        p.classList.toggle('hide', !show);
+      });
+    });
+  });
 
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
