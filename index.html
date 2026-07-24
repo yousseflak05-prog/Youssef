@@ -1,467 +1,907 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code — What I Can Do</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JH SUD TRAVAUX — Vente de Matériels de Serre au Maroc | Films, Filets & Structures</title>
+<meta name="description" content="JH SUD TRAVAUX SARL, spécialiste de la vente de matériels de serre à Aït Amira, Biougra (Souss-Massa). Films de serre anti-UV, filets d'ombrage, structures métalliques, tubes & accessoires. Qualité supérieure, résistance garantie, solutions durables." />
+<meta name="keywords" content="matériel de serre Maroc, film de serre, filet ombrière, filet anti insectes, structure métallique serre, tube galvanisé, agriculture Souss-Massa, Biougra, Aït Amira, serre agricole" />
+<meta name="author" content="JH SUD TRAVAUX SARL" />
+<meta name="theme-color" content="#0f3d2e" />
+<link rel="canonical" href="https://jhsudtravaux.ma/" />
 
-    :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --border: #2a2a2a;
-      --accent: #d97706;
-      --accent2: #7c3aed;
-      --text: #e5e5e5;
-      --muted: #888;
-      --code-bg: #1a1a1a;
-      --radius: 12px;
-    }
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_MA" />
+<meta property="og:title" content="JH SUD TRAVAUX — Vente de Matériels de Serre au Maroc" />
+<meta property="og:description" content="Films de serre, filets & ombrages, structures métalliques et accessoires. Qualité supérieure, résistance garantie, solutions durables pour votre exploitation agricole." />
+<meta property="og:site_name" content="JH SUD TRAVAUX" />
+<meta property="og:url" content="https://jhsudtravaux.ma/" />
 
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="JH SUD TRAVAUX — Vente de Matériels de Serre" />
+<meta name="twitter:description" content="Films de serre, filets d'ombrage, structures métalliques et accessoires pour l'agriculture au Maroc." />
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
-      background: rgba(13,13,13,.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -.5px; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); }
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f3d2e'/%3E%3Cpath d='M30 72V38c0-8 6-14 14-14s14 6 14 14M50 24c8 0 14 6 14 14v34' stroke='%234ade80' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,.25) 0%, transparent 60%);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .35rem .9rem; border-radius: 999px;
-      border: 1px solid var(--border); color: var(--muted); font-size: .8rem;
-      margin-bottom: 1.5rem;
-    }
-    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; max-width: 800px; }
-    h1 .highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { margin-top: 1.2rem; color: var(--muted); font-size: 1.1rem; max-width: 520px; }
-    .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .btn { padding: .7rem 1.6rem; border-radius: 8px; font-size: .95rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .2s, transform .15s; display: inline-block; }
-    .btn:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+<!-- Schema.org: LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HardwareStore",
+  "name": "JH SUD TRAVAUX SARL",
+  "description": "Vente de matériels de serre : films de serre anti-UV, filets d'ombrage, structures métalliques galvanisées, tubes et accessoires pour l'agriculture.",
+  "image": "https://jhsudtravaux.ma/logo.png",
+  "@id": "https://jhsudtravaux.ma",
+  "url": "https://jhsudtravaux.ma",
+  "telephone": "+212661808258",
+  "email": "jhsudtravaux23@gmail.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "RP 1014 vers RN 1, en face de la Bourse des Primeurs, Douar Soualem Aït Amira",
+    "addressLocality": "Biougra – Aït Amira",
+    "addressRegion": "Souss-Massa",
+    "addressCountry": "MA"
+  },
+  "areaServed": "Maroc",
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:00",
+    "closes": "19:00"
+  }],
+  "slogan": "Qualité supérieure. Résistance garantie. Solutions durables."
+}
+</script>
+<!-- Schema.org: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Quels types de films de serre proposez-vous ?","acceptedAnswer":{"@type":"Answer","text":"Nous fournissons des films plastiques PE anti-UV et diffusants, conçus pour résister aux fortes chaleurs du Souss-Massa et garantir une transmission lumineuse optimale sur plusieurs campagnes."}},
+    {"@type":"Question","name":"Livrez-vous partout au Maroc ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Basés à Aït Amira (Biougra), nous livrons les exploitations agricoles dans tout le Maroc, avec des solutions de transport adaptées aux grands rouleaux et structures."}},
+    {"@type":"Question","name":"Proposez-vous des structures métalliques complètes ?","acceptedAnswer":{"@type":"Answer","text":"Absolument. Arceaux, poteaux, traverses, longrines, platines, jonctions et boulonnerie galvanisée : nous fournissons l'ensemble de la structure métallique de votre serre, ainsi que la couverture et les accessoires."}},
+    {"@type":"Question","name":"Quelle est la durée de vie de vos filets d'ombrage ?","acceptedAnswer":{"@type":"Answer","text":"Nos filets ombrière 50 % et 90 % sont traités anti-UV pour une durabilité de plusieurs saisons en plein soleil, sans perte notable de taux d'ombrage."}},
+    {"@type":"Question","name":"Pouvez-vous conseiller le matériel adapté à ma culture ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Notre équipe vous accompagne dans le choix du film, du taux d'ombrage, du maillage anti-insectes et de la structure en fonction de votre culture, de votre région et de votre budget."}}
+  ]
+}
+</script>
 
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-label { text-transform: uppercase; letter-spacing: 2px; font-size: .75rem; color: var(--accent); font-weight: 600; margin-bottom: .75rem; }
-    h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -.5px; margin-bottom: 1rem; }
-    .subtitle { color: var(--muted); font-size: 1rem; max-width: 540px; margin-bottom: 3rem; }
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    /* ── CAPABILITY CARDS ── */
-    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; transition: border-color .2s, transform .2s;
-      cursor: default;
-    }
-    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .card-icon { font-size: 1.8rem; margin-bottom: .8rem; }
-    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
-    .card p { color: var(--muted); font-size: .88rem; line-height: 1.55; }
+  :root{
+    --forest:#0f3d2e;
+    --forest-2:#14532d;
+    --forest-3:#0a2e22;
+    --green:#22c55e;
+    --green-light:#4ade80;
+    --lime:#a3e635;
+    --cream:#f7faf7;
+    --paper:#ffffff;
+    --ink:#0e1a14;
+    --muted:#5b6b62;
+    --line:#e5ede8;
+    --gold:#c9a24a;
+    --radius:20px;
+    --radius-sm:14px;
+    --shadow-sm:0 2px 8px rgba(15,61,46,.06);
+    --shadow-md:0 12px 34px rgba(15,61,46,.10);
+    --shadow-lg:0 30px 70px rgba(15,61,46,.16);
+    --maxw:1180px;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
 
-    /* ── DEMO TERMINAL ── */
-    .terminal-wrap { background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .terminal-bar { background: #222; padding: .6rem 1rem; display: flex; align-items: center; gap: .5rem; }
-    .t-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .t-red { background: #ef4444; } .t-yellow { background: #eab308; } .t-green { background: #22c55e; }
-    .terminal-bar span { margin-left: auto; font-size: .75rem; color: var(--muted); }
-    .terminal-body { padding: 1.5rem; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: .88rem; min-height: 200px; }
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: #e5e5e5; }
-    .t-out { color: #86efac; margin-top: .3rem; }
-    .t-comment { color: #6b7280; }
-    .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); margin-left: 2px; animation: blink 1s step-end infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--font);
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  ul{list-style:none}
+  h1,h2,h3{line-height:1.1;letter-spacing:-.02em;font-weight:800}
 
-    /* ── INTERACTIVE DEMO ── */
-    .demo-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
-    .demo-tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .tab { padding: .45rem 1rem; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .85rem; cursor: pointer; transition: all .2s; }
-    .tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
-    .demo-content { display: none; }
-    .demo-content.active { display: block; }
-    .demo-content pre {
-      background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.25rem; overflow-x: auto; font-family: monospace; font-size: .85rem;
-      line-height: 1.6; color: #d1d5db;
-    }
-    .kw { color: #c084fc; } .fn { color: #60a5fa; } .str { color: #86efac; }
-    .num { color: #fb923c; } .cmt { color: #6b7280; }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .section{padding:110px 0;position:relative}
 
-    /* ── STATS ── */
-    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem; }
-    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
-    .stat-num { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-label { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
+  /* ── Buttons ── */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-weight:650;font-size:.98rem;letter-spacing:.01em;
+    padding:15px 30px;border-radius:100px;cursor:pointer;border:1.5px solid transparent;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s,color .25s;
+    white-space:nowrap;
+  }
+  .btn svg{width:18px;height:18px}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--green) 0%,var(--forest-2) 100%);
+    color:#fff;box-shadow:0 10px 26px rgba(34,197,94,.34);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(34,197,94,.42)}
+  .btn-ghost{background:rgba(255,255,255,.6);color:var(--forest);border-color:var(--line)}
+  .btn-ghost:hover{background:#fff;transform:translateY(-3px);box-shadow:var(--shadow-md)}
+  .btn-light{background:#fff;color:var(--forest);box-shadow:var(--shadow-md)}
+  .btn-light:hover{transform:translateY(-3px)}
+  .btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+  .btn-outline-light:hover{background:rgba(255,255,255,.12);border-color:#fff}
 
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: .85rem; }
-    footer a { color: var(--muted); text-decoration: none; }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--forest-2);
+    background:rgba(34,197,94,.10);
+    padding:8px 16px;border-radius:100px;border:1px solid rgba(34,197,94,.2);
+  }
+  .eyebrow.on-dark{color:var(--green-light);background:rgba(163,230,53,.12);border-color:rgba(163,230,53,.25)}
 
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-    }
-  </style>
+  .section-head{max-width:660px;margin:0 auto 64px;text-align:center}
+  .section-head h2{font-size:clamp(2rem,4.4vw,3.1rem);margin:20px 0 16px}
+  .section-head p{color:var(--muted);font-size:1.1rem}
+
+  /* ── NAV ── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    transition:background .3s,box-shadow .3s,padding .3s;
+    padding:18px 0;
+  }
+  nav.scrolled{
+    background:rgba(247,250,247,.82);
+    backdrop-filter:blur(16px) saturate(160%);
+    -webkit-backdrop-filter:blur(16px) saturate(160%);
+    box-shadow:0 1px 0 var(--line),0 8px 30px rgba(15,61,46,.06);
+    padding:12px 0;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.02em}
+  .brand .mark{
+    width:44px;height:44px;border-radius:12px;flex:none;
+    background:linear-gradient(140deg,var(--forest) 0%,var(--forest-3) 100%);
+    display:grid;place-items:center;box-shadow:var(--shadow-sm);
+  }
+  .brand .mark svg{width:26px;height:26px}
+  .brand-txt{display:flex;flex-direction:column;line-height:1.05}
+  .brand-txt .b1{font-size:1.12rem;color:var(--forest)}
+  .brand-txt .b2{font-size:.62rem;font-weight:700;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a{font-size:.94rem;font-weight:550;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s}
+  .nav-links a:hover{opacity:1;color:var(--forest-2)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-phone{display:inline-flex;align-items:center;gap:8px;font-weight:650;font-size:.92rem;color:var(--forest-2)}
+  .nav-phone svg{width:17px;height:17px}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2.4px;background:var(--forest);border-radius:2px;transition:.3s}
+
+  /* Mobile menu */
+  .mobile-menu{
+    position:fixed;inset:0 0 0 auto;width:min(84vw,340px);z-index:1200;
+    background:var(--paper);box-shadow:var(--shadow-lg);
+    transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);
+    padding:90px 30px 40px;display:flex;flex-direction:column;gap:6px;
+  }
+  .mobile-menu.open{transform:translateX(0)}
+  .mobile-menu a{padding:14px 12px;font-size:1.05rem;font-weight:600;border-radius:12px;transition:background .2s}
+  .mobile-menu a:hover{background:var(--cream)}
+  .mobile-menu .btn{margin-top:18px;justify-content:center}
+  .m-close{position:absolute;top:24px;right:24px;background:none;border:none;cursor:pointer;font-size:1.8rem;color:var(--forest);line-height:1}
+  .overlay{position:fixed;inset:0;background:rgba(10,46,34,.4);backdrop-filter:blur(3px);z-index:1100;opacity:0;pointer-events:none;transition:opacity .3s}
+  .overlay.show{opacity:1;pointer-events:auto}
+
+  /* ── HERO ── */
+  .hero{
+    position:relative;padding:180px 0 110px;overflow:hidden;
+    background:
+      radial-gradient(1100px 520px at 78% -8%,rgba(34,197,94,.14),transparent 60%),
+      radial-gradient(900px 500px at 6% 12%,rgba(163,230,53,.10),transparent 55%),
+      var(--cream);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center}
+  .hero h1{font-size:clamp(2.4rem,5.4vw,4.05rem);margin:24px 0 22px}
+  .hero h1 .grad{
+    background:linear-gradient(120deg,var(--forest-2),var(--green) 60%,var(--lime));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero p.sub{font-size:1.2rem;color:var(--muted);max-width:540px;margin-bottom:34px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px}
+  .social-proof{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .avatars{display:flex}
+  .avatars span{
+    width:44px;height:44px;border-radius:50%;margin-left:-12px;border:3px solid var(--cream);
+    display:grid;place-items:center;font-weight:700;color:#fff;font-size:.9rem;box-shadow:var(--shadow-sm);
+  }
+  .avatars span:first-child{margin-left:0}
+  .sp-text{font-size:.92rem;color:var(--muted)}
+  .sp-text strong{color:var(--ink)}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:.95rem}
+
+  /* Hero visual */
+  .hero-visual{position:relative}
+  .hero-card{
+    background:linear-gradient(160deg,#fff,#f2f8f3);
+    border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow-lg);
+    position:relative;overflow:hidden;
+  }
+  .hero-card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(400px 200px at 90% 0%,rgba(34,197,94,.12),transparent 60%);
+  }
+  .hero-illus{
+    border-radius:18px;overflow:hidden;position:relative;
+    aspect-ratio:16/11;
+    background:linear-gradient(150deg,var(--forest) 0%,var(--forest-3) 100%);
+  }
+  .hero-illus .greenhouse{position:absolute;inset:0}
+  .hero-badges{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;position:relative}
+  .hb{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-align:center;box-shadow:var(--shadow-sm)}
+  .hb .ic{width:36px;height:36px;margin:0 auto 8px;border-radius:10px;display:grid;place-items:center;background:rgba(34,197,94,.12);color:var(--forest-2)}
+  .hb .ic svg{width:20px;height:20px}
+  .hb b{display:block;font-size:.82rem;color:var(--forest)}
+  .hb small{color:var(--muted);font-size:.7rem}
+
+  .float-tag{
+    position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:12px 16px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:10px;
+    font-size:.86rem;font-weight:600;
+  }
+  .float-tag .dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff}
+  .float-tag svg{width:18px;height:18px}
+  .ft-1{top:-22px;right:-14px;animation:floaty 5s ease-in-out infinite}
+  .ft-2{bottom:-20px;left:-18px;animation:floaty 6s ease-in-out infinite .5s}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  /* ── Marquee / trust bar ── */
+  .trustbar{background:var(--forest);color:#dcefe4;padding:26px 0;overflow:hidden}
+  .marquee{display:flex;gap:60px;white-space:nowrap;animation:scrollx 26s linear infinite;width:max-content}
+  .marquee span{font-weight:600;opacity:.9;display:inline-flex;align-items:center;gap:12px;font-size:1rem}
+  .marquee span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime)}
+  @keyframes scrollx{to{transform:translateX(-50%)}}
+
+  /* ── Services ── */
+  .services{background:var(--paper)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:34px 30px;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+    position:relative;overflow:hidden;
+  }
+  .card::after{content:"";position:absolute;left:0;top:0;height:4px;width:100%;
+    background:linear-gradient(90deg,var(--green),var(--lime));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent}
+  .card:hover::after{transform:scaleX(1)}
+  .card .ic{
+    width:60px;height:60px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;
+    background:linear-gradient(140deg,var(--forest),var(--forest-3));color:var(--green-light);
+    box-shadow:0 10px 24px rgba(15,61,46,.22);
+  }
+  .card .ic svg{width:30px;height:30px}
+  .card h3{font-size:1.32rem;margin-bottom:12px;color:var(--forest)}
+  .card p{color:var(--muted);font-size:.98rem;margin-bottom:18px}
+  .card ul li{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;padding:5px 0;color:var(--ink)}
+  .card ul li svg{width:18px;height:18px;color:var(--green);flex:none;margin-top:3px}
+
+  /* ── Why choose us ── */
+  .why{background:linear-gradient(180deg,var(--cream),#eef5ef)}
+  .why-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center}
+  .why-copy h2{font-size:clamp(2rem,4.4vw,3.1rem);margin:20px 0 18px}
+  .why-copy>p{color:var(--muted);font-size:1.08rem;margin-bottom:28px}
+  .diff{display:flex;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+  .diff:first-of-type{border-top:none}
+  .diff .di{width:48px;height:48px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(34,197,94,.12);color:var(--forest-2)}
+  .diff .di svg{width:24px;height:24px}
+  .diff h4{font-size:1.08rem;margin-bottom:4px;color:var(--forest)}
+  .diff p{color:var(--muted);font-size:.94rem}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .stat{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 26px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  }
+  .stat::before{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.14),transparent 70%)}
+  .stat .num{font-size:2.9rem;font-weight:800;color:var(--forest);letter-spacing:-.03em;line-height:1}
+  .stat .num span{color:var(--green)}
+  .stat .lbl{color:var(--muted);font-size:.92rem;margin-top:8px}
+  .stat.feature{background:linear-gradient(150deg,var(--forest),var(--forest-3));color:#fff}
+  .stat.feature .num{color:#fff}
+  .stat.feature .num span{color:var(--lime)}
+  .stat.feature .lbl{color:#bfe0cf}
+
+  /* ── Process ── */
+  .process{background:var(--paper)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:step;position:relative}
+  .step{position:relative;padding-top:14px}
+  .step .n{
+    width:56px;height:56px;border-radius:16px;display:grid;place-items:center;
+    font-weight:800;font-size:1.3rem;color:#fff;margin-bottom:20px;
+    background:linear-gradient(140deg,var(--green),var(--forest-2));box-shadow:0 10px 24px rgba(34,197,94,.3);
+  }
+  .step h4{font-size:1.15rem;margin-bottom:8px;color:var(--forest)}
+  .step p{color:var(--muted);font-size:.94rem}
+  .step .line{position:absolute;top:42px;left:70px;right:-12px;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px)}
+  .step:last-child .line{display:none}
+
+  /* ── Testimonials ── */
+  .testi{background:linear-gradient(180deg,#eef5ef,var(--cream))}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .quote{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:18px;
+    transition:transform .35s,box-shadow .35s;
+  }
+  .quote:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+  .quote .stars{font-size:1.05rem}
+  .quote p{font-size:1rem;color:var(--ink);flex:1}
+  .result{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+    background:rgba(34,197,94,.1);color:var(--forest-2);font-weight:650;font-size:.84rem;
+    padding:6px 13px;border-radius:100px;border:1px solid rgba(34,197,94,.2)}
+  .result svg{width:15px;height:15px}
+  .who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+  .who .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;flex:none}
+  .who b{display:block;font-size:.95rem;color:var(--forest)}
+  .who small{color:var(--muted);font-size:.82rem}
+
+  /* ── FAQ ── */
+  .faq{background:var(--paper)}
+  .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  .acc{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);overflow:hidden;transition:box-shadow .3s,border-color .3s}
+  .acc.open{box-shadow:var(--shadow-md);border-color:rgba(34,197,94,.3)}
+  .acc-q{
+    width:100%;text-align:left;background:none;border:none;cursor:pointer;
+    padding:22px 24px;font-size:1.06rem;font-weight:650;color:var(--forest);
+    display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--font);
+  }
+  .acc-q .plus{width:26px;height:26px;flex:none;position:relative;transition:transform .3s}
+  .acc-q .plus::before,.acc-q .plus::after{content:"";position:absolute;background:var(--green);border-radius:2px}
+  .acc-q .plus::before{top:12px;left:4px;right:4px;height:2.6px}
+  .acc-q .plus::after{left:12px;top:4px;bottom:4px;width:2.6px;transition:transform .3s}
+  .acc.open .plus::after{transform:rotate(90deg)}
+  .acc-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .acc-a p{padding:0 24px 24px;color:var(--muted);font-size:.98rem}
+
+  /* ── Final CTA ── */
+  .final{padding:0 0 110px}
+  .final-card{
+    max-width:var(--maxw);margin:0 auto;border-radius:34px;overflow:hidden;position:relative;
+    background:linear-gradient(140deg,var(--forest-2) 0%,var(--forest-3) 100%);
+    color:#fff;padding:70px 60px;text-align:center;
+    box-shadow:var(--shadow-lg);
+  }
+  .final-card::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(600px 300px at 20% 0%,rgba(34,197,94,.25),transparent 60%),radial-gradient(500px 260px at 90% 100%,rgba(163,230,53,.18),transparent 60%)}
+  .final-card>*{position:relative}
+  .urgency{display:inline-flex;align-items:center;gap:9px;background:rgba(163,230,53,.16);border:1px solid rgba(163,230,53,.35);
+    color:var(--lime);font-weight:650;font-size:.86rem;padding:9px 18px;border-radius:100px;margin-bottom:24px}
+  .urgency .pulse{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 rgba(163,230,53,.6);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(163,230,53,.5)}70%{box-shadow:0 0 0 12px rgba(163,230,53,0)}100%{box-shadow:0 0 0 0 rgba(163,230,53,0)}}
+  .final-card h2{font-size:clamp(2.1rem,4.6vw,3.3rem);margin-bottom:18px}
+  .final-card p{color:#c8e3d5;font-size:1.18rem;max-width:600px;margin:0 auto 34px}
+  .final-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .final-note{margin-top:26px;font-size:.88rem;color:#a9cdba}
+
+  /* ── Footer ── */
+  footer{background:var(--forest-3);color:#c2d6cb;padding:80px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;margin-bottom:56px}
+  .foot-brand .brand .b1{color:#fff}
+  .foot-brand p{margin:20px 0;font-size:.95rem;color:#9fbcaf;max-width:320px}
+  .socials{display:flex;gap:12px}
+  .socials a{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.07);transition:background .25s,transform .25s}
+  .socials a:hover{background:var(--green);transform:translateY(-3px)}
+  .socials svg{width:19px;height:19px;color:#fff}
+  footer h5{color:#fff;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;font-weight:700}
+  .foot-links a{display:block;padding:7px 0;font-size:.94rem;color:#9fbcaf;transition:color .2s,padding-left .2s}
+  .foot-links a:hover{color:#fff;padding-left:5px}
+  .foot-contact li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;font-size:.92rem;color:#9fbcaf}
+  .foot-contact svg{width:18px;height:18px;color:var(--green-light);flex:none;margin-top:3px}
+  .foot-contact a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.86rem;color:#88a89a}
+  .foot-bottom span{color:#88a89a}
+
+  /* Reveal animations */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ── Responsive ── */
+  @media(max-width:980px){
+    .hero-grid,.why-grid{grid-template-columns:1fr;gap:44px}
+    .hero-visual{max-width:520px;margin:0 auto}
+    .cards,.testi-grid{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr;gap:36px 24px}
+    .step .line{display:none}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:760px){
+    .nav-links,.nav-phone{display:none}
+    .burger{display:flex}
+    .section{padding:80px 0}
+    .hero{padding:140px 0 80px}
+    .cards,.testi-grid,.stats{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .final-card{padding:54px 26px}
+    .foot-grid{grid-template-columns:1fr;gap:36px}
+    .float-tag{display:none}
+  }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Claude <span>Code</span></div>
-  <ul class="nav-links">
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#stats">At a Glance</a></li>
-  </ul>
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#accueil" class="brand" aria-label="JH SUD TRAVAUX accueil">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M9 24V13c0-2.8 2.2-5 5-5s5 2.2 5 5M16 8c2.8 0 5 2.2 5 5v11" stroke="#4ade80" stroke-width="2.6" stroke-linecap="round"/><path d="M6 26h20" stroke="#a3e635" stroke-width="2.6" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-txt"><span class="b1">JH SUD TRAVAUX</span><span class="b2">Matériels de Serre</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pourquoi">Pourquoi nous</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+212661808258" class="nav-phone" aria-label="Appeler">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        +212 661-808-258
+      </a>
+      <a href="#contact" class="btn btn-primary">Demander un devis</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    Powered by Claude Sonnet 4.6
+<div class="overlay" id="overlay"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="m-close" id="mClose" aria-label="Fermer le menu">&times;</button>
+  <a href="#services">Services</a>
+  <a href="#pourquoi">Pourquoi nous choisir</a>
+  <a href="#process">Notre process</a>
+  <a href="#avis">Témoignages</a>
+  <a href="#faq">Questions fréquentes</a>
+  <a href="tel:+212661808258">📞 +212 661-808-258</a>
+  <a href="#contact" class="btn btn-primary">Demander un devis</a>
+</aside>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero" id="accueil">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">🌿 Spécialiste matériels de serre · Souss-Massa</span>
+      <h1 class="reveal d1">Équipez votre serre pour <span class="grad">des récoltes plus grandes, saison après saison</span></h1>
+      <p class="sub reveal d2">Films anti-UV, filets d'ombrage, structures métalliques galvanisées et accessoires — tout le matériel de serre professionnel, livré partout au Maroc avec un conseil d'expert.</p>
+      <div class="hero-cta reveal d3">
+        <a href="#contact" class="btn btn-primary">
+          Obtenir mon devis gratuit
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#services" class="btn btn-ghost">Découvrir le catalogue</a>
+      </div>
+      <div class="social-proof reveal d4">
+        <div class="avatars" aria-hidden="true">
+          <span style="background:linear-gradient(135deg,#16a34a,#065f46)">AK</span>
+          <span style="background:linear-gradient(135deg,#65a30d,#3f6212)">MB</span>
+          <span style="background:linear-gradient(135deg,#0d9488,#134e4a)">YE</span>
+          <span style="background:linear-gradient(135deg,#ca8a04,#854d0e)">SF</span>
+        </div>
+        <div class="sp-text">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <strong>+500 agriculteurs</strong> équipés dans la région du Souss
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="hero-card">
+        <div class="hero-illus">
+          <svg class="greenhouse" viewBox="0 0 400 275" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#0f3d2e"/><stop offset="1" stop-color="#0a2e22"/>
+              </linearGradient>
+              <linearGradient id="film" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#4ade80" stop-opacity=".35"/><stop offset="1" stop-color="#a3e635" stop-opacity=".08"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="275" fill="url(#sky)"/>
+            <circle cx="330" cy="55" r="34" fill="#a3e635" opacity=".25"/>
+            <circle cx="330" cy="55" r="20" fill="#a3e635" opacity=".4"/>
+            <!-- ground -->
+            <rect y="212" width="400" height="63" fill="#0a2e22"/>
+            <!-- greenhouse tunnels -->
+            <g stroke="#4ade80" stroke-width="2.4" fill="url(#film)" opacity=".9">
+              <path d="M40 212V150c0-34 27-58 60-58s60 24 60 58v62Z"/>
+              <path d="M150 212V158c0-30 24-52 54-52s54 22 54 52v54Z" opacity=".8"/>
+              <path d="M250 212V150c0-34 27-58 60-58s60 24 60 58v62Z"/>
+            </g>
+            <!-- arch ribs -->
+            <g stroke="#a3e635" stroke-width="1.4" opacity=".55">
+              <path d="M62 212V150c0-25 17-42 38-42s38 17 38 42v62" fill="none"/>
+              <path d="M272 212V150c0-25 17-42 38-42s38 17 38 42v62" fill="none"/>
+            </g>
+            <!-- crop rows -->
+            <g fill="#4ade80" opacity=".85">
+              <circle cx="70" cy="200" r="6"/><circle cx="90" cy="204" r="6"/><circle cx="110" cy="200" r="6"/><circle cx="130" cy="204" r="6"/>
+              <circle cx="285" cy="200" r="6"/><circle cx="305" cy="204" r="6"/><circle cx="325" cy="200" r="6"/><circle cx="345" cy="204" r="6"/>
+            </g>
+          </svg>
+        </div>
+        <div class="hero-badges">
+          <div class="hb"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 8v9l7 4 7-4V8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><b>Films PE</b><small>Anti-UV</small></div>
+          <div class="hb"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M4 9h16M4 14h16M9 4v16M14 4v16" stroke="currentColor" stroke-width="1.6"/></svg></span><b>Filets</b><small>Ombrage</small></div>
+          <div class="hb"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M6 8l-3 4 3 4M18 8l3 4-3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Tubes</b><small>Galvanisés</small></div>
+        </div>
+      </div>
+      <div class="float-tag ft-1"><span class="dot" style="background:linear-gradient(135deg,#22c55e,#14532d)"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Qualité garantie</div>
+      <div class="float-tag ft-2"><span class="dot" style="background:linear-gradient(135deg,#c9a24a,#854d0e)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></span>Livraison Maroc</div>
+    </div>
   </div>
-  <h1>Your AI engineer.<br>Right in the <span class="highlight">terminal.</span></h1>
-  <p class="hero-sub">Claude Code reads your codebase, writes production-ready code, runs tests, fixes bugs, and ships — all from a single conversation.</p>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="#capabilities">Explore capabilities</a>
-    <a class="btn btn-secondary" href="#demo">See code examples</a>
+</header>
+
+<!-- ═══ TRUST BAR ═══ -->
+<div class="trustbar" aria-hidden="true">
+  <div class="marquee">
+    <span>Films de serre</span><span>Filets & ombrages</span><span>Structures métalliques</span><span>Tubes galvanisés</span><span>Filets anti-insectes</span><span>Accessoires de fixation</span><span>Couvre-sol</span>
+    <span>Films de serre</span><span>Filets & ombrages</span><span>Structures métalliques</span><span>Tubes galvanisés</span><span>Filets anti-insectes</span><span>Accessoires de fixation</span><span>Couvre-sol</span>
   </div>
 </div>
 
-<!-- CAPABILITIES -->
-<section id="capabilities">
-  <div class="section-label">What I can do</div>
-  <h2>Built for real engineering work</h2>
-  <p class="subtitle">From a single file edit to a full-stack feature — Claude Code handles the whole software lifecycle.</p>
-
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🔭</div>
-      <h3>Codebase Exploration</h3>
-      <p>Search across thousands of files, trace call graphs, and answer "where is X defined?" in seconds without any indexing setup.</p>
+<!-- ═══ SERVICES ═══ -->
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Notre catalogue</span>
+      <h2>Tout le matériel de votre serre, sous un seul toit</h2>
+      <p>Du tube d'arceau au clip de fixation, nous fournissons des équipements sélectionnés pour leur durabilité — pour que votre serre travaille plus longtemps et mieux.</p>
     </div>
-    <div class="card">
-      <div class="card-icon">✏️</div>
-      <h3>Precise Code Editing</h3>
-      <p>Makes surgical, diff-level edits to existing files — no wholesale rewrites, no accidental deletions, no style drift.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🐛</div>
-      <h3>Bug Fixing</h3>
-      <p>Reads stack traces, finds root causes, and produces minimal targeted fixes — with an explanation of why the bug existed.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧪</div>
-      <h3>Test Writing</h3>
-      <p>Generates unit, integration, and edge-case tests that actually reflect how the code is used — not just happy-path coverage.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚙️</div>
-      <h3>Bash & Tooling</h3>
-      <p>Runs shell commands, installs packages, builds projects, and monitors output — like a dev with a terminal always open.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌐</div>
-      <h3>Web & UI Work</h3>
-      <p>Writes HTML, CSS, React, and more. Spins up dev servers, checks rendered output, and iterates on designs end-to-end.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔀</div>
-      <h3>Git & PRs</h3>
-      <p>Commits with meaningful messages, creates branches, pushes code, opens pull requests, and responds to review comments.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>Multi-Agent Tasks</h3>
-      <p>Spawns parallel sub-agents for independent research, code review, and exploration — tackling large tasks concurrently.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔒</div>
-      <h3>Security Awareness</h3>
-      <p>Identifies OWASP top-10 issues, avoids writing vulnerable code, and flags injection risks, exposed secrets, and unsafe patterns.</p>
-    </div>
-  </div>
-</section>
+    <div class="cards">
 
-<!-- TERMINAL DEMO -->
-<section style="padding-top:0">
-  <div class="terminal-wrap">
-    <div class="terminal-bar">
-      <span class="t-dot t-red"></span>
-      <span class="t-dot t-yellow"></span>
-      <span class="t-dot t-green"></span>
-      <span>claude — bash</span>
-    </div>
-    <div class="terminal-body" id="terminal-output">
-      <div><span class="t-comment"># Ask Claude anything about your repo</span></div>
-      <div style="margin-top:.5rem"><span class="t-prompt">$ </span><span class="t-cmd" id="typed-cmd"></span><span class="cursor" id="cursor"></span></div>
-      <div class="t-out" id="typed-reply" style="margin-top:.6rem;white-space:pre-wrap"></div>
-    </div>
-  </div>
-</section>
+      <article class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21V10l9-6 9 6v11" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 21h18M9 21v-6h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3>Structures métalliques</h3>
+        <p>Arceaux, poteaux, traverses, longrines et jonctions en acier galvanisé — l'ossature qui résiste au vent et aux années.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Résiste aux rafales et à la corrosion</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Montage rapide, pièces standardisées</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Boulonnerie & gousset inclus</li>
+        </ul>
+      </article>
 
-<!-- CODE DEMO -->
-<section id="demo">
-  <div class="section-label">Code examples</div>
-  <h2>Languages &amp; frameworks</h2>
-  <p class="subtitle">Claude Code writes idiomatic code across the full stack — not just boilerplate.</p>
+      <article class="card reveal d1">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5c4 3 12 3 16 0v14c-4 3-12 3-16 0V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 12c4 3 12 3 16 0" stroke="currentColor" stroke-width="2"/></svg></span>
+        <h3>Films & couvertures</h3>
+        <p>Films plastiques PE anti-UV et diffusants, profils de fixation zigzag et rubans de réparation pour une couverture parfaitement tendue.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Meilleure diffusion de la lumière</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Protection UV longue durée</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Fixation zigzag + ressort</li>
+        </ul>
+      </article>
 
-  <div class="demo-box">
-    <div class="demo-tabs">
-      <button class="tab active" onclick="switchTab(this, 'python')">Python</button>
-      <button class="tab" onclick="switchTab(this, 'typescript')">TypeScript</button>
-      <button class="tab" onclick="switchTab(this, 'react')">React</button>
-      <button class="tab" onclick="switchTab(this, 'sql')">SQL</button>
-      <button class="tab" onclick="switchTab(this, 'bash')">Bash</button>
-    </div>
+      <article class="card reveal d2">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M4 9h16M4 14h16M9 4v16M14 4v16" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        <h3>Filets & ombrages</h3>
+        <p>Ombrière 50 % et 90 %, filet anti-thrips, filet 6×6 et anti-insectes — le bon climat pour chaque culture.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Réduit le stress thermique des plants</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Barrière contre les ravageurs</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Taux d'ombrage sur mesure</li>
+        </ul>
+      </article>
 
-    <div class="demo-content active" id="python">
-<pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
-<span class="kw">from</span> typing <span class="kw">import</span> Iterator
+      <article class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 9h18v11H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 9V5h18v4M12 9v11" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <h3>Façades & ouvertures</h3>
+        <p>Portes simples ou doubles, aérations latérales et ouvertures enroulables pour ventiler et travailler en toute simplicité.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Ventilation naturelle maîtrisée</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Accès facile pour la main-d'œuvre</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Filet anti-insectes intégrable</li>
+        </ul>
+      </article>
 
-<span class="cmt"># Sliding-window rate limiter — O(1) amortized using a deque</span>
-<span class="kw">from</span> collections <span class="kw">import</span> deque
-<span class="kw">import</span> time
+      <article class="card reveal d1">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v14M8 6l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 16c0 3 3 6 6 6s6-3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <h3>Fixation au sol</h3>
+        <p>Piquets d'ancrage, câbles et tendeurs, ancrages à vis et platines de base : votre serre reste solidement amarrée.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Stabilité face aux vents forts</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Ancrage adapté à chaque sol</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tension homogène de la couverture</li>
+        </ul>
+      </article>
 
-@dataclass
-<span class="kw">class</span> <span class="fn">RateLimiter</span>:
-    max_calls: <span class="fn">int</span>
-    period: <span class="fn">float</span>          <span class="cmt"># seconds</span>
-    _times: deque = field(default_factory=deque, repr=<span class="kw">False</span>)
+      <article class="card reveal d2">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3>Accessoires & conseil</h3>
+        <p>Crochets, pinces de maintien, ficelle, clips plastique et fil de tension — plus l'accompagnement de nos experts terrain.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tous les consommables en stock</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Conseil culture & région gratuit</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Devis rapide et transparent</li>
+        </ul>
+      </article>
 
-    <span class="kw">def</span> <span class="fn">allow</span>(self) -> <span class="fn">bool</span>:
-        now = time.<span class="fn">monotonic</span>()
-        cutoff = now - self.period
-        <span class="kw">while</span> self._times <span class="kw">and</span> self._times[<span class="num">0</span>] &lt; cutoff:
-            self._times.<span class="fn">popleft</span>()
-        <span class="kw">if</span> <span class="fn">len</span>(self._times) &lt; self.max_calls:
-            self._times.<span class="fn">append</span>(now)
-            <span class="kw">return True</span>
-        <span class="kw">return False</span>
-</pre>
-    </div>
-
-    <div class="demo-content" id="typescript">
-<pre><span class="cmt">// Generic retry with exponential back-off and jitter</span>
-<span class="kw">async function</span> <span class="fn">withRetry</span>&lt;T&gt;(
-  fn: () =&gt; <span class="fn">Promise</span>&lt;T&gt;,
-  { maxAttempts = <span class="num">4</span>, baseDelayMs = <span class="num">200</span> } = {}
-): <span class="fn">Promise</span>&lt;T&gt; {
-  <span class="kw">let</span> lastErr: unknown;
-  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; maxAttempts; i++) {
-    <span class="kw">try</span> {
-      <span class="kw">return await</span> <span class="fn">fn</span>();
-    } <span class="kw">catch</span> (err) {
-      lastErr = err;
-      <span class="kw">if</span> (i &lt; maxAttempts - <span class="num">1</span>) {
-        <span class="kw">const</span> delay = baseDelayMs * <span class="num">2</span> ** i + <span class="fn">Math.random</span>() * <span class="num">50</span>;
-        <span class="kw">await new</span> <span class="fn">Promise</span>(r =&gt; <span class="fn">setTimeout</span>(r, delay));
-      }
-    }
-  }
-  <span class="kw">throw</span> lastErr;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="react">
-<pre><span class="kw">import</span> { useState, useCallback } <span class="kw">from</span> <span class="str">'react'</span>;
-
-<span class="kw">function</span> <span class="fn">useLocalStorage</span>&lt;T&gt;(key: <span class="fn">string</span>, initial: T) {
-  <span class="kw">const</span> [value, setValue] = <span class="fn">useState</span>&lt;T&gt;(() =&gt; {
-    <span class="kw">try</span> {
-      <span class="kw">const</span> stored = <span class="fn">localStorage.getItem</span>(key);
-      <span class="kw">return</span> stored ? <span class="fn">JSON.parse</span>(stored) : initial;
-    } <span class="kw">catch</span> { <span class="kw">return</span> initial; }
-  });
-
-  <span class="kw">const</span> set = <span class="fn">useCallback</span>((next: T) =&gt; {
-    setValue(next);
-    <span class="kw">try</span> { <span class="fn">localStorage.setItem</span>(key, <span class="fn">JSON.stringify</span>(next)); }
-    <span class="kw">catch</span> { <span class="cmt">/* storage quota exceeded */</span> }
-  }, [key]);
-
-  <span class="kw">return</span> [value, set] <span class="kw">as const</span>;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="sql">
-<pre><span class="cmt">-- Top-N active users with their 30-day order totals</span>
-<span class="kw">WITH</span> recent_orders <span class="kw">AS</span> (
-  <span class="kw">SELECT</span>
-    user_id,
-    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> order_count,
-    <span class="fn">SUM</span>(total_cents) / <span class="num">100.0</span> <span class="kw">AS</span> total_usd
-  <span class="kw">FROM</span> orders
-  <span class="kw">WHERE</span> created_at &gt;= <span class="fn">NOW</span>() - <span class="kw">INTERVAL</span> <span class="str">'30 days'</span>
-  <span class="kw">GROUP BY</span> user_id
-)
-<span class="kw">SELECT</span>
-  u.id, u.email,
-  ro.order_count,
-  ro.total_usd,
-  <span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> ro.total_usd <span class="kw">DESC</span>) <span class="kw">AS</span> rank
-<span class="kw">FROM</span> users u
-<span class="kw">JOIN</span> recent_orders ro <span class="kw">ON</span> ro.user_id = u.id
-<span class="kw">ORDER BY</span> rank
-<span class="kw">LIMIT</span> <span class="num">10</span>;
-</pre>
-    </div>
-
-    <div class="demo-content" id="bash">
-<pre><span class="cmt">#!/usr/bin/env bash</span>
-<span class="cmt"># Deploy: build → test → push image → restart service</span>
-<span class="kw">set</span> -euo pipefail
-
-<span class="fn">log</span>() { printf <span class="str">'\e[34m[%s]\e[0m %s\n'</span> <span class="str">"$(date +%T)"</span> <span class="str">"$*"</span>; }
-
-IMAGE=<span class="str">"myapp:$(git rev-parse --short HEAD)"</span>
-
-<span class="fn">log</span> <span class="str">"Building $IMAGE"</span>
-docker build -t <span class="str">"$IMAGE"</span> .
-
-<span class="fn">log</span> <span class="str">"Running tests"</span>
-docker run --rm <span class="str">"$IMAGE"</span> pytest -q
-
-<span class="fn">log</span> <span class="str">"Pushing image"</span>
-docker push <span class="str">"$IMAGE"</span>
-
-<span class="fn">log</span> <span class="str">"Restarting service"</span>
-kubectl rollout restart deployment/myapp
-kubectl rollout status deployment/myapp
-</pre>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="section-label">At a glance</div>
-  <h2>Built to handle scale</h2>
-  <p class="subtitle">Claude Code is designed for real-world repositories, not toy examples.</p>
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">200K</div>
-      <div class="stat-label">Token context window</div>
+<!-- ═══ WHY CHOOSE US ═══ -->
+<section class="section why" id="pourquoi">
+  <div class="wrap why-grid">
+    <div class="why-copy">
+      <span class="eyebrow reveal">Pourquoi JH SUD TRAVAUX</span>
+      <h2 class="reveal d1">Le partenaire de confiance des agriculteurs du Souss</h2>
+      <p class="reveal d2">Installés au cœur d'Aït Amira, face à la Bourse des Primeurs, nous connaissons le terrain, le climat et vos contraintes. Nous ne vendons pas seulement du matériel — nous protégeons votre récolte.</p>
+
+      <div class="diff reveal d1">
+        <span class="di"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><h4>Qualité supérieure, sélectionnée</h4><p>Chaque produit est choisi pour sa résistance réelle aux conditions du Sud marocain.</p></div>
+      </div>
+      <div class="diff reveal d2">
+        <span class="di"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <div><h4>Résistance garantie</h4><p>Structures galvanisées et films anti-UV pensés pour durer plusieurs campagnes.</p></div>
+      </div>
+      <div class="diff reveal d3">
+        <span class="di"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21h6M10 17v4M14 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <div><h4>Conseil d'experts</h4><p>Une équipe qui vous oriente vers la bonne solution, sans sur-vendre.</p></div>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Languages supported</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Files it can read per session</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Command to get started</div>
+
+    <div class="stats">
+      <div class="stat feature reveal">
+        <div class="num">+500</div>
+        <div class="lbl">Exploitations agricoles équipées dans le Souss-Massa</div>
+      </div>
+      <div class="stat reveal d1">
+        <div class="num">12<span>+</span></div>
+        <div class="lbl">Familles de produits pour serre en stock</div>
+      </div>
+      <div class="stat reveal d2">
+        <div class="num">98<span>%</span></div>
+        <div class="lbl">Clients qui recommandent nos matériels</div>
+      </div>
+      <div class="stat reveal d3">
+        <div class="num">48<span>h</span></div>
+        <div class="lbl">Délai moyen pour un devis chiffré</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══ PROCESS ═══ -->
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">En 4 étapes</span>
+      <h2>De votre besoin à votre serre équipée</h2>
+      <p>Un parcours simple et transparent, pensé pour vous faire gagner du temps et sécuriser votre investissement.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="line"></span><div class="n">1</div><h4>Écoute & diagnostic</h4><p>Nous étudions votre culture, la surface, la région et votre budget.</p></div>
+      <div class="step reveal d1"><span class="line"></span><div class="n">2</div><h4>Devis sur mesure</h4><p>Une proposition claire et chiffrée sous 48 h, sans engagement.</p></div>
+      <div class="step reveal d2"><span class="line"></span><div class="n">3</div><h4>Préparation & livraison</h4><p>Nous rassemblons et livrons votre matériel partout au Maroc.</p></div>
+      <div class="step reveal d3"><div class="n">4</div><h4>Suivi & accompagnement</h4><p>Conseils de pose et disponibilité pour vos consommables à venir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section testi" id="avis">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Ils nous font confiance</span>
+      <h2>Des résultats concrets sur le terrain</h2>
+      <p>Ce que disent les agriculteurs qui ont équipé leur serre avec JH SUD TRAVAUX.</p>
+    </div>
+    <div class="testi-grid">
+
+      <figure class="quote reveal">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <blockquote><p>« Le film anti-UV tient depuis deux campagnes sans jaunir. Mes tomates ont une lumière plus douce et je perds beaucoup moins de plants à cause de la chaleur. »</p></blockquote>
+        <span class="result"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pertes réduites de ~30 %</span>
+        <figcaption class="who"><span class="av" style="background:linear-gradient(135deg,#16a34a,#065f46)">AK</span><div><b>Abderrahim K.</b><small>Producteur de tomates · Aït Amira</small></div></figcaption>
+      </figure>
+
+      <figure class="quote reveal d1">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <blockquote><p>« Structure galvanisée montée en un temps record, pièces bien pensées. Après les grands vents de l'hiver, tout est resté parfaitement en place. »</p></blockquote>
+        <span class="result"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Montage 2× plus rapide</span>
+        <figcaption class="who"><span class="av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">MB</span><div><b>Mustapha B.</b><small>Exploitant maraîcher · Biougra</small></div></figcaption>
+      </figure>
+
+      <figure class="quote reveal d2">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <blockquote><p>« Le filet anti-insectes a changé ma saison : beaucoup moins de traitements, des poivrons plus sains. Le conseil de l'équipe a fait toute la différence. »</p></blockquote>
+        <span class="result"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Traitements en baisse</span>
+        <figcaption class="who"><span class="av" style="background:linear-gradient(135deg,#0d9488,#134e4a)">YE</span><div><b>Youssef E.</b><small>Producteur de poivrons · Chtouka</small></div></figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Tout ce que vous devez savoir</h2>
+      <p>Vous ne trouvez pas votre réponse ? Appelez-nous, on adore parler serres.</p>
+    </div>
+    <div class="faq-list">
+      <div class="acc reveal">
+        <button class="acc-q" aria-expanded="false">Quels types de films de serre proposez-vous ?<span class="plus" aria-hidden="true"></span></button>
+        <div class="acc-a"><p>Nous fournissons des films plastiques PE anti-UV et diffusants, conçus pour résister aux fortes chaleurs du Souss-Massa et garantir une transmission lumineuse optimale sur plusieurs campagnes.</p></div>
+      </div>
+      <div class="acc reveal d1">
+        <button class="acc-q" aria-expanded="false">Livrez-vous partout au Maroc ?<span class="plus" aria-hidden="true"></span></button>
+        <div class="acc-a"><p>Oui. Basés à Aït Amira (Biougra), nous livrons les exploitations agricoles dans tout le Maroc, avec des solutions de transport adaptées aux grands rouleaux et aux structures métalliques.</p></div>
+      </div>
+      <div class="acc reveal d2">
+        <button class="acc-q" aria-expanded="false">Proposez-vous des structures métalliques complètes ?<span class="plus" aria-hidden="true"></span></button>
+        <div class="acc-a"><p>Absolument. Arceaux, poteaux, traverses, longrines, platines, jonctions et boulonnerie galvanisée : nous fournissons l'ensemble de la structure de votre serre, ainsi que la couverture et tous les accessoires.</p></div>
+      </div>
+      <div class="acc reveal d3">
+        <button class="acc-q" aria-expanded="false">Quelle est la durée de vie de vos filets d'ombrage ?<span class="plus" aria-hidden="true"></span></button>
+        <div class="acc-a"><p>Nos filets ombrière 50 % et 90 % sont traités anti-UV pour une durabilité de plusieurs saisons en plein soleil, sans perte notable du taux d'ombrage annoncé.</p></div>
+      </div>
+      <div class="acc reveal d4">
+        <button class="acc-q" aria-expanded="false">Pouvez-vous conseiller le matériel adapté à ma culture ?<span class="plus" aria-hidden="true"></span></button>
+        <div class="acc-a"><p>Oui. Notre équipe vous accompagne dans le choix du film, du taux d'ombrage, du maillage anti-insectes et de la structure, en fonction de votre culture, de votre région et de votre budget.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final" id="contact">
+  <div class="wrap">
+    <div class="final-card reveal">
+      <span class="urgency"><span class="pulse" aria-hidden="true"></span>Offre saison : devis prioritaire avant les plantations</span>
+      <h2>Préparez votre prochaine campagne dès aujourd'hui</h2>
+      <p>Recevez un devis gratuit et chiffré sous 48 h, et bénéficiez du conseil de nos experts pour équiper votre serre au juste prix.</p>
+      <div class="final-cta">
+        <a href="tel:+212661808258" class="btn btn-light">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Appeler +212 661-808-258
+        </a>
+        <a href="mailto:jhsudtravaux23@gmail.com?subject=Demande%20de%20devis%20-%20Mat%C3%A9riel%20de%20serre" class="btn btn-outline-light">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m4 6 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Envoyer un e-mail
+        </a>
+      </div>
+      <p class="final-note">Sans engagement · Réponse rapide · Livraison partout au Maroc</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
-  Built with Claude Code &nbsp;·&nbsp; Anthropic &nbsp;·&nbsp;
-  <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Documentation</a>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#accueil" class="brand">
+          <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M9 24V13c0-2.8 2.2-5 5-5s5 2.2 5 5M16 8c2.8 0 5 2.2 5 5v11" stroke="#4ade80" stroke-width="2.6" stroke-linecap="round"/><path d="M6 26h20" stroke="#a3e635" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+          <span class="brand-txt"><span class="b1">JH SUD TRAVAUX</span><span class="b2">Matériels de Serre</span></span>
+        </a>
+        <p>Vente de matériels de serre au Maroc : films, filets, structures métalliques, tubes et accessoires. Qualité supérieure, résistance garantie, solutions durables.</p>
+        <div class="socials">
+          <a href="https://wa.me/212661808258" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg></a>
+          <a href="mailto:jhsudtravaux23@gmail.com" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m4 6 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="tel:+212661808258" aria-label="Téléphone"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h5>Catalogue</h5>
+        <div class="foot-links">
+          <a href="#services">Structures métalliques</a>
+          <a href="#services">Films & couvertures</a>
+          <a href="#services">Filets & ombrages</a>
+          <a href="#services">Fixation au sol</a>
+          <a href="#services">Accessoires</a>
+        </div>
+      </div>
+
+      <div>
+        <h5>Navigation</h5>
+        <div class="foot-links">
+          <a href="#accueil">Accueil</a>
+          <a href="#pourquoi">Pourquoi nous</a>
+          <a href="#process">Notre process</a>
+          <a href="#avis">Témoignages</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <div>
+        <h5>Contact</h5>
+        <ul class="foot-contact">
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg><span>RP 1014 vers RN 1, en face de la Bourse des Primeurs, Douar Soualem Aït Amira, Biougra – Aït Amira</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="tel:+212661808258">+212 661-808-258</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m4 6 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="mailto:jhsudtravaux23@gmail.com">jhsudtravaux23@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> JH SUD TRAVAUX SARL — Tous droits réservés.</span>
+      <span>Vente de matériels de serre · Souss-Massa, Maroc</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-  // ── Tab switcher ──
-  function switchTab(btn, id) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(id).classList.add('active');
+(function(){
+  "use strict";
+
+  // Sticky nav shadow
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 20); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Mobile menu
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('overlay');
+  var mClose = document.getElementById('mClose');
+  function openMenu(){ menu.classList.add('open'); overlay.classList.add('show'); burger.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false'); }
+  function closeMenu(){ menu.classList.remove('open'); overlay.classList.remove('show'); burger.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); }
+  burger.addEventListener('click', openMenu);
+  mClose.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+
+  // FAQ accordion
+  document.querySelectorAll('.acc-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var acc = btn.parentElement;
+      var panel = btn.nextElementSibling;
+      var open = acc.classList.contains('open');
+      document.querySelectorAll('.acc').forEach(function(a){
+        a.classList.remove('open');
+        a.querySelector('.acc-a').style.maxHeight = null;
+        a.querySelector('.acc-q').setAttribute('aria-expanded','false');
+      });
+      if(!open){
+        acc.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // Scroll reveal
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
   }
 
-  // ── Terminal typewriter ──
-  const demos = [
-    {
-      cmd: 'claude "Add input validation to the signup form"',
-      reply: `Reading src/components/SignupForm.tsx …
-Found 3 fields missing validation: email, password, username.
-✓ Added zod schema with error messages
-✓ Wired inline error display to each field
-✓ Disabled submit button while invalid
-2 files changed, 31 insertions(+), 4 deletions(-)`
-    },
-    {
-      cmd: 'claude "Why is the /dashboard route slow?"',
-      reply: `Tracing request path …
-  routes/dashboard.ts → services/metrics.ts:fetchAll()
-  fetchAll() runs 6 sequential DB queries (N+1 pattern).
-  Fix: batch with Promise.all — estimated 4× speedup.
-Apply fix? (y/n)`
-    },
-    {
-      cmd: 'claude "Write tests for the CartService"',
-      reply: `Found 8 public methods in CartService.
-Generated 23 tests across:
-  • addItem (happy path + duplicate + out-of-stock)
-  • removeItem (present + missing)
-  • applyDiscount (valid + expired + invalid code)
-  • checkout (success + payment failure)
-All 23 tests pass ✓`
-    }
-  ];
-
-  let demoIdx = 0, cmdIdx = 0, replyIdx = 0, phase = 'cmd';
-  const cmdEl = document.getElementById('typed-cmd');
-  const replyEl = document.getElementById('typed-reply');
-  const cursor = document.getElementById('cursor');
-
-  function nextChar() {
-    const d = demos[demoIdx];
-    if (phase === 'cmd') {
-      if (cmdIdx < d.cmd.length) {
-        cmdEl.textContent += d.cmd[cmdIdx++];
-        setTimeout(nextChar, 35 + Math.random() * 25);
-      } else {
-        cursor.style.display = 'none';
-        phase = 'reply';
-        setTimeout(nextChar, 500);
-      }
-    } else {
-      if (replyIdx < d.reply.length) {
-        replyEl.textContent += d.reply[replyIdx++];
-        setTimeout(nextChar, 12);
-      } else {
-        setTimeout(() => {
-          cmdEl.textContent = '';
-          replyEl.textContent = '';
-          cmdIdx = replyIdx = 0;
-          phase = 'cmd';
-          cursor.style.display = 'inline-block';
-          demoIdx = (demoIdx + 1) % demos.length;
-          setTimeout(nextChar, 400);
-        }, 3200);
-      }
-    }
-  }
-
-  setTimeout(nextChar, 800);
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
 </script>
-
 </body>
 </html>
