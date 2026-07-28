@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposition — Création de site web</title>
+<style>
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400 700;
+  src: url(__NEWSREADER__) format("woff2");
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 700;
+  src: url(__ARCHIVO__) format("woff2");
+}
+
+:root {
+  --encre: #16211b;
+  --encre-2: #4a5a51;
+  --encre-3: #7c8a82;
+  --vert: #1f5c40;
+  --trait: #d8dcd4;
+  --trait-fort: #b6bdb3;
+  --fond-doux: #f5f6f2;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--encre);
+  font-family: "Archivo", "Segoe UI", system-ui, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
+li { list-style: none; }
+
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 32px 56px;
+}
+
+/* ---------- En-tête ---------- */
+.entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--encre);
+  margin-bottom: 30px;
+}
+.entete .qui .nom {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 17pt;
+  font-weight: 600;
+  line-height: 1.2;
+  display: block;
+}
+.entete .qui .metier {
+  font-size: 8.5pt;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--encre-2);
+  margin-top: 3px;
+  display: block;
+}
+.entete .meta {
+  text-align: right;
+  font-size: 8.5pt;
+  color: var(--encre-2);
+  line-height: 1.7;
+}
+.entete .meta b {
+  display: block;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--encre);
+}
+
+/* ---------- Titre ---------- */
+.titre-doc {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 22pt;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.intro {
+  color: var(--encre-2);
+  max-width: 62ch;
+  margin-bottom: 22px;
+}
+
+/* ---------- Sections ---------- */
+.bloc { margin-bottom: 19px; page-break-inside: avoid; }
+h2 {
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vert);
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--trait);
+  margin-bottom: 14px;
+}
+
+/* ---------- Tableau de prix ---------- */
+table.prix {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+table.prix th {
+  text-align: left;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--encre-3);
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--trait);
+}
+table.prix th.montant, table.prix td.montant { text-align: right; white-space: nowrap; }
+table.prix td {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--trait);
+  vertical-align: top;
+}
+table.prix td .designation { font-weight: 650; }
+table.prix td .detail { color: var(--encre-2); font-size: 9.5pt; }
+table.prix td.montant { font-weight: 650; font-size: 12pt; }
+table.prix td.montant .unite { font-size: 8.5pt; font-weight: 500; color: var(--encre-2); }
+table.prix tr.total td {
+  border-bottom: 0;
+  border-top: 2px solid var(--encre);
+  padding-top: 12px;
+  font-weight: 700;
+}
+table.prix tr.total td.montant { font-size: 14pt; }
+.note-prix {
+  margin-top: 10px;
+  font-size: 9pt;
+  color: var(--encre-3);
+}
+
+/* ---------- Listes ---------- */
+.colonnes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.liste li {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 5px 0;
+  font-size: 10pt;
+}
+.liste li::before {
+  content: "";
+  flex: none;
+  width: 5px;
+  height: 5px;
+  margin-top: 7px;
+  background: var(--vert);
+  border-radius: 50%;
+}
+.encadre {
+  background: var(--fond-doux);
+  border: 1px solid var(--trait);
+  padding: 16px 18px;
+}
+.encadre h3 {
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+
+/* ---------- Étapes ---------- */
+.etapes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.etape .n {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 15pt;
+  color: var(--vert);
+  display: block;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.etape h3 {
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.etape p { font-size: 9pt; color: var(--encre-2); }
+
+/* ---------- Exemple ---------- */
+.exemple-fig { margin: 0; }
+.exemple-fig img {
+  width: 100%;
+  max-width: 455px;
+  display: block;
+  border: 1px solid var(--trait-fort);
+}
+.exemple-fig figcaption {
+  font-size: 9pt;
+  color: var(--encre-3);
+  margin-top: 7px;
+}
+
+/* ---------- Conditions ---------- */
+.conditions li {
+  display: flex;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--trait);
+  font-size: 9.5pt;
+}
+.conditions li:last-child { border-bottom: 0; }
+.conditions li .cle {
+  flex: none;
+  width: 150px;
+  font-weight: 650;
+}
+.conditions li .val { color: var(--encre-2); }
+
+/* ---------- Signature ---------- */
+.signature {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 2px solid var(--encre);
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: flex-start;
+  page-break-inside: avoid;
+}
+.signature .mot {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 11.5pt;
+  max-width: 46ch;
+  color: var(--encre-2);
+}
+.signature .coord { text-align: right; font-size: 9.5pt; line-height: 1.7; }
+.signature .coord .nom-sig {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 13pt;
+  font-weight: 600;
+  color: var(--encre);
+  display: block;
+}
+
+@page { size: A4; margin: 14mm; }
+@media print {
+  .page { max-width: none; padding: 0; margin: 0; }
+  body { font-size: 10pt; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="entete">
+    <span class="qui">
+      <span class="nom">Youssef</span>
+      <span class="metier">Création de sites web · Maroc</span>
+    </span>
+    <span class="meta">
+      <b>Proposition</b>
+      Création d&rsquo;un site web professionnel<br>
+      Valable 30 jours
+    </span>
+  </div>
+
+  <h1 class="titre-doc">Un site web professionnel<br>pour votre activité.</h1>
+  <p class="intro">
+    Un site complet, conçu sur mesure pour votre entreprise — pas un modèle recopié.
+    Vous devenez visible sur Google, crédible auprès de vos clients, et joignable en un clic.
+    Je m&rsquo;occupe de tout : conception, textes, mise en ligne et suivi.
+  </p>
+
+  <div class="bloc">
+    <h2>Tarifs</h2>
+    <table class="prix">
+      <thead>
+        <tr>
+          <th>Prestation</th>
+          <th class="montant">Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="designation">Création du site web</span><br>
+            <span class="detail">Conception, rédaction des textes, intégration et mise en ligne. Paiement unique.</span>
+          </td>
+          <td class="montant">5 000 <span class="unite">DH</span></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="designation">Nom de domaine, hébergement et maintenance</span><br>
+            <span class="detail">Domaine en .com, hébergement, sécurité et modifications courantes. Première année incluse dans la création.</span>
+          </td>
+          <td class="montant">800 <span class="unite">DH / an</span></td>
+        </tr>
+        <tr class="total">
+          <td>À régler pour démarrer <span style="font-weight:400;color:var(--encre-2)">— première année de domaine et d&rsquo;hébergement comprise</span></td>
+          <td class="montant">5 000 <span class="unite">DH</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note-prix">Aucun frais caché. Les 800 DH ne sont dus qu&rsquo;à partir de la deuxième année.</p>
+  </div>
+
+  <div class="bloc">
+    <h2>Ce qui est compris</h2>
+    <div class="colonnes">
+      <div>
+        <h3 style="font-size:9pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Dans la création — 5 000 DH</h3>
+        <ul class="liste">
+          <li>Site vitrine complet et sur mesure, jusqu&rsquo;à 6 sections</li>
+          <li>Affichage parfait sur téléphone, tablette et ordinateur</li>
+          <li>Bouton WhatsApp, appel direct et formulaire de contact</li>
+          <li>Rédaction des textes en français à partir de vos informations</li>
+          <li>Optimisation pour Google : titres, descriptions, vitesse</li>
+          <li>Intégration de vos photos et de votre logo</li>
+          <li>Deux séries de corrections avant la mise en ligne</li>
+          <li>Nom de domaine, hébergement et certificat de sécurité configurés</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:9pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Dans le suivi annuel — 800 DH</h3>
+        <ul class="liste">
+          <li>Renouvellement du nom de domaine en .com</li>
+          <li>Hébergement et certificat de sécurité (SSL)</li>
+          <li>Sauvegardes et mises à jour de sécurité</li>
+          <li>Modifications courantes : horaires, tarifs, photos, produits (jusqu&rsquo;à 6 par an)</li>
+          <li>Assistance par WhatsApp</li>
+          <li>Rappel avant chaque échéance, sans prélèvement automatique</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloc">
+    <h2>Déroulement</h2>
+    <div class="etapes">
+      <div class="etape">
+        <span class="n">1</span>
+        <h3>Échange</h3>
+        <p>Nous parlons de votre activité, de vos clients et de ce que le site doit vous apporter.</p>
+      </div>
+      <div class="etape">
+        <span class="n">2</span>
+        <h3>Conception</h3>
+        <p>Je conçois le design, j&rsquo;écris les textes et je prépare vos photos.</p>
+      </div>
+      <div class="etape">
+        <span class="n">3</span>
+        <h3>Validation</h3>
+        <p>Vous découvrez le site et demandez vos corrections. Deux séries sont incluses.</p>
+      </div>
+      <div class="etape">
+        <span class="n">4</span>
+        <h3>Mise en ligne</h3>
+        <p>Domaine actif, site en ligne, sécurité activée. Je vous remets tous les accès.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloc">
+    <h2>Exemple de réalisation</h2>
+    <figure class="exemple-fig">
+      <img src="__EXEMPLE__" alt="Site réalisé pour JH Sud Travaux, vente de matériel de serre">
+      <figcaption>JH Sud Travaux — vente de matériel de serre, Aït Amira (Souss-Massa). Catalogue produits, demande de devis, bouton WhatsApp et présence sur Google.</figcaption>
+    </figure>
+  </div>
+
+  <div class="bloc">
+    <h2>Conditions</h2>
+    <ul class="conditions">
+      <li><span class="cle">Paiement</span><span class="val">50 % à la commande, 50 % à la mise en ligne.</span></li>
+      <li><span class="cle">Livraison</span><span class="val">La date est fixée ensemble après notre premier échange, selon la taille du site et la réception de vos contenus.</span></li>
+      <li><span class="cle">Propriété</span><span class="val">Le nom de domaine est enregistré à votre nom. Le site vous appartient et tous les accès vous sont remis.</span></li>
+      <li><span class="cle">Contenus</span><span class="val">Vous fournissez vos photos et informations. À défaut, j&rsquo;utilise des visuels professionnels adaptés à votre secteur.</span></li>
+      <li><span class="cle">Sans engagement</span><span class="val">Le suivi annuel peut être arrêté à tout moment ; le site reste votre propriété.</span></li>
+      <li><span class="cle">Validité</span><span class="val">Cette proposition est valable 30 jours à compter de sa réception.</span></li>
+    </ul>
+  </div>
+
+  <div class="signature">
+    <p class="mot">
+      Merci de votre confiance. Pour démarrer, il suffit de me confirmer votre accord —
+      nous fixons ensuite un premier échange de 30 minutes.
+    </p>
+    <span class="coord">
+      <span class="nom-sig">Youssef</span>
+      Création de sites web<br>
+      __CONTACT__
+    </span>
+  </div>
+
+</div>
+</body>
+</html>
