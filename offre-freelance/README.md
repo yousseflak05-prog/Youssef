@@ -24,8 +24,8 @@ Dans `build.mjs` :
 
 Dans `src/index.html` :
 
-- Le nom affiché en haut et dans la signature (« Youssef ») — mettez votre nom
-  complet si vous préférez
+- L'en-tête indique « Création de sites web · Maroc » — ajoutez votre nom ou
+  celui de votre structure si vous le souhaitez
 - Les montants, les conditions de paiement (50 / 50) et la validité (30 jours)
 
 ## Régénérer
