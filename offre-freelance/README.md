@@ -17,15 +17,13 @@ Aucune promesse de délai : la date de livraison est fixée après le premier
 
 ## À personnaliser
 
-Dans `build.mjs` :
+Le document ne contient aucun nom ni coordonnée : ni le vôtre, ni celui du
+client dont le site sert d'exemple (la capture est recadrée sous sa barre de
+navigation). Ajoutez ce que vous voulez dans `src/index.html` :
 
-- `CONTACT` — l'adresse affichée en bas du document (actuellement
-  hlakrakbi@gmail.com ; remplacez par un numéro ou une autre adresse si besoin)
-
-Dans `src/index.html` :
-
-- L'en-tête indique « Création de sites web · Maroc » — ajoutez votre nom ou
-  celui de votre structure si vous le souhaitez
+- L'en-tête indique « Création de sites web · Maroc » — vous pouvez y mettre
+  votre nom ou celui de votre structure
+- Un bloc de contact en bas, si vous souhaitez en afficher un
 - Les montants, les conditions de paiement (50 / 50) et la validité (30 jours)
 
 ## Régénérer
