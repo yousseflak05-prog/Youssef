@@ -309,9 +309,18 @@ section { padding: 96px 0; }
   align-items: end;
 }
 .capture {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   border: 1px solid var(--hairline);
   background: #fff;
   box-shadow: 0 26px 60px -28px rgba(14, 42, 29, 0.45);
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+}
+.capture:hover {
+  transform: translateY(-4px);
+  border-color: var(--or);
+  box-shadow: 0 32px 70px -28px rgba(14, 42, 29, 0.5);
 }
 .capture .barre-nav {
   display: flex;
@@ -320,6 +329,15 @@ section { padding: 96px 0; }
   padding: 10px 14px;
   background: var(--blanc-chaud);
   border-bottom: 1px solid var(--hairline);
+}
+.capture .ouvrir {
+  margin-left: auto;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--or-fonce);
+  white-space: nowrap;
 }
 .capture .barre-nav i {
   width: 9px; height: 9px;
@@ -573,7 +591,7 @@ section { padding: 96px 0; }
       <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
       Pour les entreprises marocaines
     </span>
-    <h1 class="serif">Votre site web professionnel, <em>en ligne en 10 jours.</em></h1>
+    <h1 class="serif">Votre site web professionnel, <em>livré clé en main.</em></h1>
     <p class="sous">
       Un site complet, conçu sur mesure pour votre activité — pas un modèle recopié.
       Vous êtes visible sur Google, crédible auprès de vos clients, et joignable en un clic.
@@ -632,7 +650,7 @@ section { padding: 96px 0; }
           <span class="b-prix">800 DH / an</span>
         </div>
         <ul class="liste">
-          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Renouvellement de votre <b>nom de domaine</b> (.ma ou .com)</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Renouvellement de votre <b>nom de domaine</b> en .com</span></li>
           <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Hébergement rapide</b> et certificat de sécurité (SSL)</span></li>
           <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Sauvegardes</b> et mises à jour de sécurité</span></li>
           <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Vos modifications courantes</b> — horaires, téléphone, tarifs, photos, nouveaux produits (jusqu&rsquo;à 6 demandes par an)</span></li>
@@ -654,21 +672,28 @@ section { padding: 96px 0; }
       <p>JH Sud Travaux, spécialiste du matériel de serre à Aït Amira. Catalogue produits, demande de devis, bouton WhatsApp et présence sur Google — le même niveau de finition que ce que vous recevrez.</p>
     </div>
     <div class="vitrine reveal">
-      <figure class="capture" style="margin:0">
-        <div class="barre-nav">
+      <a class="capture" href="__LIEN_SITE__" target="_blank" rel="noopener">
+        <span class="barre-nav">
           <i></i><i></i><i></i>
-          <span class="url">jhsudtravaux.ma</span>
-        </div>
+          <span class="url">jhsudtravaux.com</span>
+          <span class="ouvrir">Ouvrir ↗</span>
+        </span>
         <img src="__EXEMPLE_DESKTOP__" alt="Page d'accueil du site JH Sud Travaux affichée sur ordinateur">
-      </figure>
-      <figure class="capture mobile" style="margin:0">
-        <div class="barre-nav"><i></i><i></i><i></i><span class="url">sur mobile</span></div>
+      </a>
+      <a class="capture mobile" href="__LIEN_SITE__" target="_blank" rel="noopener">
+        <span class="barre-nav"><i></i><i></i><i></i><span class="url">sur mobile</span></span>
         <img src="__EXEMPLE_MOBILE__" alt="Le même site affiché sur téléphone">
-      </figure>
+      </a>
     </div>
     <p class="legende-exemple">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>
       Site réalisé par Atlas · Souss-Massa · mis en ligne avec nom de domaine, formulaire de devis et fiche Google
+    </p>
+    <p class="reveal" style="margin-top:26px">
+      <a class="btn btn-or" href="__LIEN_SITE__" target="_blank" rel="noopener">
+        Voir le site en entier
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7"/><path d="M13 3L4 12"/></svg>
+      </a>
     </p>
   </div>
 </section>
@@ -705,7 +730,7 @@ section { padding: 96px 0; }
     </div>
 
     <div class="bandeau-delai reveal">
-      <p class="d-texte">&laquo; Comptez 7 à 10 jours ouvrables entre notre premier échange et votre site en ligne. &raquo;</p>
+      <p class="d-texte">&laquo; Chaque site est conçu sur mesure : la date de livraison est fixée ensemble après le premier échange. &raquo;</p>
       <p class="d-modalites">
         <b>Modalités de paiement</b><br>
         50 % à la commande · 50 % à la mise en ligne
@@ -755,18 +780,17 @@ section { padding: 96px 0; }
   <div class="wrap">
     <span class="eyebrow reveal">
       <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
-      Prochaine étape
+      Voir par vous-même
     </span>
-    <h2 class="serif reveal">Un message, <em>et on démarre.</em></h2>
-    <p class="sous reveal">Envoyez-nous le nom de votre entreprise et votre activité — nous vous répondons en moins de 2 heures, du lundi au samedi.</p>
+    <h2 class="serif reveal">Le meilleur argument, <em>c&rsquo;est le site lui-même.</em></h2>
+    <p class="sous reveal">Ouvrez la réalisation livrée pour JH Sud Travaux — sur ordinateur comme sur téléphone. C&rsquo;est ce niveau de finition que vous recevrez.</p>
     <div class="reveal">
-      <a class="btn btn-wa" href="https://wa.me/212717332125?text=Bonjour%20Atlas%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%27offre%20site%20web%20%C3%A0%205%20000%20DH." target="_blank" rel="noopener">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5c0-.1-.5-1.4-.7-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
-        Démarrer mon site
+      <a class="btn btn-or" href="__LIEN_SITE__" target="_blank" rel="noopener">
+        Ouvrir le site
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7"/><path d="M13 3L4 12"/></svg>
       </a>
     </div>
-    <p class="num-tel reveal">07 17 33 21 25</p>
-    <p class="horaires reveal">Lundi – Samedi · 9h – 19h · Réponse sous 2h</p>
+    <p class="num-tel reveal" style="font-size:19px">jhsudtravaux.com</p>
   </div>
 </section>
 

@@ -3,7 +3,11 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 const dataURI = (path, mime) =>
   `data:${mime};base64,${readFileSync(path).toString("base64")}`;
 
+// Lien vers la réalisation montrée en exemple.
+const LIEN_SITE = "https://jhsudtravaux.com";
+
 const body = readFileSync("src/index.html", "utf8")
+  .replaceAll("__LIEN_SITE__", LIEN_SITE)
   .replace("__NEWSREADER_ROMAN__", dataURI("assets/newsreader-roman-latin.woff2", "font/woff2"))
   .replace("__NEWSREADER_ITALIC__", dataURI("assets/newsreader-italic-latin.woff2", "font/woff2"))
   .replace("__ARCHIVO__", dataURI("assets/archivo-latin.woff2", "font/woff2"))
