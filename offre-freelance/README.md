@@ -17,9 +17,9 @@ Aucune promesse de délai : la date de livraison est fixée après le premier
 
 ## À personnaliser
 
-Le document ne contient aucun nom ni coordonnée : ni le vôtre, ni celui du
-client dont le site sert d'exemple (la capture est recadrée sous sa barre de
-navigation). Ajoutez ce que vous voulez dans `src/index.html` :
+Le document ne contient aucun nom ni coordonnée vous concernant. L'exemple de
+réalisation, lui, est nominatif (JH Sud Travaux). Ajoutez ce que vous voulez
+dans `src/index.html` :
 
 - L'en-tête indique « Création de sites web · Maroc » — vous pouvez y mettre
   votre nom ou celui de votre structure
