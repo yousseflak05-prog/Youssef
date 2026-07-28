@@ -1,0 +1,794 @@
+<title>Atlas — Offre Site Web Professionnel</title>
+<style>
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(__NEWSREADER_ROMAN__) format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(__NEWSREADER_ITALIC__) format("woff2");
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(__ARCHIVO__) format("woff2");
+}
+
+:root {
+  --ivoire: #f4f2ea;
+  --ivoire-2: #ece9dd;
+  --pin: #0e2a1d;
+  --pin-3: #1b4530;
+  --encre: #1a2b21;
+  --encre-2: #54665a;
+  --encre-3: #7e8e82;
+  --or: #c2a05c;
+  --or-clair: #d5b876;
+  --or-fonce: #94722c;
+  --blanc-chaud: #faf9f4;
+  --sur-pin: #ede9dc;
+  --sur-pin-2: #a9baab;
+  --hairline: rgba(26, 43, 33, 0.14);
+  --hairline-inverse: rgba(237, 233, 220, 0.18);
+  --wa: #128c4b;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--ivoire);
+  color: var(--encre);
+  font-family: "Archivo", "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, p, ul, li { margin: 0; padding: 0; }
+li { list-style: none; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.serif { font-family: "Newsreader", Georgia, serif; font-weight: 500; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--or-fonce);
+}
+.sombre .eyebrow { color: var(--or); }
+
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--or); outline-offset: 3px; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+.sombre { background: var(--pin); color: var(--sur-pin); }
+section { padding: 96px 0; }
+
+.sec-head { max-width: 620px; margin-bottom: 56px; }
+.sec-head h2 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(30px, 4.4vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 16px 0 16px;
+}
+.sec-head h2 em { font-style: italic; color: var(--or-fonce); }
+.sombre .sec-head h2 em { color: var(--or); }
+.sec-head p { color: var(--encre-2); font-size: 17px; }
+.sombre .sec-head p { color: var(--sur-pin-2); }
+
+/* ---------- En-tête ---------- */
+.entete {
+  border-bottom: 1px solid var(--hairline-inverse);
+}
+.entete .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+.marque { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.marque .nom {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 23px;
+}
+.entete .ref {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+  text-align: right;
+}
+
+/* ---------- Hero ---------- */
+.hero { padding: 96px 0 104px; }
+.hero h1 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(40px, 7vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  max-width: 16ch;
+  margin: 22px 0 26px;
+}
+.hero h1 em { font-style: italic; color: var(--or); }
+.hero .sous {
+  color: var(--sur-pin-2);
+  font-size: clamp(16px, 2vw, 19px);
+  max-width: 52ch;
+  margin-bottom: 44px;
+}
+
+.prix-duo {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 18px;
+  max-width: 820px;
+}
+.prix-carte {
+  border: 1px solid var(--hairline-inverse);
+  padding: 30px 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.prix-carte.principale {
+  background: rgba(194, 160, 92, 0.1);
+  border-color: var(--or);
+}
+.prix-carte .etiquette {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+  margin-bottom: 8px;
+}
+.prix-carte.principale .etiquette { color: var(--or); }
+.prix-carte .montant {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(46px, 6.5vw, 66px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--sur-pin);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.prix-carte.principale .montant { color: #fff; }
+.prix-carte .montant .devise {
+  font-size: 0.35em;
+  font-weight: 600;
+  font-family: "Archivo", sans-serif;
+  letter-spacing: 0.06em;
+  color: var(--or);
+}
+.prix-carte .montant .par {
+  font-size: 0.28em;
+  font-family: "Archivo", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--sur-pin-2);
+}
+.prix-carte .precision {
+  font-size: 14px;
+  color: var(--sur-pin-2);
+  margin-top: 6px;
+}
+.prix-carte .precision b { color: var(--sur-pin); font-weight: 600; }
+
+.hero .rappel {
+  margin-top: 26px;
+  font-size: 14px;
+  color: var(--sur-pin-2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero .rappel .pastille {
+  width: 6px; height: 6px;
+  background: var(--or);
+  border-radius: 50%;
+  flex: none;
+}
+
+/* ---------- Boutons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.btn-wa { background: var(--wa); color: #fff; }
+.btn-wa:hover { background: #17a35a; }
+.btn-or { background: var(--or); color: var(--pin); }
+.btn-or:hover { background: var(--or-clair); }
+
+/* ---------- Listes d'inclusions ---------- */
+.deux-colonnes {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.bloc {
+  background: var(--blanc-chaud);
+  border: 1px solid var(--hairline);
+  padding: 36px 34px 34px;
+}
+.bloc.accent { background: var(--pin); color: var(--sur-pin); border-color: var(--pin); }
+.bloc .b-tete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--hairline);
+  flex-wrap: wrap;
+}
+.bloc.accent .b-tete { border-bottom-color: var(--hairline-inverse); }
+.bloc h3 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+}
+.bloc .b-prix {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--or-fonce);
+  white-space: nowrap;
+}
+.bloc.accent .b-prix { color: var(--or); }
+.liste { display: flex; flex-direction: column; gap: 15px; }
+.liste li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+.liste li .coche { flex: none; margin-top: 3px; color: var(--or-fonce); }
+.bloc.accent .liste li .coche { color: var(--or); }
+.liste li b { font-weight: 650; }
+.bloc.accent .liste li { color: var(--sur-pin); }
+.bloc .b-pied {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--hairline);
+  font-size: 13.5px;
+  color: var(--encre-3);
+}
+.bloc.accent .b-pied { border-top-color: var(--hairline-inverse); color: var(--sur-pin-2); }
+
+/* ---------- Exemple ---------- */
+.exemple { background: var(--ivoire-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.vitrine {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 258px;
+  gap: 22px;
+  align-items: end;
+}
+.capture {
+  border: 1px solid var(--hairline);
+  background: #fff;
+  box-shadow: 0 26px 60px -28px rgba(14, 42, 29, 0.45);
+}
+.capture .barre-nav {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: var(--blanc-chaud);
+  border-bottom: 1px solid var(--hairline);
+}
+.capture .barre-nav i {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--hairline);
+  display: block;
+}
+.capture .barre-nav .url {
+  margin-left: 10px;
+  font-size: 11.5px;
+  color: var(--encre-3);
+  letter-spacing: 0.02em;
+}
+.capture img { width: 100%; }
+.legende-exemple {
+  margin-top: 26px;
+  font-size: 13.5px;
+  color: var(--encre-3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Étapes ---------- */
+.etapes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+.etape { position: relative; padding-top: 24px; }
+.etape::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: -34px;
+  height: 1px;
+  background: var(--hairline);
+}
+.etape:last-child::before { right: 0; }
+.etape::after {
+  content: "";
+  position: absolute;
+  top: -3.5px; left: 0;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--or);
+}
+.etape .num {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 34px;
+  color: var(--or-fonce);
+  line-height: 1;
+  display: block;
+  margin-bottom: 12px;
+}
+.etape h3 {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+.etape p { font-size: 14.5px; color: var(--encre-2); }
+
+.bandeau-delai {
+  margin-top: 56px;
+  padding: 26px 32px;
+  background: var(--blanc-chaud);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--or);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.bandeau-delai .d-texte {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 21px;
+  max-width: 46ch;
+}
+.bandeau-delai .d-modalites {
+  font-size: 14px;
+  color: var(--encre-2);
+  text-align: right;
+}
+.bandeau-delai .d-modalites b { color: var(--encre); font-weight: 650; }
+
+/* ---------- FAQ ---------- */
+.faq-liste details { border-bottom: 1px solid var(--hairline); }
+.faq-liste details:first-of-type { border-top: 1px solid var(--hairline); }
+.faq-liste summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 21px 4px;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+.faq-liste summary::-webkit-details-marker { display: none; }
+.faq-liste summary .puce {
+  flex: none;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  color: var(--or-fonce);
+  transition: transform 200ms ease;
+}
+.faq-liste details[open] summary .puce { transform: rotate(45deg); }
+.faq-liste details p {
+  padding: 0 4px 22px;
+  color: var(--encre-2);
+  font-size: 15px;
+  max-width: 62ch;
+}
+.sombre .faq-liste details,
+.sombre .faq-liste details:first-of-type { border-color: var(--hairline-inverse); }
+.sombre .faq-liste summary { color: var(--sur-pin); }
+.sombre .faq-liste summary .puce { color: var(--or); }
+.sombre .faq-liste details p { color: var(--sur-pin-2); }
+
+/* ---------- CTA ---------- */
+.cta { text-align: center; padding: 110px 0 100px; }
+.cta h2 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(32px, 5.4vw, 58px);
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  text-wrap: balance;
+  max-width: 17ch;
+  margin: 18px auto 16px;
+}
+.cta h2 em { font-style: italic; color: var(--or); }
+.cta .sous { color: var(--sur-pin-2); max-width: 46ch; margin: 0 auto 40px; font-size: 17px; }
+.cta .num-tel {
+  margin-top: 30px;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 26px;
+  color: var(--sur-pin);
+}
+.cta .horaires {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+}
+
+/* ---------- Pied ---------- */
+.pied {
+  border-top: 1px solid var(--hairline-inverse);
+  padding: 22px 24px;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--sur-pin-2);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  section { padding: 72px 0; }
+  .prix-duo { grid-template-columns: 1fr; }
+  .deux-colonnes { grid-template-columns: 1fr; }
+  .etapes { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .etape::before { right: -28px; }
+  .etape:nth-child(2n)::before { right: 0; }
+  .vitrine { grid-template-columns: 1fr; }
+  .vitrine .mobile { max-width: 210px; }
+  .bandeau-delai .d-modalites { text-align: left; }
+}
+@media (max-width: 560px) {
+  .hero { padding: 64px 0 76px; }
+  .etapes { grid-template-columns: 1fr; }
+  .etape::before { right: 0; }
+  .bloc { padding: 28px 22px 26px; }
+  .entete .ref { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+@media print {
+  /* On redéfinit les jetons : les fonds sombres deviennent blancs,
+     les textes clairs deviennent encre. Tout le reste suit la cascade. */
+  :root {
+    --pin: #ffffff;
+    --sur-pin: #1a2b21;
+    --sur-pin-2: #54665a;
+    --or: #94722c;
+    --hairline-inverse: rgba(26, 43, 33, 0.18);
+    --blanc-chaud: #ffffff;
+    --ivoire: #ffffff;
+    --ivoire-2: #ffffff;
+  }
+  @page { margin: 12mm; }
+  body { background: #fff; font-size: 11pt; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  section, .hero { padding: 22px 0 !important; }
+  .wrap { padding: 0; max-width: none; }
+  .sec-head { margin-bottom: 24px; }
+  .entete .wrap { padding: 0 0 12px; }
+  .entete { border-bottom: 1px solid var(--hairline-inverse); }
+  .hero h1 { font-size: 30pt; margin: 10px 0 12px; }
+  .sec-head h2 { font-size: 20pt; margin: 8px 0 10px; }
+  .hero .sous { margin-bottom: 20px; }
+  .prix-carte { border: 1px solid #c9cdbd !important; padding: 16px 20px; }
+  .prix-carte.principale { background: #f6f2e6 !important; border-color: #94722c !important; }
+  .prix-carte .montant, .prix-carte.principale .montant { font-size: 30pt; color: #0e2a1d; }
+  .prix-carte .montant .devise { color: #94722c; }
+  .prix-carte .precision b { color: #0e2a1d; }
+  .bloc { border: 1px solid #c9cdbd !important; padding: 20px 22px; }
+  .bloc.accent { background: #f7f7f1 !important; border-color: #c9cdbd !important; }
+  .capture { box-shadow: none; border: 1px solid #c9cdbd; }
+  .btn { border: 1px solid #0e2a1d; color: #0e2a1d !important; background: #fff !important; }
+  .btn-wa svg { display: none; }
+  .cta { padding: 24px 0 10px !important; }
+  .cta .num-tel { font-size: 20pt; }
+  /* Éviter les coupures au milieu d'un bloc, sans forcer de saut de page */
+  .prix-carte, .bloc, .etape, .vitrine, .bandeau-delai, .faq-liste details { page-break-inside: avoid; }
+  .exemple, .cta { page-break-inside: auto; }
+}
+</style>
+
+<!-- ============ EN-TÊTE ============ -->
+<div class="sombre entete">
+  <div class="wrap">
+    <span class="marque">
+      <svg width="30" height="30" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <polygon points="50,12 88,84 12,84" stroke="currentColor" stroke-width="5" stroke-linejoin="round"></polygon>
+        <polyline points="50,12 36,54 50,44 64,64" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" fill="none"></polyline>
+        <line x1="36" y1="54" x2="12" y2="84" stroke="currentColor" stroke-width="3.5"></line>
+        <polygon points="50,9 43,23 47,21 46,30 53,15 57,18" fill="#c2a05c"></polygon>
+        <line x1="50" y1="1" x2="50" y2="6" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+        <line x1="59" y1="4" x2="57" y2="8" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+        <line x1="41" y1="4" x2="43" y2="8" stroke="#c2a05c" stroke-width="2.5" stroke-linecap="round"></line>
+      </svg>
+      <span class="nom">Atlas</span>
+    </span>
+    <span class="ref">Offre commerciale · Site web professionnel</span>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="sombre hero">
+  <div class="wrap">
+    <span class="eyebrow">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+      Pour les entreprises marocaines
+    </span>
+    <h1 class="serif">Votre site web professionnel, <em>en ligne en 10 jours.</em></h1>
+    <p class="sous">
+      Un site complet, conçu sur mesure pour votre activité — pas un modèle recopié.
+      Vous êtes visible sur Google, crédible auprès de vos clients, et joignable en un clic.
+    </p>
+
+    <div class="prix-duo">
+      <div class="prix-carte principale">
+        <span class="etiquette">Création du site</span>
+        <span class="montant">5 000 <span class="devise">DH</span></span>
+        <span class="precision"><b>Paiement unique.</b> Conception, rédaction, mise en ligne — et le site vous appartient.</span>
+      </div>
+      <div class="prix-carte">
+        <span class="etiquette">Domaine &amp; maintenance</span>
+        <span class="montant">800 <span class="devise">DH</span> <span class="par">/ an</span></span>
+        <span class="precision"><b>1ʳᵉ année incluse.</b> Nom de domaine, hébergement, sécurité et modifications.</span>
+      </div>
+    </div>
+
+    <p class="rappel">
+      <span class="pastille"></span> Aucun frais caché · <span class="pastille"></span> Le domaine est enregistré à votre nom · <span class="pastille"></span> Sans engagement de durée
+    </p>
+  </div>
+</header>
+
+<!-- ============ CE QUI EST INCLUS ============ -->
+<section id="inclus">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Le détail</span>
+      <h2 class="serif">Ce que vous recevez, <em>précisément.</em></h2>
+      <p>Tout est compris dans le prix annoncé. Ce qui n&rsquo;est pas dans cette liste ne vous sera pas facturé en cours de route.</p>
+    </div>
+
+    <div class="deux-colonnes">
+      <div class="bloc reveal">
+        <div class="b-tete">
+          <h3>La création du site</h3>
+          <span class="b-prix">5 000 DH · une fois</span>
+        </div>
+        <ul class="liste">
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Un site vitrine complet et sur mesure</b> — jusqu&rsquo;à 6 sections : accueil, produits ou services, à propos, méthode, questions fréquentes, contact.</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Parfait sur téléphone</b> — la majorité de vos visiteurs vous découvriront depuis leur mobile.</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Bouton WhatsApp, appel direct et formulaire de contact</b> — un client vous joint en un seul geste.</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Rédaction des textes en français</b> — à partir de vos informations, dans un langage clair pour vos clients.</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Optimisation pour Google</b> — titres, descriptions, données structurées et vitesse de chargement soignée.</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Intégration de vos photos et de votre logo</b> — ou de visuels professionnels adaptés à votre secteur.</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Deux séries de corrections</b> avant la mise en ligne, incluses.</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Mise en ligne complète</b> — domaine réservé, hébergement configuré, certificat de sécurité activé.</span></li>
+        </ul>
+        <p class="b-pied">Le site et le nom de domaine vous appartiennent dès la livraison.</p>
+      </div>
+
+      <div class="bloc accent reveal">
+        <div class="b-tete">
+          <h3>Le suivi annuel</h3>
+          <span class="b-prix">800 DH / an</span>
+        </div>
+        <ul class="liste">
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Renouvellement de votre <b>nom de domaine</b> (.ma ou .com)</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Hébergement rapide</b> et certificat de sécurité (SSL)</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Sauvegardes</b> et mises à jour de sécurité</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Vos modifications courantes</b> — horaires, téléphone, tarifs, photos, nouveaux produits (jusqu&rsquo;à 6 demandes par an)</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span><b>Support WhatsApp</b> — vous écrivez, on s&rsquo;occupe du reste</span></li>
+          <li><svg class="coche" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Un <b>rappel avant chaque échéance</b>, jamais de prélèvement surprise</span></li>
+        </ul>
+        <p class="b-pied">Première année incluse dans la création. Facturé à partir de la deuxième année.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXEMPLE ============ -->
+<section class="exemple" id="exemple">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Réalisation</span>
+      <h2 class="serif">Un site livré par Atlas, <em>en conditions réelles.</em></h2>
+      <p>JH Sud Travaux, spécialiste du matériel de serre à Aït Amira. Catalogue produits, demande de devis, bouton WhatsApp et présence sur Google — le même niveau de finition que ce que vous recevrez.</p>
+    </div>
+    <div class="vitrine reveal">
+      <figure class="capture" style="margin:0">
+        <div class="barre-nav">
+          <i></i><i></i><i></i>
+          <span class="url">jhsudtravaux.ma</span>
+        </div>
+        <img src="__EXEMPLE_DESKTOP__" alt="Page d'accueil du site JH Sud Travaux affichée sur ordinateur">
+      </figure>
+      <figure class="capture mobile" style="margin:0">
+        <div class="barre-nav"><i></i><i></i><i></i><span class="url">sur mobile</span></div>
+        <img src="__EXEMPLE_MOBILE__" alt="Le même site affiché sur téléphone">
+      </figure>
+    </div>
+    <p class="legende-exemple">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>
+      Site réalisé par Atlas · Souss-Massa · mis en ligne avec nom de domaine, formulaire de devis et fiche Google
+    </p>
+  </div>
+</section>
+
+<!-- ============ DÉROULÉ ============ -->
+<section id="deroule">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Comment ça se passe</span>
+      <h2 class="serif">Quatre étapes, <em>et vous êtes en ligne.</em></h2>
+      <p>Vous n&rsquo;avez rien de technique à gérer. Votre seul travail : nous parler de votre activité et valider.</p>
+    </div>
+    <div class="etapes">
+      <div class="etape reveal">
+        <span class="num">01</span>
+        <h3>Échange</h3>
+        <p>30 minutes sur WhatsApp ou en visio. On comprend votre métier, vos clients et ce que le site doit provoquer.</p>
+      </div>
+      <div class="etape reveal">
+        <span class="num">02</span>
+        <h3>Conception</h3>
+        <p>On conçoit le design, on rédige les textes et on prépare vos photos. Vous n&rsquo;écrivez rien.</p>
+      </div>
+      <div class="etape reveal">
+        <span class="num">03</span>
+        <h3>Validation</h3>
+        <p>Vous découvrez le site, vous demandez vos corrections. Deux séries d&rsquo;ajustements sont incluses.</p>
+      </div>
+      <div class="etape reveal">
+        <span class="num">04</span>
+        <h3>Mise en ligne</h3>
+        <p>Domaine actif, site en ligne, sécurité activée. On vous remet vos accès et on vous explique l&rsquo;essentiel.</p>
+      </div>
+    </div>
+
+    <div class="bandeau-delai reveal">
+      <p class="d-texte">&laquo; Comptez 7 à 10 jours ouvrables entre notre premier échange et votre site en ligne. &raquo;</p>
+      <p class="d-modalites">
+        <b>Modalités de paiement</b><br>
+        50 % à la commande · 50 % à la mise en ligne
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sombre" id="questions" style="border-top:1px solid var(--hairline)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Vos questions</span>
+      <h2 class="serif">Ce qu&rsquo;on nous demande <em>avant de signer.</em></h2>
+    </div>
+    <div class="faq-liste reveal" style="border-color:var(--hairline-inverse)">
+      <details>
+        <summary>J&rsquo;ai déjà une page Facebook ou Instagram — pourquoi un site&nbsp;? <span class="puce">+</span></summary>
+        <p>Parce qu&rsquo;un réseau social ne vous appartient pas : un compte peut être bloqué du jour au lendemain, et vos publications disparaissent du fil en quelques heures. Un site reste, il apparaît sur Google quand quelqu&rsquo;un cherche votre métier dans votre ville, et il rassure les clients sérieux — surtout les professionnels et les administrations qui vérifient avant de vous contacter.</p>
+      </details>
+      <details>
+        <summary>Le site m&rsquo;appartient-il vraiment&nbsp;? <span class="puce">+</span></summary>
+        <p>Oui. Le nom de domaine est enregistré à votre nom et à celui de votre entreprise, et vous recevez tous les accès à la livraison. Vous n&rsquo;êtes prisonnier de personne.</p>
+      </details>
+      <details>
+        <summary>Qui écrit les textes et fournit les photos&nbsp;? <span class="puce">+</span></summary>
+        <p>Atlas rédige l&rsquo;intégralité des textes à partir de ce que vous nous racontez lors du premier échange. Pour les images, vos propres photos sont toujours préférables ; si vous n&rsquo;en avez pas assez, nous utilisons des visuels professionnels adaptés à votre secteur.</p>
+      </details>
+      <details>
+        <summary>Et si je veux modifier quelque chose dans six mois&nbsp;? <span class="puce">+</span></summary>
+        <p>Les modifications courantes — horaires, numéro, tarifs, photos, nouveaux produits — sont comprises dans le suivi annuel. Vous envoyez un message WhatsApp, on s&rsquo;en occupe. Seule une refonte complète ou l&rsquo;ajout d&rsquo;une fonctionnalité majeure ferait l&rsquo;objet d&rsquo;un devis séparé, toujours annoncé à l&rsquo;avance.</p>
+      </details>
+      <details>
+        <summary>Que se passe-t-il si je ne renouvelle pas les 800 DH&nbsp;? <span class="puce">+</span></summary>
+        <p>Le site reste votre propriété, mais le nom de domaine et l&rsquo;hébergement expirent : il n&rsquo;est plus accessible en ligne. Nous vous prévenons un mois avant l&rsquo;échéance, et vous pouvez reprendre le suivi à tout moment.</p>
+      </details>
+      <details>
+        <summary>Y a-t-il d&rsquo;autres frais&nbsp;? <span class="puce">+</span></summary>
+        <p>Non. 5 000 DH pour la création, puis 800 DH par an à partir de la deuxième année. Le domaine, l&rsquo;hébergement, le certificat de sécurité et les modifications courantes sont compris dans ces montants.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sombre cta" id="contact" style="border-top:1px solid var(--hairline-inverse)">
+  <div class="wrap">
+    <span class="eyebrow reveal">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.3 3.3L10.2 1.8 8.7 4.7 12 6 8.7 7.3l1.5 2.9-2.9-1.5L6 12 4.7 8.7 1.8 10.2l1.5-2.9L0 6l3.3-1.3L1.8 1.8l2.9 1.5z"/></svg>
+      Prochaine étape
+    </span>
+    <h2 class="serif reveal">Un message, <em>et on démarre.</em></h2>
+    <p class="sous reveal">Envoyez-nous le nom de votre entreprise et votre activité — nous vous répondons en moins de 2 heures, du lundi au samedi.</p>
+    <div class="reveal">
+      <a class="btn btn-wa" href="https://wa.me/212717332125?text=Bonjour%20Atlas%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%27offre%20site%20web%20%C3%A0%205%20000%20DH." target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5c0-.1-.5-1.4-.7-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+        Démarrer mon site
+      </a>
+    </div>
+    <p class="num-tel reveal">07 17 33 21 25</p>
+    <p class="horaires reveal">Lundi – Samedi · 9h – 19h · Réponse sous 2h</p>
+  </div>
+</section>
+
+<div class="sombre pied">Atlas · Agence de marketing digital · Maroc — Offre valable pour toute commande passée dans les 30 jours suivant sa réception.</div>
+
+<script>
+(function () {
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var items = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+  // À l'impression : ouvrir toutes les questions
+  window.addEventListener("beforeprint", function () {
+    document.querySelectorAll(".faq-liste details").forEach(function (d) { d.open = true; });
+  });
+})();
+</script>
