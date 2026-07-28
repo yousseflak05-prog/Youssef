@@ -310,6 +310,11 @@ section { padding: 96px 0; }
 }
 .capture {
   display: block;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
   text-decoration: none;
   color: inherit;
   border: 1px solid var(--hairline);
@@ -360,6 +365,72 @@ section { padding: 96px 0; }
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+/* ---------- Fenêtre du site livré ---------- */
+.modal-site {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  flex-direction: column;
+  background: rgba(10, 26, 18, 0.78);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+}
+.modal-site.ouvert { display: flex; }
+.modal-site .cadre {
+  margin: auto;
+  width: min(1240px, 100%);
+  height: min(880px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--or);
+  box-shadow: 0 40px 110px -30px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+}
+.modal-site .tete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 16px;
+  background: var(--pin);
+  color: var(--sur-pin);
+  flex: none;
+}
+.modal-site .tete .titre {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+}
+.modal-site .tete .mention {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sur-pin-2);
+}
+.modal-site .fermer {
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(237, 233, 220, 0.4);
+  color: var(--sur-pin);
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.modal-site .fermer:hover { border-color: var(--or); color: var(--or); }
+.modal-site iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+@media (max-width: 620px) {
+  .modal-site { padding: 0; }
+  .modal-site .cadre { height: 100%; border: 0; }
+  .modal-site .tete .mention { display: none; }
 }
 
 /* ---------- Étapes ---------- */
@@ -556,7 +627,10 @@ section { padding: 96px 0; }
   .bloc.accent { background: #f7f7f1 !important; border-color: #c9cdbd !important; }
   .capture { box-shadow: none; border: 1px solid #c9cdbd; }
   .btn { border: 1px solid #0e2a1d; color: #0e2a1d !important; background: #fff !important; }
-  .btn-wa svg { display: none; }
+  /* Rien de cliquable sur papier : on masque les commandes d'ouverture */
+  .btn[data-ouvrir-site], .capture .ouvrir, .cta .num-tel { display: none; }
+  .modal-site { display: none !important; }
+  .capture { cursor: default; }
   .cta { padding: 24px 0 10px !important; }
   .cta .num-tel { font-size: 20pt; }
   /* Éviter les coupures au milieu d'un bloc, sans forcer de saut de page */
@@ -672,28 +746,28 @@ section { padding: 96px 0; }
       <p>JH Sud Travaux, spécialiste du matériel de serre à Aït Amira. Catalogue produits, demande de devis, bouton WhatsApp et présence sur Google — le même niveau de finition que ce que vous recevrez.</p>
     </div>
     <div class="vitrine reveal">
-      <a class="capture" href="__LIEN_SITE__" target="_blank" rel="noopener">
+      <button class="capture" type="button" data-ouvrir-site>
         <span class="barre-nav">
           <i></i><i></i><i></i>
           <span class="url">jhsudtravaux.com</span>
           <span class="ouvrir">Ouvrir ↗</span>
         </span>
         <img src="__EXEMPLE_DESKTOP__" alt="Page d'accueil du site JH Sud Travaux affichée sur ordinateur">
-      </a>
-      <a class="capture mobile" href="__LIEN_SITE__" target="_blank" rel="noopener">
+      </button>
+      <button class="capture mobile" type="button" data-ouvrir-site>
         <span class="barre-nav"><i></i><i></i><i></i><span class="url">sur mobile</span></span>
         <img src="__EXEMPLE_MOBILE__" alt="Le même site affiché sur téléphone">
-      </a>
+      </button>
     </div>
     <p class="legende-exemple">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>
       Site réalisé par Atlas · Souss-Massa · mis en ligne avec nom de domaine, formulaire de devis et fiche Google
     </p>
     <p class="reveal" style="margin-top:26px">
-      <a class="btn btn-or" href="__LIEN_SITE__" target="_blank" rel="noopener">
+      <button class="btn btn-or" type="button" data-ouvrir-site>
         Voir le site en entier
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7"/><path d="M13 3L4 12"/></svg>
-      </a>
+      </button>
     </p>
   </div>
 </section>
@@ -785,16 +859,29 @@ section { padding: 96px 0; }
     <h2 class="serif reveal">Le meilleur argument, <em>c&rsquo;est le site lui-même.</em></h2>
     <p class="sous reveal">Ouvrez la réalisation livrée pour JH Sud Travaux — sur ordinateur comme sur téléphone. C&rsquo;est ce niveau de finition que vous recevrez.</p>
     <div class="reveal">
-      <a class="btn btn-or" href="__LIEN_SITE__" target="_blank" rel="noopener">
+      <button class="btn btn-or" type="button" data-ouvrir-site>
         Ouvrir le site
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7"/><path d="M13 3L4 12"/></svg>
-      </a>
+      </button>
     </div>
-    <p class="num-tel reveal" style="font-size:19px">jhsudtravaux.com</p>
+    <p class="num-tel reveal" style="font-size:17px">Le site s&rsquo;ouvre ici même, en taille réelle.</p>
   </div>
 </section>
 
 <div class="sombre pied">Atlas · Agence de marketing digital · Maroc — Offre valable pour toute commande passée dans les 30 jours suivant sa réception.</div>
+
+<!-- Fenêtre d'ouverture du site livré -->
+<div class="modal-site" id="fenetre-site" role="dialog" aria-modal="true" aria-label="Site livré : JH Sud Travaux">
+  <div class="cadre">
+    <div class="tete">
+      <span class="titre">JH Sud Travaux</span>
+      <span class="mention">Site livré par Atlas</span>
+      <button type="button" class="fermer" id="fermer-site">Fermer ✕</button>
+    </div>
+    <iframe id="cadre-site" title="Site JH Sud Travaux"></iframe>
+  </div>
+</div>
+<template id="source-site">__SITE_EXEMPLE__</template>
 
 <script>
 (function () {
@@ -810,6 +897,36 @@ section { padding: 96px 0; }
     }, { threshold: 0.12 });
     items.forEach(function (el) { io.observe(el); });
   }
+  // Ouverture du site livré, chargé dans une iframe au premier clic
+  var fenetre = document.getElementById("fenetre-site");
+  var btnFermer = document.getElementById("fermer-site");
+  var siteCharge = false;
+
+  function ouvrirSite() {
+    fenetre.classList.add("ouvert");
+    document.body.style.overflow = "hidden";
+    if (!siteCharge) {
+      siteCharge = true;
+      var doc = document.getElementById("cadre-site").contentDocument;
+      doc.open();
+      doc.write(document.getElementById("source-site").innerHTML);
+      doc.close();
+    }
+    btnFermer.focus();
+  }
+  function fermerSite() {
+    fenetre.classList.remove("ouvert");
+    document.body.style.overflow = "";
+  }
+  document.querySelectorAll("[data-ouvrir-site]").forEach(function (b) {
+    b.addEventListener("click", ouvrirSite);
+  });
+  btnFermer.addEventListener("click", fermerSite);
+  fenetre.addEventListener("click", function (e) { if (e.target === fenetre) fermerSite(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && fenetre.classList.contains("ouvert")) fermerSite();
+  });
+
   // À l'impression : ouvrir toutes les questions
   window.addEventListener("beforeprint", function () {
     document.querySelectorAll(".faq-liste details").forEach(function (d) { d.open = true; });
