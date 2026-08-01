@@ -1,0 +1,138 @@
+// Schéma de données de l'ERP Registre
+// Toutes les valeurs monétaires sont en Decimal(12,2) pour éviter les erreurs
+// d'arrondi propres aux flottants.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique @db.VarChar(60)
+  passwordHash String   @map("password_hash") @db.VarChar(255)
+  role         String   @default("admin") @db.VarChar(20)
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("users")
+}
+
+model Client {
+  id        Int      @id @default(autoincrement())
+  nom       String   @db.VarChar(150)
+  telephone String?  @db.VarChar(30)
+  email     String?  @db.VarChar(150)
+  adresse   String?  @db.Text
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  ventes Vente[]
+
+  @@index([nom])
+  @@map("clients")
+}
+
+model Fournisseur {
+  id        Int      @id @default(autoincrement())
+  nom       String   @db.VarChar(150)
+  telephone String?  @db.VarChar(30)
+  email     String?  @db.VarChar(150)
+  adresse   String?  @db.Text
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  achats Achat[]
+
+  @@index([nom])
+  @@map("fournisseurs")
+}
+
+model Produit {
+  id        Int      @id @default(autoincrement())
+  nom       String   @db.VarChar(150)
+  categorie String?  @db.VarChar(80)
+  prixAchat Decimal  @default(0) @map("prix_achat") @db.Decimal(12, 2)
+  prixVente Decimal  @default(0) @map("prix_vente") @db.Decimal(12, 2)
+  stock     Int      @default(0)
+  seuilAlerte Int    @default(5) @map("seuil_alerte")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  venteItems VenteItem[]
+  achatItems AchatItem[]
+
+  @@index([categorie])
+  @@map("produits")
+}
+
+model Vente {
+  id        Int      @id @default(autoincrement())
+  numero    String   @unique @db.VarChar(30)
+  clientId  Int?     @map("client_id")
+  date      DateTime @default(now()) @db.Timestamptz(6)
+  totalHt   Decimal  @default(0) @map("total_ht") @db.Decimal(12, 2)
+  tva       Decimal  @default(0) @db.Decimal(12, 2)
+  total     Decimal  @default(0) @db.Decimal(12, 2)
+  statut    String   @default("payee") @db.VarChar(20)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  // Une facture reste consultable si le client est supprimé : on détache le lien
+  // plutôt que de perdre l'historique comptable.
+  client Client?     @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  items  VenteItem[]
+
+  @@index([clientId])
+  @@index([date])
+  @@map("ventes")
+}
+
+model VenteItem {
+  id           Int     @id @default(autoincrement())
+  venteId      Int     @map("vente_id")
+  produitId    Int?    @map("produit_id")
+  designation  String  @db.VarChar(150)
+  quantite     Int
+  prixUnitaire Decimal @map("prix_unitaire") @db.Decimal(12, 2)
+
+  vente   Vente    @relation(fields: [venteId], references: [id], onDelete: Cascade)
+  produit Produit? @relation(fields: [produitId], references: [id], onDelete: SetNull)
+
+  @@index([venteId])
+  @@index([produitId])
+  @@map("vente_items")
+}
+
+model Achat {
+  id            Int      @id @default(autoincrement())
+  numero        String   @unique @db.VarChar(30)
+  fournisseurId Int?     @map("fournisseur_id")
+  date          DateTime @default(now()) @db.Timestamptz(6)
+  totalHt       Decimal  @default(0) @map("total_ht") @db.Decimal(12, 2)
+  tva           Decimal  @default(0) @db.Decimal(12, 2)
+  total         Decimal  @default(0) @db.Decimal(12, 2)
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  fournisseur Fournisseur? @relation(fields: [fournisseurId], references: [id], onDelete: SetNull)
+  items       AchatItem[]
+
+  @@index([fournisseurId])
+  @@index([date])
+  @@map("achats")
+}
+
+model AchatItem {
+  id           Int     @id @default(autoincrement())
+  achatId      Int     @map("achat_id")
+  produitId    Int?    @map("produit_id")
+  designation  String  @db.VarChar(150)
+  quantite     Int
+  prixUnitaire Decimal @map("prix_unitaire") @db.Decimal(12, 2)
+
+  achat   Achat    @relation(fields: [achatId], references: [id], onDelete: Cascade)
+  produit Produit? @relation(fields: [produitId], references: [id], onDelete: SetNull)
+
+  @@index([achatId])
+  @@index([produitId])
+  @@map("achat_items")
+}
