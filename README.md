@@ -33,6 +33,18 @@ is generated in code, so the game runs from `file://` with no network at all.
 **Requirements:** any modern browser (Chrome/Edge/Firefox/Safari, desktop or
 mobile). No Node.js needed to play — it is only there for the convenience server.
 
+### Single-file build
+
+To get the whole game as one portable `.html` — CSS, all game scripts and Phaser
+inlined, nothing else beside it:
+
+```bash
+npm run build:single          # -> dist/hunter-ascension.html (~1.3 MB)
+```
+
+Double-click the result, mail it, drop it on a USB stick. `dist/` is gitignored;
+regenerate it whenever you need a fresh copy.
+
 ---
 
 ## Controls
