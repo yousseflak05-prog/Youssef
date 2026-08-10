@@ -2,466 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code — What I Can Do</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --border: #2a2a2a;
-      --accent: #d97706;
-      --accent2: #7c3aed;
-      --text: #e5e5e5;
-      --muted: #888;
-      --code-bg: #1a1a1a;
-      --radius: 12px;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
-      background: rgba(13,13,13,.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -.5px; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,.25) 0%, transparent 60%);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .35rem .9rem; border-radius: 999px;
-      border: 1px solid var(--border); color: var(--muted); font-size: .8rem;
-      margin-bottom: 1.5rem;
-    }
-    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; max-width: 800px; }
-    h1 .highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { margin-top: 1.2rem; color: var(--muted); font-size: 1.1rem; max-width: 520px; }
-    .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .btn { padding: .7rem 1.6rem; border-radius: 8px; font-size: .95rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .2s, transform .15s; display: inline-block; }
-    .btn:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-label { text-transform: uppercase; letter-spacing: 2px; font-size: .75rem; color: var(--accent); font-weight: 600; margin-bottom: .75rem; }
-    h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -.5px; margin-bottom: 1rem; }
-    .subtitle { color: var(--muted); font-size: 1rem; max-width: 540px; margin-bottom: 3rem; }
-
-    /* ── CAPABILITY CARDS ── */
-    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; transition: border-color .2s, transform .2s;
-      cursor: default;
-    }
-    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .card-icon { font-size: 1.8rem; margin-bottom: .8rem; }
-    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
-    .card p { color: var(--muted); font-size: .88rem; line-height: 1.55; }
-
-    /* ── DEMO TERMINAL ── */
-    .terminal-wrap { background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .terminal-bar { background: #222; padding: .6rem 1rem; display: flex; align-items: center; gap: .5rem; }
-    .t-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .t-red { background: #ef4444; } .t-yellow { background: #eab308; } .t-green { background: #22c55e; }
-    .terminal-bar span { margin-left: auto; font-size: .75rem; color: var(--muted); }
-    .terminal-body { padding: 1.5rem; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: .88rem; min-height: 200px; }
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: #e5e5e5; }
-    .t-out { color: #86efac; margin-top: .3rem; }
-    .t-comment { color: #6b7280; }
-    .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); margin-left: 2px; animation: blink 1s step-end infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-    /* ── INTERACTIVE DEMO ── */
-    .demo-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
-    .demo-tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .tab { padding: .45rem 1rem; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .85rem; cursor: pointer; transition: all .2s; }
-    .tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
-    .demo-content { display: none; }
-    .demo-content.active { display: block; }
-    .demo-content pre {
-      background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.25rem; overflow-x: auto; font-family: monospace; font-size: .85rem;
-      line-height: 1.6; color: #d1d5db;
-    }
-    .kw { color: #c084fc; } .fn { color: #60a5fa; } .str { color: #86efac; }
-    .num { color: #fb923c; } .cmt { color: #6b7280; }
-
-    /* ── STATS ── */
-    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem; }
-    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
-    .stat-num { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-label { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
-
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: .85rem; }
-    footer a { color: var(--muted); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#05060d" />
+  <meta name="description" content="Hunter Ascension — a Solo Leveling inspired 2D RPG where logging real-life habits levels up your hunter." />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Hunter Ascension</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2305060d'/><circle cx='16' cy='16' r='9' fill='%2338bdf8'/><circle cx='16' cy='16' r='4' fill='%23e0f2fe'/></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div id="game-root">
+    <!-- Phaser mounts its canvas here -->
+    <div id="game-canvas"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Claude <span>Code</span></div>
-  <ul class="nav-links">
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#stats">At a Glance</a></li>
-  </ul>
-</nav>
+    <!-- DOM UI overlay: HUD, panels, touch controls -->
+    <div id="ui-layer">
+      <div id="hud" class="hud">
+        <div class="hud__portrait">
+          <img id="hud-portrait" alt="" />
+          <span id="hud-rank" class="rank-badge">E</span>
+        </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    Powered by Claude Sonnet 4.6
-  </div>
-  <h1>Your AI engineer.<br>Right in the <span class="highlight">terminal.</span></h1>
-  <p class="hero-sub">Claude Code reads your codebase, writes production-ready code, runs tests, fixes bugs, and ships — all from a single conversation.</p>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="#capabilities">Explore capabilities</a>
-    <a class="btn btn-secondary" href="#demo">See code examples</a>
-  </div>
-</div>
+        <div class="hud__bars">
+          <div class="hud__identity">
+            <span id="hud-name">Youssef</span>
+            <span id="hud-level" class="hud__level">Lv 1</span>
+            <span id="hud-rank-name" class="hud__ranktext">E-Rank Hunter</span>
+          </div>
 
-<!-- CAPABILITIES -->
-<section id="capabilities">
-  <div class="section-label">What I can do</div>
-  <h2>Built for real engineering work</h2>
-  <p class="subtitle">From a single file edit to a full-stack feature — Claude Code handles the whole software lifecycle.</p>
+          <div class="bar bar--hp" title="Health">
+            <div id="bar-hp-fill" class="bar__fill"></div>
+            <span id="bar-hp-text" class="bar__text">100 / 100</span>
+          </div>
 
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🔭</div>
-      <h3>Codebase Exploration</h3>
-      <p>Search across thousands of files, trace call graphs, and answer "where is X defined?" in seconds without any indexing setup.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">✏️</div>
-      <h3>Precise Code Editing</h3>
-      <p>Makes surgical, diff-level edits to existing files — no wholesale rewrites, no accidental deletions, no style drift.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🐛</div>
-      <h3>Bug Fixing</h3>
-      <p>Reads stack traces, finds root causes, and produces minimal targeted fixes — with an explanation of why the bug existed.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧪</div>
-      <h3>Test Writing</h3>
-      <p>Generates unit, integration, and edge-case tests that actually reflect how the code is used — not just happy-path coverage.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚙️</div>
-      <h3>Bash & Tooling</h3>
-      <p>Runs shell commands, installs packages, builds projects, and monitors output — like a dev with a terminal always open.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌐</div>
-      <h3>Web & UI Work</h3>
-      <p>Writes HTML, CSS, React, and more. Spins up dev servers, checks rendered output, and iterates on designs end-to-end.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔀</div>
-      <h3>Git & PRs</h3>
-      <p>Commits with meaningful messages, creates branches, pushes code, opens pull requests, and responds to review comments.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>Multi-Agent Tasks</h3>
-      <p>Spawns parallel sub-agents for independent research, code review, and exploration — tackling large tasks concurrently.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔒</div>
-      <h3>Security Awareness</h3>
-      <p>Identifies OWASP top-10 issues, avoids writing vulnerable code, and flags injection risks, exposed secrets, and unsafe patterns.</p>
-    </div>
-  </div>
-</section>
+          <div class="bar bar--xp" title="Experience">
+            <div id="bar-xp-fill" class="bar__fill"></div>
+            <span id="bar-xp-text" class="bar__text">0 / 120 XP</span>
+          </div>
+        </div>
 
-<!-- TERMINAL DEMO -->
-<section style="padding-top:0">
-  <div class="terminal-wrap">
-    <div class="terminal-bar">
-      <span class="t-dot t-red"></span>
-      <span class="t-dot t-yellow"></span>
-      <span class="t-dot t-green"></span>
-      <span>claude — bash</span>
-    </div>
-    <div class="terminal-body" id="terminal-output">
-      <div><span class="t-comment"># Ask Claude anything about your repo</span></div>
-      <div style="margin-top:.5rem"><span class="t-prompt">$ </span><span class="t-cmd" id="typed-cmd"></span><span class="cursor" id="cursor"></span></div>
-      <div class="t-out" id="typed-reply" style="margin-top:.6rem;white-space:pre-wrap"></div>
-    </div>
-  </div>
-</section>
+        <div class="hud__right">
+          <div class="gold" title="Gold">
+            <img id="gold-icon" alt="" />
+            <span id="hud-gold">0</span>
+          </div>
+          <div id="hud-location" class="hud__location">Ascension Town</div>
+          <div id="hud-save" class="hud__save">saved</div>
+        </div>
+      </div>
 
-<!-- CODE DEMO -->
-<section id="demo">
-  <div class="section-label">Code examples</div>
-  <h2>Languages &amp; frameworks</h2>
-  <p class="subtitle">Claude Code writes idiomatic code across the full stack — not just boilerplate.</p>
+      <nav id="hud-buttons" class="hud-buttons">
+        <button class="hbtn" data-panel="quests" type="button" title="Daily Quests (Q)">
+          <span class="hbtn__icon">📜</span><span class="hbtn__label">Quests</span>
+          <span id="quest-badge" class="hbtn__badge hidden">0</span>
+        </button>
+        <button class="hbtn" data-panel="inventory" type="button" title="Inventory (I)">
+          <span class="hbtn__icon">🎒</span><span class="hbtn__label">Bag</span>
+        </button>
+        <button class="hbtn" data-panel="stats" type="button" title="Status (C)">
+          <span class="hbtn__icon">📊</span><span class="hbtn__label">Status</span>
+          <span id="stat-badge" class="hbtn__badge hidden">0</span>
+        </button>
+        <button class="hbtn" data-panel="menu" type="button" title="System (Esc)">
+          <span class="hbtn__icon">⚙️</span><span class="hbtn__label">System</span>
+        </button>
+      </nav>
 
-  <div class="demo-box">
-    <div class="demo-tabs">
-      <button class="tab active" onclick="switchTab(this, 'python')">Python</button>
-      <button class="tab" onclick="switchTab(this, 'typescript')">TypeScript</button>
-      <button class="tab" onclick="switchTab(this, 'react')">React</button>
-      <button class="tab" onclick="switchTab(this, 'sql')">SQL</button>
-      <button class="tab" onclick="switchTab(this, 'bash')">Bash</button>
+      <!-- Mobile virtual controls -->
+      <div id="touch-controls" class="touch hidden">
+        <div id="touch-stick" class="stick">
+          <div id="touch-stick-knob" class="stick__knob"></div>
+        </div>
+        <div class="touch__actions">
+          <button id="touch-interact" class="tbtn tbtn--interact" type="button">E</button>
+          <button id="touch-attack" class="tbtn tbtn--attack" type="button">⚔</button>
+        </div>
+      </div>
+
+      <div id="toasts" class="toasts"></div>
+
+      <div id="modal-root" class="modal-root hidden">
+        <div class="modal-backdrop" data-close="1"></div>
+        <div class="modal" role="dialog" aria-modal="true">
+          <header class="modal__head">
+            <h2 id="modal-title">Title</h2>
+            <button id="modal-close" class="modal__close" type="button" aria-label="Close">✕</button>
+          </header>
+          <div id="modal-body" class="modal__body"></div>
+          <footer id="modal-actions" class="modal__actions"></footer>
+        </div>
+      </div>
+
+      <div id="levelup" class="levelup hidden">
+        <div class="levelup__ring"></div>
+        <div class="levelup__text">
+          <span class="levelup__title">LEVEL UP</span>
+          <span id="levelup-level" class="levelup__level">Lv 2</span>
+          <span id="levelup-sub" class="levelup__sub">+3 stat points</span>
+        </div>
+      </div>
     </div>
 
-    <div class="demo-content active" id="python">
-<pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
-<span class="kw">from</span> typing <span class="kw">import</span> Iterator
-
-<span class="cmt"># Sliding-window rate limiter — O(1) amortized using a deque</span>
-<span class="kw">from</span> collections <span class="kw">import</span> deque
-<span class="kw">import</span> time
-
-@dataclass
-<span class="kw">class</span> <span class="fn">RateLimiter</span>:
-    max_calls: <span class="fn">int</span>
-    period: <span class="fn">float</span>          <span class="cmt"># seconds</span>
-    _times: deque = field(default_factory=deque, repr=<span class="kw">False</span>)
-
-    <span class="kw">def</span> <span class="fn">allow</span>(self) -> <span class="fn">bool</span>:
-        now = time.<span class="fn">monotonic</span>()
-        cutoff = now - self.period
-        <span class="kw">while</span> self._times <span class="kw">and</span> self._times[<span class="num">0</span>] &lt; cutoff:
-            self._times.<span class="fn">popleft</span>()
-        <span class="kw">if</span> <span class="fn">len</span>(self._times) &lt; self.max_calls:
-            self._times.<span class="fn">append</span>(now)
-            <span class="kw">return True</span>
-        <span class="kw">return False</span>
-</pre>
-    </div>
-
-    <div class="demo-content" id="typescript">
-<pre><span class="cmt">// Generic retry with exponential back-off and jitter</span>
-<span class="kw">async function</span> <span class="fn">withRetry</span>&lt;T&gt;(
-  fn: () =&gt; <span class="fn">Promise</span>&lt;T&gt;,
-  { maxAttempts = <span class="num">4</span>, baseDelayMs = <span class="num">200</span> } = {}
-): <span class="fn">Promise</span>&lt;T&gt; {
-  <span class="kw">let</span> lastErr: unknown;
-  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; maxAttempts; i++) {
-    <span class="kw">try</span> {
-      <span class="kw">return await</span> <span class="fn">fn</span>();
-    } <span class="kw">catch</span> (err) {
-      lastErr = err;
-      <span class="kw">if</span> (i &lt; maxAttempts - <span class="num">1</span>) {
-        <span class="kw">const</span> delay = baseDelayMs * <span class="num">2</span> ** i + <span class="fn">Math.random</span>() * <span class="num">50</span>;
-        <span class="kw">await new</span> <span class="fn">Promise</span>(r =&gt; <span class="fn">setTimeout</span>(r, delay));
-      }
-    }
-  }
-  <span class="kw">throw</span> lastErr;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="react">
-<pre><span class="kw">import</span> { useState, useCallback } <span class="kw">from</span> <span class="str">'react'</span>;
-
-<span class="kw">function</span> <span class="fn">useLocalStorage</span>&lt;T&gt;(key: <span class="fn">string</span>, initial: T) {
-  <span class="kw">const</span> [value, setValue] = <span class="fn">useState</span>&lt;T&gt;(() =&gt; {
-    <span class="kw">try</span> {
-      <span class="kw">const</span> stored = <span class="fn">localStorage.getItem</span>(key);
-      <span class="kw">return</span> stored ? <span class="fn">JSON.parse</span>(stored) : initial;
-    } <span class="kw">catch</span> { <span class="kw">return</span> initial; }
-  });
-
-  <span class="kw">const</span> set = <span class="fn">useCallback</span>((next: T) =&gt; {
-    setValue(next);
-    <span class="kw">try</span> { <span class="fn">localStorage.setItem</span>(key, <span class="fn">JSON.stringify</span>(next)); }
-    <span class="kw">catch</span> { <span class="cmt">/* storage quota exceeded */</span> }
-  }, [key]);
-
-  <span class="kw">return</span> [value, set] <span class="kw">as const</span>;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="sql">
-<pre><span class="cmt">-- Top-N active users with their 30-day order totals</span>
-<span class="kw">WITH</span> recent_orders <span class="kw">AS</span> (
-  <span class="kw">SELECT</span>
-    user_id,
-    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> order_count,
-    <span class="fn">SUM</span>(total_cents) / <span class="num">100.0</span> <span class="kw">AS</span> total_usd
-  <span class="kw">FROM</span> orders
-  <span class="kw">WHERE</span> created_at &gt;= <span class="fn">NOW</span>() - <span class="kw">INTERVAL</span> <span class="str">'30 days'</span>
-  <span class="kw">GROUP BY</span> user_id
-)
-<span class="kw">SELECT</span>
-  u.id, u.email,
-  ro.order_count,
-  ro.total_usd,
-  <span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> ro.total_usd <span class="kw">DESC</span>) <span class="kw">AS</span> rank
-<span class="kw">FROM</span> users u
-<span class="kw">JOIN</span> recent_orders ro <span class="kw">ON</span> ro.user_id = u.id
-<span class="kw">ORDER BY</span> rank
-<span class="kw">LIMIT</span> <span class="num">10</span>;
-</pre>
-    </div>
-
-    <div class="demo-content" id="bash">
-<pre><span class="cmt">#!/usr/bin/env bash</span>
-<span class="cmt"># Deploy: build → test → push image → restart service</span>
-<span class="kw">set</span> -euo pipefail
-
-<span class="fn">log</span>() { printf <span class="str">'\e[34m[%s]\e[0m %s\n'</span> <span class="str">"$(date +%T)"</span> <span class="str">"$*"</span>; }
-
-IMAGE=<span class="str">"myapp:$(git rev-parse --short HEAD)"</span>
-
-<span class="fn">log</span> <span class="str">"Building $IMAGE"</span>
-docker build -t <span class="str">"$IMAGE"</span> .
-
-<span class="fn">log</span> <span class="str">"Running tests"</span>
-docker run --rm <span class="str">"$IMAGE"</span> pytest -q
-
-<span class="fn">log</span> <span class="str">"Pushing image"</span>
-docker push <span class="str">"$IMAGE"</span>
-
-<span class="fn">log</span> <span class="str">"Restarting service"</span>
-kubectl rollout restart deployment/myapp
-kubectl rollout status deployment/myapp
-</pre>
+    <div id="boot-screen" class="boot">
+      <div class="boot__inner">
+        <h1 class="boot__title">HUNTER<span>ASCENSION</span></h1>
+        <p class="boot__sub">Arise.</p>
+        <p id="boot-status" class="boot__status">Summoning the gate…</p>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="section-label">At a glance</div>
-  <h2>Built to handle scale</h2>
-  <p class="subtitle">Claude Code is designed for real-world repositories, not toy examples.</p>
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">200K</div>
-      <div class="stat-label">Token context window</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Languages supported</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Files it can read per session</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Command to get started</div>
-    </div>
-  </div>
-</section>
+  <noscript>
+    <p style="color:#e2e8f0;font-family:sans-serif;padding:2rem">
+      Hunter Ascension needs JavaScript enabled to run.
+    </p>
+  </noscript>
 
-<!-- FOOTER -->
-<footer>
-  Built with Claude Code &nbsp;·&nbsp; Anthropic &nbsp;·&nbsp;
-  <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Documentation</a>
-</footer>
+  <!-- Engine (vendored so the game runs fully offline / from file://) -->
+  <script src="vendor/phaser.min.js"></script>
 
-<script>
-  // ── Tab switcher ──
-  function switchTab(btn, id) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(id).classList.add('active');
-  }
+  <!-- Data -->
+  <script src="data/config.js"></script>
+  <script src="data/ranks.js"></script>
+  <script src="data/items.js"></script>
+  <script src="data/enemies.js"></script>
+  <script src="data/quests.js"></script>
+  <script src="data/dungeons.js"></script>
 
-  // ── Terminal typewriter ──
-  const demos = [
-    {
-      cmd: 'claude "Add input validation to the signup form"',
-      reply: `Reading src/components/SignupForm.tsx …
-Found 3 fields missing validation: email, password, username.
-✓ Added zod schema with error messages
-✓ Wired inline error display to each field
-✓ Disabled submit button while invalid
-2 files changed, 31 insertions(+), 4 deletions(-)`
-    },
-    {
-      cmd: 'claude "Why is the /dashboard route slow?"',
-      reply: `Tracing request path …
-  routes/dashboard.ts → services/metrics.ts:fetchAll()
-  fetchAll() runs 6 sequential DB queries (N+1 pattern).
-  Fix: batch with Promise.all — estimated 4× speedup.
-Apply fix? (y/n)`
-    },
-    {
-      cmd: 'claude "Write tests for the CartService"',
-      reply: `Found 8 public methods in CartService.
-Generated 23 tests across:
-  • addItem (happy path + duplicate + out-of-stock)
-  • removeItem (present + missing)
-  • applyDiscount (valid + expired + invalid code)
-  • checkout (success + payment failure)
-All 23 tests pass ✓`
-    }
-  ];
+  <!-- Systems -->
+  <script src="systems/EventBus.js"></script>
+  <script src="systems/SaveSystem.js"></script>
+  <script src="systems/PlayerState.js"></script>
+  <script src="systems/InventorySystem.js"></script>
+  <script src="systems/QuestSystem.js"></script>
+  <script src="systems/CombatSystem.js"></script>
+  <script src="systems/DungeonSystem.js"></script>
+  <script src="systems/TextureFactory.js"></script>
 
-  let demoIdx = 0, cmdIdx = 0, replyIdx = 0, phase = 'cmd';
-  const cmdEl = document.getElementById('typed-cmd');
-  const replyEl = document.getElementById('typed-reply');
-  const cursor = document.getElementById('cursor');
+  <!-- UI -->
+  <script src="ui/Toast.js"></script>
+  <script src="ui/Modal.js"></script>
+  <script src="ui/TouchControls.js"></script>
+  <script src="ui/QuestPanel.js"></script>
+  <script src="ui/InventoryPanel.js"></script>
+  <script src="ui/StatsPanel.js"></script>
+  <script src="ui/HUD.js"></script>
 
-  function nextChar() {
-    const d = demos[demoIdx];
-    if (phase === 'cmd') {
-      if (cmdIdx < d.cmd.length) {
-        cmdEl.textContent += d.cmd[cmdIdx++];
-        setTimeout(nextChar, 35 + Math.random() * 25);
-      } else {
-        cursor.style.display = 'none';
-        phase = 'reply';
-        setTimeout(nextChar, 500);
-      }
-    } else {
-      if (replyIdx < d.reply.length) {
-        replyEl.textContent += d.reply[replyIdx++];
-        setTimeout(nextChar, 12);
-      } else {
-        setTimeout(() => {
-          cmdEl.textContent = '';
-          replyEl.textContent = '';
-          cmdIdx = replyIdx = 0;
-          phase = 'cmd';
-          cursor.style.display = 'inline-block';
-          demoIdx = (demoIdx + 1) % demos.length;
-          setTimeout(nextChar, 400);
-        }, 3200);
-      }
-    }
-  }
+  <!-- Scenes -->
+  <script src="scenes/BaseWorldScene.js"></script>
+  <script src="scenes/BootScene.js"></script>
+  <script src="scenes/TownScene.js"></script>
+  <script src="scenes/DungeonScene.js"></script>
 
-  setTimeout(nextChar, 800);
-</script>
-
+  <!-- Bootstrap -->
+  <script src="main.js"></script>
 </body>
 </html>

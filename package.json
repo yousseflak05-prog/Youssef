@@ -1,0 +1,13 @@
+{
+  "name": "hunter-ascension",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hunter Ascension — a Solo Leveling inspired browser RPG where logging real-life habits levels up your hunter.",
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "dev": "python3 -m http.server 5173",
+    "build:single": "node tools/build-single-file.js"
+  },
+  "keywords": ["phaser", "rpg", "game", "pixel-art", "self-improvement"],
+  "license": "MIT"
+}
