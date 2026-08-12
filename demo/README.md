@@ -22,9 +22,20 @@ n'importe quel hébergement statique et s'envoie par e-mail tel quel.
 - Thème clair et thème sombre, mise en page responsive, barre d'action fixe sur
   mobile (appeler / WhatsApp / rendez-vous).
 
+## Les deux fichiers produits
+
+| Fichier | Usage |
+|---|---|
+| `demo/clinique-nacre.html` | **document complet** — `<!doctype>`, `<head>`, viewport, favicon, balises Open Graph. C'est celui à ouvrir, à héberger ou à envoyer. |
+| `demo/index.html` | fragment sans `<head>`, pour les hébergeurs qui fournissent eux-mêmes l'enveloppe HTML. |
+
+Mettre le fichier en ligne : le déposer tel quel chez n'importe quel hébergeur
+statique (Netlify, Vercel, GitHub Pages, ou un simple dossier public FTP), en le
+renommant `index.html` si besoin. Aucune configuration, aucune base de données.
+
 ## Construire
 
-`demo/index.html` est généré — ne pas l'éditer à la main.
+Les deux fichiers ci-dessus sont générés — ne pas les éditer à la main.
 
 ```
 python3 demo/build.py
