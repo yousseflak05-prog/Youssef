@@ -1,0 +1,886 @@
+<script>
+(function(){
+"use strict";
+
+/* ══════════════════════════════════════════════════════
+   CLINIQUE NACRE — démonstration
+   Tout est piloté depuis ce fichier : coordonnées, tarifs,
+   praticiens, horaires et traductions FR / AR / EN.
+   ══════════════════════════════════════════════════════ */
+
+var CLINIC = {
+  phone:      "+212522398410",
+  phoneLabel: "05 22 39 84 10",
+  whatsapp:   "212661472208",
+  openHour:   9,
+  slotStep:   30
+};
+
+/* ── Contenu localisé ────────────────────────────────── */
+var DATA = {
+  fr: {
+    services: [
+      ["implant",  "Implantologie",           "Remplacer une dent absente par une racine en titane, posée avec un guide chirurgical imprimé en 3D.", "dès 9 000 MAD"],
+      ["aligner",  "Aligneurs invisibles",    "Gouttières sur mesure pour corriger l'alignement sans bagues visibles. Contrôle toutes les six semaines.", "dès 25 000 MAD"],
+      ["veneer",   "Facettes & esthétique",   "Céramique fine collée sur l'émail : forme, teinte et alignement repris en deux séances.", "dès 3 800 MAD"],
+      ["white",    "Blanchiment",             "Séance LED au cabinet puis gouttières à domicile, sans la sensibilité qui suit les protocoles agressifs.", "dès 2 500 MAD"],
+      ["care",     "Soins & endodontie",      "Caries, dévitalisations et reprises de traitement, réalisées sous microscope opératoire.", "dès 450 MAD"],
+      ["gum",      "Parodontologie",          "Gencives qui saignent ou se rétractent : on traite avant que l'os ne commence à reculer.", "dès 700 MAD"],
+      ["kid",      "Dentisterie pédiatrique", "Premier rendez-vous dès trois ans, en jeu et sans instrument, pour installer l'habitude.", "dès 250 MAD"],
+      ["urgent",   "Urgences dentaires",      "Douleur, dent cassée, abcès : un créneau est réservé chaque matin et la ligne reste ouverte le soir.", "dès 300 MAD"]
+    ],
+    motifs: [
+      ["Consultation & bilan", "45 min", "any"],
+      ["Détartrage",           "30 min", "any"],
+      ["Urgence, douleur",     "20 min", "any"],
+      ["Aligneurs invisibles", "40 min", "of"],
+      ["Implant",              "60 min", "yb"],
+      ["Esthétique, facettes", "40 min", "si"]
+    ],
+    docs: [
+      ["yb","Dr Yasmine Berrada","YB","Implantologie & chirurgie orale","Diplômée de la Faculté de médecine dentaire de Rabat, DU d'implantologie (Paris VII). Environ 180 implants posés par an.",["Français","العربية","English"]],
+      ["of","Dr Omar Fassi","OF","Orthodontie & aligneurs","Spécialiste en orthopédie dento-faciale, certifié aligneurs depuis 2016. Suit adultes et adolescents, contention incluse.",["Français","العربية"]],
+      ["si","Dr Salma Idrissi","SI","Esthétique & pédodontie","Facettes, blanchiment et soins des enfants. Formée à l'hypnose conversationnelle pour les patients anxieux.",["Français","العربية","Español"]]
+    ],
+    anyDoc: ["Peu importe", "premier disponible"],
+    prices: [
+      ["Consultation avec bilan radiographique", "300"],
+      ["Détartrage complet, deux arcades",       "500"],
+      ["Composite esthétique",                   "450"],
+      ["Dévitalisation, racine simple",          "1 200"],
+      ["Couronne zircone",                       "3 200"],
+      ["Facette céramique, par dent",            "3 800"],
+      ["Blanchiment LED au cabinet",             "2 500"],
+      ["Implant titane avec couronne",           "9 000"],
+      ["Traitement complet par aligneurs",       "25 000"]
+    ],
+    quotes: [
+      ["J'ai reporté pendant six ans. Ils ont commencé par tout m'expliquer sur l'écran, sans me faire la morale. Le devis n'a pas bougé d'un dirham.", "Nadia El Amrani", "Maârif — patiente depuis 2022"],
+      ["Mon fils de cinq ans réclame d'y retourner. Ça résume assez bien l'endroit.", "Youssef Benjelloun", "Aïn Diab — deux enfants suivis"],
+      ["Implant posé le jeudi, retour au bureau le lundi. Le suivi WhatsApp m'a évité deux déplacements.", "Sofia Tazi", "Bourgogne — patiente depuis 2019"]
+    ],
+    faq: [
+      ["Le cabinet est-il conventionné CNSS et AMO ?", "Oui, ainsi que CNOPS et les principales assurances privées. La feuille de soins est remplie et signée sur place, et le secrétariat suit le dossier de remboursement jusqu'au virement."],
+      ["Les soins sont-ils douloureux ?", "L'anesthésie est réalisée par injection électronique à débit contrôlé, nettement moins désagréable que la seringue classique. Pour les patients anxieux, nous proposons la sédation consciente au MEOPA, un casque audio et une couverture lestée."],
+      ["Quel est le délai pour obtenir un rendez-vous ?", "48 heures en moyenne pour une consultation. Pour une douleur aiguë, appelez avant 10 h : un créneau d'urgence est gardé libre chaque matin."],
+      ["Peut-on régler en plusieurs fois ?", "Oui, en trois fois sans frais à partir de 4 000 MAD, par chèque ou par carte. Pour les traitements longs comme les aligneurs, l'échéancier suit l'avancement du traitement."],
+      ["À partir de quel âge amener un enfant ?", "Dès trois ans, ou dès l'apparition de la première dent en cas de doute. La première séance est une simple prise de contact : pas d'instrument, pas de fauteuil incliné."],
+      ["Que faire en cas d'urgence le soir ou le week-end ?", "La ligne directe 06 61 47 22 08 est ouverte sept jours sur sept jusqu'à 22 h. Un praticien rappelle et décide s'il faut ouvrir le cabinet ou orienter vers les urgences hospitalières."]
+    ],
+    hours: [
+      ["Lundi","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Mardi","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Mercredi","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Jeudi","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Vendredi","09:00 – 12:30 · 15:30 – 19:00"],
+      ["Samedi","09:00 – 14:00"],
+      ["Dimanche","Fermé"],
+      ["Urgences","7j/7 jusqu'à 22:00"]
+    ]
+  },
+
+  ar: {
+    services: [
+      ["implant","زراعة الأسنان","تعويض السن المفقود بجذر من التيتانيوم، يوضع بواسطة دليل جراحي مطبوع ثلاثي الأبعاد.","ابتداءً من 9 000 درهم"],
+      ["aligner","تقويم شفاف","قوالب شفافة مصنوعة خصيصاً لتصحيح اصطفاف الأسنان دون أسلاك ظاهرة، مع مراقبة كل ستة أسابيع.","ابتداءً من 25 000 درهم"],
+      ["veneer","الفينير وتجميل الابتسامة","سيراميك رقيق يُلصق على المينا: الشكل واللون والاصطفاف في جلستين.","ابتداءً من 3 800 درهم"],
+      ["white","تبييض الأسنان","جلسة بالليزر البارد في العيادة ثم قوالب منزلية، دون الحساسية المصاحبة للبروتوكولات القاسية.","ابتداءً من 2 500 درهم"],
+      ["care","العلاج وحشو الجذور","التسوس وسحب العصب وإعادة المعالجة، تُنجز تحت المجهر الجراحي.","ابتداءً من 450 درهم"],
+      ["gum","علاج اللثة","نزيف اللثة أو انحسارها: نتدخل قبل أن يبدأ العظم في التراجع.","ابتداءً من 700 درهم"],
+      ["kid","طب أسنان الأطفال","أول موعد ابتداءً من سن الثالثة، في جو من اللعب ودون أدوات، لبناء العادة.","ابتداءً من 250 درهم"],
+      ["urgent","الحالات المستعجلة","ألم أو سن مكسور أو خُراج: موعد محجوز كل صباح، والخط مفتوح مساءً.","ابتداءً من 300 درهم"]
+    ],
+    motifs: [
+      ["استشارة وفحص شامل","45 دقيقة","any"],
+      ["تنظيف الجير","30 دقيقة","any"],
+      ["حالة مستعجلة، ألم","20 دقيقة","any"],
+      ["التقويم الشفاف","40 دقيقة","of"],
+      ["زراعة","60 دقيقة","yb"],
+      ["تجميل، فينير","40 دقيقة","si"]
+    ],
+    docs: [
+      ["yb","د. ياسمين برادة","ي ب","زراعة الأسنان والجراحة الفموية","خريجة كلية طب الأسنان بالرباط، دبلوم جامعي في الزراعة (باريس السابعة). تنجز حوالي 180 زراعة سنوياً.",["الفرنسية","العربية","الإنجليزية"]],
+      ["of","د. عمر الفاسي","ع ف","تقويم الأسنان","أخصائي في تقويم الأسنان والفكين، معتمد في التقويم الشفاف منذ 2016. يتابع البالغين والمراهقين مع التثبيت.",["الفرنسية","العربية"]],
+      ["si","د. سلمى الإدريسي","س إ","التجميل وطب أسنان الأطفال","الفينير والتبييض وعلاج الأطفال. متخصصة في التنويم الإيحائي للمرضى القلقين.",["الفرنسية","العربية","الإسبانية"]]
+    ],
+    anyDoc: ["لا يهم","أول موعد متاح"],
+    prices: [
+      ["استشارة مع فحص بالأشعة","300"],
+      ["تنظيف الجير، الفكان","500"],
+      ["حشو تجميلي","450"],
+      ["سحب العصب، جذر واحد","1 200"],
+      ["تاج زيركون","3 200"],
+      ["فينير سيراميك، للسن","3 800"],
+      ["تبييض بالليزر في العيادة","2 500"],
+      ["زراعة تيتانيوم مع التاج","9 000"],
+      ["علاج كامل بالتقويم الشفاف","25 000"]
+    ],
+    quotes: [
+      ["أجّلت الموعد ست سنوات. بدأوا بشرح كل شيء على الشاشة دون أي لوم. والتقدير المالي لم يتغير بدرهم واحد.","نادية العمراني","المعاريف — مريضة منذ 2022"],
+      ["ابني ذو الخمس سنوات يطلب العودة إلى هناك. هذا يلخص المكان جيداً.","يوسف بنجلون","عين الذياب — طفلان تحت المتابعة"],
+      ["زراعة يوم الخميس وعودة إلى المكتب يوم الاثنين. المتابعة عبر واتساب وفّرت عليّ زيارتين.","صوفيا التازي","بورݣون — مريضة منذ 2019"]
+    ],
+    faq: [
+      ["هل العيادة متعاقدة مع الصندوق الوطني للضمان الاجتماعي والتأمين الإجباري؟","نعم، وكذلك مع التعاضدية العامة وأهم شركات التأمين الخاصة. تُملأ ورقة العلاجات وتُوقّع في العيادة، وتتابع السكرتارية ملف التعويض حتى التحويل البنكي."],
+      ["هل العلاج مؤلم؟","يتم التخدير بالحقن الإلكتروني بتدفق متحكم فيه، وهو أقل إزعاجاً بكثير من المحقن التقليدي. وللمرضى القلقين نوفّر التخدير الواعي وسماعات للموسيقى وغطاءً مُثقلاً."],
+      ["كم يستغرق الحصول على موعد؟","48 ساعة في المتوسط للاستشارة. في حالة ألم حاد، اتصل قبل العاشرة صباحاً: هناك موعد مستعجل محجوز كل صباح."],
+      ["هل يمكن الأداء على دفعات؟","نعم، على ثلاث دفعات دون رسوم ابتداءً من 4 000 درهم، بالشيك أو البطاقة. أما العلاجات الطويلة فيتبع جدول الأداء فيها تقدّم العلاج."],
+      ["ما هو السن المناسب لإحضار الطفل؟","ابتداءً من ثلاث سنوات، أو عند ظهور أول سن في حالة الشك. الجلسة الأولى مجرد تعارف: دون أدوات ودون كرسي مائل."],
+      ["ماذا أفعل في حالة مستعجلة مساءً أو في عطلة نهاية الأسبوع؟","الخط المباشر \u206606 61 47 22 08\u2069 مفتوح سبعة أيام في الأسبوع حتى العاشرة ليلاً. يعاود طبيب الاتصال ويقرر فتح العيادة أو التوجيه إلى المستعجلات."]
+    ],
+    hours: [
+      ["الاثنين","09:00 – 13:00 · 15:00 – 19:00"],
+      ["الثلاثاء","09:00 – 13:00 · 15:00 – 19:00"],
+      ["الأربعاء","09:00 – 13:00 · 15:00 – 19:00"],
+      ["الخميس","09:00 – 13:00 · 15:00 – 19:00"],
+      ["الجمعة","09:00 – 12:30 · 15:30 – 19:00"],
+      ["السبت","09:00 – 14:00"],
+      ["الأحد","مغلق"],
+      ["المستعجلات","7/7 حتى 22:00"]
+    ]
+  },
+
+  en: {
+    services: [
+      ["implant","Implants","Replacing a missing tooth with a titanium root, placed using a 3D-printed surgical guide.","from 9,000 MAD"],
+      ["aligner","Clear aligners","Custom trays that correct alignment without visible brackets. Reviewed every six weeks.","from 25,000 MAD"],
+      ["veneer","Veneers & aesthetics","Thin ceramic bonded to the enamel — shape, shade and alignment reworked over two sittings.","from 3,800 MAD"],
+      ["white","Whitening","An LED session at the practice, then take-home trays, without the sensitivity harsher protocols leave behind.","from 2,500 MAD"],
+      ["care","Fillings & root canals","Decay, root canals and retreatments, all carried out under a surgical microscope.","from 450 MAD"],
+      ["gum","Gum treatment","Bleeding or receding gums, treated before the bone underneath starts to go.","from 700 MAD"],
+      ["kid","Children's dentistry","A first visit from age three — playful, no instruments — to build the habit early.","from 250 MAD"],
+      ["urgent","Dental emergencies","Pain, a broken tooth, an abscess: one slot is held every morning and the line stays open at night.","from 300 MAD"]
+    ],
+    motifs: [
+      ["Check-up & assessment","45 min","any"],
+      ["Scale & polish","30 min","any"],
+      ["Emergency, pain","20 min","any"],
+      ["Clear aligners","40 min","of"],
+      ["Implant","60 min","yb"],
+      ["Aesthetics, veneers","40 min","si"]
+    ],
+    docs: [
+      ["yb","Dr Yasmine Berrada","YB","Implants & oral surgery","Graduate of the Rabat Faculty of Dentistry, postgraduate diploma in implantology (Paris VII). Places around 180 implants a year.",["French","Arabic","English"]],
+      ["of","Dr Omar Fassi","OF","Orthodontics & aligners","Orthodontic specialist, aligner-certified since 2016. Treats adults and teenagers, retention included.",["French","Arabic"]],
+      ["si","Dr Salma Idrissi","SI","Aesthetics & paediatrics","Veneers, whitening and children's care. Trained in conversational hypnosis for anxious patients.",["French","Arabic","Spanish"]]
+    ],
+    anyDoc: ["No preference","first available"],
+    prices: [
+      ["Consultation with X-ray assessment","300"],
+      ["Full scale & polish, both arches","500"],
+      ["Composite filling","450"],
+      ["Root canal, single root","1,200"],
+      ["Zirconia crown","3,200"],
+      ["Ceramic veneer, per tooth","3,800"],
+      ["In-practice LED whitening","2,500"],
+      ["Titanium implant with crown","9,000"],
+      ["Full aligner treatment","25,000"]
+    ],
+    quotes: [
+      ["I put it off for six years. They started by walking me through everything on screen, without a word of judgement. The quote never moved by a single dirham.","Nadia El Amrani","Maârif — patient since 2022"],
+      ["My five-year-old asks to go back. That tells you most of what you need to know.","Youssef Benjelloun","Aïn Diab — two children treated"],
+      ["Implant on the Thursday, back at my desk on the Monday. The WhatsApp follow-up saved me two trips.","Sofia Tazi","Bourgogne — patient since 2019"]
+    ],
+    faq: [
+      ["Do you work with CNSS and AMO cover?","Yes, along with CNOPS and the main private insurers. Your claim form is completed and signed on site, and reception follows the reimbursement through to payment."],
+      ["Is treatment painful?","Anaesthetic is delivered by computer-controlled injection, far gentler than a standard syringe. For anxious patients we offer conscious sedation, noise-cancelling headphones and a weighted blanket."],
+      ["How long is the wait for an appointment?","48 hours on average for a consultation. For acute pain, call before 10am — an emergency slot is held free every morning."],
+      ["Can I pay in instalments?","Yes — three interest-free instalments from 4,000 MAD, by cheque or card. For longer treatments such as aligners, payments follow the stages of treatment."],
+      ["How young can a child come in?","From age three, or as soon as the first tooth appears if you have any concern. The first visit is just an introduction: no instruments, no reclined chair."],
+      ["What about an emergency at night or at the weekend?","The direct line 06 61 47 22 08 is open seven days a week until 10pm. A dentist calls back and decides whether to open the practice or refer you to hospital."]
+    ],
+    hours: [
+      ["Monday","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Tuesday","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Wednesday","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Thursday","09:00 – 13:00 · 15:00 – 19:00"],
+      ["Friday","09:00 – 12:30 · 15:30 – 19:00"],
+      ["Saturday","09:00 – 14:00"],
+      ["Sunday","Closed"],
+      ["Emergencies","7 days a week until 22:00"]
+    ]
+  }
+};
+
+/* ── Chaînes d'interface ─────────────────────────────── */
+var STR = {
+  fr: {
+    "js.today":"Aujourd'hui", "js.tomorrow":"Demain", "js.full":"Complet",
+    "js.slotsLeft":"créneaux", "js.oneSlot":"créneau", "js.closed":"Fermé",
+    "js.pickDay":"Choisissez d'abord une date.",
+    "js.recapMotif":"Motif","js.recapDoc":"Praticien","js.recapWhen":"Date","js.recapWho":"Patient",
+    "js.confirm":"Confirmer la demande","js.at":"à",
+    "js.waMsg":"Bonjour, je souhaite confirmer un rendez-vous à la Clinique Nacre.",
+    "js.noSlots":"Plus de créneau ce jour-là — essayez le lendemain.",
+    "js.mad":"MAD"
+  },
+  ar: {
+    "brand.sub":"عيادة أسنان · الدار البيضاء",
+    "nav.soins":"علاجاتنا","nav.parcours":"المسار","nav.equipe":"الفريق","nav.tarifs":"الأسعار","nav.contact":"اتصل بنا","nav.avis":"آراء المرضى",
+    "cta.book":"حجز موعد",
+    "hero.badge":"أنفا · الدار البيضاء — منذ 2011",
+    "hero.h1a":"علاج الأسنان،","hero.h1b":"بلا خوف.",
+    "hero.lede":"عيادة مصمّمة لمن يؤجّلون موعدهم منذ وقت طويل. تشخيص ثلاثي الأبعاد، وتقدير مالي مكتوب قبل أي علاج، وأطباء يأخذون وقتهم في الشرح.",
+    "trust.years":"من الممارسة في الدار البيضاء","trust.patients":"مريض تحت المتابعة","trust.rating":"من 312 رأياً موثّقاً","trust.delay":"متوسط مدة انتظار الموعد",
+    "u.ans":" سنة","u.h":" ساعة","u.mois":" أشهر","u.aligners":" قالباً","u.extraction":" قلع",
+    "slots.title":"أقرب المواعيد المتاحة","slots.live":"مباشر","slots.foot":"12 زنقة أحمد الشرقي، أنفا — موقف خاص",
+    "strip.k1":"التعقيم","strip.v1":"جهاز تعقيم من الفئة B مع تتبّع لكل كيس",
+    "strip.k2":"التصوير","strip.v2":"أشعة بانورامية وماسح ثلاثي الأبعاد في العيادة",
+    "strip.k3":"التغطية الصحية","strip.v3":"الضمان الاجتماعي والتأمين الإجباري والتعاضدية والتأمين الخاص",
+    "strip.k4":"المستعجلات","strip.v4":"خط مخصص، 7/7 حتى العاشرة ليلاً",
+    "soins.eyebrow":"علاجاتنا","soins.h2":"ثماني تخصصات، وملف طبي واحد",
+    "soins.lede":"زراعة أو تقويم أو مجرد تنظيف: كل شيء يُنجز في المكان نفسه، من الفريق نفسه، وبالملف الرقمي نفسه. دون إحالة إلى عيادة أخرى.",
+    "parcours.eyebrow":"المسار","parcours.h2":"أربع مراحل، دون أي مفاجأة",
+    "step1.t":"فحص وماسح ثلاثي الأبعاد","step1.d":"45 دقيقة. فحص شامل وأشعة بانورامية وصور داخل الفم. تغادر ومعك التشخيص مكتوباً، حتى إن لم تكمل العلاج عندنا.",
+    "step2.t":"تقدير مالي مفصّل","step2.d":"كل إجراء مفصّل سطراً بسطر، مع حصة التأمين والمبلغ المتبقي فعلياً على عاتقك. يُوقّع قبل أول علاج.",
+    "step3.t":"علاج بلا ألم","step3.d":"تخدير إلكتروني بتدفق متحكم فيه، وتخدير واعٍ للمرضى القلقين، وسماعات وغطاء مُثقل عند الطلب.",
+    "step4.t":"المتابعة والضمان","step4.d":"مراقبة مجانية بعد 15 يوماً، وتذكير تلقائي عبر واتساب، وضمان خمس سنوات على الزرعات والتركيبات.",
+    "rdv.eyebrow":"الموعد","rdv.h2":"احجز في أقل من دقيقة",
+    "rdv.lede":"اختر سبب الزيارة والطبيب والتوقيت. تصلك رسالة تأكيد على واتساب مباشرة — دون إنشاء أي حساب.",
+    "rdv.asideH":"موعدك","rdv.asideP":"الإلغاء ممكن حتى أربع ساعات قبل الموعد. ويبقى موعد مستعجل محجوزاً كل صباح.",
+    "rdv.s1":"السبب","rdv.s2":"الطبيب","rdv.s3":"التاريخ والساعة","rdv.s4":"معلوماتك",
+    "rdv.asideFoot":"حالة مستعجلة؟ <span dir=\"ltr\">06 61 47 22 08</span>",
+    "rdv.p1h":"ما سبب زيارتك؟","rdv.p1s":"اختر الأقرب إلى حالتك — سيحدّد الطبيب التفاصيل في العيادة.",
+    "rdv.p2h":"مع أي طبيب؟","rdv.p2s":"نقترح عليك صاحب التخصص المناسب، لكن الاختيار يبقى لك.",
+    "rdv.p3h":"اختر التاريخ","rdv.p3s":"المواعيد المعروضة هي المتاحة فعلاً هذا الأسبوع.",
+    "rdv.p4h":"معلومات الاتصال","rdv.p4s":"لتأكيد الموعد فقط. لا رسائل إشهارية.",
+    "rdv.fname":"الاسم الكامل","rdv.errName":"يرجى كتابة اسمك.","rdv.ftel":"الهاتف","rdv.errTel":"رقم مغربي من عشرة أرقام.",
+    "rdv.fmsg":"توضيح (اختياري)",
+    "rdv.doneH":"تم تسجيل طلبك","rdv.doneS":"تؤكّد السكرتارية الموعد خلال ساعتين من أوقات العمل. وهذا ملخّص الطلب:",
+    "rdv.wa":"استلام التأكيد على واتساب","rdv.back":"رجوع","rdv.next":"متابعة",
+    "ba.eyebrow":"قبل / بعد","ba.h2":"ستة أشهر من التقويم الشفاف، في مؤشّر واحد",
+    "ba.lede":"حالة حقيقية ممثّلة على رسم تشريحي: تزاحم في الأسنان الأمامية صُحّح بقوالب شفافة، ثم تلميع وتبييض منزلي. حرّك المؤشّر للمقارنة.",
+    "ba.k1":"مدة العلاج","ba.k2":"تُغيَّر كل 12 يوماً","ba.k3":"الأسنان محفوظة",
+    "ba.before":"قبل","ba.after":"بعد",
+    "equipe.eyebrow":"الفريق","equipe.h2":"ثلاثة أطباء، وطريقة عمل واحدة",
+    "equipe.lede":"تلتقي الطبيب نفسه من التشخيص إلى آخر مراقبة. دون تناوب، ودون إعادة شرح ملفك في كل مرة.",
+    "tarifs.eyebrow":"الأسعار","tarifs.h2":"الأسعار، قبل الجلوس على الكرسي",
+    "tarifs.lede":"لائحة إرشادية بالدرهم، بجميع الرسوم. ويبقى التقدير الشخصي مجانياً ودون التزام.",
+    "tarifs.caption":"أسعار معتمدة في العيادة — محدّثة في يناير 2026.",
+    "tarifs.th1":"الإجراء","tarifs.th2":"ابتداءً من","tarifs.noteH":"ما هو مشمول",
+    "tarifs.n1":"الاستشارة الأولى مع الفحص بالأشعة: مجانية عند بدء أي علاج.",
+    "tarifs.n2":"ورقة العلاجات تُملأ في العيادة، والسكرتارية تتابع التعويض.",
+    "tarifs.n3":"الأداء على ثلاث دفعات دون رسوم ابتداءً من 4 000 درهم، بالشيك أو البطاقة.",
+    "tarifs.n4":"ضمان خمس سنوات على الزرعات والتركيبات، وسنتان على الحشوات.",
+    "faq.eyebrow":"أسئلة متكررة","faq.h2":"ما يُسألنا عنه في الهاتف",
+    "contact.eyebrow":"مكاننا","contact.h2":"أنفا، على بعد خطوات من شارع أنفا",
+    "contact.addr":"العنوان","contact.tel":"الهاتف","contact.mail":"البريد الإلكتروني","contact.hours":"أوقات العمل",
+    "contact.cardT":"عيادة ناكر","contact.cardS":"الطابق الأرضي، ولوج لذوي الاحتياجات · موقف خاص بستة أماكن · محطة الطرامواي T2 «أنفا» على بعد 400 متر",
+    "foot.blurb":"عيادة أسنان متعددة التخصصات في أنفا بالدار البيضاء. متعاقدة مع الضمان الاجتماعي والتأمين الإجباري والتعاضدية.",
+    "foot.h1":"العيادة","foot.h2":"اتصل بنا",
+    "foot.legal":"© 2026 عيادة ناكر — الهيئة الوطنية لأطباء الأسنان","foot.demo":"موقع تجريبي · محتوى خيالي",
+    "mobar.call":"اتصال","mobar.rdv":"موعد",
+    "js.today":"اليوم","js.tomorrow":"غداً","js.full":"محجوز",
+    "js.slotsLeft":"مواعيد","js.oneSlot":"موعد","js.closed":"مغلق",
+    "js.pickDay":"اختر التاريخ أولاً.",
+    "js.recapMotif":"السبب","js.recapDoc":"الطبيب","js.recapWhen":"التاريخ","js.recapWho":"المريض",
+    "js.confirm":"تأكيد الطلب","js.at":"على الساعة",
+    "js.waMsg":"مرحباً، أرغب في تأكيد موعد في عيادة ناكر.",
+    "js.noSlots":"لا مواعيد في هذا اليوم — جرّب اليوم الموالي.",
+    "js.mad":"درهم"
+  },
+  en: {
+    "brand.sub":"Dental practice · Casablanca",
+    "nav.soins":"Treatments","nav.parcours":"How it works","nav.equipe":"The team","nav.tarifs":"Fees","nav.contact":"Contact","nav.avis":"Reviews",
+    "cta.book":"Book an appointment",
+    "hero.badge":"Anfa · Casablanca — since 2011",
+    "hero.h1a":"Dentistry,","hero.h1b":"without the dread.",
+    "hero.lede":"A practice built for people who have been putting the appointment off for years. 3D diagnostics, a written quote before any treatment, and dentists who take the time to explain.",
+    "trust.years":"practising in Casablanca","trust.patients":"patients on our books","trust.rating":"across 312 verified reviews","trust.delay":"average wait for an appointment",
+    "u.ans":" yrs","u.h":" h","u.mois":" months","u.aligners":" trays","u.extraction":" extractions",
+    "slots.title":"Next available slots","slots.live":"Live","slots.foot":"12 rue Ahmed Charci, Anfa — private parking",
+    "strip.k1":"Sterilisation","strip.v1":"Class B autoclave, traceability on every pouch",
+    "strip.k2":"Imaging","strip.v2":"Panoramic X-ray and 3D scanner on site",
+    "strip.k3":"Insurance","strip.v3":"CNSS, AMO, CNOPS and private cover",
+    "strip.k4":"Emergencies","strip.v4":"Dedicated line, 7 days a week until 10pm",
+    "soins.eyebrow":"Treatments","soins.h2":"Eight specialities, one patient record",
+    "soins.lede":"An implant, an aligner or a simple clean — all handled here, by the same team, on the same digital record. You are never sent on to another practice.",
+    "parcours.eyebrow":"How it works","parcours.h2":"Four steps, no surprises",
+    "step1.t":"Assessment & 3D scan","step1.d":"45 minutes. Full examination, panoramic X-ray and intra-oral photographs. You leave with the diagnosis in writing, even if you go no further with us.",
+    "step2.t":"Itemised quote","step2.d":"Every procedure listed line by line, with what your insurer covers and what you actually pay. Signed before any treatment starts.",
+    "step3.t":"Painless treatment","step3.d":"Computer-controlled anaesthetic, conscious sedation for anxious patients, headphones and a weighted blanket on request.",
+    "step4.t":"Follow-up & guarantee","step4.d":"A free check at 15 days, automatic WhatsApp reminders, and a five-year guarantee on implants and prosthetics fitted here.",
+    "rdv.eyebrow":"Appointments","rdv.h2":"Book in under a minute",
+    "rdv.lede":"Pick the reason, the dentist and the time. Confirmation arrives on WhatsApp straight away — no account needed.",
+    "rdv.asideH":"Your appointment","rdv.asideP":"Cancel freely up to 4 hours before. One emergency slot is held every morning.",
+    "rdv.s1":"Reason","rdv.s2":"Dentist","rdv.s3":"Date & time","rdv.s4":"Your details",
+    "rdv.asideFoot":"EMERGENCY? 06 61 47 22 08",
+    "rdv.p1h":"What brings you in?","rdv.p1s":"Pick the closest match — the dentist will refine it in the chair.",
+    "rdv.p2h":"Which dentist?","rdv.p2s":"We suggest whoever's speciality fits, but the choice is yours.",
+    "rdv.p3h":"Choose a date","rdv.p3s":"The times shown are the ones genuinely free this week.",
+    "rdv.p4h":"Your details","rdv.p4s":"Only to confirm the appointment. No marketing messages.",
+    "rdv.fname":"Full name","rdv.errName":"Please enter your name.","rdv.ftel":"Phone","rdv.errTel":"Ten-digit Moroccan number.",
+    "rdv.fmsg":"Anything else (optional)",
+    "rdv.doneH":"Request received","rdv.doneS":"Reception confirms within 2 working hours. Here is your summary:",
+    "rdv.wa":"Get the confirmation on WhatsApp","rdv.back":"Back","rdv.next":"Continue",
+    "ba.eyebrow":"Before / after","ba.h2":"Six months of aligners, in one slider",
+    "ba.lede":"A real case drawn on an anatomical diagram: front-tooth crowding corrected with clear trays, then polishing and take-home whitening. Drag to compare.",
+    "ba.k1":"treatment time","ba.k2":"changed every 12 days","ba.k3":"teeth kept",
+    "ba.before":"Before","ba.after":"After",
+    "equipe.eyebrow":"The team","equipe.h2":"Three dentists, one way of working",
+    "equipe.lede":"You see the same dentist from diagnosis to final check. No rotation, no history to explain twice.",
+    "tarifs.eyebrow":"Fees","tarifs.h2":"The price, before the chair",
+    "tarifs.lede":"Indicative prices in dirhams, all taxes included. A personalised quote is free and carries no obligation.",
+    "tarifs.caption":"Fees charged at the practice — updated January 2026.",
+    "tarifs.th1":"Procedure","tarifs.th2":"From","tarifs.noteH":"What's included",
+    "tarifs.n1":"First consultation with X-ray assessment: free if you go ahead with treatment.",
+    "tarifs.n2":"Insurance forms completed on site; reception chases the reimbursement.",
+    "tarifs.n3":"Three interest-free instalments from 4,000 MAD, by cheque or card.",
+    "tarifs.n4":"Five-year guarantee on implants and prosthetics, two years on composites.",
+    "faq.eyebrow":"Common questions","faq.h2":"What people ask us on the phone",
+    "contact.eyebrow":"Finding us","contact.h2":"Anfa, a short walk from Boulevard d'Anfa",
+    "contact.addr":"Address","contact.tel":"Phone","contact.mail":"Email","contact.hours":"Opening hours",
+    "contact.cardT":"Clinique Nacre","contact.cardS":"Ground floor, step-free access · Private parking, 6 spaces · Tram T2 “Anfa” 400 m away",
+    "foot.blurb":"A multidisciplinary dental practice in Casablanca-Anfa. Registered with CNSS, AMO and CNOPS.",
+    "foot.h1":"Practice","foot.h2":"Contact",
+    "foot.legal":"© 2026 Clinique Nacre — National Order of Dental Surgeons","foot.demo":"Demonstration site · fictional content",
+    "mobar.call":"Call","mobar.rdv":"Book",
+    "js.today":"Today","js.tomorrow":"Tomorrow","js.full":"Full",
+    "js.slotsLeft":"slots","js.oneSlot":"slot","js.closed":"Closed",
+    "js.pickDay":"Choose a date first.",
+    "js.recapMotif":"Reason","js.recapDoc":"Dentist","js.recapWhen":"Date","js.recapWho":"Patient",
+    "js.confirm":"Confirm request","js.at":"at",
+    "js.waMsg":"Hello, I would like to confirm an appointment at Clinique Nacre.",
+    "js.noSlots":"Nothing left that day — try the next one.",
+    "js.mad":"MAD"
+  }
+};
+
+var LOCALE = { fr:"fr-MA", ar:"ar-MA-u-nu-latn", en:"en-GB" };
+var lang = "fr";
+var root = document.documentElement;
+var $  = function(s,c){ return (c||document).querySelector(s); };
+var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+function t(k){ return (STR[lang] && STR[lang][k]) || STR.fr[k] || k; }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+/* Mémorise le français tel qu'il est écrit dans le HTML */
+STR.fr = STR.fr || {};
+$$("[data-i18n]").forEach(function(el){
+  var k = el.getAttribute("data-i18n");
+  if(!(k in STR.fr)) STR.fr[k] = el.innerHTML;
+});
+
+/* ══════════════  RENDU DU CONTENU  ══════════════ */
+
+var ICONS = {
+  implant:'<path d="M6.8 8.4c0-2.5 2.3-4.4 5.2-4.4s5.2 1.9 5.2 4.4c0 1.3-.5 2.4-1.3 3.2H8.1c-.8-.8-1.3-1.9-1.3-3.2Z"/><path d="M12 11.6V21"/><path d="M9.4 13.6h5.2M9.8 16.2h4.4M10.3 18.8h3.4"/>',
+  aligner:'<path d="M4 8c0-2 3.6-3.4 8-3.4S20 6 20 8c0 3.4-1.6 6.6-3 9-.8 1.4-1.4 2.6-2.4 2.6-1.2 0-1.2-2-2.6-2s-1.4 2-2.6 2c-1 0-1.6-1.2-2.4-2.6-1.4-2.4-3-5.6-3-9Z"/><path d="M6.5 10.5h11"/>',
+  veneer:'<path d="M7 4h10l-1.2 15.2c-.1 1-.9 1.8-1.9 1.8h-3.8c-1 0-1.8-.8-1.9-1.8Z"/><path d="M7.6 9h8.8"/><path d="M11 4v16"/>',
+  white:'<path d="M12 3c3.2 0 5.4 2.2 5.4 5.2 0 2.6-.8 4.8-1.6 7.2-.7 1.8-1 4.2-2.2 4.2-.9 0-.9-2.2-1.6-2.2s-.7 2.2-1.6 2.2c-1.2 0-1.5-2.4-2.2-4.2-.8-2.4-1.6-4.6-1.6-7.2C6.6 5.2 8.8 3 12 3Z"/><path d="M19.5 4.5l1.2-1.2M20.6 8.4h1.7M17.6 2.4l.5-1.6"/>',
+  care:'<path d="M12 3c3.2 0 5.4 2.2 5.4 5.2 0 2.6-.8 4.8-1.6 7.2-.7 1.8-1 4.2-2.2 4.2-.9 0-.9-2.2-1.6-2.2s-.7 2.2-1.6 2.2c-1.2 0-1.5-2.4-2.2-4.2-.8-2.4-1.6-4.6-1.6-7.2C6.6 5.2 8.8 3 12 3Z"/><circle cx="10" cy="9" r="1.4"/>',
+  gum:'<path d="M3 9.5c2.6-2 5.6-3 9-3s6.4 1 9 3"/><path d="M4.5 12.5c0 4 3.2 7.5 7.5 7.5s7.5-3.5 7.5-7.5"/><path d="M8 6.8v5M12 6.2v6M16 6.8v5"/>',
+  kid:'<path d="M12 3.4c3 0 5.1 2.1 5.1 4.9 0 2.5-.8 4.6-1.5 6.8-.6 1.7-.9 4-2 4-.9 0-.9-2.1-1.6-2.1s-.7 2.1-1.6 2.1c-1.1 0-1.4-2.3-2-4-.7-2.2-1.5-4.3-1.5-6.8 0-2.8 2.1-4.9 5.1-4.9Z"/><path d="M10.1 9.3h.01M13.9 9.3h.01"/><path d="M10.2 12.2c.5.6 1.1.9 1.8.9s1.3-.3 1.8-.9"/>',
+  urgent:'<path d="M12 3c3.2 0 5.4 2.2 5.4 5.2 0 2.6-.8 4.8-1.6 7.2-.7 1.8-1 4.2-2.2 4.2-.9 0-.9-2.2-1.6-2.2s-.7 2.2-1.6 2.2c-1.2 0-1.5-2.4-2.2-4.2-.8-2.4-1.6-4.6-1.6-7.2C6.6 5.2 8.8 3 12 3Z"/><path d="M12 7.5v3.2M12 13.4h.01"/>'
+};
+
+function renderServices(){
+  $("#svcGrid").innerHTML = DATA[lang].services.map(function(s){
+    return '<article class="svc"><svg class="svc-ico" viewBox="0 0 24 24" aria-hidden="true">'+ICONS[s[0]]+'</svg>'+
+      '<h3>'+esc(s[1])+'</h3><p>'+esc(s[2])+'</p><span class="from">'+esc(s[3])+'</span></article>';
+  }).join("");
+}
+
+function renderTeam(){
+  $("#team").innerHTML = DATA[lang].docs.map(function(d){
+    return '<article class="doc">'+
+      '<span class="medal"><svg viewBox="0 0 80 80" aria-hidden="true">'+
+        '<circle class="fillc" cx="40" cy="40" r="36"/>'+
+        '<circle class="ring" cx="40" cy="40" r="38"/>'+
+        '<circle class="ring" cx="40" cy="40" r="31" opacity=".45"/></svg>'+
+      '<span>'+esc(d[2])+'</span></span>'+
+      '<h3>'+esc(d[1])+'</h3><span class="role">'+esc(d[3])+'</span>'+
+      '<p>'+esc(d[4])+'</p>'+
+      '<span class="langs-sp">'+d[5].map(function(l){ return '<span class="tagpill">'+esc(l)+'</span>'; }).join("")+'</span>'+
+      '</article>';
+  }).join("");
+}
+
+function renderPrices(){
+  $("#priceBody").innerHTML = DATA[lang].prices.map(function(p){
+    return '<tr><td>'+esc(p[0])+'</td><td class="amt"><b>'+esc(p[1])+'</b><i>'+t("js.mad")+'</i></td></tr>';
+  }).join("");
+}
+
+function renderQuotes(){
+  var star='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8l3 6.1 6.7 1-4.9 4.7 1.2 6.7L12 17.1l-6 3.2 1.2-6.7L2.3 8.9l6.7-1z"/></svg>';
+  $("#quotes").innerHTML = DATA[lang].quotes.map(function(q){
+    return '<figure class="quote"><span class="stars">'+star+star+star+star+star+'</span>'+
+      '<blockquote>« '+esc(q[0])+' »</blockquote>'+
+      '<figcaption><b>'+esc(q[1])+'</b>'+esc(q[2])+'</figcaption></figure>';
+  }).join("");
+}
+
+function renderFaq(){
+  $("#faqList").innerHTML = DATA[lang].faq.map(function(f,i){
+    return '<details'+(i===0?" open":"")+'><summary>'+esc(f[0])+'<span class="pm" aria-hidden="true"></span></summary>'+
+      '<div class="ans">'+esc(f[1])+'</div></details>';
+  }).join("");
+}
+
+function renderHours(){
+  var todayIdx = (new Date().getDay() + 6) % 7; /* 0 = lundi */
+  $("#hours").innerHTML = "<tbody>" + DATA[lang].hours.map(function(h,i){
+    return '<tr'+(i===todayIdx?' class="today"':'')+'><td>'+esc(h[0])+'</td><td>'+esc(h[1])+'</td></tr>';
+  }).join("") + "</tbody>";
+}
+
+/* ══════════════  AGENDA SIMULÉ  ══════════════ */
+
+function dayKey(d){ return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+function hash(str){
+  var h = 2166136261;
+  for(var i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return (h >>> 0);
+}
+function isOpen(d){ return d.getDay() !== 0; }
+
+/* Créneaux d'une journée pour un praticien — stable d'un rendu à l'autre */
+function daySlots(date, docId){
+  if(!isOpen(date)) return [];
+  var sat = date.getDay() === 6;
+  var out = [], h, m;
+  var seed = hash(dayKey(date) + "|" + docId);
+  var idx = 0;
+  for(h = CLINIC.openHour; h < (sat ? 14 : 19); h++){
+    if(!sat && h >= 13 && h < 15) continue;             /* pause déjeuner */
+    for(m = 0; m < 60; m += CLINIC.slotStep){
+      var label = (h<10?"0":"")+h+":"+(m===0?"00":m);
+      var taken = ((seed >> (idx % 24)) ^ (seed * (idx+3))) % 10 < 5;
+      var past  = isToday(date) && (h*60+m) <= (new Date().getHours()*60 + new Date().getMinutes() + 45);
+      out.push({ label: label, free: !taken && !past });
+      idx++;
+    }
+  }
+  return out;
+}
+function isToday(d){ var n = new Date(); return d.toDateString() === n.toDateString(); }
+function isTomorrow(d){ var n = new Date(Date.now()+86400000); return d.toDateString() === n.toDateString(); }
+
+function nextDays(n){
+  var out = [], d = new Date(); d.setHours(0,0,0,0);
+  for(var i=0;i<n;i++){ var c = new Date(d); c.setDate(d.getDate()+i); out.push(c); }
+  return out;
+}
+function fmtDay(d, opts){ return new Intl.DateTimeFormat(LOCALE[lang], opts).format(d); }
+function dayLabel(d){
+  if(isToday(d)) return t("js.today");
+  if(isTomorrow(d)) return t("js.tomorrow");
+  return fmtDay(d,{weekday:"long", day:"numeric", month:"long"});
+}
+
+/* Carte « prochaines disponibilités » du hero */
+function renderNextSlots(){
+  var host = $("#nextSlots"), html = "", shown = 0;
+  nextDays(9).forEach(function(d){
+    if(shown >= 3 || !isOpen(d)) return;
+    var free = daySlots(d,"any").filter(function(s){ return s.free; });
+    if(!free.length) return;
+    shown++;
+    var chips = free.slice(0,3).map(function(s){
+      return '<button class="chip" type="button" data-jump="'+dayKey(d)+'|'+s.label+'">'+s.label+'</button>';
+    }).join("");
+    if(free.length > 3) chips += '<button class="chip" type="button" data-jump="'+dayKey(d)+'|">+'+(free.length-3)+'</button>';
+    html += '<div class="slotday"><span class="d"><b>'+esc(dayLabel(d))+'</b>'+
+            '<span>'+free.length+" "+(free.length>1?t("js.slotsLeft"):t("js.oneSlot"))+'</span></span>'+
+            '<span class="chiprow">'+chips+'</span></div>';
+  });
+  host.innerHTML = html;
+  $$("[data-jump]", host).forEach(function(b){
+    b.addEventListener("click", function(){
+      var parts = b.getAttribute("data-jump").split("|");
+      jumpToBooking(parts[0], parts[1]);
+    });
+  });
+}
+
+/* ══════════════  RÉSERVATION  ══════════════ */
+
+var state = { step:0, motif:null, doc:null, date:null, time:null };
+
+function docsForPicker(){
+  var list = DATA[lang].docs.map(function(d){ return { id:d[0], name:d[1], role:d[3] }; });
+  list.push({ id:"any", name:DATA[lang].anyDoc[0], role:DATA[lang].anyDoc[1] });
+  return list;
+}
+
+function renderMotifs(){
+  $("#motifs").innerHTML = DATA[lang].motifs.map(function(m,i){
+    return '<button class="opt" type="button" data-i="'+i+'" aria-pressed="'+(state.motif===i)+'">'+
+      '<span class="t">'+esc(m[0])+'</span><span class="s">'+esc(m[1])+'</span></button>';
+  }).join("");
+  $$("#motifs .opt").forEach(function(b){
+    b.addEventListener("click", function(){
+      state.motif = +b.getAttribute("data-i");
+      var pref = DATA[lang].motifs[state.motif][2];
+      if(state.doc === null) state.doc = pref;
+      renderMotifs(); renderPraticiens();
+      setTimeout(function(){ go(1); }, 160);
+    });
+  });
+}
+
+function renderPraticiens(){
+  $("#praticiens").innerHTML = docsForPicker().map(function(d){
+    return '<button class="opt" type="button" data-id="'+d.id+'" aria-pressed="'+(state.doc===d.id)+'">'+
+      '<span class="t">'+esc(d.name)+'</span><span class="s">'+esc(d.role)+'</span></button>';
+  }).join("");
+  $$("#praticiens .opt").forEach(function(b){
+    b.addEventListener("click", function(){
+      state.doc = b.getAttribute("data-id");
+      state.time = null;
+      renderPraticiens(); renderDays(); renderSlots();
+      setTimeout(function(){ go(2); }, 160);
+    });
+  });
+}
+
+function renderDays(){
+  var days = nextDays(7);
+  $("#daystrip").innerHTML = days.map(function(d){
+    var open = isOpen(d);
+    var sel = state.date && d.toDateString() === state.date.toDateString();
+    return '<button class="day" type="button" data-k="'+dayKey(d)+'"'+(open?"":" disabled")+
+      ' aria-pressed="'+(sel?"true":"false")+'">'+
+      '<span class="dw">'+esc(fmtDay(d,{weekday:"short"}))+'</span>'+
+      '<span class="dn">'+d.getDate()+'</span></button>';
+  }).join("");
+  $$("#daystrip .day").forEach(function(b){
+    b.addEventListener("click", function(){
+      var k = b.getAttribute("data-k");
+      state.date = days.filter(function(d){ return dayKey(d) === k; })[0];
+      state.time = null;
+      renderDays(); renderSlots();
+    });
+  });
+}
+
+function renderSlots(){
+  var host = $("#slots");
+  if(!state.date){ host.innerHTML = '<p class="hint" style="margin:0">'+t("js.pickDay")+'</p>'; return; }
+  var list = daySlots(state.date, state.doc || "any");
+  var free = list.filter(function(s){ return s.free; });
+  if(!free.length){ host.innerHTML = '<p class="hint" style="margin:0">'+t("js.noSlots")+'</p>'; return; }
+  host.innerHTML = list.map(function(s){
+    return '<button class="slot" type="button" data-h="'+s.label+'"'+(s.free?"":" disabled")+
+      ' aria-pressed="'+(state.time===s.label?"true":"false")+'">'+s.label+'</button>';
+  }).join("");
+  $$(".slot", host).forEach(function(b){
+    b.addEventListener("click", function(){
+      state.time = b.getAttribute("data-h");
+      renderSlots();
+    });
+  });
+}
+
+function recapHTML(){
+  var m = state.motif !== null ? DATA[lang].motifs[state.motif][0] : "—";
+  var d = docsForPicker().filter(function(x){ return x.id === state.doc; })[0];
+  var when = state.date ? dayLabel(state.date) + " " + t("js.at") + " " + state.time : "—";
+  return '<dl><dt>'+t("js.recapMotif")+'</dt><dd>'+esc(m)+'</dd>'+
+         '<dt>'+t("js.recapDoc")+'</dt><dd>'+esc(d ? d.name : "—")+'</dd>'+
+         '<dt>'+t("js.recapWhen")+'</dt><dd>'+esc(when)+'</dd></dl>';
+}
+
+function go(n){
+  state.step = n;
+  $$(".pane").forEach(function(p){ p.classList.toggle("on", +p.getAttribute("data-pane") === n); });
+  $$("#bookSteps li").forEach(function(li){
+    var i = +li.getAttribute("data-step");
+    li.classList.toggle("on", i === n);
+    li.classList.toggle("done", i < n);
+  });
+  $("#bookNav").style.display = n === 4 ? "none" : "flex";
+  $("#btnBack").style.visibility = n === 0 ? "hidden" : "visible";
+  $("#btnNext").textContent = n === 3 ? t("js.confirm") : t("rdv.next");
+  if(n === 3) $("#recapMini").innerHTML = recapHTML();
+}
+
+function validPhone(v){ return /^0[5-7][0-9\s.-]{8,}$/.test(v.trim()) && v.replace(/\D/g,"").length === 10; }
+
+function submitBooking(){
+  var name = $("#fName"), tel = $("#fTel");
+  var nameOk = name.value.trim().length > 1;
+  var telOk  = validPhone(tel.value);
+  name.parentNode.classList.toggle("bad", !nameOk);
+  tel.parentNode.classList.toggle("bad", !telOk);
+  if(!nameOk || !telOk) return;
+
+  $("#recapFull").innerHTML = recapHTML().replace("</dl>",
+    '<dt>'+t("js.recapWho")+'</dt><dd>'+esc(name.value.trim())+' · '+esc(tel.value.trim())+'</dd></dl>');
+
+  var m = state.motif !== null ? DATA[lang].motifs[state.motif][0] : "";
+  var d = docsForPicker().filter(function(x){ return x.id === state.doc; })[0];
+  var msg = t("js.waMsg") + "\n" +
+    "— " + t("js.recapMotif") + " : " + m + "\n" +
+    "— " + t("js.recapDoc")   + " : " + (d ? d.name : "") + "\n" +
+    "— " + t("js.recapWhen")  + " : " + (state.date ? dayLabel(state.date) + " " + t("js.at") + " " + state.time : "") + "\n" +
+    "— " + t("js.recapWho")   + " : " + name.value.trim() + " · " + tel.value.trim() +
+    ($("#fMsg").value.trim() ? "\n— " + $("#fMsg").value.trim() : "");
+  $("#waLink").href = "https://wa.me/" + CLINIC.whatsapp + "?text=" + encodeURIComponent(msg);
+  go(4);
+}
+
+function jumpToBooking(key, time){
+  var d = nextDays(9).filter(function(x){ return dayKey(x) === key; })[0];
+  if(d){ state.date = d; state.time = time || null; }
+  if(state.motif === null) state.motif = 0;
+  if(state.doc === null) state.doc = "any";
+  renderMotifs(); renderPraticiens(); renderDays(); renderSlots();
+  go(2);
+  $("#rdv").scrollIntoView({ behavior: prefersReduced() ? "auto" : "smooth", block:"start" });
+}
+
+$("#btnNext").addEventListener("click", function(){
+  if(state.step === 0 && state.motif === null) return;
+  if(state.step === 1 && !state.doc) return;
+  if(state.step === 2 && !state.time) return;
+  if(state.step === 3) return submitBooking();
+  go(state.step + 1);
+});
+$("#btnBack").addEventListener("click", function(){ if(state.step > 0) go(state.step - 1); });
+
+/* ══════════════  AVANT / APRÈS  ══════════════ */
+
+/* Contour d'une dent : coins supérieurs peu arrondis, bord libre arrondi */
+function toothPath(w, h, rt, rb){
+  var hw = w / 2;
+  return "M" + (-hw + rt) + " 0" +
+    "h" + (w - 2*rt) + "a" + rt + " " + rt + " 0 0 1 " + rt + " " + rt +
+    "v" + (h - rt - rb) + "a" + rb + " " + rb + " 0 0 1 " + (-rb) + " " + rb +
+    "h" + (-(w - 2*rb)) + "a" + rb + " " + rb + " 0 0 1 " + (-rb) + " " + (-rb) +
+    "v" + (-(h - rt - rb)) + "a" + rt + " " + rt + " 0 0 1 " + rt + " " + (-rt) + "z";
+}
+
+function smile(after){
+  var sfx = after ? "A" : "B";
+  var i, teeth = "";
+
+  /* Largeurs réelles d'une arcade : incisives centrales au milieu, molaires aux extrémités */
+  var widths = [30, 34, 38, 41, 50, 50, 41, 38, 34, 30];
+  var total  = widths.reduce(function(a,b){ return a + b; }, 0);
+  var startX = 260 - total / 2;
+
+  /* Décalages appliqués uniquement au « avant » : encombrement antérieur */
+  var rot   = [ -6, 4, -3, 9, -7, 6, -4, 5, -7, 3 ];
+  var dy    = [  4, 2, -3, 7, -2,  5, -4, 3,  2, 5 ];
+  var dx    = [  0, 1, -3, -5, -3, 4, 3, -2, 1, 0 ];
+
+  var x = startX;
+  for(i = 0; i < 10; i++){
+    var w   = widths[i];
+    var mid = Math.abs(i - 4.5);                 /* 0.5 au centre → 4.5 aux extrémités */
+    var cx  = x + w / 2 + (after ? 0 : dx[i]);
+    var gum = 94 + mid * 3.2;                    /* la gencive remonte vers le centre */
+    var h   = 84 - mid * 6.4;                    /* les dents raccourcissent vers le fond */
+    var y   = gum + (after ? 0 : dy[i]);
+    var r   = after ? 0 : rot[i] * 0.6;
+    teeth += '<g transform="translate('+cx.toFixed(1)+','+y.toFixed(1)+') rotate('+r.toFixed(1)+')">'+
+      '<path d="'+toothPath(w, h, 5, Math.min(w*0.34, 11))+'" fill="url(#en'+sfx+')" stroke="'+(after?"#D9E1DC":"#C4AE81")+'" stroke-width="1"/>'+
+      '</g>';
+    x += w;
+  }
+
+  /* Éclat sur l'incisive centrale gauche, visible avant traitement */
+  if(!after){
+    teeth += '<path d="M239 104 l22 0 l-22 20 z" fill="#D3BF92"/>';
+  }
+
+  /* Arcade inférieure : à peine visible, coupée par la lèvre */
+  var lower = "";
+  var lx = 260 - 8 * 25;
+  for(i = 0; i < 16; i++){
+    var lmid = Math.abs(i - 7.5);
+    var ly = 214 - lmid * 2.4;
+    lower += '<path transform="translate('+(lx + 12.5)+','+ly+')" d="'+toothPath(24, 44, 9, 4)+'" '+
+      'fill="'+(after ? "#EFF1EC" : "#DACBA6")+'" stroke="'+(after ? "#D9E1DC" : "#C4AE81")+'" stroke-width=".8"/>';
+    lx += 25;
+  }
+  lower = '<g opacity=".82">'+lower+'</g>';
+
+  var lips = "M44 132 C 138 62, 382 62, 476 132 C 428 256, 92 256, 44 132 Z";
+
+  return '<svg viewBox="0 0 520 340" role="img" aria-label="'+(after ? "après" : "avant")+'">'+
+    '<defs>'+
+      '<clipPath id="mouth'+sfx+'"><path d="'+lips+'"/></clipPath>'+
+      '<linearGradient id="en'+sfx+'" x1="0" y1="0" x2="0" y2="1">'+
+        '<stop offset="0" stop-color="'+(after ? "#FFFFFF" : "#E3D3AC")+'"/>'+
+        '<stop offset=".55" stop-color="'+(after ? "#FBFCFA" : "#EFE4C8")+'"/>'+
+        '<stop offset="1" stop-color="'+(after ? "#EDF1EE" : "#F3ECD8")+'"/>'+
+      '</linearGradient>'+
+      '<linearGradient id="gum'+sfx+'" x1="0" y1="0" x2="0" y2="1">'+
+        '<stop offset="0" stop-color="'+(after ? "#C98F88" : "#B87F79")+'"/>'+
+        '<stop offset="1" stop-color="'+(after ? "#B0736C" : "#9E635D")+'"/>'+
+      '</linearGradient>'+
+      '<radialGradient id="cav'+sfx+'" cx=".5" cy=".42" r=".62">'+
+        '<stop offset="0" stop-color="#4A2A2C"/><stop offset="1" stop-color="#2A1517"/>'+
+      '</radialGradient>'+
+    '</defs>'+
+    '<g clip-path="url(#mouth'+sfx+')">'+
+      '<rect width="520" height="340" fill="url(#cav'+sfx+')"/>'+
+      '<ellipse cx="260" cy="22" rx="240" ry="120" fill="url(#gum'+sfx+')"/>'+
+      lower+
+      '<rect y="196" width="520" height="144" fill="#1E0F11" opacity=".28"/>'+
+      teeth+
+      '<ellipse cx="260" cy="300" rx="180" ry="58" fill="#160A0C" opacity=".5"/>'+
+    '</g>'+
+    '<path d="'+lips+'" fill="none" stroke="var(--line-strong)" stroke-width="2.5"/>'+
+    '</svg>';
+}
+
+function setupBA(){
+  $("#baBefore").innerHTML = smile(false);
+  $("#baAfter").innerHTML  = smile(true);
+  var range = $("#baRange"), afterL = $("#baAfter"), handle = $("#baHandle");
+  function apply(v){
+    afterL.style.clipPath = "inset(0 0 0 " + v + "%)";
+    handle.style.left = v + "%";
+  }
+  range.addEventListener("input", function(){ apply(range.value); });
+  apply(range.value);
+}
+
+/* ══════════════  MOTIF ZELLIGE  ══════════════ */
+
+function drawZellige(){
+  var c = $("#zellige");
+  if(!c) return;
+  var host = c.parentNode;
+  var w = host.offsetWidth, h = host.offsetHeight;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  c.width = w * dpr; c.height = h * dpr;
+  var g = c.getContext("2d");
+  g.scale(dpr, dpr);
+  g.clearRect(0,0,w,h);
+
+  var cs = getComputedStyle(document.body);
+  var jade  = cs.getPropertyValue("--jade").trim()  || "#1F6E5E";
+  var brass = cs.getPropertyValue("--brass").trim() || "#A9762F";
+  var S = 78, r = S * 0.42;
+
+  for(var y = -S; y < h + S; y += S){
+    for(var x = -S; x < w + S; x += S){
+      var col = Math.round(x / S), row = Math.round(y / S);
+      var accent = ((col + row * 2) % 7 === 0);
+      g.strokeStyle = accent ? brass : jade;
+      g.globalAlpha = accent ? 0.20 : 0.11;
+      g.lineWidth = 1;
+      /* étoile à huit branches = deux carrés superposés */
+      for(var k = 0; k < 2; k++){
+        g.save();
+        g.translate(x + S/2, y + S/2);
+        g.rotate(k * Math.PI / 4);
+        g.beginPath();
+        g.rect(-r, -r, r*2, r*2);
+        g.stroke();
+        g.restore();
+      }
+      /* petit losange de liaison */
+      g.globalAlpha = accent ? 0.16 : 0.07;
+      g.beginPath();
+      g.moveTo(x, y + S/2); g.lineTo(x + S/2, y); g.lineTo(x + S, y + S/2); g.lineTo(x + S/2, y + S);
+      g.closePath(); g.stroke();
+    }
+  }
+  g.globalAlpha = 1;
+  c.style.webkitMaskImage = c.style.maskImage =
+    "radial-gradient(88% 78% at 74% 26%, #000 0%, #000 20%, transparent 72%)";
+}
+
+/* ══════════════  DIVERS  ══════════════ */
+
+function prefersReduced(){
+  return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+/* apparition au défilement */
+function setupReveal(){
+  if(!("IntersectionObserver" in window) || prefersReduced()){
+    $$(".rv").forEach(function(el){ el.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+  $$(".rv").forEach(function(el){ io.observe(el); });
+}
+
+/* barre de navigation */
+var nav = $("#nav");
+window.addEventListener("scroll", function(){
+  nav.classList.toggle("stuck", window.scrollY > 8);
+}, { passive:true });
+
+/* tiroir mobile */
+var drawer = $("#drawer"), burger = $("#burger");
+function setDrawer(open){
+  drawer.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", open ? "true" : "false");
+  document.body.style.overflow = open ? "hidden" : "";
+}
+burger.addEventListener("click", function(){ setDrawer(true); });
+$("#closeDrawer").addEventListener("click", function(){ setDrawer(false); });
+$$("#drawer a").forEach(function(a){ a.addEventListener("click", function(){ setDrawer(false); }); });
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") setDrawer(false); });
+
+/* défilement fluide */
+$$('a[href^="#"]').forEach(function(a){
+  a.addEventListener("click", function(e){
+    var id = a.getAttribute("href");
+    if(id.length < 2) return;
+    var target = document.querySelector(id);
+    if(!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: prefersReduced() ? "auto" : "smooth", block:"start" });
+    history.replaceState(null, "", id);
+  });
+});
+
+/* ══════════════  LANGUE  ══════════════ */
+
+function applyLang(next){
+  lang = next;
+  root.setAttribute("lang", next);
+  root.setAttribute("dir", next === "ar" ? "rtl" : "ltr");
+  $$("[data-i18n]").forEach(function(el){
+    var k = el.getAttribute("data-i18n");
+    var v = (STR[lang] && STR[lang][k]);
+    if(v === undefined) v = STR.fr[k];
+    if(v !== undefined) el.innerHTML = v;
+  });
+  $$(".langs button").forEach(function(b){
+    b.setAttribute("aria-pressed", b.getAttribute("data-lang") === next ? "true" : "false");
+  });
+  renderServices(); renderTeam(); renderPrices(); renderQuotes(); renderFaq(); renderHours();
+  renderNextSlots(); renderMotifs(); renderPraticiens(); renderDays(); renderSlots();
+  go(state.step);
+  try{ localStorage.setItem("nacre-lang", next); }catch(e){}
+}
+$$(".langs button").forEach(function(b){
+  b.addEventListener("click", function(){ applyLang(b.getAttribute("data-lang")); });
+});
+
+/* ══════════════  DÉMARRAGE  ══════════════ */
+
+var saved = null;
+try{ saved = localStorage.getItem("nacre-lang"); }catch(e){}
+applyLang(saved && STR[saved] ? saved : "fr");
+setupBA();
+setupReveal();
+drawZellige();
+
+var rt;
+window.addEventListener("resize", function(){
+  clearTimeout(rt);
+  rt = setTimeout(drawZellige, 180);
+});
+if(window.matchMedia){
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  (mq.addEventListener ? mq.addEventListener.bind(mq,"change") : mq.addListener.bind(mq))(function(){
+    setTimeout(drawZellige, 60);
+  });
+}
+})();
+</script>

@@ -1,0 +1,1077 @@
+<title>Clinique Nacre</title>
+<style>
+/*@FONTS@*/
+
+/* ─────────────  TOKENS  ───────────── */
+:root{
+  --ground:#F3F5F3;
+  --paper:#FFFFFF;
+  --paper-2:#EBF0EC;
+  --ink:#0C2B2A;
+  --ink-soft:#274B47;
+  --muted:#5C716D;
+  --line:#DBE3DE;
+  --line-strong:#C3D0CA;
+  --brass:#A9762F;
+  --brass-soft:#F0E6D6;
+  --jade:#1F6E5E;
+  --jade-soft:#E2EDE9;
+  --cta:#1F6E5E;
+  --cta-ink:#FFFFFF;
+  --ok:#2F7D5B;
+  --shadow-1:0 1px 2px rgba(12,43,42,.05);
+  --shadow-2:0 2px 4px rgba(12,43,42,.04), 0 14px 34px -18px rgba(12,43,42,.35);
+  --r:4px;
+  --maxw:1180px;
+  --display:'Marcellus', 'Iowan Old Style', Georgia, serif;
+  --body:'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#071D1C;
+    --paper:#0C2827;
+    --paper-2:#113230;
+    --ink:#E9F0EC;
+    --ink-soft:#C3D5CF;
+    --muted:#8CA6A0;
+    --line:#1B3F3C;
+    --line-strong:#2B5652;
+    --brass:#D9A863;
+    --brass-soft:#2B2318;
+    --jade:#66C3A9;
+    --jade-soft:#0F302B;
+    --cta:#66C3A9;
+    --cta-ink:#06211E;
+    --ok:#6CC79B;
+    --shadow-1:0 1px 2px rgba(0,0,0,.35);
+    --shadow-2:0 2px 6px rgba(0,0,0,.35), 0 16px 40px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#071D1C;
+  --paper:#0C2827;
+  --paper-2:#113230;
+  --ink:#E9F0EC;
+  --ink-soft:#C3D5CF;
+  --muted:#8CA6A0;
+  --line:#1B3F3C;
+  --line-strong:#2B5652;
+  --brass:#D9A863;
+  --brass-soft:#2B2318;
+  --jade:#66C3A9;
+  --jade-soft:#0F302B;
+  --cta:#66C3A9;
+  --cta-ink:#06211E;
+  --ok:#6CC79B;
+  --shadow-1:0 1px 2px rgba(0,0,0,.35);
+  --shadow-2:0 2px 6px rgba(0,0,0,.35), 0 16px 40px -20px rgba(0,0,0,.8);
+}
+
+/* ─────────────  BASE  ───────────── */
+*,*::before,*::after{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.14;text-wrap:balance;margin:0;letter-spacing:-.01em;}
+p{margin:0;}
+a{color:inherit;}
+img,svg{max-width:100%;}
+button{font:inherit;color:inherit;}
+:focus-visible{outline:2px solid var(--cta);outline-offset:3px;border-radius:2px;}
+::selection{background:var(--brass);color:#fff;}
+
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.sec{padding:96px 0;}
+.sec-tight{padding:64px 0;}
+.hr{height:1px;background:var(--line);border:0;margin:0;}
+
+/* eyebrow with zellige star */
+.eyebrow{
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:11.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brass);
+  margin:0 0 14px;
+}
+.eyebrow .star{width:11px;height:11px;flex:none;fill:var(--brass);}
+.sec-head{max-width:640px;margin-bottom:44px;}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);}
+.sec-head .lede{color:var(--muted);font-size:1.04rem;margin-top:14px;max-width:56ch;}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 22px;border-radius:var(--r);border:1px solid transparent;
+  font-size:.94rem;font-weight:600;letter-spacing:.005em;
+  text-decoration:none;cursor:pointer;
+  transition:background .18s, color .18s, border-color .18s, transform .12s;
+}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--cta);color:var(--cta-ink);}
+.btn-primary:hover{background:var(--ink);color:var(--ground);}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong);}
+.btn-ghost:hover{border-color:var(--ink);background:var(--paper);}
+.btn-sm{padding:9px 15px;font-size:.86rem;}
+.btn svg{width:16px;height:16px;flex:none;}
+
+/* ─────────────  NAV  ───────────── */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s, background .25s;
+}
+.nav.stuck{border-bottom-color:var(--line);}
+.nav-in{display:flex;align-items:center;gap:26px;height:72px;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none;}
+.brand .mark{width:30px;height:30px;flex:none;}
+.brand .mark .p1{fill:var(--jade);}
+.brand .mark .p2{fill:var(--brass);}
+.brand-txt{display:flex;flex-direction:column;line-height:1;}
+.brand-name{font-family:var(--display);font-size:1.22rem;letter-spacing:.06em;}
+.brand-sub{font-family:var(--mono);font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+.nav-links{display:flex;gap:22px;margin-inline-start:auto;}
+.nav-links a{
+  text-decoration:none;font-size:.91rem;color:var(--ink-soft);
+  padding:6px 0;position:relative;transition:color .18s;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--brass);transition:right .25s ease;
+}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a:hover::after{right:0;}
+.nav-tools{display:flex;align-items:center;gap:12px;flex:none;}
+.langs{display:flex;border:1px solid var(--line-strong);border-radius:var(--r);overflow:hidden;}
+.langs button{
+  background:transparent;border:0;cursor:pointer;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;
+  padding:7px 9px;color:var(--muted);transition:background .16s,color .16s;
+}
+.langs button + button{border-inline-start:1px solid var(--line-strong);}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--ground);}
+.icon-btn{
+  width:36px;height:36px;display:none;align-items:center;justify-content:center;
+  background:transparent;border:1px solid var(--line-strong);border-radius:var(--r);cursor:pointer;
+}
+.icon-btn svg{width:17px;height:17px;stroke:var(--ink);}
+.nav-cta{display:inline-flex;}
+
+/* mobile drawer */
+.drawer{
+  position:fixed;inset:0;z-index:70;background:var(--ground);
+  padding:26px 28px;display:none;flex-direction:column;gap:6px;
+}
+.drawer.open{display:flex;}
+.drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;}
+.drawer a{
+  text-decoration:none;font-family:var(--display);font-size:1.7rem;
+  padding:11px 0;border-bottom:1px solid var(--line);
+}
+.drawer .btn{margin-top:24px;}
+
+/* ─────────────  HERO  ───────────── */
+.hero{position:relative;overflow:hidden;padding:74px 0 84px;}
+#zellige{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none;}
+.hero-grid{
+  position:relative;display:grid;grid-template-columns:1.08fr .92fr;
+  gap:64px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--jade);background:var(--jade-soft);
+  border:1px solid color-mix(in srgb, var(--jade) 26%, transparent);
+  padding:6px 12px;border-radius:999px;
+}
+.hero h1{
+  font-size:clamp(2.6rem,5.6vw,4.35rem);
+  margin:22px 0 0;letter-spacing:-.02em;
+}
+.hero h1 em{font-style:normal;color:var(--brass);}
+.hero-lede{color:var(--muted);font-size:1.1rem;max-width:47ch;margin-top:20px;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;}
+.hero-trust{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px 32px;margin-top:40px;
+  padding-top:26px;border-top:1px solid var(--line);max-width:520px;
+}
+.trust-item{display:flex;flex-direction:column;gap:3px;padding:6px 0;}
+.trust-k{font-family:var(--display);font-size:1.55rem;line-height:1;}
+.trust-k .u{font-size:.85rem;color:var(--brass);}
+.trust-v{font-size:.78rem;color:var(--muted);letter-spacing:.02em;}
+
+/* next-slots card */
+.slotcard{
+  background:var(--paper);border:1px solid var(--line);border-radius:6px;
+  box-shadow:var(--shadow-2);overflow:hidden;
+}
+.slotcard-top{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px 20px;border-bottom:1px solid var(--line);background:var(--paper-2);
+}
+.slotcard-top h3{font-size:1.02rem;font-family:var(--body);font-weight:600;}
+.live{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);}
+.live .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.slotcard-body{padding:18px 20px 20px;}
+.slotday{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line);}
+.slotday:last-of-type{border-bottom:0;}
+.slotday .d{font-size:.9rem;}
+.slotday .d b{font-weight:600;}
+.slotday .d span{color:var(--muted);font-family:var(--mono);font-size:.76rem;margin-inline-start:7px;}
+.chiprow{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+.chip{
+  font-family:var(--mono);font-size:.76rem;padding:5px 9px;
+  border:1px solid var(--line-strong);border-radius:3px;background:transparent;
+  cursor:pointer;transition:all .16s;white-space:nowrap;
+}
+.chip:hover{border-color:var(--cta);color:var(--cta);}
+.chip.full{color:var(--muted);border-style:dashed;opacity:.6;cursor:not-allowed;text-decoration:line-through;}
+.slotcard-foot{padding:14px 20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;background:var(--paper-2);}
+.slotcard-foot svg{width:15px;height:15px;stroke:var(--brass);flex:none;}
+.slotcard-foot span{font-size:.82rem;color:var(--muted);}
+
+/* ─────────────  MARQUEE STRIP  ───────────── */
+.strip{border-block:1px solid var(--line);background:var(--paper);overflow:hidden;}
+.strip-in{display:flex;gap:0;}
+.strip-cell{
+  flex:1;padding:26px 24px;display:flex;flex-direction:column;gap:4px;
+  border-inline-start:1px solid var(--line);
+}
+.strip-cell:first-child{border-inline-start:0;}
+.strip-cell .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);}
+.strip-cell .v{font-size:.93rem;color:var(--ink-soft);}
+
+/* ─────────────  SERVICES  ───────────── */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.svc{
+  background:var(--paper);padding:30px 24px 28px;
+  display:flex;flex-direction:column;gap:11px;position:relative;
+  transition:background .2s;
+}
+.svc::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--brass);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s ease;
+}
+.svc:hover{background:var(--paper-2);}
+.svc:hover::before{transform:scaleX(1);}
+.svc-ico{width:30px;height:30px;stroke:var(--jade);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
+.svc h3{font-family:var(--body);font-size:1.02rem;font-weight:600;line-height:1.35;}
+.svc p{font-size:.875rem;color:var(--muted);line-height:1.55;}
+.svc .from{margin-top:auto;padding-top:10px;font-family:var(--mono);font-size:.76rem;color:var(--brass);letter-spacing:.03em;}
+
+/* ─────────────  PARCOURS  ───────────── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s;}
+.step{position:relative;padding-top:30px;border-top:1px solid var(--line-strong);}
+.step .n{
+  position:absolute;top:-11px;inset-inline-start:0;background:var(--ground);
+  padding-inline-end:12px;font-family:var(--mono);font-size:.78rem;font-weight:500;
+  letter-spacing:.1em;color:var(--brass);
+}
+.step h3{font-family:var(--body);font-size:1.05rem;font-weight:600;margin-bottom:8px;}
+.step p{font-size:.885rem;color:var(--muted);}
+
+/* ─────────────  BOOKING  ───────────── */
+.book{background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow-2);overflow:hidden;}
+.book-grid{display:grid;grid-template-columns:300px 1fr;}
+.book-aside{background:var(--ink);color:var(--ground);padding:34px 30px;display:flex;flex-direction:column;}
+:root[data-theme="dark"] .book-aside,
+:root:not([data-theme="light"]) .book-aside{}
+.book-aside h3{font-size:1.55rem;color:inherit;}
+.book-aside p{font-size:.88rem;opacity:.72;margin-top:12px;}
+.book-steps{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-direction:column;gap:2px;}
+.book-steps li{
+  display:flex;align-items:center;gap:12px;padding:11px 0;
+  font-size:.88rem;opacity:.45;transition:opacity .25s;
+}
+.book-steps li .bullet{
+  width:22px;height:22px;border-radius:50%;border:1px solid currentColor;
+  display:grid;place-items:center;font-family:var(--mono);font-size:.7rem;flex:none;
+}
+.book-steps li.on{opacity:1;}
+.book-steps li.done{opacity:.8;}
+.book-steps li.done .bullet{background:var(--brass);border-color:var(--brass);color:#fff;}
+.book-aside .aside-foot{margin-top:auto;padding-top:26px;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;opacity:.6;}
+.book-main{padding:34px 34px 30px;min-height:430px;display:flex;flex-direction:column;}
+.pane{display:none;animation:fade .32s ease both;}
+.pane.on{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pane h4{font-family:var(--body);font-size:1.12rem;font-weight:600;margin-bottom:4px;}
+.pane .hint{font-size:.85rem;color:var(--muted);margin-bottom:20px;}
+.opt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
+.opt{
+  text-align:start;background:transparent;border:1px solid var(--line-strong);
+  border-radius:var(--r);padding:13px 15px;cursor:pointer;
+  display:flex;flex-direction:column;gap:3px;transition:all .16s;
+}
+.opt:hover{border-color:var(--cta);background:var(--jade-soft);}
+.opt[aria-pressed="true"]{border-color:var(--cta);background:var(--jade-soft);box-shadow:inset 0 0 0 1px var(--cta);}
+.opt .t{font-size:.92rem;font-weight:600;}
+.opt .s{font-size:.78rem;color:var(--muted);font-family:var(--mono);}
+.daystrip{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;}
+.day{
+  background:transparent;border:1px solid var(--line-strong);border-radius:var(--r);
+  padding:11px 4px;cursor:pointer;text-align:center;transition:all .16s;
+}
+.day:hover:not(:disabled){border-color:var(--cta);}
+.day[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground);}
+.day:disabled{opacity:.35;cursor:not-allowed;}
+.day .dw{font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;display:block;opacity:.7;}
+.day .dn{font-family:var(--display);font-size:1.3rem;display:block;line-height:1.3;}
+.slots{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;}
+.slot{
+  font-family:var(--mono);font-size:.83rem;padding:9px 13px;
+  border:1px solid var(--line-strong);border-radius:var(--r);background:transparent;cursor:pointer;transition:all .16s;
+}
+.slot:hover:not(:disabled){border-color:var(--cta);color:var(--cta);}
+.slot[aria-pressed="true"]{background:var(--cta);border-color:var(--cta);color:var(--cta-ink);}
+.slot:disabled{opacity:.32;cursor:not-allowed;text-decoration:line-through;}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.field label{font-size:.8rem;font-weight:600;letter-spacing:.01em;}
+.field input,.field textarea{
+  font:inherit;font-size:.92rem;padding:11px 13px;border-radius:var(--r);
+  border:1px solid var(--line-strong);background:var(--ground);color:var(--ink);
+}
+.field input:focus,.field textarea:focus{outline:2px solid var(--cta);outline-offset:1px;border-color:transparent;}
+.field .err{font-size:.76rem;color:#C2412D;display:none;}
+.field.bad .err{display:block;}
+.field.bad input{border-color:#C2412D;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.book-nav{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:24px;}
+.book-nav .spacer{margin-inline-start:auto;}
+.recap{border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);padding:18px 20px;margin-bottom:18px;}
+.recap dl{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;margin:0;}
+.recap dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px;}
+.recap dd{margin:0;font-size:.95rem;font-weight:600;}
+.done-badge{width:52px;height:52px;border-radius:50%;background:var(--jade-soft);display:grid;place-items:center;margin-bottom:16px;}
+.done-badge svg{width:26px;height:26px;stroke:var(--cta);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ─────────────  AVANT / APRÈS  ───────────── */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.ba{
+  position:relative;border-radius:6px;overflow:hidden;border:1px solid var(--line);
+  background:linear-gradient(165deg, var(--paper-2), var(--paper));
+  box-shadow:var(--shadow-2);touch-action:none;user-select:none;
+}
+.ba svg{display:block;width:100%;height:auto;}
+.ba .before{position:relative;display:block;}
+.ba .after{position:absolute;inset:0;clip-path:inset(0 0 0 50%);}
+.ba-handle{
+  position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--brass);
+  transform:translateX(-1px);cursor:ew-resize;
+}
+.ba-handle::after{
+  content:"";position:absolute;top:50%;left:50%;width:38px;height:38px;
+  transform:translate(-50%,-50%);border-radius:50%;background:var(--brass);
+  box-shadow:0 2px 10px rgba(0,0,0,.28);
+}
+.ba-handle .arrows{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  z-index:2;width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+.ba-tag{
+  position:absolute;top:14px;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:5px 10px;border-radius:3px;
+  background:color-mix(in srgb, var(--ink) 82%, transparent);color:var(--ground);
+}
+.ba-tag.l{left:14px;}
+.ba-tag.r{right:14px;background:var(--brass);color:#fff;}
+.ba-range{position:absolute;inset:0;width:100%;opacity:0;cursor:ew-resize;margin:0;}
+
+/* ─────────────  ÉQUIPE  ───────────── */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.doc{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;}
+.medal{width:76px;height:76px;position:relative;display:grid;place-items:center;}
+.medal svg{position:absolute;inset:0;width:100%;height:100%;}
+.medal .ring{fill:none;stroke:var(--brass);stroke-width:1;}
+.medal .fillc{fill:var(--jade-soft);}
+.medal span{position:relative;font-family:var(--display);font-size:1.5rem;color:var(--jade);letter-spacing:.02em;}
+.doc h3{font-family:var(--body);font-size:1.06rem;font-weight:600;}
+.doc .role{font-family:var(--mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--brass);margin-top:-8px;}
+.doc p{font-size:.875rem;color:var(--muted);}
+.doc .langs-sp{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:8px;}
+.tagpill{font-family:var(--mono);font-size:.7rem;padding:3px 8px;border:1px solid var(--line-strong);border-radius:999px;color:var(--muted);}
+
+/* ─────────────  TARIFS  ───────────── */
+.price-wrap{display:grid;grid-template-columns:1.35fr .65fr;gap:48px;align-items:start;}
+.ptable{width:100%;border-collapse:collapse;font-size:.94rem;}
+.ptable caption{text-align:start;font-size:.8rem;color:var(--muted);padding-bottom:12px;}
+.ptable th{
+  text-align:start;font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;
+  padding:0 0 11px;border-bottom:1px solid var(--line-strong);
+}
+.ptable th:last-child,.ptable td:last-child{text-align:end;}
+.ptable td{padding:14px 0;border-bottom:1px solid var(--line);}
+.ptable tbody tr:hover td{color:var(--ink);}
+.ptable .amt{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.ptable .amt b{font-weight:500;}
+.ptable .amt i{font-style:normal;font-size:.76rem;color:var(--muted);margin-inline-start:4px;}
+.pnote{background:var(--paper);border:1px solid var(--line);border-inline-start:2px solid var(--brass);border-radius:var(--r);padding:22px 24px;}
+.pnote h3{font-family:var(--body);font-size:1rem;font-weight:600;margin-bottom:10px;}
+.pnote ul{margin:0;padding-inline-start:18px;display:flex;flex-direction:column;gap:9px;}
+.pnote li{font-size:.875rem;color:var(--muted);}
+
+/* ─────────────  AVIS  ───────────── */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line);}
+.quote{background:var(--ground);padding:34px 30px;display:flex;flex-direction:column;gap:16px;}
+.stars{display:flex;gap:3px;}
+.stars svg{width:14px;height:14px;fill:var(--brass);}
+.quote blockquote{margin:0;font-family:var(--display);font-size:1.16rem;line-height:1.5;}
+.quote figcaption{margin-top:auto;font-size:.82rem;color:var(--muted);}
+.quote figcaption b{display:block;color:var(--ink);font-weight:600;font-size:.88rem;font-family:var(--body);}
+
+/* ─────────────  FAQ  ───────────── */
+.faq{max-width:820px;}
+.faq details{border-bottom:1px solid var(--line);}
+.faq summary{
+  list-style:none;cursor:pointer;padding:20px 0;display:flex;align-items:center;gap:18px;
+  font-size:1.02rem;font-weight:600;
+}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary .pm{
+  margin-inline-start:auto;width:20px;height:20px;flex:none;position:relative;
+}
+.faq summary .pm::before,.faq summary .pm::after{
+  content:"";position:absolute;top:50%;left:0;width:100%;height:1px;background:var(--brass);
+  transition:transform .25s ease;
+}
+.faq summary .pm::after{transform:rotate(90deg);}
+.faq details[open] summary .pm::after{transform:rotate(0);}
+.faq .ans{padding:0 40px 22px 0;color:var(--muted);font-size:.93rem;max-width:70ch;}
+
+/* ─────────────  CONTACT  ───────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper);}
+.contact-info{padding:40px;display:flex;flex-direction:column;gap:26px;}
+.cline{display:flex;gap:15px;align-items:flex-start;}
+.cline svg{width:18px;height:18px;stroke:var(--brass);fill:none;stroke-width:1.5;flex:none;margin-top:3px;stroke-linecap:round;stroke-linejoin:round;}
+.cline .ck{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px;}
+.cline .cv{font-size:.98rem;}
+.cline a{text-decoration:none;border-bottom:1px solid var(--line-strong);}
+.cline a:hover{border-color:var(--brass);color:var(--brass);}
+.hours{width:100%;border-collapse:collapse;font-size:.9rem;}
+.hours td{padding:7px 0;border-bottom:1px dashed var(--line);}
+.hours td:last-child{text-align:end;font-family:var(--mono);font-size:.84rem;font-variant-numeric:tabular-nums;}
+.hours tr.today td{color:var(--jade);font-weight:600;}
+.hours tr.today td:first-child::after{
+  content:"•";color:var(--jade);margin-inline-start:7px;
+}
+.map{background:var(--paper-2);position:relative;min-height:420px;}
+.map svg{position:absolute;inset:0;width:100%;height:100%;}
+.map-card{
+  position:absolute;inset-inline-start:26px;bottom:26px;background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;box-shadow:var(--shadow-2);
+  max-width:250px;
+}
+.map-card .t{font-weight:600;font-size:.9rem;}
+.map-card .s{font-size:.8rem;color:var(--muted);margin-top:2px;}
+
+/* ─────────────  FOOTER  ───────────── */
+.foot{background:var(--ink);color:var(--ground);padding:56px 0 30px;margin-top:0;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;}
+.foot .brand-name,.foot h4{color:var(--ground);}
+.foot p{font-size:.87rem;opacity:.66;margin-top:14px;max-width:34ch;}
+.foot h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.55;font-weight:500;margin-bottom:14px;}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+.foot ul a{text-decoration:none;font-size:.89rem;opacity:.8;}
+.foot ul a:hover{opacity:1;color:var(--brass);}
+.foot-bot{
+  margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.13);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;opacity:.5;
+}
+
+/* sticky mobile action bar */
+.mobar{
+  position:fixed;inset-inline:0;bottom:0;z-index:55;display:none;
+  gap:1px;background:var(--line);border-top:1px solid var(--line);
+}
+.mobar a{
+  flex:1;background:var(--paper);padding:13px 6px;text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:.7rem;letter-spacing:.04em;
+}
+.mobar a svg{width:17px;height:17px;stroke:var(--jade);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.mobar a.hi{background:var(--cta);color:var(--cta-ink);}
+.mobar a.hi svg{stroke:var(--cta-ink);}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);}
+.rv.in{opacity:1;transform:none;}
+
+/* ─────────────  RTL / ARABIC  ───────────── */
+:root[dir="rtl"] body{font-family:'IBM Plex Sans Arabic', var(--body);}
+:root[dir="rtl"] h1,:root[dir="rtl"] h2,:root[dir="rtl"] h3,:root[dir="rtl"] h4,
+:root[dir="rtl"] blockquote,:root[dir="rtl"] .brand-name,:root[dir="rtl"] .trust-k,
+:root[dir="rtl"] .day .dn,:root[dir="rtl"] .medal span{
+  font-family:'IBM Plex Sans Arabic', var(--display);font-weight:600;letter-spacing:0;line-height:1.35;
+}
+:root[dir="rtl"] .eyebrow,:root[dir="rtl"] .hero-eyebrow,:root[dir="rtl"] .step .n,
+:root[dir="rtl"] .doc .role,:root[dir="rtl"] .foot h4,:root[dir="rtl"] .strip-cell .k,
+:root[dir="rtl"] .ptable th,:root[dir="rtl"] .recap dt,:root[dir="rtl"] .cline .ck,
+:root[dir="rtl"] .ba-tag,:root[dir="rtl"] .brand-sub{
+  font-family:'IBM Plex Sans Arabic', var(--mono);letter-spacing:0;
+}
+:root[dir="rtl"] .step .n{padding-inline-end:0;padding-inline-start:0;padding-left:12px;padding-right:0;}
+:root[dir="rtl"] .svc::before{transform-origin:right;}
+:root[dir="rtl"] .nav-links a::after{right:0;left:100%;transition:left .25s ease;}
+:root[dir="rtl"] .nav-links a:hover::after{left:0;}
+
+/* ─────────────  RESPONSIVE  ───────────── */
+@media (max-width:1040px){
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .steps{grid-template-columns:repeat(2,1fr);gap:34px 28px;}
+  .team{grid-template-columns:1fr;}
+  .price-wrap{grid-template-columns:1fr;gap:32px;}
+  .book-grid{grid-template-columns:1fr;}
+  .book-aside{padding:26px;}
+  .book-steps{flex-direction:row;flex-wrap:wrap;gap:6px 18px;}
+  .book-aside .aside-foot{display:none;}
+}
+@media (max-width:900px){
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .icon-btn{display:inline-flex;}
+  .nav-tools{margin-inline-start:auto;}
+  .hero-grid{grid-template-columns:1fr;gap:44px;}
+  .ba-grid{grid-template-columns:1fr;gap:34px;}
+  .contact-grid{grid-template-columns:1fr;}
+  .quotes{grid-template-columns:1fr;}
+  .strip-in{flex-wrap:wrap;}
+  .strip-cell{flex:1 1 50%;border-inline-start:0;border-top:1px solid var(--line);}
+  .strip-cell:nth-child(-n+2){border-top:0;}
+  .strip-cell:nth-child(even){border-inline-start:1px solid var(--line);}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .mobar{display:flex;}
+  body{padding-bottom:60px;}
+  .map{min-height:300px;}
+  #zellige{opacity:.32;}
+}
+@media (max-width:620px){
+  .sec{padding:66px 0;}
+  .wrap{padding:0 20px;}
+  .nav-in{gap:10px;height:64px;}
+  .brand{min-width:0;}
+  .brand-sub{display:none;}
+  .brand-name{font-size:1.12rem;}
+  .langs button{padding:7px 8px;}
+  .svc-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .opt-grid{grid-template-columns:1fr;}
+  .two{grid-template-columns:1fr;}
+  .daystrip{grid-template-columns:repeat(4,1fr);}
+  .book-main{padding:26px 22px;}
+  .contact-info{padding:28px 24px;}
+  .foot-grid{grid-template-columns:1fr;gap:30px;}
+  .hero-trust{gap:14px 22px;}
+  .hero-cta{flex-direction:column;align-items:stretch;}
+  .ptable{font-size:.88rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+  .rv{opacity:1;transform:none;}
+}
+@media print{
+  .nav,.mobar,.book,.drawer{display:none;}
+}
+</style>
+
+<!-- ══════════════════  NAV  ══════════════════ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Clinique Nacre">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <path class="p1" d="M20 2 L24.6 11.5 L35 12.8 L27.5 20 L35 27.2 L24.6 28.5 L20 38 L15.4 28.5 L5 27.2 L12.5 20 L5 12.8 L15.4 11.5 Z" opacity=".16"/>
+        <path class="p1" d="M20 6.5c5 0 8.5 3.4 8.5 8.2 0 4.1-1.3 7.6-2.6 11.4-1 2.9-1.6 6.6-3.4 6.6-1.4 0-1.4-3.4-2.5-3.4s-1.1 3.4-2.5 3.4c-1.8 0-2.4-3.7-3.4-6.6-1.3-3.8-2.6-7.3-2.6-11.4 0-4.8 3.5-8.2 8.5-8.2Z"/>
+        <circle class="p2" cx="27.4" cy="12.4" r="2.6"/>
+      </svg>
+      <span class="brand-txt">
+        <span class="brand-name">NACRE</span>
+        <span class="brand-sub" data-i18n="brand.sub">Clinique dentaire · Casablanca</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#soins" data-i18n="nav.soins">Nos soins</a>
+      <a href="#parcours" data-i18n="nav.parcours">Le parcours</a>
+      <a href="#equipe" data-i18n="nav.equipe">L'équipe</a>
+      <a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="nav-tools">
+      <div class="langs" role="group" aria-label="Langue">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="ar" aria-pressed="false">ع</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-primary btn-sm nav-cta" href="#rdv" data-i18n="cta.book">Prendre rendez-vous</a>
+      <button class="icon-btn" id="burger" type="button" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <div class="drawer-top">
+    <span class="brand-name">NACRE</span>
+    <button class="icon-btn" id="closeDrawer" type="button" aria-label="Fermer" style="display:inline-flex">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <a href="#soins" data-i18n="nav.soins">Nos soins</a>
+  <a href="#parcours" data-i18n="nav.parcours">Le parcours</a>
+  <a href="#equipe" data-i18n="nav.equipe">L'équipe</a>
+  <a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+  <a href="#avis" data-i18n="nav.avis">Avis</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
+  <a class="btn btn-primary" href="#rdv" data-i18n="cta.book">Prendre rendez-vous</a>
+</div>
+
+<!-- ══════════════════  HERO  ══════════════════ -->
+<section class="hero" id="top">
+  <canvas id="zellige" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-eyebrow" data-i18n="hero.badge">Anfa · Casablanca — depuis 2011</span>
+      <h1><span data-i18n="hero.h1a">Le soin dentaire,</span> <em data-i18n="hero.h1b">sans appréhension.</em></h1>
+      <p class="hero-lede" data-i18n="hero.lede">Une clinique pensée pour les patients qui repoussent leur rendez-vous depuis trop longtemps. Diagnostic 3D, devis chiffré avant tout soin, et des praticiens qui prennent le temps d'expliquer.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#rdv">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+          <span data-i18n="cta.book">Prendre rendez-vous</span>
+        </a>
+        <a class="btn btn-ghost" href="tel:+212522398410">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          <span dir="ltr">05 22 39 84 10</span>
+        </a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-item">
+          <span class="trust-k">14<span class="u" data-i18n="u.ans">&nbsp;ans</span></span>
+          <span class="trust-v" data-i18n="trust.years">d'exercice à Casablanca</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-k">9&nbsp;800<span class="u">+</span></span>
+          <span class="trust-v" data-i18n="trust.patients">patients suivis</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-k">4,9<span class="u">/5</span></span>
+          <span class="trust-v" data-i18n="trust.rating">sur 312 avis vérifiés</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-k">48<span class="u" data-i18n="u.h">&nbsp;h</span></span>
+          <span class="trust-v" data-i18n="trust.delay">délai moyen de rendez-vous</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="slotcard" aria-labelledby="slotcard-h">
+      <div class="slotcard-top">
+        <h3 id="slotcard-h" data-i18n="slots.title">Prochaines disponibilités</h3>
+        <span class="live"><span class="dot"></span><span data-i18n="slots.live">En direct</span></span>
+      </div>
+      <div class="slotcard-body" id="nextSlots"></div>
+      <div class="slotcard-foot">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        <span data-i18n="slots.foot">12 rue Ahmed Charci, Anfa — parking privé</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════════════════  STRIP  ══════════════════ -->
+<div class="strip">
+  <div class="wrap" style="padding:0">
+    <div class="strip-in">
+      <div class="strip-cell">
+        <span class="k" data-i18n="strip.k1">Stérilisation</span>
+        <span class="v" data-i18n="strip.v1">Autoclave classe B, traçabilité par sachet</span>
+      </div>
+      <div class="strip-cell">
+        <span class="k" data-i18n="strip.k2">Imagerie</span>
+        <span class="v" data-i18n="strip.v2">Radio panoramique &amp; scanner 3D sur place</span>
+      </div>
+      <div class="strip-cell">
+        <span class="k" data-i18n="strip.k3">Prise en charge</span>
+        <span class="v" data-i18n="strip.v3">CNSS, AMO, CNOPS &amp; assurances privées</span>
+      </div>
+      <div class="strip-cell">
+        <span class="k" data-i18n="strip.k4">Urgences</span>
+        <span class="v" data-i18n="strip.v4">Ligne dédiée, 7j/7 jusqu'à 22h</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════  SOINS  ══════════════════ -->
+<section class="sec" id="soins">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="soins.eyebrow">Nos soins</span></p>
+      <h2 data-i18n="soins.h2">Huit spécialités, un seul dossier patient</h2>
+      <p class="lede" data-i18n="soins.lede">Implant, aligneur ou simple détartrage : tout est traité sur place, par la même équipe, avec le même dossier numérique. Aucun renvoi vers un autre cabinet.</p>
+    </div>
+
+    <div class="svc-grid rv" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════  PARCOURS  ══════════════════ -->
+<section class="sec-tight" id="parcours" style="background:var(--paper);border-block:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="parcours.eyebrow">Le parcours</span></p>
+      <h2 data-i18n="parcours.h2">Quatre étapes, aucune surprise</h2>
+    </div>
+    <ol class="steps rv" style="list-style:none;margin:0;padding:0;">
+      <li class="step">
+        <span class="n">01</span>
+        <h3 data-i18n="step1.t">Bilan &amp; scanner 3D</h3>
+        <p data-i18n="step1.d">45 minutes. Examen complet, radio panoramique et photos intra-orales. Vous repartez avec le diagnostic écrit, même si vous ne poursuivez pas chez nous.</p>
+      </li>
+      <li class="step">
+        <span class="n">02</span>
+        <h3 data-i18n="step2.t">Devis chiffré</h3>
+        <p data-i18n="step2.d">Chaque acte est détaillé ligne par ligne, avec la part remboursée par votre mutuelle et le reste à charge réel. Signé avant le premier soin.</p>
+      </li>
+      <li class="step">
+        <span class="n">03</span>
+        <h3 data-i18n="step3.t">Soin sans douleur</h3>
+        <p data-i18n="step3.d">Anesthésie électronique à débit contrôlé, sédation consciente au MEOPA pour les patients anxieux, casque audio et couverture lestée sur demande.</p>
+      </li>
+      <li class="step">
+        <span class="n">04</span>
+        <h3 data-i18n="step4.t">Suivi &amp; garantie</h3>
+        <p data-i18n="step4.d">Contrôle offert à 15 jours, rappel automatique par WhatsApp, et 5 ans de garantie sur les implants et prothèses posés au cabinet.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════  RDV  ══════════════════ -->
+<section class="sec" id="rdv">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="rdv.eyebrow">Rendez-vous</span></p>
+      <h2 data-i18n="rdv.h2">Réservez en moins d'une minute</h2>
+      <p class="lede" data-i18n="rdv.lede">Choisissez le motif, le praticien et l'horaire. Vous recevez une confirmation par WhatsApp dans la foulée — sans créer de compte.</p>
+    </div>
+
+    <div class="book rv">
+      <div class="book-grid">
+        <div class="book-aside">
+          <h3 data-i18n="rdv.asideH">Votre rendez-vous</h3>
+          <p data-i18n="rdv.asideP">Annulation libre jusqu'à 4 h avant. Un créneau d'urgence est gardé chaque matin.</p>
+          <ol class="book-steps" id="bookSteps">
+            <li class="on" data-step="0"><span class="bullet">1</span><span data-i18n="rdv.s1">Motif</span></li>
+            <li data-step="1"><span class="bullet">2</span><span data-i18n="rdv.s2">Praticien</span></li>
+            <li data-step="2"><span class="bullet">3</span><span data-i18n="rdv.s3">Date &amp; heure</span></li>
+            <li data-step="3"><span class="bullet">4</span><span data-i18n="rdv.s4">Coordonnées</span></li>
+          </ol>
+          <div class="aside-foot" data-i18n="rdv.asideFoot">URGENCE ? <span dir="ltr">06 61 47 22 08</span></div>
+        </div>
+
+        <div class="book-main">
+          <!-- step 1 -->
+          <div class="pane on" data-pane="0">
+            <h4 data-i18n="rdv.p1h">Quel est le motif de votre visite ?</h4>
+            <p class="hint" data-i18n="rdv.p1s">Sélectionnez ce qui s'en rapproche le plus — le praticien affinera sur place.</p>
+            <div class="opt-grid" id="motifs"></div>
+          </div>
+          <!-- step 2 -->
+          <div class="pane" data-pane="1">
+            <h4 data-i18n="rdv.p2h">Avec quel praticien ?</h4>
+            <p class="hint" data-i18n="rdv.p2s">Nous vous proposons celui dont la spécialité correspond, mais le choix reste le vôtre.</p>
+            <div class="opt-grid" id="praticiens"></div>
+          </div>
+          <!-- step 3 -->
+          <div class="pane" data-pane="2">
+            <h4 data-i18n="rdv.p3h">Choisissez une date</h4>
+            <p class="hint" data-i18n="rdv.p3s">Les créneaux affichés sont ceux réellement libres cette semaine.</p>
+            <div class="daystrip" id="daystrip"></div>
+            <div class="slots" id="slots"></div>
+          </div>
+          <!-- step 4 -->
+          <div class="pane" data-pane="3">
+            <h4 data-i18n="rdv.p4h">Vos coordonnées</h4>
+            <p class="hint" data-i18n="rdv.p4s">Uniquement pour confirmer le rendez-vous. Aucun message commercial.</p>
+            <div class="recap" id="recapMini"></div>
+            <div class="two">
+              <div class="field">
+                <label for="fName" data-i18n="rdv.fname">Nom et prénom</label>
+                <input id="fName" type="text" autocomplete="name" placeholder="Salma Benali">
+                <span class="err" data-i18n="rdv.errName">Indiquez votre nom.</span>
+              </div>
+              <div class="field">
+                <label for="fTel" data-i18n="rdv.ftel">Téléphone</label>
+                <input id="fTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78">
+                <span class="err" data-i18n="rdv.errTel">Numéro marocain à 10 chiffres.</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fMsg" data-i18n="rdv.fmsg">Précision (facultatif)</label>
+              <input id="fMsg" type="text" placeholder="Douleur molaire en bas à droite depuis 3 jours">
+            </div>
+          </div>
+          <!-- done -->
+          <div class="pane" data-pane="4">
+            <div class="done-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h4 data-i18n="rdv.doneH">Demande enregistrée</h4>
+            <p class="hint" data-i18n="rdv.doneS">Le secrétariat confirme sous 2 heures ouvrées. Voici le récapitulatif :</p>
+            <div class="recap" id="recapFull"></div>
+            <a class="btn btn-primary" id="waLink" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.5 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a11.4 11.4 0 0 1-4.4-4.4c-.4-.7-.7-1.4-.7-2.1 0-.7.3-1.3.6-1.6.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2 0 .4-.1.5l-.3.4-.3.3c-.1.1-.2.3-.1.5.2.4.7 1.2 1.4 1.8.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.1.1.6-.1 1.1Z"/></svg>
+              <span data-i18n="rdv.wa">Recevoir la confirmation sur WhatsApp</span>
+            </a>
+          </div>
+
+          <div class="book-nav" id="bookNav">
+            <button class="btn btn-ghost btn-sm" id="btnBack" type="button" data-i18n="rdv.back">Retour</button>
+            <span class="spacer"></span>
+            <button class="btn btn-primary btn-sm" id="btnNext" type="button" data-i18n="rdv.next">Continuer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════  AVANT / APRÈS  ══════════════════ -->
+<section class="sec" style="background:var(--paper);border-block:1px solid var(--line);">
+  <div class="wrap ba-grid">
+    <div class="rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="ba.eyebrow">Avant / après</span></p>
+      <h2 style="font-size:clamp(1.9rem,3.4vw,2.7rem)" data-i18n="ba.h2">Six mois d'aligneurs, résumés en un curseur</h2>
+      <p class="lede" style="color:var(--muted);margin-top:16px" data-i18n="ba.lede">Cas réel simulé sur schéma anatomique : encombrement antérieur corrigé par gouttières transparentes, puis polissage et blanchiment ambulatoire. Faites glisser pour comparer.</p>
+      <div style="display:flex;gap:34px;margin-top:28px;flex-wrap:wrap">
+        <div class="trust-item">
+          <span class="trust-k">6<span class="u" data-i18n="u.mois">&nbsp;mois</span></span>
+          <span class="trust-v" data-i18n="ba.k1">durée du traitement</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-k">14<span class="u" data-i18n="u.aligners">&nbsp;gouttières</span></span>
+          <span class="trust-v" data-i18n="ba.k2">changées tous les 12 jours</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-k">0<span class="u" data-i18n="u.extraction">&nbsp;extraction</span></span>
+          <span class="trust-v" data-i18n="ba.k3">dents conservées</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ba rv" id="ba">
+      <span class="ba-tag l" data-i18n="ba.before">Avant</span>
+      <span class="ba-tag r" data-i18n="ba.after">Après</span>
+      <div class="layer before" id="baBefore"></div>
+      <div class="layer after" id="baAfter"></div>
+      <div class="ba-handle" id="baHandle">
+        <svg class="arrows" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg>
+      </div>
+      <input class="ba-range" id="baRange" type="range" min="4" max="96" value="50" aria-label="Comparer avant et après">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════  ÉQUIPE  ══════════════════ -->
+<section class="sec" id="equipe">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="equipe.eyebrow">L'équipe</span></p>
+      <h2 data-i18n="equipe.h2">Trois praticiens, une seule façon de travailler</h2>
+      <p class="lede" data-i18n="equipe.lede">Vous voyez le même praticien du diagnostic jusqu'au contrôle final. Pas de rotation, pas de dossier à réexpliquer.</p>
+    </div>
+    <div class="team rv" id="team"></div>
+  </div>
+</section>
+
+<!-- ══════════════════  TARIFS  ══════════════════ -->
+<section class="sec" id="tarifs" style="background:var(--paper);border-block:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="tarifs.eyebrow">Tarifs</span></p>
+      <h2 data-i18n="tarifs.h2">Les prix, avant le fauteuil</h2>
+      <p class="lede" data-i18n="tarifs.lede">Grille indicative en dirhams, TTC. Le devis personnalisé reste gratuit et sans engagement.</p>
+    </div>
+
+    <div class="price-wrap rv">
+      <div style="overflow-x:auto">
+        <table class="ptable">
+          <caption data-i18n="tarifs.caption">Tarifs constatés au cabinet — mis à jour en janvier 2026.</caption>
+          <thead>
+            <tr>
+              <th data-i18n="tarifs.th1">Acte</th>
+              <th data-i18n="tarifs.th2">À partir de</th>
+            </tr>
+          </thead>
+          <tbody id="priceBody"></tbody>
+        </table>
+      </div>
+      <div class="pnote">
+        <h3 data-i18n="tarifs.noteH">Ce qui est compris</h3>
+        <ul>
+          <li data-i18n="tarifs.n1">Première consultation avec bilan radiographique : offerte pour tout traitement engagé.</li>
+          <li data-i18n="tarifs.n2">Feuille de soins CNSS / AMO remplie sur place, remboursement suivi par le secrétariat.</li>
+          <li data-i18n="tarifs.n3">Paiement en 3 fois sans frais dès 4 000 MAD, par chèque ou carte.</li>
+          <li data-i18n="tarifs.n4">Garantie 5 ans sur implants et prothèses, 2 ans sur les composites.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════  AVIS  ══════════════════ -->
+<section class="sec-tight" id="avis" style="padding:0">
+  <div class="quotes rv" id="quotes"></div>
+</section>
+
+<!-- ══════════════════  FAQ  ══════════════════ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="faq.eyebrow">Questions fréquentes</span></p>
+      <h2 data-i18n="faq.h2">Ce qu'on nous demande au téléphone</h2>
+    </div>
+    <div class="faq rv" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ══════════════════  CONTACT  ══════════════════ -->
+<section class="sec" id="contact" style="background:var(--paper);border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l3.1 5.8 6.4-1.3-1.3 6.4L24 12l-3.8 3.1 1.3 6.4-6.4-1.3L12 24l-3.1-5.8-6.4 1.3 1.3-6.4L0 12l3.8-3.1L2.5 2.5l6.4 1.3z"/></svg><span data-i18n="contact.eyebrow">Nous trouver</span></p>
+      <h2 data-i18n="contact.h2">Anfa, à deux pas du boulevard d'Anfa</h2>
+    </div>
+
+    <div class="contact-grid rv">
+      <div class="contact-info">
+        <div class="cline">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          <div>
+            <span class="ck" data-i18n="contact.addr">Adresse</span>
+            <span class="cv">12 rue Ahmed Charci, Anfa<br>20050 Casablanca, Maroc</span>
+          </div>
+        </div>
+        <div class="cline">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          <div>
+            <span class="ck" data-i18n="contact.tel">Téléphone</span>
+            <span class="cv"><a href="tel:+212522398410" dir="ltr">05 22 39 84 10</a><br><a href="https://wa.me/212661472208" target="_blank" rel="noopener">WhatsApp&nbsp;<span dir="ltr">06 61 47 22 08</span></a></span>
+          </div>
+        </div>
+        <div class="cline">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 8l8 5 8-5"/></svg>
+          <div>
+            <span class="ck" data-i18n="contact.mail">E-mail</span>
+            <span class="cv"><a href="mailto:contact@clinique-nacre.ma">contact@clinique-nacre.ma</a></span>
+          </div>
+        </div>
+        <div class="cline" style="align-items:stretch">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+          <div style="flex:1">
+            <span class="ck" data-i18n="contact.hours">Horaires</span>
+            <table class="hours" id="hours"></table>
+          </div>
+        </div>
+      </div>
+
+      <div class="map" id="mapBox">
+        <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" aria-label="Plan du quartier Anfa" role="img">
+          <rect width="600" height="460" fill="var(--paper-2)"/>
+          <g stroke="var(--line)" stroke-width="1" fill="none">
+            <path d="M0 90h600M0 190h600M0 300h600M0 392h600M80 0v460M210 0v460M330 0v460M455 0v460"/>
+          </g>
+          <g fill="var(--line)" opacity=".65">
+            <rect x="96" y="106" width="98" height="66" rx="2"/><rect x="226" y="106" width="88" height="66" rx="2"/>
+            <rect x="348" y="106" width="90" height="66" rx="2"/><rect x="472" y="106" width="104" height="66" rx="2"/>
+            <rect x="96" y="206" width="98" height="78" rx="2"/><rect x="348" y="206" width="90" height="78" rx="2"/>
+            <rect x="472" y="206" width="104" height="78" rx="2"/>
+            <rect x="96" y="316" width="98" height="60" rx="2"/><rect x="226" y="316" width="88" height="60" rx="2"/>
+            <rect x="348" y="316" width="90" height="60" rx="2"/><rect x="472" y="316" width="104" height="60" rx="2"/>
+          </g>
+          <path d="M0 245h600" stroke="var(--brass)" stroke-width="7" opacity=".22" fill="none"/>
+          <path d="M0 245h600" stroke="var(--brass)" stroke-width="1" stroke-dasharray="9 9" opacity=".5" fill="none"/>
+          <g fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.4">
+            <text x="14" y="238">BD D'ANFA</text>
+            <text x="236" y="82" >RUE AHMED CHARCI</text>
+            <text x="470" y="410">PARC MURDOCH</text>
+          </g>
+          <g transform="translate(262,206)">
+            <circle r="30" fill="var(--jade)" opacity=".12"/>
+            <circle r="16" fill="var(--jade)" opacity=".2"/>
+            <path d="M0-22a10 10 0 0 0-10 10c0 7.4 10 18 10 18s10-10.6 10-18A10 10 0 0 0 0-22Z" fill="var(--jade)"/>
+            <circle cy="-12" r="3.6" fill="var(--paper)"/>
+          </g>
+        </svg>
+        <div class="map-card">
+          <div class="t" data-i18n="contact.cardT">Clinique Nacre</div>
+          <div class="s" data-i18n="contact.cardS">Rez-de-chaussée, accès PMR · Parking privé 6 places · Tramway T2 « Anfa » à 400 m</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════  FOOTER  ══════════════════ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="brand-name" style="font-size:1.4rem;letter-spacing:.08em">NACRE</span>
+        <p data-i18n="foot.blurb">Clinique dentaire pluridisciplinaire à Casablanca-Anfa. Conventionnée CNSS, AMO et CNOPS.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot.h1">Cabinet</h4>
+        <ul>
+          <li><a href="#soins" data-i18n="nav.soins">Nos soins</a></li>
+          <li><a href="#equipe" data-i18n="nav.equipe">L'équipe</a></li>
+          <li><a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a></li>
+          <li><a href="#faq" data-i18n="faq.eyebrow">Questions fréquentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot.h2">Contact</h4>
+        <ul>
+          <li><a href="tel:+212522398410" dir="ltr">05 22 39 84 10</a></li>
+          <li><a href="https://wa.me/212661472208" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:contact@clinique-nacre.ma">contact@clinique-nacre.ma</a></li>
+          <li><a href="#rdv" data-i18n="cta.book">Prendre rendez-vous</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span data-i18n="foot.legal">© 2026 Clinique Nacre — Ordre National des Médecins Dentistes</span>
+      <span data-i18n="foot.demo">Site de démonstration · contenu fictif</span>
+    </div>
+  </div>
+</footer>
+
+<!-- sticky mobile bar -->
+<div class="mobar">
+  <a href="tel:+212522398410">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+    <span data-i18n="mobar.call">Appeler</span>
+  </a>
+  <a href="https://wa.me/212661472208" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.6 8.6 0 0 1-3.8-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5Z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+  <a class="hi" href="#rdv">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+    <span data-i18n="mobar.rdv">Rendez-vous</span>
+  </a>
+</div>
+
+<!--@SCRIPT@-->
