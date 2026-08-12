@@ -1,467 +1,1525 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code — What I Can Do</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cabinet Dentaire Fès — Dentiste à Fès | Implants, Orthodontie, Esthétique</title>
+<meta name="description" content="Cabinet dentaire moderne à Fès (Avenue Bir Anzarane, Résidence Noujoum). Implantologie, orthodontie, blanchiment, facettes, soins et urgences dentaires. 4,6★ sur 33 avis. Rendez-vous sur WhatsApp.">
+<meta name="keywords" content="dentiste Fès, cabinet dentaire Fès, implant dentaire Fès, orthodontie Fès, blanchiment dentaire Fès, facettes dentaires Fès, urgence dentaire Fès">
+<meta name="author" content="Cabinet Dentaire Fès">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0B63CE">
+<link rel="canonical" href="./">
 
-    :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --border: #2a2a2a;
-      --accent: #d97706;
-      --accent2: #7c3aed;
-      --text: #e5e5e5;
-      --muted: #888;
-      --code-bg: #1a1a1a;
-      --radius: 12px;
-    }
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_MA">
+<meta property="og:site_name" content="Cabinet Dentaire Fès">
+<meta property="og:title" content="Cabinet Dentaire Fès — Votre sourire mérite l'excellence">
+<meta property="og:description" content="Soins dentaires de qualité à Fès : implantologie, orthodontie, esthétique du sourire et urgences. Prenez rendez-vous sur WhatsApp.">
+<meta name="twitter:card" content="summary_large_image">
 
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B63CE'/%3E%3Cpath d='M32 15c-5 0-6-3-11-3-6 0-10 5-10 12 0 12 5 25 9 25 3 0 4-8 7-8h10c3 0 4 8 7 8 4 0 9-13 9-25 0-7-4-12-10-12-5 0-6 3-11 3z' fill='white'/%3E%3C/svg%3E">
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
-      background: rgba(13,13,13,.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -.5px; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "Cabinet Dentaire Fès",
+  "description": "Cabinet dentaire moderne à Fès : implantologie, orthodontie, blanchiment, facettes, soins conservateurs et urgences dentaires.",
+  "image": "",
+  "telephone": "+212665071865",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Imm N°7, 3ème étage, Résidence Noujoum, Avenue Bir Anzarane",
+    "addressLocality": "Fès",
+    "postalCode": "30050",
+    "addressCountry": "MA"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 34.0331, "longitude": -5.0003 },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "reviewCount": "33", "bestRating": "5" },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:30", "closes": "18:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "13:00" }
+  ],
+  "medicalSpecialty": "Dentistry",
+  "availableService": [
+    { "@type": "MedicalProcedure", "name": "Implantologie" },
+    { "@type": "MedicalProcedure", "name": "Orthodontie" },
+    { "@type": "MedicalProcedure", "name": "Blanchiment dentaire" },
+    { "@type": "MedicalProcedure", "name": "Facettes dentaires" },
+    { "@type": "MedicalProcedure", "name": "Soins conservateurs" },
+    { "@type": "MedicalProcedure", "name": "Urgences dentaires" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Comment prendre rendez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "Le plus simple est de nous écrire sur WhatsApp au 06 65 07 18 65. Vous pouvez aussi appeler le cabinet ou remplir le formulaire du site." } },
+    { "@type": "Question", "name": "Prenez-vous les urgences dentaires ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Les douleurs aiguës, abcès et traumatismes dentaires sont traités en priorité, avec créneaux réservés chaque jour." } },
+    { "@type": "Question", "name": "Un implant dentaire est-il douloureux ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. L'intervention se fait sous anesthésie locale et reste indolore. Les suites sont généralement simples et gérées par un traitement antalgique léger." } },
+    { "@type": "Question", "name": "Acceptez-vous les mutuelles et assurances ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous établissons les feuilles de soins et devis nécessaires pour la CNSS, la CNOPS et les assurances privées." } }
+  ]
+}
+</script>
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,.25) 0%, transparent 60%);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .35rem .9rem; border-radius: 999px;
-      border: 1px solid var(--border); color: var(--muted); font-size: .8rem;
-      margin-bottom: 1.5rem;
-    }
-    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; max-width: 800px; }
-    h1 .highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { margin-top: 1.2rem; color: var(--muted); font-size: 1.1rem; max-width: 520px; }
-    .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .btn { padding: .7rem 1.6rem; border-radius: 8px; font-size: .95rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .2s, transform .15s; display: inline-block; }
-    .btn:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-label { text-transform: uppercase; letter-spacing: 2px; font-size: .75rem; color: var(--accent); font-weight: 600; margin-bottom: .75rem; }
-    h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -.5px; margin-bottom: 1rem; }
-    .subtitle { color: var(--muted); font-size: 1rem; max-width: 540px; margin-bottom: 3rem; }
+:root{
+  --blue:#0B63CE;
+  --blue-600:#0A57B5;
+  --blue-700:#08498F;
+  --navy:#0A2540;
+  --navy-soft:#12365C;
+  --ink:#122A43;
+  --body:#4A5C70;
+  --muted:#7A8AA0;
+  --line:#E3EBF5;
+  --tint:#F3F8FF;
+  --tint-2:#EAF3FF;
+  --white:#fff;
+  --gold:#F0A93B;
+  --wa:#25D366;
+  --shadow-sm:0 2px 8px rgba(10,37,64,.06);
+  --shadow:0 12px 34px rgba(10,37,64,.09);
+  --shadow-lg:0 26px 70px rgba(10,37,64,.16);
+  --r:16px;
+  --r-lg:24px;
+  --max:1180px;
+  --nav-h:78px;
+}
 
-    /* ── CAPABILITY CARDS ── */
-    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; transition: border-color .2s, transform .2s;
-      cursor: default;
-    }
-    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .card-icon { font-size: 1.8rem; margin-bottom: .8rem; }
-    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
-    .card p { color: var(--muted); font-size: .88rem; line-height: 1.55; }
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  color:var(--body);background:var(--white);line-height:1.7;
+  font-size:16.5px;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+h1,h2,h3,h4{color:var(--ink);line-height:1.18;letter-spacing:-.02em;font-weight:700}
+h1{font-size:clamp(2.05rem,5.2vw,3.65rem)}
+h2{font-size:clamp(1.65rem,3.6vw,2.5rem)}
+h3{font-size:1.16rem}
+p{max-width:68ch}
 
-    /* ── DEMO TERMINAL ── */
-    .terminal-wrap { background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .terminal-bar { background: #222; padding: .6rem 1rem; display: flex; align-items: center; gap: .5rem; }
-    .t-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .t-red { background: #ef4444; } .t-yellow { background: #eab308; } .t-green { background: #22c55e; }
-    .terminal-bar span { margin-left: auto; font-size: .75rem; color: var(--muted); }
-    .terminal-body { padding: 1.5rem; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: .88rem; min-height: 200px; }
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: #e5e5e5; }
-    .t-out { color: #86efac; margin-top: .3rem; }
-    .t-comment { color: #6b7280; }
-    .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); margin-left: 2px; animation: blink 1s step-end infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 22px}
+section{padding:clamp(62px,8vw,110px) 0;position:relative}
+.section-head{text-align:center;max-width:730px;margin:0 auto clamp(36px,5vw,60px)}
+.section-head p{margin:14px auto 0;color:var(--body)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);background:var(--tint-2);
+  padding:7px 15px;border-radius:100px;margin-bottom:16px;
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}
 
-    /* ── INTERACTIVE DEMO ── */
-    .demo-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
-    .demo-tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .tab { padding: .45rem 1rem; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .85rem; cursor: pointer; transition: all .2s; }
-    .tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
-    .demo-content { display: none; }
-    .demo-content.active { display: block; }
-    .demo-content pre {
-      background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.25rem; overflow-x: auto; font-family: monospace; font-size: .85rem;
-      line-height: 1.6; color: #d1d5db;
-    }
-    .kw { color: #c084fc; } .fn { color: #60a5fa; } .str { color: #86efac; }
-    .num { color: #fb923c; } .cmt { color: #6b7280; }
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 26px;border-radius:100px;font-weight:600;font-size:.98rem;
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s,background .2s,color .2s;
+}
+.btn svg{width:19px;height:19px;flex:none}
+.btn:hover{transform:translateY(-2px)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 10px 26px rgba(37,211,102,.32)}
+.btn-wa:hover{background:#1EBE5B;box-shadow:0 16px 34px rgba(37,211,102,.4)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 26px rgba(11,99,206,.28)}
+.btn-blue:hover{background:var(--blue-600);box-shadow:0 16px 34px rgba(11,99,206,.36)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line);box-shadow:var(--shadow-sm)}
+.btn-ghost:hover{border-color:#BFD7F5;color:var(--blue);box-shadow:var(--shadow)}
+.btn-outline-light{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.42);backdrop-filter:blur(6px)}
+.btn-outline-light:hover{background:rgba(255,255,255,.18)}
+.btn-sm{padding:11px 20px;font-size:.9rem}
+.btn-link{display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-weight:600;font-size:.95rem}
+.btn-link svg{width:16px;height:16px;transition:transform .25s}
+.btn-link:hover svg{transform:translateX(4px)}
 
-    /* ── STATS ── */
-    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem; }
-    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
-    .stat-num { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-label { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
+/* ---------- Nav ---------- */
+.topbar{
+  background:var(--navy);color:#C8DBF2;font-size:.83rem;
+  padding:9px 0;
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.topbar a{display:inline-flex;align-items:center;gap:7px;color:#EAF3FF;font-weight:600}
+.topbar a:hover{color:#fff}
+.topbar svg{width:15px;height:15px;opacity:.85}
+.topbar .tb-left{display:inline-flex;align-items:center;gap:8px;opacity:.9}
+.topbar .tb-right{display:inline-flex;align-items:center;gap:20px}
 
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: .85rem; }
-    footer a { color: var(--muted); text-decoration: none; }
+header{
+  position:sticky;top:0;z-index:900;background:rgba(255,255,255,.9);
+  backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid transparent;transition:box-shadow .3s,border-color .3s,background .3s;
+}
+header.scrolled{box-shadow:0 6px 26px rgba(10,37,64,.08);border-color:var(--line);background:rgba(255,255,255,.96)}
+.nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo-mark{
+  width:44px;height:44px;border-radius:13px;flex:none;
+  background:linear-gradient(140deg,var(--blue),#3F8DE8);
+  display:grid;place-items:center;box-shadow:0 8px 20px rgba(11,99,206,.3);
+}
+.logo-mark svg{width:24px;height:24px;fill:#fff}
+.logo-txt strong{display:block;color:var(--ink);font-size:1.03rem;line-height:1.25;letter-spacing:-.01em}
+.logo-txt span{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-size:.94rem;font-weight:500;color:var(--ink);position:relative;padding:6px 0}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--blue);
+  border-radius:2px;transition:width .28s ease;
+}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.burger{
+  display:none;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);
+  background:#fff;cursor:pointer;place-items:center;
+}
+.burger span{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:.3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger.open span{background:transparent}
+.burger.open span::before{top:0;transform:rotate(45deg)}
+.burger.open span::after{top:0;transform:rotate(-45deg)}
 
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-    }
-  </style>
+.mobile-menu{
+  position:fixed;inset:0;top:0;z-index:880;background:rgba(255,255,255,.99);
+  padding:calc(var(--nav-h) + 26px) 22px 32px;
+  transform:translateY(-102%);transition:transform .42s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;display:none;
+}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu ul{list-style:none;display:grid;gap:2px}
+.mobile-menu a.m-link{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 4px;font-size:1.08rem;font-weight:600;color:var(--ink);
+  border-bottom:1px solid var(--line);
+}
+.mobile-menu a.m-link svg{width:16px;height:16px;opacity:.35}
+.mobile-actions{display:grid;gap:12px;margin-top:26px}
+.mobile-actions .btn{width:100%}
+
+/* ---------- Hero ---------- */
+.hero{
+  padding:clamp(52px,7vw,92px) 0 clamp(64px,8vw,110px);
+  background:
+    radial-gradient(900px 460px at 88% -8%,#DCEBFF 0%,rgba(220,235,255,0) 62%),
+    radial-gradient(700px 420px at -10% 12%,#F0F7FF 0%,rgba(240,247,255,0) 60%),
+    var(--white);
+  overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(30px,5vw,64px);align-items:center}
+.rating-pill{
+  display:inline-flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);
+  padding:9px 17px 9px 12px;border-radius:100px;box-shadow:var(--shadow-sm);margin-bottom:22px;
+  font-size:.88rem;font-weight:600;color:var(--ink);
+}
+.stars{display:inline-flex;gap:2px}
+.stars svg{width:15px;height:15px;fill:var(--gold)}
+.rating-pill em{font-style:normal;color:var(--muted);font-weight:500}
+.hero h1 span{
+  background:linear-gradient(100deg,var(--blue),#4C9BF0);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{font-size:clamp(1.02rem,1.6vw,1.15rem);margin-top:20px;max-width:57ch}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.hero-trust{display:flex;gap:28px;flex-wrap:wrap;margin-top:38px;padding-top:28px;border-top:1px solid var(--line)}
+.hero-trust div strong{display:block;font-size:1.5rem;color:var(--ink);letter-spacing:-.02em}
+.hero-trust div span{font-size:.85rem;color:var(--muted)}
+
+.hero-visual{position:relative}
+.hero-card{
+  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);
+  background:linear-gradient(160deg,#0E4E9E,#1273D8 55%,#59A6F2);
+  aspect-ratio:4/4.4;position:relative;
+}
+.hero-card svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-badge{
+  position:absolute;background:#fff;border-radius:18px;box-shadow:var(--shadow-lg);
+  padding:14px 18px;display:flex;align-items:center;gap:12px;
+}
+.hero-badge .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
+.hero-badge .ic svg{width:20px;height:20px;position:static}
+.hero-badge strong{display:block;font-size:.95rem;color:var(--ink);line-height:1.3}
+.hero-badge span{font-size:.79rem;color:var(--muted)}
+.badge-a{left:-18px;top:16%;animation:float 6s ease-in-out infinite}
+.badge-b{right:-14px;bottom:12%;animation:float 6s ease-in-out infinite .9s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+
+/* ---------- Why us ---------- */
+.why{background:var(--tint)}
+.cards-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 24px;
+  box-shadow:var(--shadow-sm);transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s,border-color .35s;
+}
+.why-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#CFE1F8}
+.icon-box{
+  width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;
+  background:linear-gradient(140deg,var(--tint-2),#DCEBFF);
+}
+.icon-box svg{width:27px;height:27px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.why-card h3{margin-bottom:9px}
+.why-card p{font-size:.94rem}
+
+/* ---------- Services ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 28px;
+  display:flex;flex-direction:column;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s,border-color .35s;
+}
+.service::before{
+  content:"";position:absolute;inset:0 0 auto;height:3px;
+  background:linear-gradient(90deg,var(--blue),#66AEF5);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.service:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:#CFE1F8}
+.service:hover::before{transform:scaleX(1)}
+.service h3{font-size:1.28rem;margin-bottom:10px}
+.service > p{font-size:.95rem;margin-bottom:18px}
+.benefits{list-style:none;display:grid;gap:9px;margin-bottom:26px}
+.benefits li{display:flex;gap:10px;font-size:.92rem;color:var(--body)}
+.benefits li svg{width:17px;height:17px;flex:none;margin-top:5px;fill:none;stroke:var(--blue);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.service .btn{margin-top:auto;align-self:flex-start}
+
+/* ---------- About ---------- */
+.about{background:var(--tint)}
+.about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,64px);align-items:center}
+.about-visual{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:1/1.02;background:linear-gradient(155deg,#0C4C97,#1C7AD9 60%,#7FBCF7)}
+.about-visual svg{position:absolute;inset:0;width:100%;height:100%}
+.about-exp{
+  position:absolute;left:22px;bottom:22px;background:#fff;border-radius:18px;padding:18px 22px;
+  box-shadow:var(--shadow-lg);
+}
+.about-exp strong{display:block;font-size:1.85rem;color:var(--blue);line-height:1.1;letter-spacing:-.03em}
+.about-exp span{font-size:.84rem;color:var(--muted)}
+.about-points{list-style:none;display:grid;gap:18px;margin-top:26px}
+.about-points li{display:flex;gap:14px}
+.about-points .ic{
+  width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid var(--line);
+  display:grid;place-items:center;flex:none;box-shadow:var(--shadow-sm);
+}
+.about-points .ic svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.about-points strong{display:block;color:var(--ink);font-size:1rem}
+.about-points p{font-size:.93rem;margin-top:2px}
+
+/* ---------- Reviews ---------- */
+.rating-summary{
+  display:flex;align-items:center;gap:clamp(22px,4vw,54px);flex-wrap:wrap;justify-content:center;
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:30px clamp(24px,4vw,46px);box-shadow:var(--shadow-sm);margin-bottom:34px;
+}
+.rating-score{text-align:center}
+.rating-score strong{display:block;font-size:3.1rem;color:var(--ink);line-height:1;letter-spacing:-.04em}
+.rating-score .stars svg{width:19px;height:19px}
+.rating-score span{display:block;font-size:.86rem;color:var(--muted);margin-top:7px}
+.rating-bars{flex:1;min-width:230px;max-width:340px;display:grid;gap:7px}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--muted)}
+.bar{flex:1;height:7px;border-radius:100px;background:var(--tint-2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:100px;background:var(--gold);width:0;transition:width 1.1s cubic-bezier(.2,.8,.3,1)}
+.rating-cta{display:grid;gap:10px;text-align:center}
+.rating-cta small{color:var(--muted);font-size:.82rem}
+
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.review{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 26px;
+  box-shadow:var(--shadow-sm);display:flex;flex-direction:column;
+  transition:transform .35s,box-shadow .35s;
+}
+.review:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.review .stars{margin-bottom:14px}
+.review p{font-size:.95rem;flex:1}
+.reviewer{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.avatar{
+  width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--tint-2),#CFE3FB);color:var(--blue-700);font-weight:700;font-size:1rem;
+}
+.reviewer strong{display:block;font-size:.94rem;color:var(--ink)}
+.reviewer span{font-size:.8rem;color:var(--muted)}
+.g-badge{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-size:.74rem;color:var(--muted)}
+.g-badge svg{width:15px;height:15px}
+
+/* ---------- Gallery ---------- */
+.gallery{background:var(--tint)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g-item{
+  position:relative;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);
+  aspect-ratio:4/3;background:#0F4E97;transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s;
+}
+.g-item.tall{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.g-item svg{position:absolute;inset:0;width:100%;height:100%}
+.g-item:hover{transform:scale(1.015);box-shadow:var(--shadow-lg)}
+.g-cap{
+  position:absolute;left:0;right:0;bottom:0;padding:38px 20px 18px;color:#fff;
+  background:linear-gradient(to top,rgba(6,32,60,.82),rgba(6,32,60,0));
+  font-size:.92rem;font-weight:600;letter-spacing:.01em;
+}
+.g-cap small{display:block;font-weight:400;opacity:.78;font-size:.79rem}
+
+/* ---------- Appointment ---------- */
+.appointment{
+  background:linear-gradient(150deg,var(--navy) 0%,#0E3D6B 48%,#0B63CE 100%);
+  color:#D6E6F8;overflow:hidden;
+}
+.appointment::before{
+  content:"";position:absolute;width:620px;height:620px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.10),transparent 68%);
+  top:-260px;right:-160px;pointer-events:none;
+}
+.appointment h2,.appointment h3{color:#fff}
+.appointment .eyebrow{background:rgba(255,255,255,.12);color:#BFDCFF}
+.appointment .eyebrow::before{background:#7FBCF7}
+.appt-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:clamp(30px,5vw,58px);align-items:start;position:relative}
+.appt-actions{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 34px}
+.appt-list{list-style:none;display:grid;gap:14px}
+.appt-list li{display:flex;gap:13px;align-items:flex-start;font-size:.96rem}
+.appt-list svg{width:20px;height:20px;flex:none;margin-top:4px;stroke:#7FBCF7;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.appt-list strong{color:#fff;display:block;font-size:.97rem}
+.appt-list small{color:#AFC9E4;font-size:.85rem}
+
+.form-card{
+  background:#fff;border-radius:var(--r-lg);padding:clamp(26px,3.4vw,38px);box-shadow:var(--shadow-lg);
+}
+.form-card h3{margin-bottom:6px;font-size:1.3rem}
+.form-card > p{font-size:.92rem;margin-bottom:22px;color:var(--muted)}
+.field{margin-bottom:15px}
+.field label{display:block;font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:7px}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:#FBFDFF;
+  font-size:.95rem;transition:border-color .2s,box-shadow .2s,background .2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(11,99,206,.11);
+}
+.field textarea{resize:vertical;min-height:92px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.form-card .btn{width:100%;margin-top:8px}
+.form-note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:14px;line-height:1.55}
+
+/* ---------- FAQ ---------- */
+.faq-list{max-width:840px;margin:0 auto;display:grid;gap:12px}
+.faq-item{border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.faq-item.open{box-shadow:var(--shadow);border-color:#CFE1F8}
+.faq-q{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  font-size:1.02rem;font-weight:600;color:var(--ink);
+}
+.faq-q .chev{
+  width:30px;height:30px;border-radius:50%;background:var(--tint-2);display:grid;place-items:center;flex:none;
+  transition:transform .32s ease,background .3s;
+}
+.faq-q .chev svg{width:15px;height:15px;stroke:var(--blue);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.faq-item.open .chev{transform:rotate(180deg);background:var(--blue)}
+.faq-item.open .chev svg{stroke:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1)}
+.faq-a p{padding:0 22px 22px;font-size:.95rem;max-width:none}
+
+/* ---------- Location ---------- */
+.location{background:var(--tint)}
+.loc-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;align-items:stretch}
+.loc-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,3vw,34px);box-shadow:var(--shadow-sm)}
+.loc-list{list-style:none;display:grid;gap:22px;margin-top:22px}
+.loc-list li{display:flex;gap:14px}
+.loc-list .ic{width:44px;height:44px;border-radius:13px;background:var(--tint-2);display:grid;place-items:center;flex:none}
+.loc-list .ic svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.loc-list strong{display:block;color:var(--ink);font-size:.97rem;margin-bottom:2px}
+.loc-list p,.loc-list a{font-size:.93rem;color:var(--body)}
+.loc-list a:hover{color:var(--blue)}
+.hours{margin-top:6px;display:grid;gap:6px;font-size:.92rem}
+.hours div{display:flex;justify-content:space-between;gap:14px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.hours div:last-child{border-bottom:0}
+.hours span:last-child{color:var(--ink);font-weight:600}
+.map-wrap{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);min-height:420px;background:#DCE7F3;position:relative}
+.map-wrap iframe{width:100%;height:100%;min-height:420px;border:0;display:block;filter:saturate(1.05)}
+
+/* ---------- Footer ---------- */
+footer{background:var(--navy);color:#A9C2DC;padding:64px 0 0}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:36px}
+footer h4{color:#fff;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+footer p{font-size:.92rem;max-width:38ch}
+footer ul{list-style:none;display:grid;gap:11px;font-size:.93rem}
+footer a:hover{color:#fff}
+.f-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.f-logo .logo-txt strong{color:#fff}
+.f-logo .logo-txt span{color:#7FA3C6}
+.f-social{display:flex;gap:10px;margin-top:20px}
+.f-social a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:background .25s,transform .25s}
+.f-social a:hover{background:var(--blue);transform:translateY(-3px)}
+.f-social svg{width:18px;height:18px;fill:#fff}
+.f-bottom{
+  margin-top:52px;border-top:1px solid rgba(255,255,255,.1);padding:20px 0 24px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.85rem;color:#87A5C4;
+}
+
+/* ---------- Floating WhatsApp ---------- */
+.fab{
+  position:fixed;right:20px;bottom:20px;z-index:950;display:flex;align-items:center;gap:11px;
+  background:var(--wa);color:#fff;padding:14px 20px 14px 16px;border-radius:100px;font-weight:600;font-size:.95rem;
+  box-shadow:0 14px 32px rgba(37,211,102,.42);
+  transform:translateY(120px);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.3,1),opacity .35s,box-shadow .3s;
+}
+.fab.show{transform:translateY(0);opacity:1}
+.fab:hover{box-shadow:0 20px 44px rgba(37,211,102,.55)}
+.fab svg{width:26px;height:26px;fill:#fff;flex:none}
+.fab::after{
+  content:"";position:absolute;inset:0;border-radius:100px;border:2px solid rgba(37,211,102,.55);
+  animation:pulse 2.4s ease-out infinite;pointer-events:none;
+}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}70%{transform:scale(1.16);opacity:0}100%{opacity:0}}
+
+/* mobile sticky action bar */
+.mobile-bar{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:940;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px;
+  box-shadow:0 -6px 24px rgba(10,37,64,.09);
+}
+.mobile-bar .btn{flex:1;padding:13px 14px;font-size:.92rem}
+
+/* ---------- Reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1040px){
+  .cards-4{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .reviews-grid{grid-template-columns:1fr 1fr}
+  .f-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media (max-width:900px){
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .burger{display:grid}
+  .mobile-menu{display:block}
+  .hero-grid,.about-grid,.appt-grid,.loc-grid{grid-template-columns:1fr}
+  /* NB : sur une grille, `margin:0 auto` annule l'étirement — on centre avec justify-self */
+  .hero-visual{order:-1;width:100%;max-width:460px;justify-self:center}
+  .hero-card{aspect-ratio:4/3.5}
+  .badge-a{left:-6px}.badge-b{right:-6px}
+  .about-visual{width:100%;max-width:460px;justify-self:center;aspect-ratio:4/3.4}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .g-item.tall{grid-column:span 2;grid-row:span 1;aspect-ratio:16/9}
+}
+@media (max-width:700px){
+  body{font-size:16px;padding-bottom:74px}
+  /* le bouton WhatsApp du header devient une icône : la barre fixe en bas prend le relais */
+  .nav-cta .btn-wa{font-size:0;gap:0;padding:12px;border-radius:14px}
+  .nav-cta .btn-wa svg{width:21px;height:21px}
+  .topbar .tb-left{display:none}
+  .topbar .wrap{justify-content:center}
+  .services-grid,.reviews-grid,.gallery-grid{grid-template-columns:1fr}
+  .g-item.tall{grid-column:span 1;aspect-ratio:4/3}
+  .cards-4{grid-template-columns:1fr}
+  .hero-actions .btn,.appt-actions .btn{flex:1;min-width:190px}
+  .hero-trust{gap:20px}
+  .hero-trust div strong{font-size:1.28rem}
+  .field-row{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .f-bottom{justify-content:center;text-align:center}
+  .fab{display:none}
+  .mobile-bar{display:flex}
+  .rating-summary{flex-direction:column;text-align:center}
+}
+@media (max-width:420px){
+  .logo-mark{width:40px;height:40px;border-radius:12px}
+  .logo-txt strong{font-size:.95rem}
+  .logo-txt span{font-size:.66rem;letter-spacing:.12em}
+  .hero-badge{padding:11px 14px}
+  .hero-badge .ic{width:34px;height:34px}
+  .hero-badge strong{font-size:.86rem}
+  .hero-badge span{font-size:.72rem}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Claude <span>Code</span></div>
-  <ul class="nav-links">
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#stats">At a Glance</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    Powered by Claude Sonnet 4.6
-  </div>
-  <h1>Your AI engineer.<br>Right in the <span class="highlight">terminal.</span></h1>
-  <p class="hero-sub">Claude Code reads your codebase, writes production-ready code, runs tests, fixes bugs, and ships — all from a single conversation.</p>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="#capabilities">Explore capabilities</a>
-    <a class="btn btn-secondary" href="#demo">See code examples</a>
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Résidence Noujoum, Avenue Bir Anzarane — Fès</span>
+    </div>
+    <div class="tb-right">
+      <a href="tel:+212665071865">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+        06 65 07 18 65
+      </a>
+      <a href="#rendez-vous">Lun — Sam · 08:30 à 18:30</a>
+    </div>
   </div>
 </div>
 
-<!-- CAPABILITIES -->
-<section id="capabilities">
-  <div class="section-label">What I can do</div>
-  <h2>Built for real engineering work</h2>
-  <p class="subtitle">From a single file edit to a full-stack feature — Claude Code handles the whole software lifecycle.</p>
+<!-- ============ HEADER ============ -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#accueil" class="logo" aria-label="Cabinet Dentaire Fès - accueil">
+      <span class="logo-mark">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 15c-5 0-6-3-11-3-6 0-10 5-10 12 0 12 5 25 9 25 3 0 4-8 7-8h10c3 0 4 8 7 8 4 0 9-13 9-25 0-7-4-12-10-12-5 0-6 3-11 3z"/></svg>
+      </span>
+      <span class="logo-txt">
+        <strong>Cabinet Dentaire Fès</strong>
+        <span>Excellence &amp; Confiance</span>
+      </span>
+    </a>
 
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🔭</div>
-      <h3>Codebase Exploration</h3>
-      <p>Search across thousands of files, trace call graphs, and answer "where is X defined?" in seconds without any indexing setup.</p>
+    <nav aria-label="Navigation principale">
+      <ul class="nav-links">
+        <li><a href="#accueil" class="active">Accueil</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#cabinet">Le cabinet</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="tel:+212665071865" class="btn btn-ghost btn-sm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+        Appeler
+      </a>
+      <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20prendre%20un%20rendez-vous%20au%20Cabinet%20Dentaire%20F%C3%A8s." target="_blank" rel="noopener" class="btn btn-wa btn-sm">
+        <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm7.6 18.4c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.3.4-4.3-.9-3.6-1.6-5.9-5.3-6-5.5-.2-.3-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6l1.1 2.6c.1.2.2.5 0 .8l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4 1 1.6 2 2.6 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l1.1-1.3c.3-.3.5-.2.8-.1l2.5 1.2c.4.2.6.3.7.4.1.2.1.9-.1 1.5Z"/></svg>
+        WhatsApp
+      </a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
     </div>
-    <div class="card">
-      <div class="card-icon">✏️</div>
-      <h3>Precise Code Editing</h3>
-      <p>Makes surgical, diff-level edits to existing files — no wholesale rewrites, no accidental deletions, no style drift.</p>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a class="m-link" href="#accueil">Accueil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    <li><a class="m-link" href="#pourquoi">Pourquoi nous <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    <li><a class="m-link" href="#services">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    <li><a class="m-link" href="#cabinet">Le cabinet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    <li><a class="m-link" href="#avis">Avis patients <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    <li><a class="m-link" href="#galerie">Galerie <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    <li><a class="m-link" href="#faq">FAQ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    <li><a class="m-link" href="#contact">Contact &amp; accès <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a></li>
+  </ul>
+  <div class="mobile-actions">
+    <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20prendre%20un%20rendez-vous%20au%20Cabinet%20Dentaire%20F%C3%A8s." target="_blank" rel="noopener" class="btn btn-wa">Prendre rendez-vous sur WhatsApp</a>
+    <a href="tel:+212665071865" class="btn btn-ghost">Appeler le 06 65 07 18 65</a>
+  </div>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="accueil">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="rating-pill reveal">
+        <span class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+        </span>
+        4,6 / 5 <em>· 33 avis Google</em>
+      </div>
+
+      <h1 class="reveal d1">Votre sourire mérite <span>l'excellence</span></h1>
+      <p class="hero-sub reveal d2">Cabinet dentaire moderne à Fès offrant des soins de qualité dans un environnement professionnel et confortable.</p>
+
+      <div class="hero-actions reveal d3">
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20prendre%20un%20rendez-vous%20au%20Cabinet%20Dentaire%20F%C3%A8s." target="_blank" rel="noopener" class="btn btn-wa">
+          <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm7.6 18.4c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.3.4-4.3-.9-3.6-1.6-5.9-5.3-6-5.5-.2-.3-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6l1.1 2.6c.1.2.2.5 0 .8l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4 1 1.6 2 2.6 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l1.1-1.3c.3-.3.5-.2.8-.1l2.5 1.2c.4.2.6.3.7.4.1.2.1.9-.1 1.5Z"/></svg>
+          Prendre rendez-vous sur WhatsApp
+        </a>
+        <a href="tel:+212665071865" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+          Nous appeler
+        </a>
+      </div>
+
+      <div class="hero-trust reveal d4">
+        <div><strong>4,6★</strong><span>33 avis Google</span></div>
+        <div><strong>+15 ans</strong><span>d'expérience clinique</span></div>
+        <div><strong>6</strong><span>spécialités de soins</span></div>
+        <div><strong>7j/7</strong><span>réponse WhatsApp</span></div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-icon">🐛</div>
-      <h3>Bug Fixing</h3>
-      <p>Reads stack traces, finds root causes, and produces minimal targeted fixes — with an explanation of why the bug existed.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧪</div>
-      <h3>Test Writing</h3>
-      <p>Generates unit, integration, and edge-case tests that actually reflect how the code is used — not just happy-path coverage.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚙️</div>
-      <h3>Bash & Tooling</h3>
-      <p>Runs shell commands, installs packages, builds projects, and monitors output — like a dev with a terminal always open.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌐</div>
-      <h3>Web & UI Work</h3>
-      <p>Writes HTML, CSS, React, and more. Spins up dev servers, checks rendered output, and iterates on designs end-to-end.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔀</div>
-      <h3>Git & PRs</h3>
-      <p>Commits with meaningful messages, creates branches, pushes code, opens pull requests, and responds to review comments.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>Multi-Agent Tasks</h3>
-      <p>Spawns parallel sub-agents for independent research, code review, and exploration — tackling large tasks concurrently.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔒</div>
-      <h3>Security Awareness</h3>
-      <p>Identifies OWASP top-10 issues, avoids writing vulnerable code, and flags injection risks, exposed secrets, and unsafe patterns.</p>
+
+    <div class="hero-visual reveal d2">
+      <div class="hero-card">
+        <!-- Illustration cabinet : à remplacer par une photo réelle du cabinet -->
+        <svg viewBox="0 0 400 440" role="img" aria-label="Illustration d'une salle de soins dentaires moderne" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0C4E9E"/><stop offset="1" stop-color="#5FAAF3"/>
+            </linearGradient>
+            <linearGradient id="hg2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#DCEBFF" stop-opacity=".72"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="440" fill="url(#hg1)"/>
+          <circle cx="330" cy="70" r="150" fill="#fff" opacity=".07"/>
+          <circle cx="60" cy="380" r="120" fill="#fff" opacity=".06"/>
+          <!-- fauteuil -->
+          <rect x="70" y="250" width="230" height="34" rx="17" fill="url(#hg2)"/>
+          <rect x="96" y="176" width="150" height="86" rx="26" fill="#fff" opacity=".92"/>
+          <rect x="238" y="196" width="74" height="26" rx="13" fill="#fff" opacity=".78"/>
+          <rect x="150" y="284" width="24" height="66" rx="10" fill="#fff" opacity=".5"/>
+          <rect x="112" y="344" width="102" height="14" rx="7" fill="#fff" opacity=".5"/>
+          <!-- lampe scialytique -->
+          <rect x="286" y="60" width="10" height="86" rx="5" fill="#fff" opacity=".55"/>
+          <ellipse cx="268" cy="152" rx="52" ry="19" fill="#fff" opacity=".92"/>
+          <ellipse cx="268" cy="150" rx="30" ry="10" fill="#FFF6DC"/>
+          <path d="M240 162 L206 246 L330 246 L296 162 Z" fill="#FFF6DC" opacity=".22"/>
+          <!-- dent -->
+          <path d="M188 92c-9 0-11-5-20-5-11 0-18 9-18 22 0 22 9 46 16 46 5 0 7-15 13-15h18c6 0 8 15 13 15 7 0 16-24 16-46 0-13-7-22-18-22-9 0-11 5-20 5z" fill="#fff" opacity=".16"/>
+        </svg>
+      </div>
+
+      <div class="hero-badge badge-a">
+        <span class="ic" style="background:#E8F8EE">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25B368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <span><strong>Stérilisation certifiée</strong><span>Protocole d'hygiène strict</span></span>
+      </div>
+      <div class="hero-badge badge-b">
+        <span class="ic" style="background:#EAF3FF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0B63CE" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span><strong>Urgences le jour même</strong><span>Créneaux réservés</span></span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TERMINAL DEMO -->
-<section style="padding-top:0">
-  <div class="terminal-wrap">
-    <div class="terminal-bar">
-      <span class="t-dot t-red"></span>
-      <span class="t-dot t-yellow"></span>
-      <span class="t-dot t-green"></span>
-      <span>claude — bash</span>
-    </div>
-    <div class="terminal-body" id="terminal-output">
-      <div><span class="t-comment"># Ask Claude anything about your repo</span></div>
-      <div style="margin-top:.5rem"><span class="t-prompt">$ </span><span class="t-cmd" id="typed-cmd"></span><span class="cursor" id="cursor"></span></div>
-      <div class="t-out" id="typed-reply" style="margin-top:.6rem;white-space:pre-wrap"></div>
-    </div>
-  </div>
-</section>
-
-<!-- CODE DEMO -->
-<section id="demo">
-  <div class="section-label">Code examples</div>
-  <h2>Languages &amp; frameworks</h2>
-  <p class="subtitle">Claude Code writes idiomatic code across the full stack — not just boilerplate.</p>
-
-  <div class="demo-box">
-    <div class="demo-tabs">
-      <button class="tab active" onclick="switchTab(this, 'python')">Python</button>
-      <button class="tab" onclick="switchTab(this, 'typescript')">TypeScript</button>
-      <button class="tab" onclick="switchTab(this, 'react')">React</button>
-      <button class="tab" onclick="switchTab(this, 'sql')">SQL</button>
-      <button class="tab" onclick="switchTab(this, 'bash')">Bash</button>
+<!-- ============ POURQUOI NOUS ============ -->
+<section class="why" id="pourquoi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pourquoi nous choisir</span>
+      <h2>Des soins d'exception, une confiance durable</h2>
+      <p>Chaque détail du cabinet est pensé pour votre sécurité, votre confort et la qualité de vos résultats — de la première consultation au suivi post-traitement.</p>
     </div>
 
-    <div class="demo-content active" id="python">
-<pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
-<span class="kw">from</span> typing <span class="kw">import</span> Iterator
+    <div class="cards-4">
+      <article class="why-card reveal d1">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 11v5M9.5 13.5h5"/></svg>
+        </div>
+        <h3>Équipement moderne</h3>
+        <p>Radiologie numérique à faible dose, instruments de dernière génération et matériaux certifiés pour des diagnostics précis et des soins durables.</p>
+      </article>
 
-<span class="cmt"># Sliding-window rate limiter — O(1) amortized using a deque</span>
-<span class="kw">from</span> collections <span class="kw">import</span> deque
-<span class="kw">import</span> time
+      <article class="why-card reveal d2">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.2-8.6A5.2 5.2 0 0 1 12 6.6a5.2 5.2 0 0 1 9.2 5.8C19 16.6 12 21 12 21Z"/></svg>
+        </div>
+        <h3>Soins personnalisés</h3>
+        <p>Un plan de traitement construit avec vous, expliqué clairement, avec un devis transparent avant chaque intervention. Aucune surprise.</p>
+      </article>
 
-@dataclass
-<span class="kw">class</span> <span class="fn">RateLimiter</span>:
-    max_calls: <span class="fn">int</span>
-    period: <span class="fn">float</span>          <span class="cmt"># seconds</span>
-    _times: deque = field(default_factory=deque, repr=<span class="kw">False</span>)
+      <article class="why-card reveal d3">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5l9 4.5 9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></svg>
+        </div>
+        <h3>Expérience professionnelle</h3>
+        <p>Plus de 15 ans de pratique clinique et une formation continue permanente en implantologie, orthodontie et dentisterie esthétique.</p>
+      </article>
 
-    <span class="kw">def</span> <span class="fn">allow</span>(self) -> <span class="fn">bool</span>:
-        now = time.<span class="fn">monotonic</span>()
-        cutoff = now - self.period
-        <span class="kw">while</span> self._times <span class="kw">and</span> self._times[<span class="num">0</span>] &lt; cutoff:
-            self._times.<span class="fn">popleft</span>()
-        <span class="kw">if</span> <span class="fn">len</span>(self._times) &lt; self.max_calls:
-            self._times.<span class="fn">append</span>(now)
-            <span class="kw">return True</span>
-        <span class="kw">return False</span>
-</pre>
-    </div>
-
-    <div class="demo-content" id="typescript">
-<pre><span class="cmt">// Generic retry with exponential back-off and jitter</span>
-<span class="kw">async function</span> <span class="fn">withRetry</span>&lt;T&gt;(
-  fn: () =&gt; <span class="fn">Promise</span>&lt;T&gt;,
-  { maxAttempts = <span class="num">4</span>, baseDelayMs = <span class="num">200</span> } = {}
-): <span class="fn">Promise</span>&lt;T&gt; {
-  <span class="kw">let</span> lastErr: unknown;
-  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; maxAttempts; i++) {
-    <span class="kw">try</span> {
-      <span class="kw">return await</span> <span class="fn">fn</span>();
-    } <span class="kw">catch</span> (err) {
-      lastErr = err;
-      <span class="kw">if</span> (i &lt; maxAttempts - <span class="num">1</span>) {
-        <span class="kw">const</span> delay = baseDelayMs * <span class="num">2</span> ** i + <span class="fn">Math.random</span>() * <span class="num">50</span>;
-        <span class="kw">await new</span> <span class="fn">Promise</span>(r =&gt; <span class="fn">setTimeout</span>(r, delay));
-      }
-    }
-  }
-  <span class="kw">throw</span> lastErr;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="react">
-<pre><span class="kw">import</span> { useState, useCallback } <span class="kw">from</span> <span class="str">'react'</span>;
-
-<span class="kw">function</span> <span class="fn">useLocalStorage</span>&lt;T&gt;(key: <span class="fn">string</span>, initial: T) {
-  <span class="kw">const</span> [value, setValue] = <span class="fn">useState</span>&lt;T&gt;(() =&gt; {
-    <span class="kw">try</span> {
-      <span class="kw">const</span> stored = <span class="fn">localStorage.getItem</span>(key);
-      <span class="kw">return</span> stored ? <span class="fn">JSON.parse</span>(stored) : initial;
-    } <span class="kw">catch</span> { <span class="kw">return</span> initial; }
-  });
-
-  <span class="kw">const</span> set = <span class="fn">useCallback</span>((next: T) =&gt; {
-    setValue(next);
-    <span class="kw">try</span> { <span class="fn">localStorage.setItem</span>(key, <span class="fn">JSON.stringify</span>(next)); }
-    <span class="kw">catch</span> { <span class="cmt">/* storage quota exceeded */</span> }
-  }, [key]);
-
-  <span class="kw">return</span> [value, set] <span class="kw">as const</span>;
-}
-</pre>
-    </div>
-
-    <div class="demo-content" id="sql">
-<pre><span class="cmt">-- Top-N active users with their 30-day order totals</span>
-<span class="kw">WITH</span> recent_orders <span class="kw">AS</span> (
-  <span class="kw">SELECT</span>
-    user_id,
-    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> order_count,
-    <span class="fn">SUM</span>(total_cents) / <span class="num">100.0</span> <span class="kw">AS</span> total_usd
-  <span class="kw">FROM</span> orders
-  <span class="kw">WHERE</span> created_at &gt;= <span class="fn">NOW</span>() - <span class="kw">INTERVAL</span> <span class="str">'30 days'</span>
-  <span class="kw">GROUP BY</span> user_id
-)
-<span class="kw">SELECT</span>
-  u.id, u.email,
-  ro.order_count,
-  ro.total_usd,
-  <span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> ro.total_usd <span class="kw">DESC</span>) <span class="kw">AS</span> rank
-<span class="kw">FROM</span> users u
-<span class="kw">JOIN</span> recent_orders ro <span class="kw">ON</span> ro.user_id = u.id
-<span class="kw">ORDER BY</span> rank
-<span class="kw">LIMIT</span> <span class="num">10</span>;
-</pre>
-    </div>
-
-    <div class="demo-content" id="bash">
-<pre><span class="cmt">#!/usr/bin/env bash</span>
-<span class="cmt"># Deploy: build → test → push image → restart service</span>
-<span class="kw">set</span> -euo pipefail
-
-<span class="fn">log</span>() { printf <span class="str">'\e[34m[%s]\e[0m %s\n'</span> <span class="str">"$(date +%T)"</span> <span class="str">"$*"</span>; }
-
-IMAGE=<span class="str">"myapp:$(git rev-parse --short HEAD)"</span>
-
-<span class="fn">log</span> <span class="str">"Building $IMAGE"</span>
-docker build -t <span class="str">"$IMAGE"</span> .
-
-<span class="fn">log</span> <span class="str">"Running tests"</span>
-docker run --rm <span class="str">"$IMAGE"</span> pytest -q
-
-<span class="fn">log</span> <span class="str">"Pushing image"</span>
-docker push <span class="str">"$IMAGE"</span>
-
-<span class="fn">log</span> <span class="str">"Restarting service"</span>
-kubectl rollout restart deployment/myapp
-kubectl rollout status deployment/myapp
-</pre>
+      <article class="why-card reveal d4">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-3.4 8-9V5.6L12 2.5 4 5.6V13c0 5.6 8 9 8 9Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>Hygiène &amp; sécurité</h3>
+        <p>Stérilisation traçable en autoclave classe B, usage unique systématique et protocoles de désinfection conformes aux normes internationales.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="section-label">At a glance</div>
-  <h2>Built to handle scale</h2>
-  <p class="subtitle">Claude Code is designed for real-world repositories, not toy examples.</p>
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">200K</div>
-      <div class="stat-label">Token context window</div>
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nos services</span>
+      <h2>Une prise en charge complète, sous un même toit</h2>
+      <p>De la prévention à la réhabilitation complète du sourire, nous couvrons l'ensemble des besoins de toute la famille.</p>
     </div>
-    <div class="stat">
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Languages supported</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Files it can read per session</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Command to get started</div>
+
+    <div class="services-grid">
+      <!-- 1 -->
+      <article class="service reveal d1">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2c-3.5 0-4.2 2-7.2 2C2.4 4 1 6.4 1 9.4 1 15 4.4 22 7 22c2 0 2.6-5.5 5-5.5s3 5.5 5 5.5c2.6 0 6-7 6-12.6C23 6.4 21.6 4 19.2 4 16.2 4 15.5 2 12 2Z"/></svg>
+        </div>
+        <h3>Implantologie</h3>
+        <p>Remplacement des dents absentes par des implants en titane biocompatible, posés avec planification radiologique 3D.</p>
+        <ul class="benefits">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Solution fixe et définitive</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Mastication et esthétique naturelles</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Intervention indolore sous anesthésie locale</li>
+        </ul>
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20les%20implants%20dentaires." target="_blank" rel="noopener" class="btn btn-blue btn-sm">Demander un devis</a>
+      </article>
+
+      <!-- 2 -->
+      <article class="service reveal d2">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M3 9h18"/><path d="M3 15h18"/><path d="M7 9v6M12 9v6M17 9v6"/><rect x="2" y="5" width="20" height="14" rx="4"/></svg>
+        </div>
+        <h3>Orthodontie</h3>
+        <p>Alignement des dents chez l'enfant, l'adolescent et l'adulte : bagues esthétiques ou gouttières transparentes invisibles.</p>
+        <ul class="benefits">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Traitements discrets pour adultes</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Meilleure hygiène et occlusion</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Suivi régulier jusqu'au résultat final</li>
+        </ul>
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20une%20consultation%20d%27orthodontie." target="_blank" rel="noopener" class="btn btn-blue btn-sm">Prendre rendez-vous</a>
+      </article>
+
+      <!-- 3 -->
+      <article class="service reveal d3">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="m12 3 1.9 4.3 4.6.5-3.5 3.1 1 4.6L12 13.2 8 15.5l1-4.6-3.5-3.1 4.6-.5L12 3Z"/><path d="M5 20h14"/></svg>
+        </div>
+        <h3>Blanchiment dentaire</h3>
+        <p>Éclaircissement professionnel au fauteuil ou à domicile avec gouttières sur mesure, sous contrôle médical strict.</p>
+        <ul class="benefits">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Résultat visible dès la première séance</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Respect de l'émail, sensibilité maîtrisée</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Teinte naturelle et homogène</li>
+        </ul>
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20blanchiment%20dentaire." target="_blank" rel="noopener" class="btn btn-blue btn-sm">Réserver une séance</a>
+      </article>
+
+      <!-- 4 -->
+      <article class="service reveal d1">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="3"/><rect x="14" y="4" width="7" height="16" rx="3"/><path d="M6.5 8v8M17.5 8v8"/></svg>
+        </div>
+        <h3>Facettes dentaires</h3>
+        <p>Fines pellicules de céramique collées sur la face visible des dents pour corriger la forme, la teinte et les espaces.</p>
+        <ul class="benefits">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Sourire harmonieux et sur mesure</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Préparation minimale de la dent</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Simulation du résultat avant traitement</li>
+        </ul>
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20les%20facettes%20dentaires." target="_blank" rel="noopener" class="btn btn-blue btn-sm">Étudier mon sourire</a>
+      </article>
+
+      <!-- 5 -->
+      <article class="service reveal d2">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M20.8 6.2a3.9 3.9 0 0 0-5.5 0l-9 9V20h4.8l9-9a3.9 3.9 0 0 0 .7-4.8Z"/><path d="m14 8 2 2"/></svg>
+        </div>
+        <h3>Soins conservateurs</h3>
+        <p>Traitement des caries, dévitalisations, détartrage et restaurations esthétiques en composite assorti à votre teinte.</p>
+        <ul class="benefits">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Préservation maximale de la dent naturelle</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Composites invisibles, sans métal</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Prévention et suivi personnalisé</li>
+        </ul>
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20un%20rendez-vous%20pour%20des%20soins%20dentaires." target="_blank" rel="noopener" class="btn btn-blue btn-sm">Prendre rendez-vous</a>
+      </article>
+
+      <!-- 6 -->
+      <article class="service reveal d3">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 3.5 3.8 18a1.6 1.6 0 0 0 1.4 2.4h13.6A1.6 1.6 0 0 0 20.2 18L12 3.5Z"/><path d="M12 9.5v4"/><path d="M12 17h.01"/></svg>
+        </div>
+        <h3>Urgences dentaires</h3>
+        <p>Douleur aiguë, abcès, dent cassée ou couronne descellée : nous vous recevons rapidement, avec des créneaux réservés chaque jour.</p>
+        <ul class="benefits">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Prise en charge le jour même</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Soulagement immédiat de la douleur</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Conseils par WhatsApp avant votre venue</li>
+        </ul>
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20j%27ai%20une%20urgence%20dentaire%20et%20je%20souhaite%20%C3%AAtre%20re%C3%A7u%20rapidement." target="_blank" rel="noopener" class="btn btn-blue btn-sm">Urgence — nous écrire</a>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============ LE CABINET ============ -->
+<section class="about" id="cabinet">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal">
+      <!-- Illustration : à remplacer par une photo réelle de l'équipe / du cabinet -->
+      <svg viewBox="0 0 420 430" role="img" aria-label="Illustration du cabinet dentaire" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="ag1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B4A93"/><stop offset="1" stop-color="#66B0F4"/></linearGradient>
+        </defs>
+        <rect width="420" height="430" fill="url(#ag1)"/>
+        <circle cx="70" cy="70" r="120" fill="#fff" opacity=".06"/>
+        <circle cx="360" cy="360" r="140" fill="#fff" opacity=".05"/>
+        <!-- praticien -->
+        <circle cx="210" cy="150" r="46" fill="#fff" opacity=".92"/>
+        <path d="M124 300c0-48 38-80 86-80s86 32 86 80v40H124v-40Z" fill="#fff" opacity=".92"/>
+        <path d="M210 220c-14 0-25 8-25 8l25 62 25-62s-11-8-25-8Z" fill="#EAF3FF"/>
+        <circle cx="210" cy="262" r="6" fill="#0B63CE" opacity=".5"/>
+        <circle cx="210" cy="288" r="6" fill="#0B63CE" opacity=".35"/>
+        <!-- instruments -->
+        <rect x="40" y="352" width="120" height="12" rx="6" fill="#fff" opacity=".4"/>
+        <rect x="270" y="352" width="110" height="12" rx="6" fill="#fff" opacity=".4"/>
+      </svg>
+      <div class="about-exp">
+        <strong>+15 ans</strong>
+        <span>au service des patients de Fès</span>
+      </div>
+    </div>
+
+    <div>
+      <span class="eyebrow reveal">Le cabinet</span>
+      <h2 class="reveal d1">Un cabinet pensé pour vous mettre en confiance</h2>
+      <p class="reveal d1" style="margin-top:16px">Situé au cœur de Fès, avenue Bir Anzarane, le <strong>Cabinet Dentaire Fès</strong> réunit une équipe expérimentée et un plateau technique moderne dans un espace calme, lumineux et parfaitement organisé. Notre conviction est simple : un patient bien informé et détendu est un patient bien soigné.</p>
+      <p class="reveal d2" style="margin-top:14px">Chaque consultation commence par un temps d'écoute et un examen complet. Nous prenons le temps d'expliquer le diagnostic, de présenter les options thérapeutiques et de remettre un devis clair avant de commencer. Les patients anxieux bénéficient d'une approche douce et progressive, particulièrement appréciée dans les avis de nos patients.</p>
+
+      <ul class="about-points">
+        <li class="reveal d2">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg></span>
+          <div><strong>Une équipe attentive</strong><p>Praticiens et assistantes formés à l'accueil, à la gestion de l'anxiété et au suivi post-opératoire.</p></div>
+        </li>
+        <li class="reveal d3">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 8h14"/><circle cx="12" cy="15" r="4"/></svg></span>
+          <div><strong>Expertise pluridisciplinaire</strong><p>Implantologie, orthodontie et esthétique du sourire réunies dans un même plan de traitement cohérent.</p></div>
+        </li>
+        <li class="reveal d4">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-3.4 8-9V5.6L12 2.5 4 5.6V13c0 5.6 8 9 8 9Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div><strong>Hygiène irréprochable</strong><p>Chaîne de stérilisation tracée, surfaces désinfectées après chaque patient, matériel à usage unique.</p></div>
+        </li>
+      </ul>
+
+      <div style="margin-top:30px" class="reveal d5">
+        <a href="#rendez-vous" class="btn btn-blue">Prendre rendez-vous</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS ============ -->
+<section id="avis">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Avis patients</span>
+      <h2>La confiance de nos patients, notre meilleure référence</h2>
+      <p>Note moyenne de 4,6 sur 5 basée sur 33 avis Google vérifiés.</p>
+    </div>
+
+    <div class="rating-summary reveal d1">
+      <div class="rating-score">
+        <strong>4,6</strong>
+        <span class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+        </span>
+        <span>33 avis Google</span>
+      </div>
+
+      <div class="rating-bars" id="ratingBars">
+        <div class="bar-row"><span>5★</span><span class="bar"><i data-w="82%"></i></span></div>
+        <div class="bar-row"><span>4★</span><span class="bar"><i data-w="9%"></i></span></div>
+        <div class="bar-row"><span>3★</span><span class="bar"><i data-w="4%"></i></span></div>
+        <div class="bar-row"><span>2★</span><span class="bar"><i data-w="2%"></i></span></div>
+        <div class="bar-row"><span>1★</span><span class="bar"><i data-w="3%"></i></span></div>
+      </div>
+
+      <div class="rating-cta">
+        <a href="https://www.google.com/maps/search/?api=1&query=Cabinet%20Dentaire%20F%C3%A8s%20Avenue%20Bir%20Anzarane%20R%C3%A9sidence%20Noujoum" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Voir les 33 avis sur Google</a>
+        <small>Avis publics et vérifiés</small>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <article class="review reveal d1">
+        <span class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+        </span>
+        <p>« Très belle expérience dans ce cabinet. L'espace est agréable, bien organisé et accueillant. Le médecin est vraiment compétent, à l'écoute, et prend le temps de bien examiner et d'expliquer, ce qui est très rassurant. Les conditions d'hygiène sont impeccables. Je recommande vivement. »</p>
+        <div class="reviewer">
+          <span class="avatar">H</span>
+          <span><strong>Hiba B.</strong><span>Il y a 4 mois</span></span>
+          <span class="g-badge">
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-8Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.2v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.9 14.3a6.6 6.6 0 0 1 0-4.2V7.3H2.2a11 11 0 0 0 0 9.8l3.7-2.8Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.1 1.6l3.1-3.1A11 11 0 0 0 2.2 7.3l3.7 2.8C6.8 7.4 9.2 5.4 12 5.4Z"/></svg>
+            Google
+          </span>
+        </div>
+      </article>
+
+      <article class="review reveal d2">
+        <span class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+        </span>
+        <p>« Souffrant d'une véritable phobie du dentiste, j'ai longtemps hésité avant de sauter le pas. C'est finalement grâce au docteur que j'ai pu être rassuré et reprendre confiance en moi. Son approche est douce, patiente et très pédagogique. »</p>
+        <div class="reviewer">
+          <span class="avatar">O</span>
+          <span><strong>Oussama K.</strong><span>Il y a 4 mois</span></span>
+          <span class="g-badge">
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-8Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.2v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.9 14.3a6.6 6.6 0 0 1 0-4.2V7.3H2.2a11 11 0 0 0 0 9.8l3.7-2.8Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.1 1.6l3.1-3.1A11 11 0 0 0 2.2 7.3l3.7 2.8C6.8 7.4 9.2 5.4 12 5.4Z"/></svg>
+            Google
+          </span>
+        </div>
+      </article>
+
+      <article class="review reveal d3">
+        <span class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7L12 2Z"/></svg>
+        </span>
+        <p>« Dentiste très compétent et attentif. Cabinet propre, moderne et agréable. Les soins sont réalisés avec précision et douceur. Je recommande sans hésiter. »</p>
+        <div class="reviewer">
+          <span class="avatar">H</span>
+          <span><strong>Hiba I.</strong><span>Il y a 4 mois</span></span>
+          <span class="g-badge">
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-8Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.2v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.9 14.3a6.6 6.6 0 0 1 0-4.2V7.3H2.2a11 11 0 0 0 0 9.8l3.7-2.8Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.1 1.6l3.1-3.1A11 11 0 0 0 2.2 7.3l3.7 2.8C6.8 7.4 9.2 5.4 12 5.4Z"/></svg>
+            Google
+          </span>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align:center;margin-top:34px" class="reveal d2">
+      <a href="https://www.google.com/maps/search/?api=1&query=Cabinet%20Dentaire%20F%C3%A8s%20Avenue%20Bir%20Anzarane%20R%C3%A9sidence%20Noujoum" target="_blank" rel="noopener" class="btn-link">
+        Lire tous les avis sur Google
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section class="gallery" id="galerie">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Galerie</span>
+      <h2>Découvrez notre cabinet en images</h2>
+      <p>Salles de soins, équipement et espaces d'accueil : un environnement moderne, lumineux et rigoureusement entretenu.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <figure class="g-item tall reveal d1">
+        <svg viewBox="0 0 400 630" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Salle de soins équipée d'un fauteuil dentaire moderne">
+          <defs><linearGradient id="gg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A4A94"/><stop offset="1" stop-color="#4E9EEF"/></linearGradient></defs>
+          <rect width="400" height="630" fill="url(#gg1)"/>
+          <circle cx="330" cy="120" r="150" fill="#fff" opacity=".06"/>
+          <rect x="52" y="360" width="296" height="40" rx="20" fill="#fff" opacity=".9"/>
+          <rect x="86" y="252" width="190" height="106" rx="30" fill="#fff" opacity=".8"/>
+          <rect x="268" y="278" width="86" height="30" rx="15" fill="#fff" opacity=".6"/>
+          <rect x="176" y="400" width="30" height="90" rx="12" fill="#fff" opacity=".45"/>
+          <rect x="128" y="484" width="126" height="16" rx="8" fill="#fff" opacity=".45"/>
+          <rect x="300" y="110" width="10" height="110" rx="5" fill="#fff" opacity=".5"/>
+          <ellipse cx="284" cy="228" rx="56" ry="20" fill="#fff" opacity=".9"/>
+          <ellipse cx="284" cy="226" rx="32" ry="11" fill="#FFF6DC"/>
+        </svg>
+        <figcaption class="g-cap">Salle de soins principale <small>Fauteuil dernière génération</small></figcaption>
+      </figure>
+
+      <figure class="g-item reveal d2">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Instruments dentaires stérilisés">
+          <defs><linearGradient id="gg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E5AAF"/><stop offset="1" stop-color="#7CBBF6"/></linearGradient></defs>
+          <rect width="400" height="300" fill="url(#gg2)"/>
+          <rect x="46" y="196" width="308" height="24" rx="12" fill="#fff" opacity=".85"/>
+          <rect x="72" y="106" width="16" height="88" rx="8" fill="#fff" opacity=".75"/>
+          <rect x="112" y="86" width="16" height="108" rx="8" fill="#fff" opacity=".65"/>
+          <rect x="152" y="122" width="16" height="72" rx="8" fill="#fff" opacity=".8"/>
+          <circle cx="268" cy="132" r="46" fill="#fff" opacity=".18"/>
+          <path d="M244 132h48M268 108v48" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+        </svg>
+        <figcaption class="g-cap">Instrumentation stérilisée <small>Autoclave classe B, traçabilité complète</small></figcaption>
+      </figure>
+
+      <figure class="g-item reveal d3">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Espace d'accueil du cabinet">
+          <defs><linearGradient id="gg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B3F80"/><stop offset="1" stop-color="#5AA6F1"/></linearGradient></defs>
+          <rect width="400" height="300" fill="url(#gg3)"/>
+          <rect x="40" y="150" width="150" height="110" rx="18" fill="#fff" opacity=".85"/>
+          <rect x="210" y="150" width="150" height="110" rx="18" fill="#fff" opacity=".65"/>
+          <rect x="120" y="52" width="160" height="70" rx="14" fill="#fff" opacity=".28"/>
+          <path d="M170 87h60M170 103h34" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".75"/>
+        </svg>
+        <figcaption class="g-cap">Accueil &amp; salle d'attente <small>Espace calme et confortable</small></figcaption>
+      </figure>
+
+      <figure class="g-item reveal d2">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Radiologie numérique">
+          <defs><linearGradient id="gg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#124C93"/><stop offset="1" stop-color="#6FB4F5"/></linearGradient></defs>
+          <rect width="400" height="300" fill="url(#gg4)"/>
+          <rect x="120" y="56" width="160" height="188" rx="16" fill="#fff" opacity=".9"/>
+          <path d="M200 96c-13 0-16-7-29-7-16 0-26 13-26 32 0 32 13 66 23 66 7 0 10-22 19-22h26c9 0 12 22 19 22 10 0 23-34 23-66 0-19-10-32-26-32-13 0-16 7-29 7Z" fill="#BFD9F7" opacity=".85"/>
+          <rect x="150" y="256" width="100" height="12" rx="6" fill="#fff" opacity=".5"/>
+        </svg>
+        <figcaption class="g-cap">Radiologie numérique <small>Diagnostic précis, faible dose</small></figcaption>
+      </figure>
+
+      <figure class="g-item reveal d3">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Zone de stérilisation">
+          <defs><linearGradient id="gg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A4E9B"/><stop offset="1" stop-color="#8CC4F8"/></linearGradient></defs>
+          <rect width="400" height="300" fill="url(#gg5)"/>
+          <rect x="90" y="80" width="220" height="150" rx="20" fill="#fff" opacity=".88"/>
+          <circle cx="200" cy="155" r="46" fill="#DCEBFF"/>
+          <circle cx="200" cy="155" r="30" fill="#fff"/>
+          <rect x="120" y="98" width="60" height="12" rx="6" fill="#BFD9F7"/>
+        </svg>
+        <figcaption class="g-cap">Zone de stérilisation <small>Protocole d'hygiène strict</small></figcaption>
+      </figure>
+
+      <figure class="g-item reveal d4">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Consultation et explication du plan de traitement">
+          <defs><linearGradient id="gg6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0D3F79"/><stop offset="1" stop-color="#63ACF2"/></linearGradient></defs>
+          <rect width="400" height="300" fill="url(#gg6)"/>
+          <circle cx="140" cy="120" r="38" fill="#fff" opacity=".9"/>
+          <path d="M78 246c0-34 28-56 62-56s62 22 62 56H78Z" fill="#fff" opacity=".9"/>
+          <circle cx="272" cy="132" r="30" fill="#fff" opacity=".6"/>
+          <path d="M224 246c0-28 22-46 48-46s48 18 48 46H224Z" fill="#fff" opacity=".6"/>
+        </svg>
+        <figcaption class="g-cap">Consultation personnalisée <small>Explication claire de chaque étape</small></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RENDEZ-VOUS ============ -->
+<section class="appointment" id="rendez-vous">
+  <div class="wrap appt-grid">
+    <div>
+      <span class="eyebrow reveal">Rendez-vous</span>
+      <h2 class="reveal d1">Prenez rendez-vous dès aujourd'hui</h2>
+      <p class="reveal d1" style="margin-top:16px;color:#CFE2F7">Écrivez-nous sur WhatsApp pour obtenir un créneau rapidement, appelez le cabinet, ou laissez-nous vos coordonnées : nous vous rappelons dans les meilleurs délais.</p>
+
+      <div class="appt-actions reveal d2">
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20prendre%20un%20rendez-vous%20au%20Cabinet%20Dentaire%20F%C3%A8s." target="_blank" rel="noopener" class="btn btn-wa">
+          <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm7.6 18.4c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.3.4-4.3-.9-3.6-1.6-5.9-5.3-6-5.5-.2-.3-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6l1.1 2.6c.1.2.2.5 0 .8l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4 1 1.6 2 2.6 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l1.1-1.3c.3-.3.5-.2.8-.1l2.5 1.2c.4.2.6.3.7.4.1.2.1.9-.1 1.5Z"/></svg>
+          WhatsApp — réponse rapide
+        </a>
+        <a href="tel:+212665071865" class="btn btn-outline-light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+          06 65 07 18 65
+        </a>
+      </div>
+
+      <ul class="appt-list">
+        <li class="reveal d3">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><strong>Lundi — Samedi, 08:30 à 18:30</strong><small>Créneaux d'urgence réservés chaque jour</small></div>
+        </li>
+        <li class="reveal d3">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><strong>Imm N°7, 3ème étage, Résidence Noujoum</strong><small>Avenue Bir Anzarane, Fès 30050</small></div>
+        </li>
+        <li class="reveal d4">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>
+          <div><strong>Devis clair avant traitement</strong><small>Feuilles de soins CNSS / CNOPS et assurances privées</small></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-card reveal d2">
+      <h3>Demande de rendez-vous</h3>
+      <p>Remplissez ce formulaire : votre demande s'ouvre directement dans WhatsApp, prête à être envoyée.</p>
+
+      <form id="rdvForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="nom">Nom complet *</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required>
+          </div>
+          <div class="field">
+            <label for="tel">Téléphone *</label>
+            <input type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="motif">Motif de consultation</label>
+            <select id="motif" name="motif">
+              <option>Consultation générale</option>
+              <option>Implantologie</option>
+              <option>Orthodontie</option>
+              <option>Blanchiment dentaire</option>
+              <option>Facettes dentaires</option>
+              <option>Soins conservateurs / détartrage</option>
+              <option>Urgence dentaire</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Date souhaitée</label>
+            <input type="date" id="date" name="date">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Message (facultatif)</label>
+          <textarea id="message" name="message" placeholder="Décrivez brièvement votre besoin ou vos disponibilités…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-wa">
+          <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm7.6 18.4c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.3.4-4.3-.9-3.6-1.6-5.9-5.3-6-5.5-.2-.3-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6l1.1 2.6c.1.2.2.5 0 .8l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4 1 1.6 2 2.6 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l1.1-1.3c.3-.3.5-.2.8-.1l2.5 1.2c.4.2.6.3.7.4.1.2.1.9-.1 1.5Z"/></svg>
+          Envoyer ma demande
+        </button>
+        <p class="form-note" id="formNote">Vos informations restent confidentielles et ne servent qu'à traiter votre demande de rendez-vous.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Tout ce que vous devez savoir</h2>
+      <p>Une question qui n'apparaît pas ici ? Écrivez-nous sur WhatsApp, nous vous répondons rapidement.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal d1">
+        <button class="faq-q" aria-expanded="false">Comment prendre rendez-vous ?<span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
+        <div class="faq-a"><p>Le plus simple est de nous écrire sur WhatsApp au 06 65 07 18 65 : vous recevez une proposition de créneau rapidement. Vous pouvez également appeler le cabinet aux heures d'ouverture ou remplir le formulaire de ce site.</p></div>
+      </div>
+
+      <div class="faq-item reveal d1">
+        <button class="faq-q" aria-expanded="false">Prenez-vous les urgences dentaires ?<span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
+        <div class="faq-a"><p>Oui. Les douleurs aiguës, abcès, dents cassées et couronnes descellées sont traités en priorité. Des créneaux d'urgence sont réservés chaque jour : contactez-nous par WhatsApp en décrivant votre situation pour être orienté immédiatement.</p></div>
+      </div>
+
+      <div class="faq-item reveal d2">
+        <button class="faq-q" aria-expanded="false">La pose d'un implant est-elle douloureuse ?<span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
+        <div class="faq-a"><p>Non. L'intervention se déroule sous anesthésie locale et reste indolore. Les suites sont généralement simples, gérées par un traitement antalgique léger de quelques jours. Un contrôle post-opératoire est systématiquement programmé.</p></div>
+      </div>
+
+      <div class="faq-item reveal d2">
+        <button class="faq-q" aria-expanded="false">J'ai très peur du dentiste, comment cela se passe-t-il ?<span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
+        <div class="faq-a"><p>L'anxiété dentaire est très fréquente et nous y sommes habitués. La première séance est consacrée à l'écoute et à l'examen, sans geste invasif. Nous avançons ensuite à votre rythme, en expliquant chaque étape avant de la réaliser.</p></div>
+      </div>
+
+      <div class="faq-item reveal d3">
+        <button class="faq-q" aria-expanded="false">Acceptez-vous les mutuelles et assurances ?<span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
+        <div class="faq-a"><p>Oui. Nous établissons les feuilles de soins et devis nécessaires pour la CNSS, la CNOPS et les assurances privées. Un devis détaillé vous est remis avant tout traitement afin que vous connaissiez le coût exact à l'avance.</p></div>
+      </div>
+
+      <div class="faq-item reveal d3">
+        <button class="faq-q" aria-expanded="false">À quelle fréquence faut-il consulter ?<span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
+        <div class="faq-a"><p>Une visite de contrôle tous les six à douze mois, accompagnée d'un détartrage, permet de dépister les caries et les problèmes gingivaux avant qu'ils ne deviennent douloureux — et coûteux à traiter.</p></div>
+      </div>
+
+      <div class="faq-item reveal d4">
+        <button class="faq-q" aria-expanded="false">Où se trouve le cabinet et comment y accéder ?<span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
+        <div class="faq-a"><p>Le cabinet se situe Imm N°7, 3ème étage, Résidence Noujoum, Avenue Bir Anzarane, Fès 30050. Le quartier est facilement accessible en voiture comme en taxi, avec du stationnement à proximité. Utilisez le plan en bas de page pour lancer l'itinéraire.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCALISATION ============ -->
+<section class="location" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nous trouver</span>
+      <h2>Cabinet Dentaire Fès — Avenue Bir Anzarane</h2>
+      <p>Au cœur de Fès, facilement accessible et bien desservi.</p>
+    </div>
+
+    <div class="loc-grid">
+      <div class="loc-card reveal d1">
+        <h3>Informations pratiques</h3>
+        <ul class="loc-list">
+          <li>
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div>
+              <strong>Adresse</strong>
+              <p>Imm N°7, 3ème étage, Résidence Noujoum,<br>Avenue Bir Anzarane, Fès 30050</p>
+            </div>
+          </li>
+          <li>
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg></span>
+            <div>
+              <strong>Téléphone &amp; WhatsApp</strong>
+              <p><a href="tel:+212665071865">06 65 07 18 65</a> · <a href="https://wa.me/212665071865" target="_blank" rel="noopener">Écrire sur WhatsApp</a></p>
+            </div>
+          </li>
+          <li>
+            <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div>
+              <strong>Horaires d'ouverture</strong>
+              <div class="hours">
+                <div><span>Lundi — Vendredi</span><span>08:30 — 18:30</span></div>
+                <div><span>Samedi</span><span>09:00 — 13:00</span></div>
+                <div><span>Dimanche</span><span>Fermé</span></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+          <a class="btn btn-blue btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Imm%20N%C2%B07%2C%203%C3%A8me%20%C3%A9tage%2C%20R%C3%A9sidence%20Noujoum%2C%20Avenue%20Bir%20Anzarane%2C%20F%C3%A8s%2030050">Itinéraire</a>
+          <a class="btn btn-ghost btn-sm" href="tel:+212665071865">Appeler le cabinet</a>
+        </div>
+      </div>
+
+      <div class="map-wrap reveal d2">
+        <iframe
+          title="Localisation du Cabinet Dentaire Fès sur Google Maps"
+          src="https://www.google.com/maps?q=Imm%20N%C2%B07%2C%203%C3%A8me%20%C3%A9tage%2C%20R%C3%A9sidence%20Noujoum%2C%20Avenue%20Bir%20Anzarane%2C%20F%C3%A8s%2030050&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  Built with Claude Code &nbsp;·&nbsp; Anthropic &nbsp;·&nbsp;
-  <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Documentation</a>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="f-logo">
+          <span class="logo-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 15c-5 0-6-3-11-3-6 0-10 5-10 12 0 12 5 25 9 25 3 0 4-8 7-8h10c3 0 4 8 7 8 4 0 9-13 9-25 0-7-4-12-10-12-5 0-6 3-11 3z" fill="#fff"/></svg></span>
+          <span class="logo-txt"><strong>Cabinet Dentaire Fès</strong><span>Excellence &amp; Confiance</span></span>
+        </div>
+        <p>Cabinet dentaire moderne au cœur de Fès. Implantologie, orthodontie, esthétique du sourire, soins et urgences — dans un environnement professionnel et confortable.</p>
+        <div class="f-social">
+          <a href="https://wa.me/212665071865" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm7.6 18.4c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.3.4-4.3-.9-3.6-1.6-5.9-5.3-6-5.5-.2-.3-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6l1.1 2.6c.1.2.2.5 0 .8l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4 1 1.6 2 2.6 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l1.1-1.3c.3-.3.5-.2.8-.1l2.5 1.2c.4.2.6.3.7.4.1.2.1.9-.1 1.5Z"/></svg>
+          </a>
+          <a href="tel:+212665071865" aria-label="Téléphone">
+            <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Imm%20N%C2%B07%2C%20R%C3%A9sidence%20Noujoum%2C%20Avenue%20Bir%20Anzarane%2C%20F%C3%A8s" target="_blank" rel="noopener" aria-label="Google Maps">
+            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Nos services</h4>
+        <ul>
+          <li><a href="#services">Implantologie</a></li>
+          <li><a href="#services">Orthodontie</a></li>
+          <li><a href="#services">Blanchiment dentaire</a></li>
+          <li><a href="#services">Facettes dentaires</a></li>
+          <li><a href="#services">Soins conservateurs</a></li>
+          <li><a href="#services">Urgences dentaires</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#pourquoi">Pourquoi nous choisir</a></li>
+          <li><a href="#cabinet">Le cabinet</a></li>
+          <li><a href="#avis">Avis patients</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Imm N°7, 3ème étage,<br>Résidence Noujoum,<br>Avenue Bir Anzarane, Fès 30050</li>
+          <li><a href="tel:+212665071865">06 65 07 18 65</a></li>
+          <li>Lun — Ven : 08:30 — 18:30<br>Samedi : 09:00 — 13:00</li>
+        </ul>
+        <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20prendre%20un%20rendez-vous%20au%20Cabinet%20Dentaire%20F%C3%A8s." target="_blank" rel="noopener" class="btn btn-wa btn-sm" style="margin-top:18px">Prendre rendez-vous</a>
+      </div>
+    </div>
+
+    <div class="f-bottom">
+      <span>© <span id="year">2026</span> Cabinet Dentaire Fès. Tous droits réservés.</span>
+      <span>Les informations de ce site sont fournies à titre indicatif et ne remplacent pas une consultation.</span>
+    </div>
+  </div>
 </footer>
 
+<!-- Floating WhatsApp -->
+<a class="fab" id="fab" href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20prendre%20un%20rendez-vous%20au%20Cabinet%20Dentaire%20F%C3%A8s." target="_blank" rel="noopener" aria-label="Prendre rendez-vous sur WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm7.6 18.4c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.3.4-4.3-.9-3.6-1.6-5.9-5.3-6-5.5-.2-.3-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6l1.1 2.6c.1.2.2.5 0 .8l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4 1 1.6 2 2.6 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l1.1-1.3c.3-.3.5-.2.8-.1l2.5 1.2c.4.2.6.3.7.4.1.2.1.9-.1 1.5Z"/></svg>
+  Rendez-vous
+</a>
+
+<!-- Mobile sticky bar -->
+<div class="mobile-bar">
+  <a href="tel:+212665071865" class="btn btn-ghost">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+    Appeler
+  </a>
+  <a href="https://wa.me/212665071865?text=Bonjour%2C%20je%20souhaite%20prendre%20un%20rendez-vous%20au%20Cabinet%20Dentaire%20F%C3%A8s." target="_blank" rel="noopener" class="btn btn-wa">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 1 0 16 3Zm7.6 18.4c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.3.4-4.3-.9-3.6-1.6-5.9-5.3-6-5.5-.2-.3-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6l1.1 2.6c.1.2.2.5 0 .8l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4 1 1.6 2 2.6 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l1.1-1.3c.3-.3.5-.2.8-.1l2.5 1.2c.4.2.6.3.7.4.1.2.1.9-.1 1.5Z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
 <script>
-  // ── Tab switcher ──
-  function switchTab(btn, id) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(id).classList.add('active');
+(function(){
+  "use strict";
+  var WA = "212665071865";
+
+  /* ---- year ---- */
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---- sticky header shadow + FAB ---- */
+  var header = document.getElementById("header");
+  var fab = document.getElementById("fab");
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    header.classList.toggle("scrolled", y > 12);
+    fab.classList.toggle("show", y > 380);
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ---- mobile menu ---- */
+  var burger = document.getElementById("burger");
+  var menu = document.getElementById("mobileMenu");
+  function closeMenu(){
+    burger.classList.remove("open");
+    menu.classList.remove("open");
+    burger.setAttribute("aria-expanded","false");
+    document.body.style.overflow = "";
+  }
+  burger.addEventListener("click", function(){
+    var open = menu.classList.toggle("open");
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  menu.addEventListener("click", function(e){ if(e.target.closest("a")) closeMenu(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeMenu(); });
+
+  /* ---- reveal on scroll ---- */
+  var revealables = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -60px 0px"});
+    revealables.forEach(function(el){ io.observe(el); });
+  } else {
+    revealables.forEach(function(el){ el.classList.add("in"); });
   }
 
-  // ── Terminal typewriter ──
-  const demos = [
-    {
-      cmd: 'claude "Add input validation to the signup form"',
-      reply: `Reading src/components/SignupForm.tsx …
-Found 3 fields missing validation: email, password, username.
-✓ Added zod schema with error messages
-✓ Wired inline error display to each field
-✓ Disabled submit button while invalid
-2 files changed, 31 insertions(+), 4 deletions(-)`
-    },
-    {
-      cmd: 'claude "Why is the /dashboard route slow?"',
-      reply: `Tracing request path …
-  routes/dashboard.ts → services/metrics.ts:fetchAll()
-  fetchAll() runs 6 sequential DB queries (N+1 pattern).
-  Fix: batch with Promise.all — estimated 4× speedup.
-Apply fix? (y/n)`
-    },
-    {
-      cmd: 'claude "Write tests for the CartService"',
-      reply: `Found 8 public methods in CartService.
-Generated 23 tests across:
-  • addItem (happy path + duplicate + out-of-stock)
-  • removeItem (present + missing)
-  • applyDiscount (valid + expired + invalid code)
-  • checkout (success + payment failure)
-All 23 tests pass ✓`
-    }
-  ];
-
-  let demoIdx = 0, cmdIdx = 0, replyIdx = 0, phase = 'cmd';
-  const cmdEl = document.getElementById('typed-cmd');
-  const replyEl = document.getElementById('typed-reply');
-  const cursor = document.getElementById('cursor');
-
-  function nextChar() {
-    const d = demos[demoIdx];
-    if (phase === 'cmd') {
-      if (cmdIdx < d.cmd.length) {
-        cmdEl.textContent += d.cmd[cmdIdx++];
-        setTimeout(nextChar, 35 + Math.random() * 25);
-      } else {
-        cursor.style.display = 'none';
-        phase = 'reply';
-        setTimeout(nextChar, 500);
-      }
-    } else {
-      if (replyIdx < d.reply.length) {
-        replyEl.textContent += d.reply[replyIdx++];
-        setTimeout(nextChar, 12);
-      } else {
-        setTimeout(() => {
-          cmdEl.textContent = '';
-          replyEl.textContent = '';
-          cmdIdx = replyIdx = 0;
-          phase = 'cmd';
-          cursor.style.display = 'inline-block';
-          demoIdx = (demoIdx + 1) % demos.length;
-          setTimeout(nextChar, 400);
-        }, 3200);
-      }
-    }
+  /* ---- rating bars animation ---- */
+  var bars = document.getElementById("ratingBars");
+  if(bars){
+    var fill = function(){
+      bars.querySelectorAll("i").forEach(function(i){ i.style.width = i.getAttribute("data-w"); });
+    };
+    if("IntersectionObserver" in window){
+      var bo = new IntersectionObserver(function(e){
+        if(e[0].isIntersecting){ fill(); bo.disconnect(); }
+      }, {threshold:.4});
+      bo.observe(bars);
+    } else { fill(); }
   }
 
-  setTimeout(nextChar, 800);
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll(".faq-item").forEach(function(item){
+    var btn = item.querySelector(".faq-q");
+    var ans = item.querySelector(".faq-a");
+    btn.addEventListener("click", function(){
+      var isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(function(other){
+        other.classList.remove("open");
+        other.querySelector(".faq-a").style.maxHeight = null;
+        other.querySelector(".faq-q").setAttribute("aria-expanded","false");
+      });
+      if(!isOpen){
+        item.classList.add("open");
+        ans.style.maxHeight = ans.scrollHeight + "px";
+        btn.setAttribute("aria-expanded","true");
+      }
+    });
+  });
+  window.addEventListener("resize", function(){
+    var open = document.querySelector(".faq-item.open .faq-a");
+    if(open) open.style.maxHeight = open.scrollHeight + "px";
+  });
+
+  /* ---- active nav link on scroll ---- */
+  var sections = ["accueil","services","cabinet","avis","galerie","faq","contact"];
+  var navLinks = document.querySelectorAll(".nav-links a");
+  if("IntersectionObserver" in window){
+    var so = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          navLinks.forEach(function(a){
+            a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id);
+          });
+        }
+      });
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) so.observe(el);
+    });
+  }
+
+  /* ---- appointment form -> WhatsApp ---- */
+  var form = document.getElementById("rdvForm");
+  var note = document.getElementById("formNote");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var nom = form.nom.value.trim();
+    var tel = form.tel.value.trim();
+    if(!nom || !tel){
+      note.textContent = "Merci d'indiquer votre nom et votre numéro de téléphone.";
+      note.style.color = "#C0392B";
+      (!nom ? form.nom : form.tel).focus();
+      return;
+    }
+    note.textContent = "Vos informations restent confidentielles et ne servent qu'à traiter votre demande de rendez-vous.";
+    note.style.color = "";
+
+    var lignes = [
+      "Bonjour, je souhaite prendre rendez-vous au Cabinet Dentaire Fès.",
+      "",
+      "Nom : " + nom,
+      "Téléphone : " + tel,
+      "Motif : " + form.motif.value
+    ];
+    if(form.date.value){
+      var d = new Date(form.date.value + "T00:00:00");
+      var txt = isNaN(d) ? form.date.value : d.toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+      lignes.push("Date souhaitée : " + txt);
+    }
+    if(form.message.value.trim()){
+      lignes.push("Message : " + form.message.value.trim());
+    }
+
+    window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(lignes.join("\n")), "_blank", "noopener");
+  });
+})();
 </script>
-
 </body>
 </html>
