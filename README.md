@@ -1,7 +1,8 @@
-# Cabinet Dentaire Fès — site vitrine
+# Oudrhiri — Centre de Médecine Dentaire · site vitrine
 
-Site vitrine premium (une seule page) pour un cabinet dentaire à Fès, en français,
-orienté conversion : chaque section pousse vers la prise de rendez-vous WhatsApp.
+Site vitrine premium (une seule page) pour le centre de médecine dentaire
+Oudrhiri à Fès, en français, orienté conversion : chaque section pousse vers la
+prise de rendez-vous WhatsApp.
 
 ## Fichier
 
